@@ -1,5 +1,5 @@
 interface DailyReflections {
-  dailyReflection: DailyReflection[];
+  dailyReflections: DailyReflection[];
 }
 
 interface DailyReflection {
