@@ -6,11 +6,22 @@
     "start": "npx expo start --tunnel",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
+    "format": "npx prettier --check \"**/*.{js,jsx,ts,tsx}\"",
+    "format:fix": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@wildpastry/eslint-config": "^1.6.4",
+    "eslint": "^8.36.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
+    "prettier": "^2.8.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.4",
