@@ -1,5 +1,5 @@
 {
-  "name": "puff-no-more",
+  "name": "just-for-today",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -14,14 +14,8 @@
     "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@wildpastry/eslint-config": "^1.6.4",
-    "eslint": "^8.36.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
-    "prettier": "^2.8.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.4",
@@ -29,8 +23,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
-    "@types/react": "~18.0.28",
     "@types/react-native": "~0.71.4",
+    "@types/react": "~18.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@wildpastry/eslint-config": "^1.6.4",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint": "^8.36.0",
+    "prettier": "^2.8.6",
     "typescript": "^4.9.4"
   },
   "private": true
