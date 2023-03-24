@@ -1,13 +1,14 @@
-import type { JestConfigWithTsJest } from 'ts-jest/dist/types';
+/* eslint-disable max-len */
+import type { Config } from 'jest';
+import { defaults } from 'jest-config';
 
-const config: JestConfigWithTsJest = {
-  preset: 'ts-jest',
-  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+const config: Config = {
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'mts'],
+  preset: 'jest-expo',
   testEnvironment: 'jsdom',
-  transform: {
-    '.+\\.(css|styl|less|sass|scss)$': 'jest-css-modules-transform',
-    '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.test.json' }]
-  }
+  transformIgnorePatterns: [
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)'
+  ]
 };
 
 export default config;

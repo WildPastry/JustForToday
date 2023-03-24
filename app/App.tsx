@@ -1,14 +1,10 @@
-/* eslint-disable */
 import { StyleSheet, Text, View } from 'react-native';
+
+import Home from './screens/home/Home';
 import { StatusBar } from 'expo-status-bar';
-import dailyReflections from './assets/content/daily-reflections.json';
 import { registerRootComponent } from 'expo';
-import Home from './screens/Home';
 
 const App: React.FC = (): JSX.Element => {
-
-  const dailyReflectionsData: DailyReflection[] = dailyReflections;
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Just for today</Text>
@@ -29,10 +25,6 @@ const styles = StyleSheet.create({
   title: {
     color: '#f7f1e3',
     fontSize: 25
-  },
-  desc: {
-    color: '#f7f1e3',
-    fontSize: 15
   }
 });
 
