@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import dailyReflections from './assets/content/daily-reflections.json';
 import { registerRootComponent } from 'expo';
+import Home from './screens/Home';
+
 const App: React.FC = (): JSX.Element => {
 
   const dailyReflectionsData: DailyReflection[] = dailyReflections;
@@ -10,7 +12,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Just for today</Text>
-      <Text style={styles.desc}>{dailyReflectionsData[0].quote}</Text>
+      <Home />
       <StatusBar style='auto' />
     </View>
   );
