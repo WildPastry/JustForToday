@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders the component 1`] = `
+<View>
+  <Text
+    style={
+      {
+        "color": "#f7f1e3",
+        "fontSize": 25,
+      }
+    }
+  >
+    Home
+  </Text>
+</View>
+`;
