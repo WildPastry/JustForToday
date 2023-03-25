@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import Home from './screens/home/Home';
+import Home from './app/screens/home/Home';
 import { StatusBar } from 'expo-status-bar';
-import { registerRootComponent } from 'expo';
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -28,5 +27,4 @@ const styles = StyleSheet.create({
   }
 });
 
-registerRootComponent(App);
 export default App;
