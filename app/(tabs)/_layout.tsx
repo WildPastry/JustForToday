@@ -3,9 +3,6 @@ import { Pressable, useColorScheme } from 'react-native';
 import Colors from '../../constants/colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -24,7 +21,7 @@ export default function TabLayout() {
         name='index'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name='circle' color={color} />,
           headerRight: () => (
             <Link href='/modal' asChild>
               <Pressable>
@@ -45,7 +42,7 @@ export default function TabLayout() {
         name='two'
         options={{
           title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />
+          tabBarIcon: ({ color }) => <TabBarIcon name='circle' color={color} />
         }}
       />
     </Tabs>
