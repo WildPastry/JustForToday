@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`<StyledText /> renders correctly 1`] = `
 <Text
   style={
     [
@@ -16,6 +16,6 @@ exports[`renders correctly 1`] = `
     ]
   }
 >
-  Snapshot test!
+  Snapshot
 </Text>
 `;
