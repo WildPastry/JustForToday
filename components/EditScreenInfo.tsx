@@ -1,11 +1,13 @@
 import { Text, View } from './Themed';
 import Colors from '../constants/colors';
-import { ExternalLink } from './ExternalLink';
+import ExternalLink from './ExternalLink';
 import { MonoText } from './StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-export default function EditScreenInfo({ path }: { path: string }) {
+const EditScreenInfo: React.FC<IEditScreenInfo> = (
+  props: IEditScreenInfo
+): JSX.Element => {
   return (
     <View>
       <View style={styles.getStartedContainer}>
@@ -20,7 +22,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           darkColor='rgba(255,255,255,0.05)'
           lightColor='rgba(0,0,0,0.05)'>
-          <MonoText>{path}</MonoText>
+          <MonoText>{props.path}</MonoText>
         </View>
 
         <Text
@@ -44,7 +46,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   getStartedContainer: {
@@ -75,3 +77,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
+
+export default EditScreenInfo;
