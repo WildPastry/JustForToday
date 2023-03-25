@@ -1,7 +1,11 @@
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 const Home: React.FC = (): JSX.Element => {
-  return <Text style={styles.title}>Home</Text>;
+  return (
+    <View>
+      <Text style={styles.title}>Home</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
