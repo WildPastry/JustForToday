@@ -1,4 +1,4 @@
-import Support from './Support';
+import Support from '../Support';
 import renderer from 'react-test-renderer';
 
 describe('<Support />', () => {
