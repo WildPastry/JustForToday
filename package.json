@@ -1,12 +1,17 @@
 {
-  "name": "just-for-today-2",
+  "name": "just-for-today",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "format": "npx prettier --check \"**/*.{js,jsx,ts,tsx}\"",
+    "format:fix": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
+    "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix",
+    "test": "jest"
   },
   "jest": {
     "preset": "jest-expo"
