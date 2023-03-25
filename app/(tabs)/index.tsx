@@ -2,10 +2,10 @@ import { Text, View } from '../../components/Themed';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { StyleSheet } from 'react-native';
 
-export default function TabOneScreen() {
+const Home: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Home</Text>
       <View
         style={styles.separator}
         lightColor='#eee'
@@ -14,7 +14,7 @@ export default function TabOneScreen() {
       <EditScreenInfo path='app/(tabs)/index.tsx' />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
     width: '80%'
   }
 });
+
+export default Home;
