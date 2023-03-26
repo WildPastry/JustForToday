@@ -13,7 +13,7 @@ const ExternalLink: React.FC<IExternalLink> = (
         target: '_blank'
       }}
       {...props}
-      onPress={(e) => {
+      onPress={(e: { preventDefault: () => void }) => {
         if (Platform.OS !== 'web') {
           // Prevent the default behavior of linking to the default browser on native
           e.preventDefault();

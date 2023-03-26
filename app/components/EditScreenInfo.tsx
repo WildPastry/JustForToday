@@ -1,5 +1,5 @@
 import { Text, View } from './Themed';
-import Colors from '../constants/colors';
+import Colors from '../constants/Colors';
 import ExternalLink from './ExternalLink';
 import { MonoText } from './StyledText';
 import React from 'react';
