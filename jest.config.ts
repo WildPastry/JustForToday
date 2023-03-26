@@ -11,7 +11,7 @@ const config: Config = {
     'js',
     'jsx'
   ],
-  preset: 'react-native',
+  preset: 'jest-expo',
   testEnvironment: 'jsdom',
   collectCoverage: true,
   collectCoverageFrom: [
