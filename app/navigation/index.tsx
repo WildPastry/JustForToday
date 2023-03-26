@@ -6,9 +6,9 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps
+  TRootStackParamList,
+  TRootTabParamList,
+  TRootTabScreenProps
 } from '../types/navigation';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -37,7 +37,7 @@ export default function Navigation({
 }
 
 // A stack navigator is used for displaying modals on top of other content
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<TRootStackParamList>();
 
 function RootNavigator() {
   return (
@@ -60,7 +60,7 @@ function RootNavigator() {
 }
 
 // A bottom tab navigator displays tab buttons at the bottom of the screen
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<TRootTabParamList>();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -74,7 +74,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name='Home'
         component={Home}
-        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+        options={({ navigation }: TRootTabScreenProps<'Home'>) => ({
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
           headerRight: () => (
