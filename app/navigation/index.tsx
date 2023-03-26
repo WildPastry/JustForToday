@@ -13,10 +13,11 @@ import {
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import Home from '../screens/Home';
+import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
-import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Reflections from '../screens/Reflections';
+import Support from '../screens/Support';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useColorScheme from '../hooks/useColorScheme';
@@ -52,7 +53,7 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='Modal' component={ModalScreen} />
+        <Stack.Screen name='Info' component={Info} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -78,7 +79,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('Info')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1
               })}>
@@ -97,9 +98,15 @@ function BottomTabNavigator() {
         component={Reflections}
         options={{
           title: 'Reflections',
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name='calendar' color={color} />
-          )
+          tabBarIcon: ({ color }) => <TabBarIcon name='eercast' color={color} />
+        }}
+      />
+      <BottomTab.Screen
+        name='Support'
+        component={Support}
+        options={{
+          title: 'Support',
+          tabBarIcon: ({ color }) => <TabBarIcon name='heart' color={color} />
         }}
       />
     </BottomTab.Navigator>
@@ -111,5 +118,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} {...props} />;
+  return <FontAwesome size={28} {...props} />;
 }

@@ -18,6 +18,11 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               Reflections: 'two'
             }
+          },
+          Support: {
+            screens: {
+              Support: 'three'
+            }
           }
         }
       },
