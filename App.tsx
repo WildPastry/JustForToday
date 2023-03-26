@@ -1,24 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import useCachedResources from './app/hooks/useCachedResources';
+import useColorScheme from './app/hooks/useColorScheme';
+import Navigation from './app/navigation';
 
 export default function App() {
+  const isLoadingComplete = useCachedResources();
+  const colorScheme = useColorScheme();
+
+  if (!isLoadingComplete) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Just for today</Text>
-      <StatusBar style='auto' />
-    </View>
+    <SafeAreaProvider>
+      <Navigation colorScheme={colorScheme} />
+      <StatusBar />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#227093',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  title: {
-    color: '#f7f1e3',
-    fontSize: 25
-  }
-});
