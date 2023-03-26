@@ -1,8 +1,8 @@
-interface IDailyReflections {
-  dailyReflections: IDailyReflection[];
+interface DailyReflections {
+  dailyReflections: DailyReflection[];
 }
 
-interface IDailyReflection {
+interface DailyReflection {
   id: number;
   date: string;
   title: string;

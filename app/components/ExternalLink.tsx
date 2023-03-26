@@ -3,8 +3,8 @@ import { Link } from 'expo-router';
 import { Platform } from 'react-native';
 import React from 'react';
 
-const ExternalLink: React.FC<IExternalLink> = (
-  props: IExternalLink
+const ExternalLink: React.FC<ExternalLink> = (
+  props: ExternalLink
 ): JSX.Element => {
   return (
     <Link
