@@ -1,4 +1,4 @@
-import { Text, View } from '../../components/Themed';
+import { Text, View } from './Themed';
 
 const Reflection: React.FC = (): JSX.Element => {
   return (

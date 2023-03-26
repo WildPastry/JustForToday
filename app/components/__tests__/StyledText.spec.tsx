@@ -1,3 +1,4 @@
+import { MonoText } from '../StyledText';
 import renderer from 'react-test-renderer';
 
 describe('<StyledText />', () => {

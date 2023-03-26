@@ -14,9 +14,9 @@ const linking: LinkingOptions<RootStackParamList> = {
               Home: 'one'
             }
           },
-          TabTwo: {
+          Reflections: {
             screens: {
-              TabTwoScreen: 'two'
+              Reflections: 'two'
             }
           }
         }

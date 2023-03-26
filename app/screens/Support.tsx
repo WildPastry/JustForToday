@@ -1,4 +1,4 @@
-import { Text, View } from '../../components/Themed';
+import { Text, View } from '../components/Themed';
 
 const Support: React.FC = (): JSX.Element => {
   return (
