@@ -98,7 +98,9 @@ function BottomTabNavigator() {
         component={Reflections}
         options={{
           title: 'Reflections',
-          tabBarIcon: ({ color }) => <TabBarIcon name='eercast' color={color} />
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='superpowers' color={color} />
+          )
         }}
       />
       <BottomTab.Screen
