@@ -1,6 +1,5 @@
 import * as Linking from 'expo-linking';
 import { LinkingOptions } from '@react-navigation/native';
-
 import { TRootStackParamList } from '../types/navigation';
 
 const linking: LinkingOptions<TRootStackParamList> = {
@@ -26,7 +25,7 @@ const linking: LinkingOptions<TRootStackParamList> = {
           }
         }
       },
-      Modal: 'modal',
+      Info: 'modal',
       NotFound: '*'
     }
   }
