@@ -7,13 +7,13 @@ export default {
     background: '#fff',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+    tabIconSelected: tintColorLight
   },
   dark: {
     text: '#fff',
-    background: '#000',
+    background: '#164580',
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+    tabIconDefault: '#dff9fb',
+    tabIconSelected: tintColorDark
+  }
 };
