@@ -1,9 +1,9 @@
-interface IExternalLink {
+interface ExternalLink {
   children: JSX.Element;
   href: string;
   style: {};
 }
 
-interface IEditScreenInfo {
+interface EditScreenInfo {
   path: string;
 }

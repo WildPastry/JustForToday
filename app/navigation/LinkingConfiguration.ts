@@ -1,6 +1,5 @@
 import * as Linking from 'expo-linking';
 import { LinkingOptions } from '@react-navigation/native';
-
 import { RootStackParamList } from '../types/navigation';
 
 const linking: LinkingOptions<RootStackParamList> = {
@@ -18,10 +17,15 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               Reflections: 'two'
             }
+          },
+          Support: {
+            screens: {
+              Support: 'three'
+            }
           }
         }
       },
-      Modal: 'modal',
+      Info: 'modal',
       NotFound: '*'
     }
   }
