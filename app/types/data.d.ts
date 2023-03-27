@@ -10,3 +10,8 @@ interface DailyReflection {
   source: string;
   reflection: string;
 }
+
+interface Loading {
+  isLoading: boolean;
+  isError: boolean;
+}
