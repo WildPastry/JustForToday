@@ -3,8 +3,8 @@ import { Link } from 'expo-router';
 import { Platform } from 'react-native';
 import React from 'react';
 
-const ExternalLink: React.FC<IExternalLink> = (
-  props: IExternalLink
+const ExternalLink: React.FC<ExternalLink> = (
+  props: ExternalLink
 ): JSX.Element => {
   return (
     <Link
@@ -18,7 +18,7 @@ const ExternalLink: React.FC<IExternalLink> = (
           // Prevent the default behavior of linking to the default browser on native
           e.preventDefault();
           // Open the link in an in-app browser
-          WebBrowser.openBrowserAsync(props.href as string);
+          WebBrowser.openBrowserAsync(props.href);
         }
       }}
     />

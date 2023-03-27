@@ -5,8 +5,8 @@ import { MonoText } from './StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-const EditScreenInfo: React.FC<IEditScreenInfo> = (
-  props: IEditScreenInfo
+const EditScreenInfo: React.FC<EditScreenInfo> = (
+  props: EditScreenInfo
 ): JSX.Element => {
   return (
     <View>
