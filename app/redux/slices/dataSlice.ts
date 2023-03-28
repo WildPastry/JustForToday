@@ -1,26 +1,24 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 // Set initialState
-const initialState = {
-  currentData: {}
-};
+const initialState: DailyReflection[] = [];
 
 /*
- * Create loadingSlice with combined actions
- * Including: App loading state and app error state
+ * Create dataSlice with combined actions
+ * Including: App data state
  */
 const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    setReflectionData(state, action: PayloadAction<DailyReflections>) {
-      state.currentData = action.payload;
+    setReflections(state, action: PayloadAction<DailyReflection[]>) {
+      action.payload.forEach((reflection: DailyReflection) => state.push(reflection));
     }
   }
 });
 
 // Export Data actions from DataSlice
-export const { setReflectionData } = dataSlice.actions;
+export const { setReflections } = dataSlice.actions;
 
 // Export reducer
 export default dataSlice.reducer;

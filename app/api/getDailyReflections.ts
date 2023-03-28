@@ -1,6 +1,6 @@
 import dailyReflections from '../assets/data/daily-reflections.json';
 
-const getDailyReflections = (): DailyReflections => {
+const getDailyReflections = (): DailyReflection[] => {
   return dailyReflections;
 };
 

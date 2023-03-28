@@ -6,27 +6,26 @@ import { StyleSheet } from 'react-native';
 import getDailyReflections from '../api/getDailyReflections';
 import { useCallback, useEffect } from 'react';
 import { View } from '../components/Themed';
-import { setReflectionData } from '../redux/slices/dataSlice';
-import { useDispatch } from 'react-redux';
+import { setReflections } from '../redux/slices/dataSlice';
 import Reflection from '../components/Reflection';
 
 const Home: React.FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   // App selector for reading app data loading state
   const appLoading = useAppSelector((state: AppState): Loading => {
     return state.loading;
   });
 
   // Callback / dispatch and effects
-  const setDataLoad = useCallback((data: DailyReflections): void => {
-    setTimeout(() => {
-      setReflectionData(data);
-    }, 1000);
+  const setDailyReflections = useCallback((data: DailyReflection[]): void => {
+      dispatch(setReflections(data));
   }, []);
 
   useEffect((): void => {
     const data = getDailyReflections();
-    setDataLoad(data);
-  }, [setDataLoad]);
+    setDailyReflections(data);
+  }, [setDailyReflections]);
   
   return (
     <View style={styles.container}>

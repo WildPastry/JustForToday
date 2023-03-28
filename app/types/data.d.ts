@@ -1,7 +1,3 @@
-interface DailyReflections {
-  dailyReflections: DailyReflection[];
-}
-
 interface DailyReflection {
   id: number;
   date: string;
