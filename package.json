@@ -41,7 +41,7 @@
     "@types/react": "~18.0.29",
     "@types/react-native": "~0.71.5",
     "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@wildpastry/eslint-config": "^1.6.4",
     "eslint": "^8.36.0",
     "eslint-plugin-prettier": "^4.2.1",
