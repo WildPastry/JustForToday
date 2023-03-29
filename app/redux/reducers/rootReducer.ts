@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import data from '../slices/dataSlice';
 import loading from '../slices/loadingSlice';
+import setReflections from '../slices/dataSlice';
 
 const rootReducer = combineReducers({
-  data,
+  setReflections,
   loading
 });
 
