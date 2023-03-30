@@ -1,21 +1,15 @@
 /* eslint-disable */
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { AppState } from '../redux/store';
+import { useAppDispatch } from '../redux/hooks';
 import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 import getDailyReflections from '../api/getDailyReflections';
 import { useCallback, useEffect } from 'react';
 import { View } from '../components/Themed';
-import { setReflections } from '../redux/slices/dataSlice';
+import { setReflections } from '../redux/slices/reflectionSlice';
 import Reflection from '../components/Reflection';
 
 const Home: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-
-  // App selector for reading app data loading state
-  const appLoading = useAppSelector((state: AppState): Loading => {
-    return state.loading;
-  });
 
   // Callback / dispatch and effects
   const setDailyReflections = useCallback((data: DailyReflection[]): void => {

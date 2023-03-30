@@ -1,23 +1,28 @@
+/* eslint-disable */
 import { Text, View } from './Themed';
 import { AppState } from '../redux/store';
 import { useAppSelector } from '../redux/hooks';
-import { useState, useEffect } from 'react';
 
 const Reflection: React.FC = (): JSX.Element => {
-  const dailyReflection = useAppSelector((state: AppState): DailyReflection[] => {
-    return state.setReflections;
+  // App selector for reading app data loading state
+  const appLoading = useAppSelector((state: AppState): Loading => {
+    return state.loading;
   });
+  const dailyReflection = useAppSelector(
+    (state: AppState): DailyReflection[] => {
+      return state.data.dailyReflections;
+    }
+  );
 
-  // const [current, setCurrent] = useState(null);
-
-  useEffect((): void => {
-    const data = dailyReflection;
-    console.log(data)
-  }, []);
+  const showReflection = () => {
+    if (!appLoading) {
+      return dailyReflection[0].id;
+    } else return 'reflection'
+  };
 
   return (
     <View>
-      <Text>REFLECTION</Text>
+      <Text>{showReflection()}</Text>
     </View>
   );
 };

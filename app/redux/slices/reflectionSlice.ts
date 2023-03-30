@@ -1,21 +1,30 @@
-import { AppDispatch, AppThunk } from '../store';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {
+  Action,
+  CombinedState,
+  PayloadAction,
+  ThunkDispatch,
+  createSlice
+} from '@reduxjs/toolkit';
 import { setError, setLoading } from './loadingSlice';
 
+import { AppThunk } from '../store';
+
 // Set initialState
-const initialState: DailyReflection[] = [];
+const initialState = {
+  dailyReflections: [] as DailyReflection[]
+};
 
 /*
  * Create dataSlice with combined actions
- * Including: App data state
+ * Including: App data state (daily reflections)
  */
 const dataSlice = createSlice({
-  name: 'setReflections',
+  name: 'data',
   initialState,
   reducers: {
     setReflections(state, action: PayloadAction<DailyReflection[]>) {
       action.payload.forEach((reflection: DailyReflection) =>
-        state.push(reflection)
+        state.dailyReflections.push(reflection)
       );
     }
   }
@@ -23,10 +32,23 @@ const dataSlice = createSlice({
 
 export const setReflections =
   (reflections: DailyReflection[]): AppThunk =>
-  (dispatch) => {
+  (
+    dispatch: ThunkDispatch<
+      CombinedState<{
+        data: {
+          dailyReflections: DailyReflection[];
+        };
+        loading: {
+          isLoading: boolean;
+          isError: boolean;
+        };
+      }>,
+      unknown,
+      Action<string>
+    >
+  ) => {
     try {
       // Map each reflection
-      console.log(dispatch);
       const setReflection: DailyReflection[] = reflections.map(
         (reflection) => ({
           id: reflection.id,
@@ -37,19 +59,14 @@ export const setReflections =
           reflection: reflection.reflection
         })
       );
-      // Dispatch reflections once finished mapping
+      // Dispatch reflections to store
       dispatch(dataSlice.actions.setReflections(setReflection));
-      setTimeout(() => {
-        dispatch(setLoading(false));
-      }, 1500);
+      dispatch(setLoading(false));
     } catch (err) {
-      // Create error page if failed
+      // Set error state if failed
       dispatch(setError(true));
     }
   };
-
-// Export Data actions from DataSlice
-// export const { setReflections } = dataSlice.actions;
 
 // Export reducer
 export default dataSlice.reducer;
