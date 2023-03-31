@@ -12,7 +12,7 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
     "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix",
-    "test": "jest"
+    "test": "jest -u"
   },
   "dependencies": {
     "expo": "~48.0.9",
