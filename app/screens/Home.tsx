@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useCallback, useEffect } from 'react';
 import { AppState } from '../redux/store';
 import Error from '../screens/Error';
+import { FontAwesome5 } from '@expo/vector-icons';
 import Loading from '../screens/Loading';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
@@ -45,6 +46,7 @@ const Home: React.FC = (): JSX.Element => {
           <Loading />
         ) : (
           <View>
+            <FontAwesome5 name='chair' size={50} color='white' />
             <MonoText style={styles.title}>Just for today</MonoText>
             <Text>{newDate}</Text>
             <Reflection />
