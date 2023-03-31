@@ -1,10 +1,11 @@
+import { DailyReflection, Loading } from '../types/data.types';
 import { Text, View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useCallback, useEffect } from 'react';
 import { AppState } from '../redux/store';
-import Error from '../screens/Error';
+import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import Loading from '../screens/Loading';
+import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
@@ -25,7 +26,7 @@ const Home: React.FC = (): JSX.Element => {
 
   // Error screen
   const errorScreen = (): JSX.Element => {
-    return <Error />;
+    return <ErrorScreen />;
   };
 
   // Callback / dispatch and effects to set data on screen load
@@ -43,7 +44,7 @@ const Home: React.FC = (): JSX.Element => {
     return (
       <View style={styles.container}>
         {appLoading.isLoading ? (
-          <Loading />
+          <LoadingScreen />
         ) : (
           <View>
             <FontAwesome5

@@ -1,4 +1,4 @@
-interface DailyReflection {
+export interface DailyReflection {
   id: number;
   date: string;
   title: string;
@@ -7,7 +7,7 @@ interface DailyReflection {
   reflection: string;
 }
 
-interface Loading {
+export interface Loading {
   isLoading: boolean;
   isError: boolean;
 }

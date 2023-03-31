@@ -1,7 +1,7 @@
 import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 
-const Loading: React.FC = (): JSX.Element => {
+const LoadingScreen: React.FC = (): JSX.Element => {
   // Loading quote
   const selectLoadingQuote = (): string => {
     return 'Loading';
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Loading;
+export default LoadingScreen;

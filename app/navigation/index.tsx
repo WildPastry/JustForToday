@@ -9,7 +9,7 @@ import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
-} from '../types/navigation';
+} from '../types/navigation.types';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import Home from '../screens/Home';
@@ -105,7 +105,7 @@ function BottomTabNavigator() {
         component={Support}
         options={{
           title: 'Support',
-          tabBarIcon: ({ color }) => <TabBarIcon name='heart' color={color} />
+          tabBarIcon: ({ color }) => <TabBarIcon name='cog' color={color} />
         }}
       />
     </BottomTab.Navigator>

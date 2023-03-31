@@ -1,4 +1,5 @@
 import { AppState } from '../redux/store';
+import { DailyReflection } from '../types/data.types';
 import { StyleSheet } from 'react-native';
 import { Text } from '../components/Themed';
 import { useAppSelector } from '../redux/hooks';
