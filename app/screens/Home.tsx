@@ -46,9 +46,14 @@ const Home: React.FC = (): JSX.Element => {
           <Loading />
         ) : (
           <View>
-            <FontAwesome5 name='chair' size={50} color='white' />
+            <FontAwesome5
+              style={styles.text}
+              name='chair'
+              size={50}
+              color='white'
+            />
             <MonoText style={styles.title}>Just for today</MonoText>
-            <Text>{newDate}</Text>
+            <Text style={styles.text}>{newDate}</Text>
             <Reflection />
           </View>
         )}
@@ -67,6 +72,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20
+  },
+  text: {
+    textAlign: 'center'
   }
 });
 

@@ -1,5 +1,6 @@
-import { Text, View } from '../components/Themed';
 import { AppState } from '../redux/store';
+import { StyleSheet } from 'react-native';
+import { Text } from '../components/Themed';
 import { useAppSelector } from '../redux/hooks';
 
 const Reflection: React.FC = (): JSX.Element => {
@@ -8,11 +9,13 @@ const Reflection: React.FC = (): JSX.Element => {
       return state.data.dailyReflections;
     }
   );
-  return (
-    <View>
-      <Text>{dailyReflection[0].quote}</Text>
-    </View>
-  );
+  return <Text style={styles.text}>{dailyReflection[0].id}</Text>;
 };
+
+const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center'
+  }
+});
 
 export default Reflection;
