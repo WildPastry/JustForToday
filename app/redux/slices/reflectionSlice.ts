@@ -32,21 +32,7 @@ const dataSlice = createSlice({
 
 export const setReflections =
   (reflections: DailyReflection[]): AppThunk =>
-  (
-    dispatch: ThunkDispatch<
-      CombinedState<{
-        data: {
-          dailyReflections: DailyReflection[];
-        };
-        loading: {
-          isLoading: boolean;
-          isError: boolean;
-        };
-      }>,
-      unknown,
-      Action<string>
-    >
-  ) => {
+  (dispatch: ThunkDispatch<CombinedState<{}>, unknown, Action<string>>) => {
     try {
       // Map each reflection
       const setReflection: DailyReflection[] = reflections.map(
@@ -61,7 +47,9 @@ export const setReflections =
       );
       // Dispatch reflections to store
       dispatch(dataSlice.actions.setReflections(setReflection));
-      dispatch(setLoading(false));
+      setTimeout(() => {
+        dispatch(setLoading(false));
+      }, 2000);
     } catch (err) {
       // Set error state if failed
       dispatch(setError(true));
