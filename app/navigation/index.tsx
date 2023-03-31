@@ -71,7 +71,8 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colors[colorScheme].tint,
         tabBarStyle: { backgroundColor: '#21142b' },
         tabBarLabelStyle: { marginBottom: 4 },
-        tabBarIconStyle: { marginTop: 4 }
+        tabBarIconStyle: { marginTop: 4 },
+        headerStyle: { backgroundColor: '#21142b' }
       }}>
       <BottomTab.Screen
         name='Home'
