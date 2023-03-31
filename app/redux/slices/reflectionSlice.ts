@@ -49,7 +49,7 @@ export const setReflections =
       dispatch(dataSlice.actions.setReflections(setReflection));
       setTimeout(() => {
         dispatch(setLoading(false));
-      }, 2000);
+      }, 3000);
     } catch (err) {
       // Set error state if failed
       dispatch(setError(true));
