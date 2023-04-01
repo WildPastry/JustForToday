@@ -71,14 +71,21 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tabIconActive,
         tabBarInactiveTintColor: Colors[colorScheme].tabIconDefault,
+        tabBarLabelStyle: { marginBottom: 7 },
+        tabBarIconStyle: { marginTop: 7 },
         tabBarStyle: {
           backgroundColor: Colors[colorScheme].navBackground,
-          borderTopWidth: 0
+          height: 55,
+          borderTopColor: Colors[colorScheme].navBorder,
+          borderTopWidth: 0.6,
+          elevation: 0
         },
-        tabBarLabelStyle: { marginBottom: 4 },
-        tabBarIconStyle: { marginTop: 4 },
-        headerStyle: { backgroundColor: Colors[colorScheme].navBackground },
-        headerShadowVisible: false
+        headerStyle: {
+          backgroundColor: Colors[colorScheme].navBackground,
+          borderBottomColor: Colors[colorScheme].navBorder,
+          borderBottomWidth: 0.6,
+          height: 70
+        }
       }}>
       <BottomTab.Screen
         name='Home'

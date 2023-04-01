@@ -3,6 +3,7 @@ import { Text, View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useCallback, useEffect } from 'react';
 import { AppState } from '../redux/store';
+import Colors from '../constants/Colors';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
@@ -11,8 +12,12 @@ import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
 import getDailyReflections from '../api/getDailyReflections';
 import { setReflections } from '../redux/slices/reflectionSlice';
+import useColorScheme from '../../app/hooks/useColorScheme';
 
 const Home: React.FC = (): JSX.Element => {
+  // Colour settings
+  const colorScheme = useColorScheme();
+
   // Set up dispatch
   const dispatch = useAppDispatch();
 
@@ -51,7 +56,7 @@ const Home: React.FC = (): JSX.Element => {
               style={styles.text}
               name='chair'
               size={50}
-              color='white'
+              color={Colors[colorScheme].text}
             />
             <MonoText style={styles.title}>Just for today</MonoText>
             <Text style={styles.text}>{newDate}</Text>

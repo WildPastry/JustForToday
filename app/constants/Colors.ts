@@ -1,16 +1,18 @@
 export default {
   light: {
-    text: '#000',
     background: '#fff',
-    tabIconDefault: '#ccc',
-    tabIconActive: '#2f95dc',
-    navBackground: '#dadee8'
+    navBackground: '#fff',
+    navBorder: '#e3e3e3',
+    tabIconActive: '#000',
+    tabIconDefault: '#8a8a8a',
+    text: '#000'
   },
   dark: {
-    text: '#fff',
     background: '#2c2c54',
-    tabIconDefault: '#8a8a8a',
+    navBackground: '#131324',
+    navBorder: '#e3e3e3',
     tabIconActive: '#fff',
-    navBackground: '#131324'
+    tabIconDefault: '#8a8a8a',
+    text: '#fff'
   }
 };
