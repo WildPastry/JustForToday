@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { AppState } from '../redux/store';
 import { DailyReflection } from '../types/data.types';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Text } from '../components/Themed';
 import { useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
@@ -31,7 +31,9 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const selectDayMonth = (): number => {
     // Calculate current day and month
-    const date: Date = new Date(),month = date.getMonth() + 1,day = date.getDate();
+    const date: Date = new Date(),
+      month = date.getMonth() + 1,
+      day = date.getDate();
     const currentDayMonth: number = Number('' + day + month);
     console.log(currentDayMonth);
     return currentDayMonth;
@@ -66,7 +68,16 @@ const Reflection: React.FC = (): JSX.Element => {
     }
   };
 
-  return <Text style={styles.text}>{reflection.date}</Text>;
+  return (
+    <View>
+      <Pressable onPress={() => selectReflection(11, dailyReflections)}><Text>PREV</Text></Pressable>
+      <Pressable onPress={() => selectReflection(21, dailyReflections)}><Text>NEXT</Text></Pressable>
+      <Text style={styles.text}>{reflection.date}</Text>
+      <Text style={styles.text}>{reflection.title}</Text>
+      <Text style={styles.text}>{reflection.quote}</Text>
+      <Text style={styles.text}>{reflection.reflection}</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
