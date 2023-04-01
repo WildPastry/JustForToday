@@ -21,7 +21,7 @@ const Home: React.FC = (): JSX.Element => {
   // Set up dispatch
   const dispatch = useAppDispatch();
 
-  // App selector for reading app data loading state
+  // App selector for app loading state
   const appLoading = useAppSelector((state: AppState): Loading => {
     return state.loading;
   });
