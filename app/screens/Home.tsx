@@ -1,5 +1,4 @@
 import { DailyReflection, Loading } from '../types/data.types';
-import { Text, View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useCallback, useEffect } from 'react';
 import { AppState } from '../redux/store';
@@ -10,6 +9,7 @@ import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
+import { View } from '../components/Themed';
 import getDailyReflections from '../api/getDailyReflections';
 import { setReflections } from '../redux/slices/reflectionSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
@@ -25,9 +25,6 @@ const Home: React.FC = (): JSX.Element => {
   const appLoading = useAppSelector((state: AppState): Loading => {
     return state.loading;
   });
-
-  // Date
-  const newDate: string = new Date().toLocaleString();
 
   // Error screen
   const errorScreen = (): JSX.Element => {
@@ -59,7 +56,6 @@ const Home: React.FC = (): JSX.Element => {
               color={Colors[colorScheme].text}
             />
             <MonoText style={styles.title}>Just for today</MonoText>
-            <Text style={styles.text}>{newDate}</Text>
             <Reflection />
           </View>
         )}
