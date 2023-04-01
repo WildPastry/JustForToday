@@ -7,8 +7,10 @@ import useCachedResources from './app/hooks/useCachedResources';
 import useColorScheme from './app/hooks/useColorScheme';
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
+  // Colour settings
   const colorScheme = useColorScheme();
+  // Loading settings
+  const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {
     return null;
   }

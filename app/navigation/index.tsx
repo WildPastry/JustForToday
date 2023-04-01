@@ -63,6 +63,7 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
+  // Colour settings
   const colorScheme = useColorScheme();
   return (
     <BottomTab.Navigator
@@ -72,7 +73,7 @@ function BottomTabNavigator() {
         tabBarStyle: { backgroundColor: '#21142b' },
         tabBarLabelStyle: { marginBottom: 4 },
         tabBarIconStyle: { marginTop: 4 },
-        headerStyle: { backgroundColor: '#21142b' }
+        headerStyle: { backgroundColor: Colors[colorScheme].headerStyle }
       }}>
       <BottomTab.Screen
         name='Home'
