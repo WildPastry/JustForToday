@@ -16,7 +16,7 @@ const Reflection: React.FC = (): JSX.Element => {
 
   // Default local state
   const [reflection, setReflection] = useState<DailyReflection>({
-    id: 0,
+    id: '',
     date: '',
     title: '',
     quote: '',
@@ -26,21 +26,20 @@ const Reflection: React.FC = (): JSX.Element => {
 
   // Select the daily reflection with useEffect
   useEffect(() => {
-    selectReflection(selectDayMonth(), dailyReflections);
+    selectReflection(getCurrentDay(), dailyReflections);
   }, []);
 
-  const selectDayMonth = (): number => {
+  const getCurrentDay = (): string => {
     // Calculate current day and month
-    const date: Date = new Date(),
-      month = date.getMonth() + 1,
-      day = date.getDate();
-    const currentDayMonth: number = Number('' + day + month);
-    console.log(currentDayMonth);
-    return currentDayMonth;
+    const date: Date = new Date();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const day = date.getDate();
+    const currentDay: string = month + day;
+    return currentDay;
   };
 
   const selectReflection = (
-    id: number,
+    id: string,
     dailyReflections: DailyReflection[]
   ): void => {
     const currentReflection = dailyReflections.find((dailyReflection) => {
@@ -58,20 +57,28 @@ const Reflection: React.FC = (): JSX.Element => {
       });
     } else {
       setReflection({
-        id: 0,
+        id: '',
         date: 'No data available',
-        title: 'No data available',
-        quote: 'No data available',
-        source: 'No data available',
-        reflection: 'No data available'
+        title: '',
+        quote: '',
+        source: '',
+        reflection: ''
       });
     }
   };
 
   return (
     <View>
-      <Pressable onPress={() => selectReflection(11, dailyReflections)}><Text>PREV</Text></Pressable>
-      <Pressable onPress={() => selectReflection(21, dailyReflections)}><Text>NEXT</Text></Pressable>
+      <Pressable onPress={() => selectReflection('Jan1', dailyReflections)}>
+        <Text>PREV</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => selectReflection(getCurrentDay(), dailyReflections)}>
+        <Text>TODAY</Text>
+      </Pressable>
+      <Pressable onPress={() => selectReflection('Jan2', dailyReflections)}>
+        <Text>NEXT</Text>
+      </Pressable>
       <Text style={styles.text}>{reflection.date}</Text>
       <Text style={styles.text}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>

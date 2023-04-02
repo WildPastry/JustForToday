@@ -1,5 +1,5 @@
 export interface DailyReflection {
-  id: number;
+  id: string;
   date: string;
   title: string;
   quote: string;
