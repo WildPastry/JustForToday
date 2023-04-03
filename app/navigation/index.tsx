@@ -9,7 +9,7 @@ import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
-} from '../types/navigation';
+} from '../types/navigation.types';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import Home from '../screens/Home';
@@ -63,12 +63,29 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
+  // Colour settings
   const colorScheme = useColorScheme();
   return (
     <BottomTab.Navigator
       initialRouteName='Home'
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint
+        tabBarActiveTintColor: Colors[colorScheme].tabIconActive,
+        tabBarInactiveTintColor: Colors[colorScheme].tabIconDefault,
+        tabBarLabelStyle: { marginBottom: 7 },
+        tabBarIconStyle: { marginTop: 7 },
+        tabBarStyle: {
+          backgroundColor: Colors[colorScheme].navBackground,
+          height: 55,
+          borderTopColor: Colors[colorScheme].navBorder,
+          borderTopWidth: 0.6,
+          elevation: 0
+        },
+        headerStyle: {
+          backgroundColor: Colors[colorScheme].navBackground,
+          borderBottomColor: Colors[colorScheme].navBorder,
+          borderBottomWidth: 0.6,
+          height: 70
+        }
       }}>
       <BottomTab.Screen
         name='Home'
@@ -97,9 +114,7 @@ function BottomTabNavigator() {
         component={Reflections}
         options={{
           title: 'Reflections',
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name='superpowers' color={color} />
-          )
+          tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
         }}
       />
       <BottomTab.Screen
@@ -107,7 +122,7 @@ function BottomTabNavigator() {
         component={Support}
         options={{
           title: 'Support',
-          tabBarIcon: ({ color }) => <TabBarIcon name='heart' color={color} />
+          tabBarIcon: ({ color }) => <TabBarIcon name='cog' color={color} />
         }}
       />
     </BottomTab.Navigator>
@@ -119,5 +134,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} {...props} />;
+  return <FontAwesome size={25} {...props} />;
 }
