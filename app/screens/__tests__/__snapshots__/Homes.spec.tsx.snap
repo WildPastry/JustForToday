@@ -32,7 +32,7 @@ exports[`<Home /> renders correctly 1`] = `
       ]
     }
   >
-    Just for today
+    Loading
   </Text>
 </View>
 `;
