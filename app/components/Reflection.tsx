@@ -1,10 +1,10 @@
-/* eslint-disable */
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { DailyReflection } from '../types/data.types';
-import { Pressable, StyleSheet, View } from 'react-native';
 import { Text } from '../components/Themed';
+import add from 'date-fns/add';
 import { useAppSelector } from '../redux/hooks';
-import { useEffect, useState } from 'react';
 
 const Reflection: React.FC = (): JSX.Element => {
   // App selector for app data
@@ -14,7 +14,7 @@ const Reflection: React.FC = (): JSX.Element => {
     }
   );
 
-  // Default local state
+  // Data local state
   const [reflection, setReflection] = useState<DailyReflection>({
     id: '',
     date: '',
@@ -24,6 +24,9 @@ const Reflection: React.FC = (): JSX.Element => {
     reflection: ''
   });
 
+  // Date local state
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   // Select the daily reflection with useEffect
   useEffect(() => {
     selectReflection(getCurrentDay(), dailyReflections);
@@ -31,11 +34,44 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const getCurrentDay = (): string => {
     // Calculate current day and month
-    const date: Date = new Date();
-    const month = date.toLocaleString('default', { month: 'short' });
-    const day = date.getDate();
+    const currentDate: Date = new Date();
+    const month: string = currentDate.toLocaleString('default', {
+      month: 'short'
+    });
+    const day: string = currentDate.getDate().toString();
+    // Update currentDate
+    setCurrentDate(currentDate);
+    // Use current day and month as ID
     const currentDay: string = month + day;
     return currentDay;
+  };
+
+  const getPrevDay = (): string => {
+    // Calculate prev day
+    const prevDate = add(currentDate, { days: -1 });
+    const month: string = prevDate.toLocaleString('default', {
+      month: 'short'
+    });
+    const day: string = prevDate.getDate().toString();
+    // Update currentDate
+    setCurrentDate(prevDate);
+    // Use prev day and month as ID
+    const prevDay: string = month + day;
+    return prevDay;
+  };
+
+  const getNextDay = (): string => {
+    // Calculate next day
+    const nextDate = add(currentDate, { days: 1 });
+    const month: string = nextDate.toLocaleString('default', {
+      month: 'short'
+    });
+    const day: string = nextDate.getDate().toString();
+    // Update currentDate
+    setCurrentDate(nextDate);
+    // Use next day and month as ID
+    const nextDay: string = month + day;
+    return nextDay;
   };
 
   const selectReflection = (
@@ -69,14 +105,16 @@ const Reflection: React.FC = (): JSX.Element => {
 
   return (
     <View>
-      <Pressable onPress={() => selectReflection('Jan1', dailyReflections)}>
+      <Pressable
+        onPress={() => selectReflection(getPrevDay(), dailyReflections)}>
         <Text>PREV</Text>
       </Pressable>
       <Pressable
         onPress={() => selectReflection(getCurrentDay(), dailyReflections)}>
         <Text>TODAY</Text>
       </Pressable>
-      <Pressable onPress={() => selectReflection('Jan2', dailyReflections)}>
+      <Pressable
+        onPress={() => selectReflection(getNextDay(), dailyReflections)}>
         <Text>NEXT</Text>
       </Pressable>
       <Text style={styles.text}>{reflection.date}</Text>
