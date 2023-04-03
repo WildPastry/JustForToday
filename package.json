@@ -16,7 +16,6 @@
     "test": "jest -u"
   },
   "dependencies": {
-    "date-fns": "^2.29.3",
     "expo": "~48.0.9",
     "expo-asset": "~8.9.1",
     "expo-constants": "~14.2.1",
