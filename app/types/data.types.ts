@@ -7,6 +7,10 @@ export interface DailyReflection {
   reflection: string;
 }
 
+export interface DailyReflectionItem {
+  id: string;
+}
+
 export interface Loading {
   isLoading: boolean;
   isError: boolean;

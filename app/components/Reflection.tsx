@@ -94,8 +94,8 @@ const Reflection: React.FC = (): JSX.Element => {
     } else {
       setReflection({
         id: '',
-        date: 'No data available',
-        title: '',
+        date: currentDate.toLocaleString(),
+        title: 'No data available',
         quote: '',
         source: '',
         reflection: ''
