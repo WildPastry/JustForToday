@@ -1,32 +1,32 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
-import { AppState } from '../redux/store';
-import { DailyReflection } from '../types/data.types';
+import { MonthNames, MonthItems } from '../types/date.types';
 import { MonoText } from '../components/StyledText';
-import ReflectionItem from '../components/ReflectionItem';
+import MonthItem from '../components/MonthItem';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
-import { useAppSelector } from '../redux/hooks';
+import { Text, View } from '../components/Themed';
 
 const Reflections: React.FC = (): JSX.Element => {
-  // App selector for app data
-  const dailyReflections = useAppSelector(
-    (state: AppState): DailyReflection[] => {
-      return state.data.dailyReflections;
-    }
-  );
-
   // Data local state
-  const [reflections, setReflections] = useState<DailyReflection[]>([]);
+  const [months, setMonths] = useState<MonthItems[]>([]);
 
   useEffect(() => {
-    setReflections(dailyReflections);
+    // months.map((month, index) => console.log('month', month, index));
+    const monthItems: MonthItems[] = []
+   
   }, []);
 
   return (
     <View style={styles.container}>
       <MonoText style={styles.title}>Reflections</MonoText>
-      {reflections.map((reflection, index) => (
-        <ReflectionItem key={index} id={reflection.id} />
+
+      {months.map((month, index) => (
+        <MonthItem
+          key={index}
+          id={month.id}
+          name={month.name}
+          days={month.days}
+        />
       ))}
     </View>
   );

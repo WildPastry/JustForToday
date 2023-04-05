@@ -11,8 +11,11 @@ import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import getDailyReflections from '../api/getDailyReflections';
-import { setReflections } from '../redux/slices/reflectionSlice';
+import getMonthItems from '../api/getMonthItems';
+import { setReflections } from '../redux/slices/dataSlice';
+import { setMonthItems } from '../redux/slices/dateSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
+import { MonthItems } from '../types/date.types';
 
 const Home: React.FC = (): JSX.Element => {
   // Colour settings
@@ -32,14 +35,24 @@ const Home: React.FC = (): JSX.Element => {
   };
 
   // Callback / dispatch and effects to set data on screen load
-  const setDailyReflections = useCallback((data: DailyReflection[]): void => {
-    dispatch(setReflections(data));
-  }, []);
+  const setDailyReflections = useCallback(
+    (dailyReflections: DailyReflection[]): void => {
+      dispatch(setReflections(dailyReflections));
+    },
+    []
+  );
+
+  // const setMonthItems = useCallback((monthItems: MonthItems[]): void => {
+  //   dispatch(setMonthItems(monthItems));
+  // }, []);
 
   useEffect((): void => {
-    const data = getDailyReflections();
-    setDailyReflections(data);
-  }, [setDailyReflections]);
+    const dailyReflections = getDailyReflections();
+    const monthItems = getMonthItems();
+    setDailyReflections(dailyReflections);
+    console.log(monthItems)
+    // setMonthItems(monthItems);
+  }, [setDailyReflections, setMonthItems]);
 
   // Render app
   const renderApp = (appLoading: Loading) => {

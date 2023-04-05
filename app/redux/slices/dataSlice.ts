@@ -8,6 +8,7 @@ import {
 import { setError, setLoading } from './loadingSlice';
 
 import { AppThunk } from '../store';
+import { DailyReflection } from '../../types/data.types';
 
 // Set initialState
 const initialState = {
