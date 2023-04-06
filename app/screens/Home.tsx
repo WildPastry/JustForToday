@@ -12,7 +12,7 @@ import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import getDailyReflections from '../api/getDailyReflections';
 import getMonthItems from '../api/getMonthItems';
-import { setReflections } from '../redux/slices/dataSlice';
+import { fetchDoubleData, setReflections } from '../redux/slices/dataSlice';
 import { setMonthItems } from '../redux/slices/dateSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
 import { MonthItems } from '../types/date.types';
@@ -47,10 +47,11 @@ const Home: React.FC = (): JSX.Element => {
   // }, []);
 
   useEffect((): void => {
-    const dailyReflections = getDailyReflections();
-    const monthItems = getMonthItems();
-    setDailyReflections(dailyReflections);
-    console.log(monthItems)
+    dispatch(fetchDoubleData());
+    // const dailyReflections = getDailyReflections();
+    // const monthItems = getMonthItems();
+    // setDailyReflections(dailyReflections);
+    // console.log(monthItems)
     // setMonthItems(monthItems);
   }, [setDailyReflections, setMonthItems]);
 
@@ -69,7 +70,7 @@ const Home: React.FC = (): JSX.Element => {
               color={Colors[colorScheme].text}
             />
             <MonoText style={styles.title}>Just for today</MonoText>
-            <Reflection />
+            {/* <Reflection /> */}
           </View>
         )}
       </View>

@@ -7,6 +7,8 @@ import {
 } from '@reduxjs/toolkit';
 import { setError, setLoading } from './loadingSlice';
 
+import getReflections from '../../api/getDailyReflections';
+import getMonths from '../../api/getMonthItems';
 import { AppThunk } from '../store';
 import { MonthItems } from '../../types/date.types';
 
