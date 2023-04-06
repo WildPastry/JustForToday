@@ -4,10 +4,5 @@ export interface DailyReflection {
   title: string;
   quote: string;
   source: string;
-  reflection: string;
-}
-
-export interface Loading {
-  isLoading: boolean;
-  isError: boolean;
+  dailyReflection: string;
 }

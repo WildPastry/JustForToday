@@ -1,19 +1,17 @@
-/* eslint-disable */
 import {
   Action,
+  ActionReducerMapBuilder,
   CombinedState,
   PayloadAction,
   ThunkDispatch,
   createAsyncThunk,
   createSlice
 } from '@reduxjs/toolkit';
-import { setError, setLoading } from './loadingSlice';
 
-import getDailyReflections from '../../api/getDailyReflections';
-import getMonthItems from '../../api/getMonthItems';
-import { AppThunk } from '../store';
 import { DailyReflection } from '../../types/data.types';
 import { MonthItems } from '../../types/date.types';
+import getDailyReflections from '../../api/getDailyReflections';
+import getMonthItems from '../../api/getMonthItems';
 
 // Set initialState
 const initialState = {
@@ -24,7 +22,7 @@ const initialState = {
 };
 
 /*
- * Create dataSlice with combined actions
+ * Create dataSlice with combined actions and reducers
  * Including App data states:
  * Daily Reflections
  * Month Items
@@ -33,95 +31,95 @@ const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    setReflections(state, action: PayloadAction<DailyReflection[]>) {
-      action.payload.forEach((reflection: DailyReflection) =>
-        state.dailyReflections.push(reflection)
-      );
+    // Loading and error reducers
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+    setError(state, action: PayloadAction<boolean>) {
+      state.error = action.payload;
     }
   },
-  extraReducers: (builder) => {
+  /*
+   * Data reducers
+   * Each of the data types includes 3 states:
+   * Pending - waiting for response
+   * Fulfilled - response successful
+   * Rejected - response failed
+   */
+  extraReducers: (
+    builder: ActionReducerMapBuilder<{
+      dailyReflections: DailyReflection[];
+      monthItems: MonthItems[];
+      loading: boolean;
+      error: boolean;
+    }>
+  ) => {
     builder
-      .addCase(fetchFirstData.pending, (state) => {
+      // Daily reflections
+      .addCase(fetchDailyReflectionsFromAPI.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchFirstData.fulfilled, (state, action) => {
+      .addCase(fetchDailyReflectionsFromAPI.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
-        // state.firstData = action.payload;
+        state.dailyReflections = action.payload;
       })
-      .addCase(fetchFirstData.rejected, (state) => {
+      .addCase(fetchDailyReflectionsFromAPI.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(fetchSecondData.pending, (state) => {
+      // Month items
+      .addCase(fetchMonthItemsFromAPI.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchSecondData.fulfilled, (state, action) => {
+      .addCase(fetchMonthItemsFromAPI.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
-        // state.secondData = action.payload;
+        state.monthItems = action.payload;
       })
-      .addCase(fetchSecondData.rejected, (state) => {
+      .addCase(fetchMonthItemsFromAPI.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });
   }
 });
 
-/*
- * Create dataSlice with combined actions
- * Including: App data state (daily reflections)
- */
-export const fetchFirstData = createAsyncThunk(
-  'mySlice/fetchFirstData',
+// Fetch daily reflections
+export const fetchDailyReflectionsFromAPI = createAsyncThunk(
+  'mySlice/fetchDailyReflectionsFromAPI',
   async () => {
-    const response = getDailyReflections();
+    const response = await getDailyReflections();
     return response;
   }
 );
 
-export const fetchSecondData = createAsyncThunk(
-  'mySlice/fetchSecondData',
+// Fetch month items
+export const fetchMonthItemsFromAPI = createAsyncThunk(
+  'mySlice/fetchMonthItemsFromAPI',
   async () => {
-    const response = getMonthItems();
+    const response = await getMonthItems();
     return response;
   }
 );
 
-export const fetchDoubleData = () => async (dispatch: ThunkDispatch<CombinedState<{}>, unknown, Action<string>>) => {
-  try {
-    // Dispatch both thunks in parallel
-    await Promise.all([dispatch(fetchFirstData()), dispatch(fetchSecondData())]);
-  } catch (error) {
-    console.error('Error fetching double data:', error);
-  }
-};
-
-export const setReflections =
-  (reflections: DailyReflection[]): AppThunk =>
-  (dispatch: ThunkDispatch<CombinedState<{}>, unknown, Action<string>>) => {
+// Fetch all data
+export const setData =
+  () =>
+  async (
+    dispatch: ThunkDispatch<CombinedState<{}>, unknown, Action<string>>
+  ) => {
     try {
-      // Map each reflection
-      const setReflection: DailyReflection[] = reflections.map(
-        (reflection) => ({
-          id: reflection.id,
-          date: reflection.date,
-          title: reflection.title,
-          quote: reflection.quote,
-          source: reflection.source,
-          reflection: reflection.reflection
-        })
-      );
-      // Dispatch reflections to store
-      dispatch(dataSlice.actions.setReflections(setReflection));
-      setTimeout(() => {
-        dispatch(setLoading(false));
-      }, 3000);
-    } catch (err) {
-      // Set error state if failed
+      // Dispatch both thunks in parallel
+      await Promise.all([
+        dispatch(fetchDailyReflectionsFromAPI()),
+        dispatch(fetchMonthItemsFromAPI())
+      ]);
+    } catch (error) {
+      // Set error screen if failed
       dispatch(setError(true));
     }
   };
+
+// Export error and loading actions
+export const { setLoading, setError } = dataSlice.actions;
 
 // Export reducer
 export default dataSlice.reducer;

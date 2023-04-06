@@ -21,7 +21,7 @@ const Reflection: React.FC = (): JSX.Element => {
     title: '',
     quote: '',
     source: '',
-    reflection: ''
+    dailyReflection: ''
   });
 
   // Date local state
@@ -89,7 +89,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: currentReflection.title,
         quote: currentReflection.quote,
         source: currentReflection.source,
-        reflection: currentReflection.reflection
+        dailyReflection: currentReflection.dailyReflection
       });
     } else {
       setReflection({
@@ -98,7 +98,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: 'No data available',
         quote: '',
         source: '',
-        reflection: ''
+        dailyReflection: ''
       });
     }
   };
@@ -120,7 +120,7 @@ const Reflection: React.FC = (): JSX.Element => {
       <Text style={styles.text}>{reflection.date}</Text>
       <Text style={styles.text}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
+      <Text style={styles.text}>{reflection.dailyReflection}</Text>
     </View>
   );
 };

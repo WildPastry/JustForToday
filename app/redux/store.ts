@@ -8,6 +8,7 @@ export function makeStore() {
   });
 }
 
+// Create the store
 const store = makeStore();
 
 // Exports
