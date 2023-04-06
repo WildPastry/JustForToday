@@ -1,4 +1,4 @@
-export interface DailyReflection {
+export interface DailyReflections {
   id: string;
   date: string;
   title: string;

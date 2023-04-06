@@ -1,9 +1,9 @@
-export interface ExternalLink {
+export interface IExternalLink {
   children: JSX.Element;
   href: string;
   style: {};
 }
 
-export interface EditScreenInfo {
+export interface IEditScreenInfo {
   path: string;
 }

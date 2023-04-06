@@ -1,7 +1,7 @@
-import { DailyReflection } from '../types/data.types';
+import { DailyReflections } from '../types/data.types';
 import dailyReflections from '../assets/data/daily-reflections.json';
 
-const getDailyReflections = (): DailyReflection[] => {
+const getDailyReflections = (): DailyReflections[] => {
   return dailyReflections;
 };
 

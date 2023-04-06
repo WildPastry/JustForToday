@@ -1,10 +1,11 @@
 import * as WebBrowser from 'expo-web-browser';
+import { IExternalLink } from '../types/component.types';
 import { Link } from 'expo-router';
 import { Platform } from 'react-native';
 import React from 'react';
 
-const ExternalLink: React.FC<ExternalLink> = (
-  props: ExternalLink
+const ExternalLink: React.FC<IExternalLink> = (
+  props: IExternalLink
 ): JSX.Element => {
   return (
     <Link

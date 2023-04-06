@@ -1,12 +1,13 @@
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import ExternalLink from './ExternalLink';
+import { IEditScreenInfo } from './../types/component.types';
 import { MonoText } from './StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-const EditScreenInfo: React.FC<EditScreenInfo> = (
-  props: EditScreenInfo
+const EditScreenInfo: React.FC<IEditScreenInfo> = (
+  props: IEditScreenInfo
 ): JSX.Element => {
   return (
     <View>
@@ -38,7 +39,7 @@ const EditScreenInfo: React.FC<EditScreenInfo> = (
         <ExternalLink
           style={styles.helpLink}
           href='https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'>
-          <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
+          <Text style={styles.helpLinkText} lightColor={Colors.light.text}>
             Tap here if your app doesn't automatically update after making
             changes
           </Text>
