@@ -22,7 +22,7 @@ const Reflections: React.FC = (): JSX.Element => {
     setMonths(monthItems);
   }, [monthItems]);
 
-  const handleClick = (month: IMonthItems): void => {
+  const handleMonthClick = (month: IMonthItems): void => {
     console.log(month);
   };
 
@@ -35,7 +35,7 @@ const Reflections: React.FC = (): JSX.Element => {
           id={month.id}
           name={month.name}
           days={month.days}
-          onPress={() => handleClick(month)}
+          onPress={() => handleMonthClick(month)}
         />
       ))}
     </View>

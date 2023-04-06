@@ -20,3 +20,9 @@ export interface IMonthItems {
   days: number;
   onPress: () => void;
 }
+
+export interface IDayItems {
+  id: string;
+  name: string;
+  onPress: () => void;
+}
