@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export enum MonthNames {
+export enum IMonthNames {
   January,
   Feburary,
   March,
@@ -14,8 +14,9 @@ export enum MonthNames {
   December
 }
 
-export interface MonthItems {
+export interface IMonthItems {
   id: string;
   name: string;
   days: number;
+  onPress: () => void;
 }

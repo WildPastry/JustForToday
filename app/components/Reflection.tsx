@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
-import { DailyReflections } from '../types/data.types';
+import { IDailyReflections } from '../types/data.types';
 import { Text } from '../components/Themed';
 import add from 'date-fns/add';
 import { useAppSelector } from '../redux/hooks';
@@ -9,13 +9,13 @@ import { useAppSelector } from '../redux/hooks';
 const Reflection: React.FC = (): JSX.Element => {
   // App selector for reflection data
   const dailyReflections = useAppSelector(
-    (state: AppState): DailyReflections[] => {
+    (state: AppState): IDailyReflections[] => {
       return state.data.dailyReflections;
     }
   );
 
   // Data local state
-  const [reflection, setReflection] = useState<DailyReflections>({
+  const [reflection, setReflection] = useState<IDailyReflections>({
     id: '',
     date: '',
     title: '',
@@ -77,7 +77,7 @@ const Reflection: React.FC = (): JSX.Element => {
   // Select the reflection from the data
   const selectReflection = (
     id: string,
-    dailyReflections: DailyReflections[]
+    dailyReflections: IDailyReflections[]
   ): void => {
     const currentReflection = dailyReflections.find((dailyReflection) => {
       return dailyReflection.id === id;

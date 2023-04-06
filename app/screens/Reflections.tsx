@@ -1,25 +1,30 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { MonoText } from '../components/StyledText';
 import MonthItem from '../components/MonthItem';
-import { MonthItems } from '../types/date.types';
+import { IMonthItems } from '../types/date.types';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import { useAppSelector } from '../redux/hooks';
 
 const Reflections: React.FC = (): JSX.Element => {
   // App selector for month data
-  const monthItems = useAppSelector((state: AppState): MonthItems[] => {
+  const monthItems = useAppSelector((state: AppState): IMonthItems[] => {
     return state.data.monthItems;
   });
 
   // Data local state
-  const [months, setMonths] = useState<MonthItems[]>([]);
+  const [months, setMonths] = useState<IMonthItems[]>([]);
 
   // Effect for setting the month items
   useEffect(() => {
     setMonths(monthItems);
   }, [monthItems]);
+
+  const handleClick = (month: IMonthItems): void => {
+    console.log(month);
+  };
 
   return (
     <View style={styles.container}>
@@ -30,6 +35,7 @@ const Reflections: React.FC = (): JSX.Element => {
           id={month.id}
           name={month.name}
           days={month.days}
+          onPress={() => handleClick(month)}
         />
       ))}
     </View>

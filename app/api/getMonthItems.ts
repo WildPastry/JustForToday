@@ -1,7 +1,7 @@
-import { MonthItems } from '../types/date.types';
+import { IMonthItems } from '../types/date.types';
 import monthItems from '../assets/data/month-items.json';
 
-const getMonthItems = (): MonthItems[] => {
+const getMonthItems = (): IMonthItems[] => {
   return monthItems;
 };
 
