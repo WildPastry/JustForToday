@@ -1,27 +1,186 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Reflection /> renders correctly 1`] = `
-<View
-  style={
-    [
+<View>
+  <View
+    accessibilityState={
       {
-        "backgroundColor": "#fff",
-      },
-      undefined,
-    ]
-  }
->
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          undefined,
+        ]
+      }
+    >
+      PREV
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          undefined,
+        ]
+      }
+    >
+      TODAY
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          undefined,
+        ]
+      }
+    >
+      NEXT
+    </Text>
+  </View>
   <Text
     style={
       [
         {
           "color": "#000",
         },
-        undefined,
+        {
+          "textAlign": "center",
+        },
       ]
     }
-  >
-    Reflection
-  </Text>
+  />
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "textAlign": "center",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "textAlign": "center",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "textAlign": "center",
+        },
+      ]
+    }
+  />
 </View>
 `;

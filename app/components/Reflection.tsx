@@ -1,36 +1,36 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
-import { DailyReflection } from '../types/data.types';
+import { IDailyReflections } from '../types/data.types';
 import { Text } from '../components/Themed';
 import add from 'date-fns/add';
 import { useAppSelector } from '../redux/hooks';
 
 const Reflection: React.FC = (): JSX.Element => {
-  // App selector for app data
+  // App selector for reflection data
   const dailyReflections = useAppSelector(
-    (state: AppState): DailyReflection[] => {
+    (state: AppState): IDailyReflections[] => {
       return state.data.dailyReflections;
     }
   );
 
   // Data local state
-  const [reflection, setReflection] = useState<DailyReflection>({
+  const [reflection, setReflection] = useState<IDailyReflections>({
     id: '',
     date: '',
     title: '',
     quote: '',
     source: '',
-    reflection: ''
+    dailyReflection: ''
   });
 
   // Date local state
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  // Select the daily reflection with useEffect
+  // Effect for setting the current "daily reflection" based on date
   useEffect(() => {
     selectReflection(getCurrentDay(), dailyReflections);
-  }, []);
+  }, [dailyReflections]);
 
   const getCurrentDay = (): string => {
     // Calculate current day and month
@@ -74,14 +74,15 @@ const Reflection: React.FC = (): JSX.Element => {
     return nextDay;
   };
 
+  // Select the reflection from the data
   const selectReflection = (
     id: string,
-    dailyReflections: DailyReflection[]
+    dailyReflections: IDailyReflections[]
   ): void => {
     const currentReflection = dailyReflections.find((dailyReflection) => {
       return dailyReflection.id === id;
     });
-
+    // If a matching reflection is found - set with matched data
     if (currentReflection) {
       setReflection({
         id: currentReflection.id,
@@ -89,16 +90,17 @@ const Reflection: React.FC = (): JSX.Element => {
         title: currentReflection.title,
         quote: currentReflection.quote,
         source: currentReflection.source,
-        reflection: currentReflection.reflection
+        dailyReflection: currentReflection.dailyReflection
       });
+      // Set a blank reflection state otherwise
     } else {
       setReflection({
         id: '',
-        date: 'No data available',
-        title: '',
+        date: currentDate.toLocaleString(),
+        title: 'No data available',
         quote: '',
         source: '',
-        reflection: ''
+        dailyReflection: ''
       });
     }
   };
@@ -120,7 +122,7 @@ const Reflection: React.FC = (): JSX.Element => {
       <Text style={styles.text}>{reflection.date}</Text>
       <Text style={styles.text}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
+      <Text style={styles.text}>{reflection.dailyReflection}</Text>
     </View>
   );
 };

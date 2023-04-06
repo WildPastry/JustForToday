@@ -1,13 +1,8 @@
-export interface DailyReflection {
+export interface IDailyReflections {
   id: string;
   date: string;
   title: string;
   quote: string;
   source: string;
-  reflection: string;
-}
-
-export interface Loading {
-  isLoading: boolean;
-  isError: boolean;
+  dailyReflection: string;
 }

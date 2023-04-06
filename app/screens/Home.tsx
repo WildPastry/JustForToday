@@ -1,6 +1,4 @@
-import { DailyReflection, Loading } from '../types/data.types';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useCallback, useEffect } from 'react';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
 import ErrorScreen from './ErrorScreen';
@@ -10,9 +8,9 @@ import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
-import getDailyReflections from '../api/getDailyReflections';
-import { setReflections } from '../redux/slices/reflectionSlice';
+import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
+import { useEffect } from 'react';
 
 const Home: React.FC = (): JSX.Element => {
   // Colour settings
@@ -21,9 +19,18 @@ const Home: React.FC = (): JSX.Element => {
   // Set up dispatch
   const dispatch = useAppDispatch();
 
-  // App selector for app loading state
-  const appLoading = useAppSelector((state: AppState): Loading => {
-    return state.loading;
+  // Effect for setting app data
+  useEffect((): void => {
+    dispatch(setData());
+  }, [setData]);
+
+  // Selectors for loading and error states
+  const appLoading = useAppSelector((state: AppState): boolean => {
+    return state.data.loading;
+  });
+
+  const appError = useAppSelector((state: AppState): boolean => {
+    return state.data.error;
   });
 
   // Error screen
@@ -31,31 +38,24 @@ const Home: React.FC = (): JSX.Element => {
     return <ErrorScreen />;
   };
 
-  // Callback / dispatch and effects to set data on screen load
-  const setDailyReflections = useCallback((data: DailyReflection[]): void => {
-    dispatch(setReflections(data));
-  }, []);
-
-  useEffect((): void => {
-    const data = getDailyReflections();
-    setDailyReflections(data);
-  }, [setDailyReflections]);
-
   // Render app
-  const renderApp = (appLoading: Loading) => {
+  const renderApp = (appLoading: boolean) => {
     return (
       <View style={styles.container}>
-        {appLoading.isLoading ? (
+        {appLoading ? (
           <LoadingScreen />
         ) : (
           <View>
+            {/* Logo */}
             <FontAwesome5
               style={styles.text}
               name='chair'
               size={50}
               color={Colors[colorScheme].text}
             />
+            {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
+            {/* Daily reflection */}
             <Reflection />
           </View>
         )}
@@ -63,7 +63,7 @@ const Home: React.FC = (): JSX.Element => {
     );
   };
   // Check for error state
-  return appLoading.isError ? errorScreen() : renderApp(appLoading);
+  return appError ? errorScreen() : renderApp(appLoading);
 };
 
 const styles = StyleSheet.create({

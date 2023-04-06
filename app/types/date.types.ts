@@ -1,0 +1,22 @@
+/* eslint-disable no-unused-vars */
+export enum IMonthNames {
+  January,
+  Feburary,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  October,
+  November,
+  December
+}
+
+export interface IMonthItems {
+  id: string;
+  name: string;
+  days: number;
+  onPress: () => void;
+}

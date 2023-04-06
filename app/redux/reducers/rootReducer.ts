@@ -1,10 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import data from '../slices/reflectionSlice';
-import loading from '../slices/loadingSlice';
+import data from '../slices/dataSlice';
 
 const rootReducer = combineReducers({
-  data,
-  loading
+  data
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
