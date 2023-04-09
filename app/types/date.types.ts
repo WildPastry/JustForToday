@@ -17,7 +17,7 @@ export enum IMonthNames {
 export interface IMonthItems {
   id: string;
   name: string;
-  days: number;
+  days: IDayItems[];
   onPress: () => void;
 }
 

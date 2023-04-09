@@ -2,7 +2,9 @@ import { IMonthItems } from '../types/date.types';
 import { Pressable } from 'react-native';
 import { Text } from './Themed';
 
-const MonthItem: React.FC<IMonthItems> = (props: IMonthItems): JSX.Element => {
+const MonthItemWithDays: React.FC<IMonthItems> = (
+  props: IMonthItems
+): JSX.Element => {
   return (
     <Pressable onPress={props.onPress}>
       <Text>{props.id}</Text>
@@ -10,4 +12,4 @@ const MonthItem: React.FC<IMonthItems> = (props: IMonthItems): JSX.Element => {
   );
 };
 
-export default MonthItem;
+export default MonthItemWithDays;

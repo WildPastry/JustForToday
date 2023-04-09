@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+import { Text, View } from '../components/Themed';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IDailyReflections } from '../types/data.types';
-import { Text } from '../components/Themed';
 import add from 'date-fns/add';
 import { useAppSelector } from '../redux/hooks';
 

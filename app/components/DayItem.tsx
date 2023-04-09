@@ -5,10 +5,7 @@ import { Text } from './Themed';
 const DayItem: React.FC<IDayItems> = (props: IDayItems): JSX.Element => {
   return (
     <Pressable onPress={props.onPress}>
-      <Text>
-        {props.id}
-        {props.name}
-      </Text>
+      <Text>{props.name}</Text>
     </Pressable>
   );
 };
