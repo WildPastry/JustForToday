@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { IDayItems, IMonthItems } from '../types/date.types';
+import { ICalendar, IDayItems, IMonthItems } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,9 @@ import { MonoText } from '../components/StyledText';
 import MonthItem from '../components/MonthItem';
 import { useAppSelector } from '../redux/hooks';
 
-const Reflections: React.FC = (): JSX.Element => {
+const Calendar: React.FC<ICalendar> = ({
+  handleCalendarChange
+}: ICalendar): JSX.Element => {
   // App selector for month data
   const monthItems = useAppSelector((state: AppState): IMonthItems[] => {
     return state.data.monthItems;
@@ -24,14 +26,11 @@ const Reflections: React.FC = (): JSX.Element => {
     setMonths(monthItems);
   }, [monthItems]);
 
+  // Reset to all months
   const getAllMonths = (): void => {
     setMonths(monthItems);
     setDays([]);
   };
-
-  const getPrevDay = (): void => {};
-
-  const getNextDay = (): void => {};
 
   const handleMonthClick = (month: IMonthItems): void => {
     setMonths([month]);
@@ -40,25 +39,15 @@ const Reflections: React.FC = (): JSX.Element => {
 
   const handleDayClick = (day: IDayItems): void => {
     setDays([day]);
-    setShowReflection(day.id);
-  };
-
-  const setShowReflection = (id: string): void => {
-    console.log(id, 'setShowReflection');
+    handleCalendarChange(false, day.id);
   };
 
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>Reflections</MonoText>
+      <MonoText style={styles.title}>Calendar</MonoText>
 
-      <Pressable onPress={() => getPrevDay()}>
-        <Text>PREV</Text>
-      </Pressable>
       <Pressable onPress={() => getAllMonths()}>
         <Text>ALL MONTHS</Text>
-      </Pressable>
-      <Pressable onPress={() => getNextDay()}>
-        <Text>NEXT</Text>
       </Pressable>
 
       {months.map((month, index) => (
@@ -70,6 +59,7 @@ const Reflections: React.FC = (): JSX.Element => {
           onPress={() => handleMonthClick(month)}
         />
       ))}
+      
       {days.map((day, index) => (
         <DayItem
           key={index}
@@ -93,4 +83,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Reflections;
+export default Calendar;

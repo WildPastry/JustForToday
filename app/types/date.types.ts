@@ -26,3 +26,7 @@ export interface IDayItems {
   name: string;
   onPress: () => void;
 }
+
+export interface ICalendar {
+  handleCalendarChange: (showCalendar: boolean, id: string) => void;
+}

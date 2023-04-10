@@ -1,5 +1,7 @@
+/* eslint-disable */
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
+import Calendar from '../components/Calendar';
 import Colors from '../constants/Colors';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -10,7 +12,7 @@ import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home: React.FC = (): JSX.Element => {
   // Colour settings
@@ -18,6 +20,9 @@ const Home: React.FC = (): JSX.Element => {
 
   // Set up dispatch
   const dispatch = useAppDispatch();
+
+  // Data local states
+  const [showCalendar, setShowCalendar] = useState(false);
 
   // Effect for setting app data
   useEffect((): void => {
@@ -38,6 +43,10 @@ const Home: React.FC = (): JSX.Element => {
     return <ErrorScreen />;
   };
 
+  const toggleCalendar = (): void => {
+    setShowCalendar(!showCalendar);
+  };
+
   // Render app
   const renderApp = (appLoading: boolean) => {
     return (
@@ -55,8 +64,16 @@ const Home: React.FC = (): JSX.Element => {
             />
             {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
-            {/* Daily reflection */}
-            <Reflection />
+            {/* Calendar icon */}
+            <FontAwesome5
+              style={styles.text}
+              name='calendar-alt'
+              size={25}
+              onPress={() => toggleCalendar()}
+              color={Colors[colorScheme].text}
+            />
+            {/* Components */}
+            {showCalendar ? <Calendar handleCalendarChange={toggleCalendar} /> : <Reflection />}
           </View>
         )}
       </View>
