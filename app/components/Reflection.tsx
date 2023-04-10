@@ -1,18 +1,24 @@
+/* eslint-disable */
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IDailyReflections } from '../types/data.types';
 import add from 'date-fns/add';
+import { getCurrentDay } from '../redux/slices/dateSlice';
 import { useAppSelector } from '../redux/hooks';
 
 const Reflection: React.FC = (): JSX.Element => {
-  // App selector for reflection data
+  // Selectors for store
   const dailyReflections = useAppSelector(
     (state: AppState): IDailyReflections[] => {
       return state.data.dailyReflections;
     }
   );
+
+  const currentDay = useAppSelector((state: AppState): string => {
+    return state.date.currentDay;
+  });
 
   // Data local state
   const [reflection, setReflection] = useState<IDailyReflections>({
@@ -27,24 +33,10 @@ const Reflection: React.FC = (): JSX.Element => {
   // Date local state
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  // Effect for setting the current "daily reflection" based on date
+  // Effect for setting the current reflection based on date
   useEffect(() => {
-    selectReflection(getCurrentDay(), dailyReflections);
+    selectReflection(currentDay, dailyReflections);
   }, [dailyReflections]);
-
-  const getCurrentDay = (): string => {
-    // Calculate current day and month
-    const currentDate: Date = new Date();
-    const month: string = currentDate.toLocaleString('default', {
-      month: 'short'
-    });
-    const day: string = currentDate.getDate().toString();
-    // Update currentDate
-    setCurrentDate(currentDate);
-    // Use current day and month as ID
-    const currentDay: string = month + day;
-    return currentDay;
-  };
 
   const getPrevDay = (): string => {
     // Calculate prev day
@@ -92,7 +84,7 @@ const Reflection: React.FC = (): JSX.Element => {
         source: currentReflection.source,
         dailyReflection: currentReflection.dailyReflection
       });
-      // Set a blank reflection state otherwise
+      // Set a blank reflection otherwise
     } else {
       setReflection({
         id: '',

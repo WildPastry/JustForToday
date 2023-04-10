@@ -1,5 +1,5 @@
-/* eslint-disable */
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import Calendar from '../components/Calendar';
 import Colors from '../constants/Colors';
@@ -10,9 +10,9 @@ import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
+import { setCurrentDay } from '../redux/slices/dateSlice';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
-import { useEffect, useState } from 'react';
 
 const Home: React.FC = (): JSX.Element => {
   // Selectors for store
@@ -43,8 +43,15 @@ const Home: React.FC = (): JSX.Element => {
     return <ErrorScreen />;
   };
 
+  // Hide or show calendar
   const toggleCalendar = (): void => {
     setShowCalendar(!showCalendar);
+  };
+
+  // Update the current reflection
+  const updateReflection = (showCalendar: boolean, id: string): void => {
+    setShowCalendar(showCalendar);
+    dispatch(setCurrentDay(id));
   };
 
   // Render app
@@ -74,7 +81,7 @@ const Home: React.FC = (): JSX.Element => {
             />
             {/* Components */}
             {showCalendar ? (
-              <Calendar handleCalendarChange={toggleCalendar} />
+              <Calendar handleCalendarChange={updateReflection} />
             ) : (
               <Reflection />
             )}

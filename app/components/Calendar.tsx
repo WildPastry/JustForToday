@@ -45,11 +45,11 @@ const Calendar: React.FC<ICalendar> = ({
   return (
     <View style={styles.container}>
       <MonoText style={styles.title}>Calendar</MonoText>
-
+      {/* Reset to all months */}
       <Pressable onPress={() => getAllMonths()}>
         <Text>ALL MONTHS</Text>
       </Pressable>
-
+      {/* Months */}
       {months.map((month, index) => (
         <MonthItem
           key={index}
@@ -59,7 +59,7 @@ const Calendar: React.FC<ICalendar> = ({
           onPress={() => handleMonthClick(month)}
         />
       ))}
-      
+      {/* Days */}
       {days.map((day, index) => (
         <DayItem
           key={index}

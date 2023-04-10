@@ -1,7 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IDate } from '../../types/date.types';
 
-// Helper function to get the current days ID
+/**
+ * Helper function to get the ID of the current day
+ * @returns {string} ID of the current day
+ */
 export const getCurrentDay = (): string => {
   // Calculate current day and month
   const currentDate: Date = new Date();
