@@ -1,25 +1,31 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IDate } from '../../types/date.types';
+import format from 'date-fns/format';
 
 /**
  * Helper function to get the ID of the current day
- * @returns {string} ID of the current day
+ * @returns {string} ID for the current day
  */
 export const getCurrentDay = (): string => {
-  // Calculate current day and month
-  const currentDate: Date = new Date();
-  const month: string = currentDate.toLocaleString('default', {
-    month: 'short'
-  });
-  const day: string = currentDate.getDate().toString();
-  // Use current day and month as ID
-  const currentDay: string = month + day;
+  // Calculate current day
+  const currentDay = format(new Date(), 'ddMM');
+  return currentDay;
+};
+
+/**
+ * Helper function to get a date display string
+ * @returns {string} Date display string
+ */
+export const getCurrentDate = (dateId: string): string => {
+  console.log('dateId', dateId);
+  // Calculate current date
+  const currentDay = new Date(dateId).toLocaleString();
   return currentDay;
 };
 
 // Set initialState
 const initialState: IDate = {
-  currentDay: getCurrentDay(),
+  currentDay: format(new Date(), 'ddMM'),
   today: getCurrentDay()
 };
 
