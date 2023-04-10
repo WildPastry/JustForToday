@@ -8,13 +8,13 @@ import {
   createSlice
 } from '@reduxjs/toolkit';
 
-import { IDailyReflections } from '../../types/data.types';
+import { IDailyReflections, IData } from '../../types/data.types';
 import { IMonthItems } from '../../types/date.types';
 import getDailyReflections from '../../api/getDailyReflections';
 import getMonthItems from '../../api/getMonthItems';
 
 // Set initialState
-const initialState = {
+const initialState: IData = {
   dailyReflections: [] as IDailyReflections[],
   monthItems: [] as IMonthItems[],
   loading: true,

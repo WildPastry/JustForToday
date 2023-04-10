@@ -27,6 +27,11 @@ export interface IDayItems {
   onPress: () => void;
 }
 
+export interface IDate {
+  currentDay: string;
+  today: string;
+}
+
 export interface ICalendar {
   handleCalendarChange: (showCalendar: boolean, id: string) => void;
 }

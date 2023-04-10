@@ -15,6 +15,15 @@ import useColorScheme from '../../app/hooks/useColorScheme';
 import { useEffect, useState } from 'react';
 
 const Home: React.FC = (): JSX.Element => {
+  // Selectors for store
+  const appLoading = useAppSelector((state: AppState): boolean => {
+    return state.data.loading;
+  });
+
+  const appError = useAppSelector((state: AppState): boolean => {
+    return state.data.error;
+  });
+
   // Colour settings
   const colorScheme = useColorScheme();
 
@@ -28,15 +37,6 @@ const Home: React.FC = (): JSX.Element => {
   useEffect((): void => {
     dispatch(setData());
   }, [setData]);
-
-  // Selectors for loading and error states
-  const appLoading = useAppSelector((state: AppState): boolean => {
-    return state.data.loading;
-  });
-
-  const appError = useAppSelector((state: AppState): boolean => {
-    return state.data.error;
-  });
 
   // Error screen
   const errorScreen = (): JSX.Element => {
@@ -73,7 +73,11 @@ const Home: React.FC = (): JSX.Element => {
               color={Colors[colorScheme].text}
             />
             {/* Components */}
-            {showCalendar ? <Calendar handleCalendarChange={toggleCalendar} /> : <Reflection />}
+            {showCalendar ? (
+              <Calendar handleCalendarChange={toggleCalendar} />
+            ) : (
+              <Reflection />
+            )}
           </View>
         )}
       </View>
