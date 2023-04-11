@@ -1,4 +1,10 @@
 /* eslint-disable no-unused-vars */
+export interface IDate {
+  currentDate: number;
+  currentDay: string;
+  today: string;
+}
+
 export enum IDateFormat {
   ddMM = 'ddMM'
 }
@@ -14,12 +20,6 @@ export interface IDayItems {
   id: string;
   name: string;
   onPress: () => void;
-}
-
-export interface IDate {
-  currentDate: number;
-  currentDay: string;
-  today: string;
 }
 
 export interface ICalendar {

@@ -25,7 +25,7 @@ const dateSlice = createSlice({
 
 /**
  * Function to convert a 4 digit string ID into a timestamp
- * @param {string} id Date ID passed from the calendar
+ * @param {string} id 'currentDay' ID passed from the calendar
  * @returns {number} The current date as timestamp
  */
 export const constructDateFromId = (id: string): number => {
