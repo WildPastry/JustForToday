@@ -1,3 +1,8 @@
+import {
+  constructDateFromId,
+  setCurrentDate,
+  setCurrentDay
+} from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
@@ -10,7 +15,6 @@ import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
-import { setCurrentDay } from '../redux/slices/dateSlice';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
 
@@ -50,7 +54,11 @@ const Home: React.FC = (): JSX.Element => {
 
   // Update the current reflection
   const updateReflection = (showCalendar: boolean, id: string): void => {
+    const currentDate: number = constructDateFromId(id);
+    // Set calendar status
     setShowCalendar(showCalendar);
+    // Update store
+    dispatch(setCurrentDate(currentDate));
     dispatch(setCurrentDay(id));
   };
 

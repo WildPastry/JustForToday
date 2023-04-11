@@ -1,13 +1,12 @@
-/* eslint-disable */
+import { IDate, IDateFormat } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
+import { setCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IDailyReflections } from '../types/data.types';
 import add from 'date-fns/add';
-import { getCurrentDay, getCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { IDate } from '../types/date.types';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
@@ -35,37 +34,40 @@ const Reflection: React.FC = (): JSX.Element => {
     dailyReflection: ''
   });
 
-  // Date local state
-  // const [currentDate, setCurrentDate] = useState(new Date());
-
   // Effect for setting the current reflection based on date
   useEffect(() => {
     selectReflection(dates.currentDay, dailyReflections);
-    // const test1 = new Date('01/03')
-    // const test = format(test1, 'ddMM');
-    // console.log(test, test1)
   }, [dailyReflections]);
+
+  const getCurrentDay = (): string => {
+    // Calculate current day
+    const currentDay = format(new Date(), IDateFormat.ddMM);
+    // Update store
+    dispatch(setCurrentDate(Date.now()));
+    dispatch(setCurrentDay(currentDay));
+    return currentDay;
+  };
 
   const getPrevDay = (): string => {
     // Calculate previous day
-    const currentDate = new Date(dates.currentDay);
-    console.log(currentDate)
+    const currentDate = new Date(dates.currentDate);
     const prevDate = add(currentDate, { days: -1 });
-    const prevDay = format(prevDate, 'ddMM');
+    const prevDay = format(prevDate, IDateFormat.ddMM);
+    // Update store
+    dispatch(setCurrentDate(prevDate.getTime()));
     dispatch(setCurrentDay(prevDay));
-    console.log('prevDay', prevDay)
     return prevDay;
   };
 
   const getNextDay = (): string => {
-     // Calculate next day
-     const currentDate = new Date(dates.currentDay);
-     console.log(currentDate)
-     const nextDate = add(currentDate, { days: 1 });
-     const nextDay = format(nextDate, 'ddMM');
-     dispatch(setCurrentDay(nextDay));
-     console.log('nextDay', nextDay)
-     return nextDay;
+    // Calculate next day
+    const currentDate = new Date(dates.currentDate);
+    const nextDate = add(currentDate, { days: 1 });
+    const nextDay = format(nextDate, IDateFormat.ddMM);
+    // Update store
+    dispatch(setCurrentDate(nextDate.getTime()));
+    dispatch(setCurrentDay(nextDay));
+    return nextDay;
   };
 
   // Select the reflection from the data
@@ -90,7 +92,7 @@ const Reflection: React.FC = (): JSX.Element => {
     } else {
       setReflection({
         id: '',
-        date: getCurrentDate(id),
+        date: '',
         title: 'No data available',
         quote: '',
         source: '',

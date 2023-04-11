@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { ICalendar, IDayItems, IMonthItems } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
@@ -32,6 +31,7 @@ const Calendar: React.FC<ICalendar> = ({
     setDays([]);
   };
 
+  // Handling click functions
   const handleMonthClick = (month: IMonthItems): void => {
     setMonths([month]);
     setDays(month.days);

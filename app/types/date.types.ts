@@ -1,17 +1,6 @@
 /* eslint-disable no-unused-vars */
-export enum IMonthNames {
-  January,
-  Feburary,
-  March,
-  April,
-  May,
-  June,
-  July,
-  August,
-  September,
-  October,
-  November,
-  December
+export enum IDateFormat {
+  ddMM = 'ddMM'
 }
 
 export interface IMonthItems {
@@ -28,6 +17,7 @@ export interface IDayItems {
 }
 
 export interface IDate {
+  currentDate: number;
   currentDay: string;
   today: string;
 }

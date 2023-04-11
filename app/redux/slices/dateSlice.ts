@@ -1,47 +1,46 @@
+import { IDate, IDateFormat } from '../../types/date.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IDate } from '../../types/date.types';
 import format from 'date-fns/format';
-
-/**
- * Helper function to get the ID of the current day
- * @returns {string} ID for the current day
- */
-export const getCurrentDay = (): string => {
-  // Calculate current day
-  const currentDay = format(new Date(), 'ddMM');
-  return currentDay;
-};
-
-/**
- * Helper function to get a date display string
- * @returns {string} Date display string
- */
-export const getCurrentDate = (dateId: string): string => {
-  console.log('dateId', dateId);
-  // Calculate current date
-  const currentDay = new Date(dateId).toLocaleString();
-  return currentDay;
-};
 
 // Set initialState
 const initialState: IDate = {
-  currentDay: format(new Date(), 'ddMM'),
-  today: getCurrentDay()
+  currentDate: Date.now(),
+  currentDay: format(new Date(), IDateFormat.ddMM),
+  today: format(new Date(), IDateFormat.ddMM)
 };
 
-// Create dateSlice which holds the current date
+// Create dateSlice which holds the current date items
 const dateSlice = createSlice({
   name: 'date',
   initialState,
   reducers: {
+    setCurrentDate(state, action: PayloadAction<number>) {
+      state.currentDate = action.payload;
+    },
     setCurrentDay(state, action: PayloadAction<string>) {
       state.currentDay = action.payload;
     }
   }
 });
 
+/**
+ * Function to convert a 4 digit string ID into a timestamp
+ * @param {string} id Date ID passed from the calendar
+ * @returns {number} The current date as timestamp
+ */
+export const constructDateFromId = (id: string): number => {
+  // Calculate current date from ID
+  const day = id.slice(0, 2);
+  const month = id.slice(2, 4);
+  const year = new Date().getFullYear();
+  const currentDateString = `${year}-${month}-${day}`;
+  // Convert to timestamp for storage
+  const currentDate = new Date(currentDateString).getTime();
+  return currentDate;
+};
+
 // Export date action
-export const { setCurrentDay } = dateSlice.actions;
+export const { setCurrentDate, setCurrentDay } = dateSlice.actions;
 
 // Export reducer
 export default dateSlice.reducer;
