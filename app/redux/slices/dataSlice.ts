@@ -8,15 +8,15 @@ import {
   createSlice
 } from '@reduxjs/toolkit';
 
-import { IDailyReflections, IData } from '../../types/data.types';
-import { IMonthItems } from '../../types/date.types';
+import { IDailyReflection, IData } from '../../types/data.types';
+import { IMonthItem } from '../../types/date.types';
 import getDailyReflections from '../../api/getDailyReflections';
 import getMonthItems from '../../api/getMonthItems';
 
 // Set initialState
 const initialState: IData = {
-  dailyReflections: [] as IDailyReflections[],
-  monthItems: [] as IMonthItems[],
+  dailyReflections: [] as IDailyReflection[],
+  monthItems: [] as IMonthItem[],
   loading: true,
   error: false
 };
@@ -48,8 +48,8 @@ const dataSlice = createSlice({
    */
   extraReducers: (
     builder: ActionReducerMapBuilder<{
-      dailyReflections: IDailyReflections[];
-      monthItems: IMonthItems[];
+      dailyReflections: IDailyReflection[];
+      monthItems: IMonthItem[];
       loading: boolean;
       error: boolean;
     }>

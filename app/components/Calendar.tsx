@@ -1,4 +1,4 @@
-import { ICalendar, IDayItems, IMonthItems } from '../types/date.types';
+import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { useEffect, useState } from 'react';
@@ -12,13 +12,13 @@ const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
   // App selector for month data
-  const monthItems = useAppSelector((state: AppState): IMonthItems[] => {
+  const monthItems = useAppSelector((state: AppState): IMonthItem[] => {
     return state.data.monthItems;
   });
 
   // Local data
-  const [months, setMonths] = useState<IMonthItems[]>([]);
-  const [days, setDays] = useState<IDayItems[]>([]);
+  const [months, setMonths] = useState<IMonthItem[]>([]);
+  const [days, setDays] = useState<IDayItem[]>([]);
 
   // Effect for setting the month items
   useEffect(() => {
@@ -32,12 +32,12 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   // Handling click functions
-  const handleMonthClick = (month: IMonthItems): void => {
+  const handleMonthClick = (month: IMonthItem): void => {
     setMonths([month]);
     setDays(month.days);
   };
 
-  const handleDayClick = (day: IDayItems): void => {
+  const handleDayClick = (day: IDayItem): void => {
     setDays([day]);
     handleCalendarChange(false, day.id);
   };

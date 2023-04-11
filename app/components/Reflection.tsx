@@ -5,14 +5,14 @@ import { setCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
-import { IDailyReflections } from '../types/data.types';
+import { IDailyReflection } from '../types/data.types';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Selectors for store
   const dailyReflections = useAppSelector(
-    (state: AppState): IDailyReflections[] => {
+    (state: AppState): IDailyReflection[] => {
       return state.data.dailyReflections;
     }
   );
@@ -25,7 +25,7 @@ const Reflection: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   // Data local state
-  const [reflection, setReflection] = useState<IDailyReflections>({
+  const [reflection, setReflection] = useState<IDailyReflection>({
     id: '',
     date: '',
     title: '',
@@ -73,7 +73,7 @@ const Reflection: React.FC = (): JSX.Element => {
   // Select the reflection from the data
   const selectReflection = (
     id: string,
-    dailyReflections: IDailyReflections[]
+    dailyReflections: IDailyReflection[]
   ): void => {
     const currentReflection = dailyReflections.find((dailyReflection) => {
       return dailyReflection.id === id;

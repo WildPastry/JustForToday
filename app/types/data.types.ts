@@ -1,6 +1,6 @@
-import { IMonthItems } from './date.types';
+import { IMonthItem } from './date.types';
 
-export interface IDailyReflections {
+export interface IDailyReflection {
   id: string;
   date: string;
   title: string;
@@ -10,8 +10,8 @@ export interface IDailyReflections {
 }
 
 export interface IData {
-  dailyReflections: IDailyReflections[];
-  monthItems: IMonthItems[];
+  dailyReflections: IDailyReflection[];
+  monthItems: IMonthItem[];
   loading: boolean;
   error: boolean;
 }

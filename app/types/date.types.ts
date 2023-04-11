@@ -9,17 +9,17 @@ export enum IDateFormat {
   ddMM = 'ddMM'
 }
 
-export interface IMonthItems {
+export interface IMonthItem {
   id: string;
   name: string;
-  days: IDayItems[];
-  onPress: () => void;
+  days: IDayItem[];
+  onPress?: () => void;
 }
 
-export interface IDayItems {
+export interface IDayItem {
   id: string;
   name: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 export interface ICalendar {
