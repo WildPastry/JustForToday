@@ -21,7 +21,7 @@ const Reflection: React.FC = (): JSX.Element => {
     return state.date;
   });
 
-  // Set up dispatch
+  // Dispatch settings
   const dispatch = useAppDispatch();
 
   // Data local state

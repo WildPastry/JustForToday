@@ -31,10 +31,10 @@ const Home: React.FC = (): JSX.Element => {
   // Colour settings
   const colorScheme = useColorScheme();
 
-  // Set up dispatch
+  // Dispatch settings
   const dispatch = useAppDispatch();
 
-  // Data local states
+  // Local data
   const [showCalendar, setShowCalendar] = useState(false);
 
   // Effect for setting app data
@@ -53,13 +53,16 @@ const Home: React.FC = (): JSX.Element => {
   };
 
   // Update the current reflection
-  const updateReflection = (showCalendar: boolean, id: string): void => {
-    const currentDate: number = constructDateFromId(id);
+  const updateReflection = (
+    showCalendar: boolean,
+    currentDay: string
+  ): void => {
+    const currentDate: number = constructDateFromId(currentDay);
     // Set calendar status
     setShowCalendar(showCalendar);
     // Update store
     dispatch(setCurrentDate(currentDate));
-    dispatch(setCurrentDay(id));
+    dispatch(setCurrentDay(currentDay));
   };
 
   // Render app

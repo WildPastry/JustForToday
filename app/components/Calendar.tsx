@@ -16,7 +16,7 @@ const Calendar: React.FC<ICalendar> = ({
     return state.data.monthItems;
   });
 
-  // Data local states
+  // Local data
   const [months, setMonths] = useState<IMonthItems[]>([]);
   const [days, setDays] = useState<IDayItems[]>([]);
 

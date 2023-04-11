@@ -30,12 +30,12 @@ const dateSlice = createSlice({
  */
 export const constructDateFromId = (id: string): number => {
   // Calculate current date from ID
-  const day = id.slice(0, 2);
-  const month = id.slice(2, 4);
-  const year = new Date().getFullYear();
-  const currentDateString = `${year}-${month}-${day}`;
+  const day: string = id.slice(0, 2);
+  const month: string = id.slice(2, 4);
+  const year: number = new Date().getFullYear();
+  const currentDateString: string = `${year}-${month}-${day}`;
   // Convert to timestamp for storage
-  const currentDate = new Date(currentDateString).getTime();
+  const currentDate: number = new Date(currentDateString).getTime();
   return currentDate;
 };
 
