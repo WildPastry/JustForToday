@@ -39,7 +39,7 @@ export const constructDateFromId = (id: string): number => {
   return currentDate;
 };
 
-// Export date action
+// Export date actions
 export const { setCurrentDate, setCurrentDay } = dateSlice.actions;
 
 // Export reducer
