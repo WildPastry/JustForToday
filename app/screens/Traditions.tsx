@@ -1,10 +1,23 @@
+import Colors from '../constants/Colors';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
+import useColorScheme from '../hooks/useColorScheme';
 
 const Traditions: React.FC = (): JSX.Element => {
+  // Colour settings
+  const colorScheme = useColorScheme();
+
   return (
     <View style={styles.container}>
+      {/* Logo */}
+      <MaterialCommunityIcons
+        style={styles.text}
+        name='newspaper'
+        size={50}
+        color={Colors[colorScheme].text}
+      />
       <MonoText style={styles.title}>Traditions</MonoText>
     </View>
   );
@@ -18,6 +31,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20
+  },
+  text: {
+    textAlign: 'center'
   }
 });
 

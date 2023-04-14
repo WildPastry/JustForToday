@@ -6,12 +6,16 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 import {
+  FontAwesome,
+  FontAwesome5,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
+import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
 } from '../types/navigation.types';
 import Colors from '../constants/Colors';
-import { FontAwesome } from '@expo/vector-icons';
 import Home from '../screens/Home';
 import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -93,7 +97,9 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarAwesome5Icon name='chair' color={color} />
+          ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Info')}
@@ -115,7 +121,9 @@ function BottomTabNavigator() {
         component={Steps}
         options={{
           title: 'Steps',
-          tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
+          tabBarIcon: ({ color }) => (
+            <TabBarMaterialIcon name='stairs' color={color} />
+          )
         }}
       />
       <BottomTab.Screen
@@ -123,7 +131,9 @@ function BottomTabNavigator() {
         component={Traditions}
         options={{
           title: 'Traditions',
-          tabBarIcon: ({ color }) => <TabBarIcon name='cog' color={color} />
+          tabBarIcon: ({ color }) => (
+            <TabBarMaterialIcon name='newspaper' color={color} />
+          )
         }}
       />
       <BottomTab.Screen
@@ -131,7 +141,9 @@ function BottomTabNavigator() {
         component={Promises}
         options={{
           title: 'Promises',
-          tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
+          tabBarIcon: ({ color }) => (
+            <TabBarAwesomeIcon name='book' color={color} />
+          )
         }}
       />
     </BottomTab.Navigator>
@@ -139,9 +151,23 @@ function BottomTabNavigator() {
 }
 
 // Icons for the tabs
-function TabBarIcon(props: {
+function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
   return <FontAwesome size={25} {...props} />;
+}
+
+function TabBarAwesome5Icon(props: {
+  name: React.ComponentProps<typeof FontAwesome5>['name'];
+  color: string;
+}) {
+  return <FontAwesome5 size={25} {...props} />;
+}
+
+function TabBarMaterialIcon(props: {
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+  color: string;
+}) {
+  return <MaterialCommunityIcons size={25} {...props} />;
 }
