@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IMonthItem } from './date.types';
 
 export interface IData {
@@ -24,11 +25,16 @@ export interface IStep {
 }
 
 export interface ITraditions {
-  short: ITraditionItem[];
-  long: ITraditionItem[];
+  short: ITradition[];
+  long: ITradition[];
 }
 
-export interface ITraditionItem {
+export interface ITradition {
   id: string;
   tradition: string;
+}
+
+export enum ETraditionTypes {
+  short = 'short',
+  long = 'long'
 }

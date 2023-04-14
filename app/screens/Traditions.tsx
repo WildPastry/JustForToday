@@ -1,13 +1,26 @@
+import { ETraditionTypes, ITraditions } from '../types/data.types';
+import { Pressable, StyleSheet } from 'react-native';
+import { Text, View } from '../components/Themed';
+import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
-import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
+import Tradition from '../components/Tradition';
+import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
+import { useState } from 'react';
 
 const Traditions: React.FC = (): JSX.Element => {
+  // Selectors for store
+  const traditions = useAppSelector((state: AppState): ITraditions => {
+    return state.data.traditions;
+  });
+
   // Colour settings
   const colorScheme = useColorScheme();
+
+  // Tradition types local state
+  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
 
   return (
     <View style={styles.container}>
@@ -18,7 +31,23 @@ const Traditions: React.FC = (): JSX.Element => {
         size={50}
         color={Colors[colorScheme].text}
       />
+      {/* Title */}
       <MonoText style={styles.title}>Traditions</MonoText>
+      {/* Controls */}
+      <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
+        <Text>SHORT</Text>
+      </Pressable>
+      <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
+        <Text>LONG</Text>
+      </Pressable>
+      {/* Traditions */}
+      {traditions[traditionType].map((tradition, index) => (
+        <Tradition
+          key={index}
+          id={tradition.id}
+          tradition={tradition.tradition}
+        />
+      ))}
     </View>
   );
 };

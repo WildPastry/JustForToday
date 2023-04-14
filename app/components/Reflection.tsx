@@ -103,6 +103,7 @@ const Reflection: React.FC = (): JSX.Element => {
 
   return (
     <View>
+      {/* Controls */}
       <Pressable
         onPress={() => selectReflection(getPrevDay(), dailyReflections)}>
         <Text>PREV</Text>
@@ -115,6 +116,7 @@ const Reflection: React.FC = (): JSX.Element => {
         onPress={() => selectReflection(getNextDay(), dailyReflections)}>
         <Text>NEXT</Text>
       </Pressable>
+      {/* Reflection */}
       <Text style={styles.text}>{reflection.date}</Text>
       <Text style={styles.text}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
