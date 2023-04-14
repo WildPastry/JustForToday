@@ -1,6 +1,6 @@
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text } from '../components/Themed';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -23,7 +23,7 @@ const Traditions: React.FC = (): JSX.Element => {
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* Logo */}
       <FontAwesome
         style={styles.text}
@@ -48,15 +48,13 @@ const Traditions: React.FC = (): JSX.Element => {
           tradition={tradition.tradition}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    padding: 20
   },
   title: {
     fontSize: 20
