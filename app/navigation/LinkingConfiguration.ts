@@ -22,11 +22,6 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               Traditions: 'three'
             }
-          },
-          Promises: {
-            screens: {
-              Promises: 'four'
-            }
           }
         }
       },

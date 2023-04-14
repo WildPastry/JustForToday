@@ -20,7 +20,6 @@ import Home from '../screens/Home';
 import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import Promises from '../screens/Promises';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -131,16 +130,6 @@ function BottomTabNavigator() {
         component={Traditions}
         options={{
           title: 'Traditions',
-          tabBarIcon: ({ color }) => (
-            <TabBarMaterialIcon name='newspaper' color={color} />
-          )
-        }}
-      />
-      <BottomTab.Screen
-        name='Promises'
-        component={Promises}
-        options={{
-          title: 'Promises',
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon name='book' color={color} />
           )

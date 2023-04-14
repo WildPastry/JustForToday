@@ -1,5 +1,5 @@
 import Colors from '../constants/Colors';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
@@ -12,9 +12,9 @@ const Traditions: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
       {/* Logo */}
-      <MaterialCommunityIcons
+      <FontAwesome
         style={styles.text}
-        name='newspaper'
+        name='book'
         size={50}
         color={Colors[colorScheme].text}
       />
