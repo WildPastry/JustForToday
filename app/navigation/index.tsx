@@ -16,8 +16,9 @@ import Home from '../screens/Home';
 import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import Reflections from '../screens/Reflections';
-import Support from '../screens/Support';
+import Promises from '../screens/Promises';
+import Steps from '../screens/Steps';
+import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useColorScheme from '../hooks/useColorScheme';
@@ -110,19 +111,27 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name='Reflections'
-        component={Reflections}
+        name='Steps'
+        component={Steps}
         options={{
-          title: 'Reflections',
+          title: 'Steps',
           tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
         }}
       />
       <BottomTab.Screen
-        name='Support'
-        component={Support}
+        name='Traditions'
+        component={Traditions}
         options={{
-          title: 'Support',
+          title: 'Traditions',
           tabBarIcon: ({ color }) => <TabBarIcon name='cog' color={color} />
+        }}
+      />
+      <BottomTab.Screen
+        name='Promises'
+        component={Promises}
+        options={{
+          title: 'Promises',
+          tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
         }}
       />
     </BottomTab.Navigator>

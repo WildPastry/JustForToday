@@ -13,14 +13,19 @@ const linking: LinkingOptions<RootStackParamList> = {
               Home: 'one'
             }
           },
-          Reflections: {
+          Steps: {
             screens: {
-              Reflections: 'two'
+              Steps: 'two'
             }
           },
-          Support: {
+          Traditions: {
             screens: {
-              Support: 'three'
+              Traditions: 'three'
+            }
+          },
+          Promises: {
+            screens: {
+              Promises: 'four'
             }
           }
         }

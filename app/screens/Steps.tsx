@@ -2,10 +2,10 @@ import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 
-const Support: React.FC = (): JSX.Element => {
+const Steps: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>Support</MonoText>
+      <MonoText style={styles.title}>Steps</MonoText>
     </View>
   );
 };
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Support;
+export default Steps;

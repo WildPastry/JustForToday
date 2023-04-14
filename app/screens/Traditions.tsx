@@ -2,10 +2,10 @@ import { MonoText } from '../components/StyledText';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 
-const Reflections: React.FC = (): JSX.Element => {
+const Traditions: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>Reflections</MonoText>
+      <MonoText style={styles.title}>Traditions</MonoText>
     </View>
   );
 };
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Reflections;
+export default Traditions;
