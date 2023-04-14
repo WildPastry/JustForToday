@@ -118,22 +118,50 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name='Steps'
         component={Steps}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon name='stairs' color={color} />
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Info')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1
+              })}>
+              <FontAwesome
+                name='info-circle'
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
           )
-        }}
+        })}
       />
       <BottomTab.Screen
         name='Traditions'
         component={Traditions}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon name='book' color={color} />
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Info')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1
+              })}>
+              <FontAwesome
+                name='info-circle'
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
           )
-        }}
+        })}
       />
     </BottomTab.Navigator>
   );
