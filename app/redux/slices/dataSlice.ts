@@ -60,10 +60,7 @@ const dataSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchDailyReflectionsFromAPI.fulfilled, (state, action) => {
-        // Replicate API
-        setTimeout(() => {
-          state.loading = false;
-        }, 2000);
+        state.loading = false;
         state.dailyReflections = action.payload;
       })
       .addCase(fetchDailyReflectionsFromAPI.rejected, (state) => {
