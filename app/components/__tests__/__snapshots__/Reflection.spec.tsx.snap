@@ -150,6 +150,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]
@@ -162,6 +164,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]
@@ -174,6 +178,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]
@@ -186,6 +192,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]

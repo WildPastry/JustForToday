@@ -7,7 +7,10 @@ exports[`<Step /> renders correctly 1`] = `
       {
         "color": "#000",
       },
-      undefined,
+      {
+        "lineHeight": 20,
+        "marginBottom": 10,
+      },
     ]
   }
 >

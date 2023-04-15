@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IDailyReflection } from '../types/data.types';
 import add from 'date-fns/add';
-import { checkDataQuality } from '../utils/dataQuality';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
@@ -87,7 +86,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: currentReflection.title,
         quote: currentReflection.quote,
         source: currentReflection.source,
-        dailyReflection: qualityReflection(currentReflection.dailyReflection)
+        dailyReflection: verifyData(currentReflection.dailyReflection)
       });
       // Set a blank reflection otherwise
     } else {
@@ -102,10 +101,13 @@ const Reflection: React.FC = (): JSX.Element => {
     }
   };
 
-  // Check data quality
-  const qualityReflection = (data: string): string => {
-    const convertedData = checkDataQuality(data);
-    return convertedData;
+  // Verify if the data needs new lines inserted
+  const verifyData = (data: string): string => {
+    // Create pattern to find new line symbol {}
+    const newLineSymbol = /\{(?<DATA>.*?)\}/gu;
+    // Replace symbols with new lines
+    const verifiedData = data.replace(newLineSymbol, '\n\n');
+    return verifiedData;
   };
 
   return (
