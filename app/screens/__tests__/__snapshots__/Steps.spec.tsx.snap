@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Home /> renders correctly 1`] = `
+exports[`<Steps /> renders correctly 1`] = `
 <RCTScrollView
   contentContainerStyle={
     {
@@ -20,6 +20,7 @@ exports[`<Home /> renders correctly 1`] = `
   }
 >
   <View>
+    <Text />
     <Text
       style={
         [
@@ -37,7 +38,7 @@ exports[`<Home /> renders correctly 1`] = `
         ]
       }
     >
-      Loading
+      Steps
     </Text>
   </View>
 </RCTScrollView>
