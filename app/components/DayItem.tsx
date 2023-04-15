@@ -17,17 +17,19 @@ const DayItem: React.FC<IDayItem> = (dayItem: IDayItem): JSX.Element => {
         dates.today === dayItem.id ? styles.dayItemToday : styles.dayItemDefault
       ]}
       onPress={dayItem.onPress}>
-      <Text>{dayItem.name}</Text>
+      <Text style={styles.text}>{dayItem.name}</Text>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center'
+  },
   dayItem: {
     borderRadius: 3,
     marginBottom: 5,
-    padding: 3,
-    textAlign: 'center'
+    padding: 3
   },
   dayItemToday: {
     backgroundColor: 'blue'
