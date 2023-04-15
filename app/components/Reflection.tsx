@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IDailyReflection } from '../types/data.types';
 import add from 'date-fns/add';
+import { checkDataQuality } from '../utils/dataQuality';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
@@ -86,7 +87,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: currentReflection.title,
         quote: currentReflection.quote,
         source: currentReflection.source,
-        dailyReflection: currentReflection.dailyReflection
+        dailyReflection: qualityReflection(currentReflection.dailyReflection)
       });
       // Set a blank reflection otherwise
     } else {
@@ -99,6 +100,11 @@ const Reflection: React.FC = (): JSX.Element => {
         dailyReflection: ''
       });
     }
+  };
+
+  const qualityReflection = (data: string): string => {
+    const convertedData = checkDataQuality(data);
+    return convertedData;
   };
 
   return (
@@ -127,6 +133,8 @@ const Reflection: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   text: {
+    lineHeight: 20,
+    marginBottom: 10,
     textAlign: 'center'
   }
 });

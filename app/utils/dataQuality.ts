@@ -1,4 +1,8 @@
 export const checkDataQuality = (data: string): string => {
-  const convertedData = `${data} CONVERTED`;
+  // Create pattern
+  const REGEX = /\{(?<REGEX>.*?)\}/gu;
+
+  // Convert data
+  const convertedData = data.replace(REGEX, '\n\n');
   return convertedData;
 };
