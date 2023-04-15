@@ -102,6 +102,7 @@ const Reflection: React.FC = (): JSX.Element => {
     }
   };
 
+  // Check data quality
   const qualityReflection = (data: string): string => {
     const convertedData = checkDataQuality(data);
     return convertedData;
