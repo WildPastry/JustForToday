@@ -1,12 +1,12 @@
-import { IDate, IDateFormat } from '../../types/date.types';
+import { EDateFormat, IDate } from '../../types/date.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
 
 // Set initialState
 const initialState: IDate = {
   currentDate: Date.now(),
-  currentDay: format(new Date(), IDateFormat.ddMM),
-  today: format(new Date(), IDateFormat.ddMM)
+  currentDay: format(new Date(), EDateFormat.ddMM),
+  today: format(new Date(), EDateFormat.ddMM)
 };
 
 // Create dateSlice which holds the current date items

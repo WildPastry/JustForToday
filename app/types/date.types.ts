@@ -5,7 +5,7 @@ export interface IDate {
   today: string;
 }
 
-export enum IDateFormat {
+export enum EDateFormat {
   ddMM = 'ddMM'
 }
 

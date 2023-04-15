@@ -1,6 +1,6 @@
 import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text, View } from '../components/Themed';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import DayItem from '../components/DayItem';
@@ -49,25 +49,27 @@ const Calendar: React.FC<ICalendar> = ({
       <Pressable onPress={() => getAllMonths()}>
         <Text>ALL MONTHS</Text>
       </Pressable>
-      {/* Months */}
-      {months.map((month, index) => (
-        <MonthItem
-          key={index}
-          id={month.id}
-          name={month.name}
-          days={month.days}
-          onPress={() => handleMonthClick(month)}
-        />
-      ))}
-      {/* Days */}
-      {days.map((day, index) => (
-        <DayItem
-          key={index}
-          id={day.id}
-          name={day.name}
-          onPress={() => handleDayClick(day)}
-        />
-      ))}
+      <ScrollView>
+        {/* Months */}
+        {months.map((month, index) => (
+          <MonthItem
+            key={index}
+            id={month.id}
+            name={month.name}
+            days={month.days}
+            onPress={() => handleMonthClick(month)}
+          />
+        ))}
+        {/* Days */}
+        {days.map((day, index) => (
+          <DayItem
+            key={index}
+            id={day.id}
+            name={day.name}
+            onPress={() => handleDayClick(day)}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 };

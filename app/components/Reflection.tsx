@@ -1,4 +1,4 @@
-import { IDate, IDateFormat } from '../types/date.types';
+import { EDateFormat, IDate } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { setCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
@@ -41,7 +41,7 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const getCurrentDay = (): string => {
     // Calculate current day
-    const currentDay = format(new Date(), IDateFormat.ddMM);
+    const currentDay = format(new Date(), EDateFormat.ddMM);
     // Update store
     dispatch(setCurrentDate(Date.now()));
     dispatch(setCurrentDay(currentDay));
@@ -52,7 +52,7 @@ const Reflection: React.FC = (): JSX.Element => {
     // Calculate previous day
     const currentDate = new Date(dates.currentDate);
     const prevDate = add(currentDate, { days: -1 });
-    const prevDay = format(prevDate, IDateFormat.ddMM);
+    const prevDay = format(prevDate, EDateFormat.ddMM);
     // Update store
     dispatch(setCurrentDate(prevDate.getTime()));
     dispatch(setCurrentDay(prevDay));
@@ -63,7 +63,7 @@ const Reflection: React.FC = (): JSX.Element => {
     // Calculate next day
     const currentDate = new Date(dates.currentDate);
     const nextDate = add(currentDate, { days: 1 });
-    const nextDay = format(nextDate, IDateFormat.ddMM);
+    const nextDay = format(nextDate, EDateFormat.ddMM);
     // Update store
     dispatch(setCurrentDate(nextDate.getTime()));
     dispatch(setCurrentDay(nextDay));
