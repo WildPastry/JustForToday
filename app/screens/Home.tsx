@@ -13,8 +13,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
+import { ScrollView } from '../components/Themed';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
 
@@ -68,11 +68,11 @@ const Home: React.FC = (): JSX.Element => {
   // Render app
   const renderApp = (appLoading: boolean) => {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {appLoading ? (
           <LoadingScreen />
         ) : (
-          <View>
+          <ScrollView>
             {/* Logo */}
             <FontAwesome5
               style={styles.text}
@@ -96,9 +96,9 @@ const Home: React.FC = (): JSX.Element => {
             ) : (
               <Reflection />
             )}
-          </View>
+          </ScrollView>
         )}
-      </View>
+      </ScrollView>
     );
   };
   // Check for error state

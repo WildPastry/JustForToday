@@ -3,9 +3,9 @@ import Colors from '../constants/Colors';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
+import { ScrollView } from '../components/Themed';
 import Step from '../components/Step';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 
@@ -19,7 +19,7 @@ const Steps: React.FC = (): JSX.Element => {
   const colorScheme = useColorScheme();
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* Logo */}
       <MaterialCommunityIcons
         style={styles.text}
@@ -33,7 +33,7 @@ const Steps: React.FC = (): JSX.Element => {
       {steps.map((step, index) => (
         <Step key={index} id={step.id} step={step.step} />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
