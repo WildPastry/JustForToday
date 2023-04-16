@@ -9,11 +9,13 @@ import useColorScheme from './app/hooks/useColorScheme';
 export default function App() {
   // Colour settings
   const colorScheme = useColorScheme();
+
   // Loading settings
   const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {
     return null;
   }
+
   return (
     <Provider store={store}>
       <SafeAreaProvider>
