@@ -1,7 +1,7 @@
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import ExternalLink from './ExternalLink';
-import { IEditScreenInfo } from './../types/component.types';
+import { IEditScreenInfo } from '../types/generic.types';
 import { MonoText } from './StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';

@@ -15,6 +15,7 @@ const TraditionItem: React.FC<ITradition> = (
 
 const styles = StyleSheet.create({
   text: {
+    textAlign: 'left',
     lineHeight: 20,
     marginBottom: 10
   }

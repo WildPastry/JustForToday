@@ -126,8 +126,8 @@ const Reflection: React.FC = (): JSX.Element => {
         <Text>NEXT</Text>
       </Pressable>
       {/* Reflection */}
-      <Text style={styles.text}>{reflection.date}</Text>
-      <Text style={styles.text}>{reflection.title}</Text>
+      <Text style={styles.title}>{reflection.date}</Text>
+      <Text style={styles.title}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
       <Text style={styles.text}>{reflection.dailyReflection}</Text>
     </View>
@@ -136,6 +136,11 @@ const Reflection: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   text: {
+    lineHeight: 20,
+    marginBottom: 10,
+    textAlign: 'left'
+  },
+  title: {
     lineHeight: 20,
     marginBottom: 10,
     textAlign: 'center'

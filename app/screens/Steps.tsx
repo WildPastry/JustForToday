@@ -22,7 +22,7 @@ const Steps: React.FC = (): JSX.Element => {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Logo */}
       <MaterialCommunityIcons
-        style={styles.text}
+        style={styles.icon}
         name='stairs'
         size={50}
         color={Colors[colorScheme].text}
@@ -39,15 +39,14 @@ const Steps: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
     padding: 20
   },
   title: {
-    fontSize: 20
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 10
   },
-  text: {
+  icon: {
     textAlign: 'center'
   }
 });

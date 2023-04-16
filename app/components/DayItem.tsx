@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
   dayItem: {
     borderRadius: 3,
     marginBottom: 5,
-    padding: 3
+    paddingHorizontal: 10,
+    paddingVertical: 5
   },
   dayItemToday: {
-    backgroundColor: 'blue'
+    backgroundColor: '#131324'
   },
   dayItemDefault: {
     backgroundColor: 'transparent'

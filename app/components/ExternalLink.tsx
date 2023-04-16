@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
-import { IExternalLink } from '../types/component.types';
+import { IExternalLink } from '../types/generic.types';
 import { Link } from 'expo-router';
 import { Platform } from 'react-native';
 import React from 'react';
