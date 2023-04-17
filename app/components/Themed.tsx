@@ -6,9 +6,7 @@ import {
 import React, { forwardRef } from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-interface IScrollViewProps extends ScrollViewProps {
-  ref?: React.Ref<DefaultScrollView>;
-}
+
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
@@ -24,18 +22,21 @@ export function useThemeColor(
   return Colors[theme][colorName];
 }
 
+// Export props
+interface IScrollViewProps extends ScrollViewProps {
+  ref?: React.Ref<DefaultScrollView>;
+}
+
 type ThemeProps = {
   lightColor?: string;
   darkColor?: string;
 };
 
-// Export props
 export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
 // Exporting components with the correct colour theme added
-
 const ForwardedScrollView = forwardRef<DefaultScrollView, IScrollViewProps>(
   (props, ref) => {
     const { style, lightColor, darkColor, ...otherProps } = props;

@@ -1,15 +1,23 @@
+import { useEffect, useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
+import ForwardedScrollView from '../components/Themed';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
-import { ScrollView } from '../components/Themed';
 import Step from '../components/Step';
 import { StyleSheet } from 'react-native';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
+import { useIsFocused } from '@react-navigation/native';
 
 const Steps: React.FC = (): JSX.Element => {
+  // Create ref for functional scroll view
+  const scrollViewRef = useRef<any>(null);
+
+  // Set up isFocused hook for tracking component
+  const isFocused = useIsFocused();
+
   // Selectors for store
   const steps = useAppSelector((state: AppState): IStep[] => {
     return state.data.steps;
@@ -18,8 +26,17 @@ const Steps: React.FC = (): JSX.Element => {
   // Colour settings
   const colorScheme = useColorScheme();
 
+  useEffect(() => {
+    if (isFocused) {
+      // Re-render component when focused to reset scroll view
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    }
+  }, [isFocused]);
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ForwardedScrollView
+      contentContainerStyle={styles.container}
+      ref={scrollViewRef}>
       {/* Logo */}
       <MaterialCommunityIcons
         style={styles.icon}
@@ -33,7 +50,7 @@ const Steps: React.FC = (): JSX.Element => {
       {steps.map((step, index) => (
         <Step key={index} id={step.id} step={step.step} />
       ))}
-    </ScrollView>
+    </ForwardedScrollView>
   );
 };
 

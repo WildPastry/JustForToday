@@ -1,10 +1,12 @@
+import ForwardedScrollView, { ScrollView } from '../components/Themed';
 import {
   constructDateFromId,
   setCurrentDate,
   setCurrentDay
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { AppState } from '../redux/store';
 import Calendar from '../components/Calendar';
 import Colors from '../constants/Colors';
@@ -13,13 +15,17 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
-import { ScrollView } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
-import { useNavigation } from '@react-navigation/native';
 
 const Home: React.FC = (): JSX.Element => {
+  // Create ref for functional scroll view
+  const scrollViewRef = useRef<any>(null);
+
+  // Set up isFocused hook for tracking component
+  const isFocused = useIsFocused();
+
   // Navigation
   const navigation = useNavigation();
 
@@ -48,7 +54,11 @@ const Home: React.FC = (): JSX.Element => {
     navigation.addListener('focus', (): void => {
       setShowCalendar(false);
     });
-  }, [setData, navigation]);
+    if (isFocused) {
+      // Re-render component when focused to reset scroll view
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    }
+  }, [setData, navigation, isFocused]);
 
   // Error screen
   const errorScreen = (): JSX.Element => {
@@ -76,7 +86,9 @@ const Home: React.FC = (): JSX.Element => {
   // Render app
   const renderApp = (appLoading: boolean) => {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ForwardedScrollView
+        contentContainerStyle={styles.container}
+        ref={scrollViewRef}>
         {appLoading ? (
           <LoadingScreen />
         ) : (
@@ -106,7 +118,7 @@ const Home: React.FC = (): JSX.Element => {
             )}
           </ScrollView>
         )}
-      </ScrollView>
+      </ForwardedScrollView>
     );
   };
   // Check for error state

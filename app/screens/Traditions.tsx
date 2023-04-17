@@ -15,6 +15,9 @@ const Traditions: React.FC = (): JSX.Element => {
   // Create ref for functional scroll view
   const scrollViewRef = useRef<any>(null);
 
+  // Set up isFocused hook for tracking component
+  const isFocused = useIsFocused();
+
   // Selectors for store
   const traditions = useAppSelector((state: AppState): ITraditions => {
     return state.data.traditions;
@@ -26,7 +29,6 @@ const Traditions: React.FC = (): JSX.Element => {
   // Tradition types local state
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
 
-  const isFocused = useIsFocused();
   useEffect(() => {
     if (isFocused) {
       // Re-render component when focused to reset scroll view
