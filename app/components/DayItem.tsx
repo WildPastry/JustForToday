@@ -4,7 +4,7 @@ import { AppState } from '../redux/store';
 import { Text } from './Themed';
 import { useAppSelector } from '../redux/hooks';
 
-const DayItem: React.FC<IDayItem> = (dayItem: IDayItem): JSX.Element => {
+const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Selectors for store
   const dates = useAppSelector((state: AppState): IDate => {
     return state.date;
@@ -14,10 +14,10 @@ const DayItem: React.FC<IDayItem> = (dayItem: IDayItem): JSX.Element => {
     <Pressable
       style={[
         styles.dayItem,
-        dates.today === dayItem.id ? styles.dayItemToday : styles.dayItemDefault
+        dates.today === props.id ? styles.dayItemToday : styles.dayItemDefault
       ]}
-      onPress={dayItem.onPress}>
-      <Text style={styles.text}>{dayItem.name}</Text>
+      onPress={props.onPress}>
+      <Text style={styles.text}>{props.name}</Text>
     </Pressable>
   );
 };

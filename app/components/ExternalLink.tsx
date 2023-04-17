@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import React from 'react';
 
 const ExternalLink: React.FC<IExternalLink> = (
-  externalLink: IExternalLink
+  props: IExternalLink
 ): JSX.Element => {
   return (
     <Link
@@ -13,13 +13,13 @@ const ExternalLink: React.FC<IExternalLink> = (
         // On web launch the link in a new tab
         target: '_blank'
       }}
-      {...externalLink}
+      {...props}
       onPress={(e: { preventDefault: () => void }) => {
         if (Platform.OS !== 'web') {
           // Prevent the default behavior of linking to the default browser on native
           e.preventDefault();
           // Open the link in an in-app browser
-          WebBrowser.openBrowserAsync(externalLink.href);
+          WebBrowser.openBrowserAsync(props.href);
         }
       }}
     />

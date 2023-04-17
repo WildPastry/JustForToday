@@ -17,13 +17,11 @@ import { ScrollView } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
-import { useIsFocused, useNavigation, useRoute  } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const Home: React.FC = (): JSX.Element => {
   // Navigation
   const navigation = useNavigation();
-  const route = useRoute();
-  const isFocused = useIsFocused();
 
   // Selectors for store
   const appLoading = useAppSelector((state: AppState): boolean => {
@@ -46,14 +44,10 @@ const Home: React.FC = (): JSX.Element => {
   useEffect((): void => {
     // Effect for setting app data
     dispatch(setData());
-    
+    // Reset calendar state when routing back to home
     navigation.addListener('focus', (): void => {
       setShowCalendar(false);
     });
-    // console.log(isFocused)
-    // isFocused ? setShowCalendar(false) : null;
-    // Return the function to unsubscribe from the event so it gets removed on unmount
-    // return unsubscribe();
   }, [setData, navigation]);
 
   // Error screen

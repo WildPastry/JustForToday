@@ -2,11 +2,11 @@ import { IStep } from '../types/data.types';
 import { StyleSheet } from 'react-native';
 import { Text } from './Themed';
 
-const StepItem: React.FC<IStep> = (step: IStep): JSX.Element => {
+const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
   return (
     // Step
     <Text style={styles.text}>
-      #{step.id}: {step.step}
+      #{props.id}: {props.step}
     </Text>
   );
 };

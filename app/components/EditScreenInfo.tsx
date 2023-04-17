@@ -7,7 +7,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 const EditScreenInfo: React.FC<IEditScreenInfo> = (
-  editScreenInfo: IEditScreenInfo
+  props: IEditScreenInfo
 ): JSX.Element => {
   return (
     <View>
@@ -23,7 +23,7 @@ const EditScreenInfo: React.FC<IEditScreenInfo> = (
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           darkColor='rgba(255,255,255,0.05)'
           lightColor='rgba(0,0,0,0.05)'>
-          <MonoText>{editScreenInfo.path}</MonoText>
+          <MonoText>{props.path}</MonoText>
         </View>
 
         <Text

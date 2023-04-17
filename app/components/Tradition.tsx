@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 import { Text } from './Themed';
 
 const TraditionItem: React.FC<ITradition> = (
-  tradtion: ITradition
+  props: ITradition
 ): JSX.Element => {
   return (
     // Tradition
     <Text style={styles.text}>
-      #{tradtion.id}: {tradtion.tradition}
+      #{props.id}: {props.tradition}
     </Text>
   );
 };

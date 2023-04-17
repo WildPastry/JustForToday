@@ -1,6 +1,7 @@
 import { ETraditionTypes, ITraditions } from '../types/data.types';
+import ForwardedScrollView, { Text } from '../components/Themed';
 import { Pressable, StyleSheet } from 'react-native';
-import { ScrollView, ScrollViewProps, Text } from '../components/Themed';
+import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -8,44 +9,17 @@ import { MonoText } from '../components/StyledText';
 import Tradition from '../components/Tradition';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState
-} from 'react';
 import { useIsFocused } from '@react-navigation/native';
+
 const Traditions: React.FC = (): JSX.Element => {
+  // Create ref for functional scroll view
+  const scrollViewRef = useRef<any>(null);
+
   // Selectors for store
   const traditions = useAppSelector((state: AppState): ITraditions => {
     return state.data.traditions;
   });
 
-  // Try forward ref
-  interface ScrollViewWithScrollToProps extends ScrollViewProps {
-    scrollTo: (params: { x?: number; y?: number; animated?: boolean }) => void;
-  }
-  const MyScrollView = forwardRef<ScrollViewWithScrollToProps, ScrollViewProps>(
-    (props, ref) => {
-      const scrollViewRef = useRef<ScrollViewWithScrollToProps>(null);
-
-      useImperativeHandle(ref, () => ({
-        scrollTo: (params) => scrollViewRef.current?.scrollTo(params)
-      }));
-
-      useEffect(() => {
-        scrollViewRef.current?.scrollTo({ y: 0 });
-      }, []);
-
-      return <ScrollView {...props} ref={scrollViewRef} />;
-    }
-  );
-
-  // interface ScrollViewWithScrollToProps extends ScrollViewProps {
-  //   scrollTo: (params: { x?: number; y?: number; animated?: boolean }) => void;
-  // }
-  // const scrollViewRef = useRef<ScrollViewWithScrollToProps>(null);
   // Colour settings
   const colorScheme = useColorScheme();
 
@@ -55,14 +29,15 @@ const Traditions: React.FC = (): JSX.Element => {
   const isFocused = useIsFocused();
   useEffect(() => {
     if (isFocused) {
-      scrollViewRef.current?.scrollTo({ y: 0 });
+      // Re-render component when focused to reset scroll view
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
     }
   }, [isFocused]);
 
-  const scrollViewRef = useRef<ScrollViewWithScrollToProps>(null);
-
   return (
-    <MyScrollView contentContainerStyle={styles.container} ref={scrollViewRef}>
+    <ForwardedScrollView
+      contentContainerStyle={styles.container}
+      ref={scrollViewRef}>
       {/* Logo */}
       <FontAwesome
         style={styles.text}
@@ -87,7 +62,7 @@ const Traditions: React.FC = (): JSX.Element => {
           tradition={tradition.tradition}
         />
       ))}
-    </MyScrollView>
+    </ForwardedScrollView>
   );
 };
 
