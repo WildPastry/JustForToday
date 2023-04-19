@@ -180,7 +180,7 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "lineHeight": 20,
           "marginBottom": 10,
-          "textAlign": "center",
+          "textAlign": "left",
         },
       ]
     }
@@ -194,7 +194,7 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "lineHeight": 20,
           "marginBottom": 10,
-          "textAlign": "center",
+          "textAlign": "left",
         },
       ]
     }

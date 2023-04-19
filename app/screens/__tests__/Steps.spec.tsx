@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import Steps from '../Steps';
 import { makeStore } from '../../redux/store';
@@ -9,7 +10,9 @@ describe('<Steps />', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <Steps />
+          <NavigationContainer>
+            <Steps />
+          </NavigationContainer>
         </Provider>
       )
       .toJSON();
