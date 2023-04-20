@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontSize: 20
   },
   link: {
     marginTop: 15,
