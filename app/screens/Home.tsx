@@ -1,4 +1,4 @@
-import ForwardedScrollView, { ScrollView } from '../components/Themed';
+import ForwardedScrollView, { ScrollView, View } from '../components/Themed';
 import {
   constructDateFromId,
   setCurrentDate,
@@ -102,6 +102,12 @@ const Home: React.FC = (): JSX.Element => {
             />
             {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
+            {/* Divider */}
+            <View
+              style={styles.separator}
+              lightColor={Colors[colorScheme].seperator}
+              darkColor={Colors[colorScheme].seperator}
+            />
             {/* Calendar icon */}
             <FontAwesome5
               style={styles.text}
@@ -136,6 +142,12 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center'
+  },
+  separator: {
+    alignSelf: 'center',
+    marginVertical: 20,
+    height: 1,
+    width: '80%'
   }
 });
 

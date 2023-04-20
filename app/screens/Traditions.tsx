@@ -1,5 +1,5 @@
 import { ETraditionTypes, ITraditions } from '../types/data.types';
-import ForwardedScrollView, { Text } from '../components/Themed';
+import ForwardedScrollView, { Text, View } from '../components/Themed';
 import { Pressable, StyleSheet } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
@@ -49,6 +49,12 @@ const Traditions: React.FC = (): JSX.Element => {
       />
       {/* Title */}
       <MonoText style={styles.title}>Traditions</MonoText>
+      {/* Divider */}
+      <View
+        style={styles.separator}
+        lightColor={Colors[colorScheme].seperator}
+        darkColor={Colors[colorScheme].seperator}
+      />
       {/* Controls */}
       <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
         <Text>SHORT</Text>
@@ -79,6 +85,12 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center'
+  },
+  separator: {
+    alignSelf: 'center',
+    marginVertical: 20,
+    height: 1,
+    width: '80%'
   }
 });
 

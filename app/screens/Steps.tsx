@@ -1,7 +1,7 @@
+import ForwardedScrollView, { View } from '../components/Themed';
 import { useEffect, useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
-import ForwardedScrollView from '../components/Themed';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
@@ -46,6 +46,12 @@ const Steps: React.FC = (): JSX.Element => {
       />
       {/* Title */}
       <MonoText style={styles.title}>Steps</MonoText>
+      {/* Divider */}
+      <View
+        style={styles.separator}
+        lightColor={Colors[colorScheme].seperator}
+        darkColor={Colors[colorScheme].seperator}
+      />
       {/* Steps */}
       {steps.map((step, index) => (
         <Step key={index} id={step.id} step={step.step} />
@@ -65,6 +71,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     textAlign: 'center'
+  },
+  separator: {
+    alignSelf: 'center',
+    marginVertical: 20,
+    height: 1,
+    width: '80%'
   }
 });
 
