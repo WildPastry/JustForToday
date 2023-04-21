@@ -39,11 +39,14 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
-      <Text style={styles.title}>Love the app?</Text>
+      <Text style={styles.subTitle}>Love the app?</Text>
       <Text style={styles.text}>
-        Help the developer create other valuable and benificial projects by
-        upgrading to PRO. PRO version is cosmetic only and includes new custom
-        colour themes.
+        Help the developer create other benificial projects by upgrading the
+        app. PRO version is cosmetic only and includes new custom colour themes.
+      </Text>
+      <Text style={styles.text}>
+        All literature is taken with permission from Alcoholics Anonymous World
+        Services, Inc.
       </Text>
       <Pressable onPress={() => handleUpgrade()}>
         <Text>UPGRADE</Text>
@@ -62,6 +65,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     textAlign: 'center',
+    marginBottom: 10
+  },
+  subTitle: {
+    fontSize: 18,
+    textAlign: 'left',
     marginBottom: 10
   },
   text: {
