@@ -31,7 +31,6 @@ const Calendar: React.FC<ICalendar> = ({
     setDays([]);
   };
 
-  // Handling tap functions
   const handleMonth = (month: IMonthItem): void => {
     setMonths([month]);
     setDays(month.days);

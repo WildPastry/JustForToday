@@ -2,6 +2,7 @@
 import { Platform, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
+import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import useColorScheme from '../hooks/useColorScheme';
@@ -10,13 +11,19 @@ const About: React.FC = (): JSX.Element => {
   // Colour settings
   const colorScheme = useColorScheme();
 
-  // Handling tap function
   const handleUpgrade = (): void => {
     console.log('Upgrade app');
   };
 
   return (
     <View style={styles.container}>
+      {/* Logo */}
+      <FontAwesome
+        style={styles.icon}
+        name='info-circle'
+        size={50}
+        color={Colors[colorScheme].text}
+      />
       {/* Title */}
       <MonoText style={styles.title}>About the app</MonoText>
       {/* Divider */}
@@ -26,8 +33,11 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colors[colorScheme].seperator}
       />
       <Text style={styles.text}>
-        Daily reflections, twelve steps, and twelve tradtions on your phone with
-        zero dvertisments.
+        Daily reflections, steps, and tradtions with zero advertisments.
+      </Text>
+      <Text style={styles.text}>
+        Created to give people in the fellowship access to well known AA
+        literature at the touch of a button.
       </Text>
       <Text style={styles.text}>
         If you want to support the developer to create more helpful projects,
@@ -37,7 +47,6 @@ const About: React.FC = (): JSX.Element => {
       <Pressable onPress={() => handleUpgrade()}>
         <Text>UPGRADE</Text>
       </Pressable>
-      <Text style={styles.text}>...</Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -59,6 +68,9 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'left',
     lineHeight: 20,
+    marginBottom: 10
+  },
+  icon: {
     marginBottom: 10
   },
   separator: {
