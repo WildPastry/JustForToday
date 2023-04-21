@@ -36,13 +36,14 @@ const About: React.FC = (): JSX.Element => {
         Daily reflections, steps, and tradtions with zero advertisments.
       </Text>
       <Text style={styles.text}>
-        Created to give people in the fellowship access to well known AA
+        Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
+      <Text style={styles.title}>Love the app?</Text>
       <Text style={styles.text}>
-        If you want to support the developer to create more helpful projects,
-        you can upgrade the app to PRO for $1 by tapping the button below. PRO
-        version includes new light and dark custom colour themes.
+        Help the developer create other valuable and benificial projects by
+        upgrading to PRO. PRO version is cosmetic only and includes new custom
+        colour themes.
       </Text>
       <Pressable onPress={() => handleUpgrade()}>
         <Text>UPGRADE</Text>
