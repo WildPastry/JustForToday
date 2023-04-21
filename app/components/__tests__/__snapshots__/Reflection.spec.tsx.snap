@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Reflection /> renders correctly 1`] = `
-<View>
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#fff",
+      },
+      undefined,
+    ]
+  }
+>
   <View
     accessibilityState={
       {
@@ -141,6 +150,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]
@@ -153,6 +164,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
+          "lineHeight": 20,
+          "marginBottom": 10,
           "textAlign": "center",
         },
       ]
@@ -165,7 +178,9 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
-          "textAlign": "center",
+          "lineHeight": 20,
+          "marginBottom": 10,
+          "textAlign": "left",
         },
       ]
     }
@@ -177,7 +192,9 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
-          "textAlign": "center",
+          "lineHeight": 20,
+          "marginBottom": 10,
+          "textAlign": "left",
         },
       ]
     }

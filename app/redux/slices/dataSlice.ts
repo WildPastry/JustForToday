@@ -7,16 +7,19 @@ import {
   createAsyncThunk,
   createSlice
 } from '@reduxjs/toolkit';
-
-import { IDailyReflections } from '../../types/data.types';
-import { IMonthItems } from '../../types/date.types';
-import getDailyReflections from '../../api/getDailyReflections';
+import { IData, IReflection, IStep, ITraditions } from '../../types/data.types';
+import { IMonthItem } from '../../types/date.types';
 import getMonthItems from '../../api/getMonthItems';
+import getReflections from '../../api/getReflections';
+import getSteps from '../../api/getSteps';
+import getTraditions from '../../api/getTraditions';
 
 // Set initialState
-const initialState = {
-  dailyReflections: [] as IDailyReflections[],
-  monthItems: [] as IMonthItems[],
+const initialState: IData = {
+  reflections: [] as IReflection[],
+  steps: [] as IStep[],
+  traditions: {} as ITraditions,
+  monthItems: [] as IMonthItem[],
   loading: true,
   error: false
 };
@@ -48,8 +51,10 @@ const dataSlice = createSlice({
    */
   extraReducers: (
     builder: ActionReducerMapBuilder<{
-      dailyReflections: IDailyReflections[];
-      monthItems: IMonthItems[];
+      reflections: IReflection[];
+      steps: IStep[];
+      traditions: ITraditions;
+      monthItems: IMonthItem[];
       loading: boolean;
       error: boolean;
     }>
@@ -61,9 +66,33 @@ const dataSlice = createSlice({
       })
       .addCase(fetchDailyReflectionsFromAPI.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyReflections = action.payload;
+        state.reflections = action.payload;
       })
       .addCase(fetchDailyReflectionsFromAPI.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      // Steps
+      .addCase(fetchStepsFromAPI.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchStepsFromAPI.fulfilled, (state, action) => {
+        state.loading = false;
+        state.steps = action.payload;
+      })
+      .addCase(fetchStepsFromAPI.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      // Traditions
+      .addCase(fetchTraditionsFromAPI.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchTraditionsFromAPI.fulfilled, (state, action) => {
+        state.loading = false;
+        state.traditions = action.payload;
+      })
+      .addCase(fetchTraditionsFromAPI.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
@@ -86,7 +115,25 @@ const dataSlice = createSlice({
 export const fetchDailyReflectionsFromAPI = createAsyncThunk(
   'mySlice/fetchDailyReflectionsFromAPI',
   async () => {
-    const response = await getDailyReflections();
+    const response = await getReflections();
+    return response;
+  }
+);
+
+// Fetch steps
+export const fetchStepsFromAPI = createAsyncThunk(
+  'mySlice/fetchStepsFromAPI',
+  async () => {
+    const response = await getSteps();
+    return response;
+  }
+);
+
+// Fetch traditions
+export const fetchTraditionsFromAPI = createAsyncThunk(
+  'mySlice/fetchTraditionsFromAPI',
+  async () => {
+    const response = await getTraditions();
     return response;
   }
 );
@@ -110,6 +157,8 @@ export const setData =
       // Dispatch both thunks in parallel
       await Promise.all([
         dispatch(fetchDailyReflectionsFromAPI()),
+        dispatch(fetchStepsFromAPI()),
+        dispatch(fetchTraditionsFromAPI()),
         dispatch(fetchMonthItemsFromAPI())
       ]);
     } catch (error) {

@@ -1,19 +1,30 @@
-import { Text as DefaultText, View as DefaultView } from 'react-native';
-
-import Colors from '../constants/Colors';
+import {
+  ScrollView as DefaultScrollView,
+  Text as DefaultText,
+  View as DefaultView
+} from 'react-native';
+import React, { forwardRef } from 'react';
+import Colours from '../constants/Colours';
 import useColorScheme from '../hooks/useColorScheme';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+  colorName: keyof typeof Colours.light & keyof typeof Colours.dark
 ) {
+  // Colour settings
   const theme = useColorScheme();
   const colorFromProps = props[theme];
 
+  // Logic for selecting theme
   if (colorFromProps) {
     return colorFromProps;
   }
-  return Colors[theme][colorName];
+  return Colours[theme][colorName];
+}
+
+// Export props
+interface IScrollViewProps extends ScrollViewProps {
+  ref?: React.Ref<DefaultScrollView>;
 }
 
 type ThemeProps = {
@@ -21,8 +32,41 @@ type ThemeProps = {
   darkColor?: string;
 };
 
+export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
+
+// Exporting components with the correct colour theme added
+const ForwardedScrollView = forwardRef<DefaultScrollView, IScrollViewProps>(
+  (props, ref) => {
+    const { style, lightColor, darkColor, ...otherProps } = props;
+    const backgroundColor = useThemeColor(
+      { light: lightColor, dark: darkColor },
+      'background'
+    );
+    return (
+      <DefaultScrollView
+        style={[{ backgroundColor }, style]}
+        {...otherProps}
+        ref={ref}
+      />
+    );
+  }
+);
+
+export default ForwardedScrollView;
+
+export function ScrollView(props: ScrollViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
+
+  return (
+    <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />
+  );
+}
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;

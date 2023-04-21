@@ -5,7 +5,9 @@ export default {
     navBorder: '#e3e3e3',
     tabIconActive: '#000',
     tabIconDefault: '#8a8a8a',
-    text: '#000'
+    text: '#000',
+    icon: '#000',
+    seperator: '#bdc3c7'
   },
   dark: {
     background: '#2c2c54',
@@ -13,6 +15,8 @@ export default {
     navBorder: '#e3e3e3',
     tabIconActive: '#fff',
     tabIconDefault: '#8a8a8a',
-    text: '#fff'
+    text: '#fff',
+    icon: '#fff',
+    seperator: '#4c4c75'
   }
 };

@@ -1,7 +1,7 @@
 import { Text, View } from './Themed';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import ExternalLink from './ExternalLink';
-import { IEditScreenInfo } from './../types/component.types';
+import { IEditScreenInfo } from '../types/generic.types';
 import { MonoText } from './StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -39,7 +39,7 @@ const EditScreenInfo: React.FC<IEditScreenInfo> = (
         <ExternalLink
           style={styles.helpLink}
           href='https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'>
-          <Text style={styles.helpLinkText} lightColor={Colors.light.text}>
+          <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
             Tap here if your app doesn't automatically update after making
             changes
           </Text>
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   helpContainer: {
-    marginTop: 15,
+    alignItems: 'center',
     marginHorizontal: 20,
-    alignItems: 'center'
+    marginTop: 15
   },
   helpLink: {
     paddingVertical: 15

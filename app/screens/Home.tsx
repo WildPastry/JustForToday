@@ -1,65 +1,135 @@
+import { ColorSchemeName, StyleSheet } from 'react-native';
+import ForwardedScrollView, { ScrollView, View } from '../components/Themed';
+import {
+  NavigationProp,
+  useIsFocused,
+  useNavigation
+} from '@react-navigation/native';
+import {
+  constructDateFromId,
+  setCurrentDate,
+  setCurrentDay
+} from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
-import Colors from '../constants/Colors';
+import Calendar from '../components/Calendar';
+import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
-import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
-import { useEffect } from 'react';
 
 const Home: React.FC = (): JSX.Element => {
-  // Colour settings
-  const colorScheme = useColorScheme();
+  // Create ref for functional scroll view
+  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
 
-  // Set up dispatch
-  const dispatch = useAppDispatch();
+  // Set up isFocused hook for tracking component
+  const isFocused: boolean = useIsFocused();
 
-  // Effect for setting app data
-  useEffect((): void => {
-    dispatch(setData());
-  }, [setData]);
+  // Navigation
+  const navigation: NavigationProp<ReactNavigation.RootParamList> =
+    useNavigation();
 
-  // Selectors for loading and error states
-  const appLoading = useAppSelector((state: AppState): boolean => {
+  // Selectors for store
+  const appLoading: boolean = useAppSelector((state: AppState): boolean => {
     return state.data.loading;
   });
 
-  const appError = useAppSelector((state: AppState): boolean => {
+  const appError: boolean = useAppSelector((state: AppState): boolean => {
     return state.data.error;
   });
+
+  // Colour settings
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+
+  // Dispatch settings
+  const dispatch = useAppDispatch();
+
+  // Local data
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  useEffect((): void => {
+    // Effect for setting app data
+    dispatch(setData());
+    // Reset calendar state when routing back to home
+    navigation.addListener('focus', (): void => {
+      setShowCalendar(false);
+    });
+    if (isFocused) {
+      // Re-render component when focused to reset scroll view
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    }
+  }, [setData, navigation, isFocused]);
 
   // Error screen
   const errorScreen = (): JSX.Element => {
     return <ErrorScreen />;
   };
 
+  // Hide or show calendar
+  const toggleCalendar = (): void => {
+    setShowCalendar(!showCalendar);
+  };
+
+  // Update the current reflection
+  const updateReflection = (
+    showCalendar: boolean,
+    currentDay: string
+  ): void => {
+    const currentDate: number = constructDateFromId(currentDay);
+    // Set calendar status
+    setShowCalendar(showCalendar);
+    // Update store
+    dispatch(setCurrentDate(currentDate));
+    dispatch(setCurrentDay(currentDay));
+  };
+
   // Render app
   const renderApp = (appLoading: boolean) => {
     return (
-      <View style={styles.container}>
+      <ForwardedScrollView
+        contentContainerStyle={styles.container}
+        ref={scrollViewRef}>
         {appLoading ? (
           <LoadingScreen />
         ) : (
-          <View>
+          <ScrollView>
             {/* Logo */}
             <FontAwesome5
-              style={styles.text}
+              style={styles.icon}
               name='chair'
               size={50}
-              color={Colors[colorScheme].text}
+              color={Colours[colorScheme].icon}
             />
             {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
-            {/* Daily reflection */}
-            <Reflection />
-          </View>
+            {/* Divider */}
+            <View
+              style={styles.separator}
+              lightColor={Colours[colorScheme].seperator}
+              darkColor={Colours[colorScheme].seperator}
+            />
+            {/* Calendar icon */}
+            <FontAwesome5
+              style={styles.icon}
+              name='calendar-alt'
+              size={25}
+              onPress={() => toggleCalendar()}
+              color={Colours[colorScheme].icon}
+            />
+            {/* Components */}
+            {showCalendar ? (
+              <Calendar handleCalendarChange={updateReflection} />
+            ) : (
+              <Reflection />
+            )}
+          </ScrollView>
         )}
-      </View>
+      </ForwardedScrollView>
     );
   };
   // Check for error state
@@ -68,16 +138,23 @@ const Home: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignSelf: 'stretch',
+    padding: 20
   },
   title: {
     fontSize: 20,
+    marginBottom: 10,
+    marginTop: 10,
     textAlign: 'center'
   },
-  text: {
+  icon: {
     textAlign: 'center'
+  },
+  separator: {
+    alignSelf: 'center',
+    marginVertical: 20,
+    height: 1,
+    width: '80%'
   }
 });
 

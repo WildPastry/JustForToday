@@ -6,18 +6,22 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 import {
+  FontAwesome,
+  FontAwesome5,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
+import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
 } from '../types/navigation.types';
-import Colors from '../constants/Colors';
-import { FontAwesome } from '@expo/vector-icons';
+import About from '../screens/About';
+import Colours from '../constants/Colours';
 import Home from '../screens/Home';
-import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import Reflections from '../screens/Reflections';
-import Support from '../screens/Support';
+import Steps from '../screens/Steps';
+import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useColorScheme from '../hooks/useColorScheme';
@@ -53,7 +57,7 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='Info' component={Info} />
+        <Stack.Screen name='About' component={About} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -64,25 +68,26 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+
   return (
     <BottomTab.Navigator
       initialRouteName='Home'
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tabIconActive,
-        tabBarInactiveTintColor: Colors[colorScheme].tabIconDefault,
+        tabBarActiveTintColor: Colours[colorScheme].tabIconActive,
+        tabBarInactiveTintColor: Colours[colorScheme].tabIconDefault,
         tabBarLabelStyle: { marginBottom: 7 },
         tabBarIconStyle: { marginTop: 7 },
         tabBarStyle: {
-          backgroundColor: Colors[colorScheme].navBackground,
+          backgroundColor: Colours[colorScheme].navBackground,
           height: 55,
-          borderTopColor: Colors[colorScheme].navBorder,
+          borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
         },
         headerStyle: {
-          backgroundColor: Colors[colorScheme].navBackground,
-          borderBottomColor: Colors[colorScheme].navBorder,
+          backgroundColor: Colours[colorScheme].navBackground,
+          borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
           height: 70
         }
@@ -92,17 +97,19 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarAwesome5Icon name='chair' color={color} />
+          ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Info')}
+              onPress={() => navigation.navigate('About')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1
               })}>
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -110,29 +117,75 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name='Reflections'
-        component={Reflections}
-        options={{
-          title: 'Reflections',
-          tabBarIcon: ({ color }) => <TabBarIcon name='book' color={color} />
-        }}
+        name='Steps'
+        component={Steps}
+        options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
+          title: 'Steps',
+          tabBarIcon: ({ color }) => (
+            <TabBarMaterialIcon name='stairs' color={color} />
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('About')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1
+              })}>
+              <FontAwesome
+                name='info-circle'
+                size={25}
+                color={Colours[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          )
+        })}
       />
       <BottomTab.Screen
-        name='Support'
-        component={Support}
-        options={{
-          title: 'Support',
-          tabBarIcon: ({ color }) => <TabBarIcon name='cog' color={color} />
-        }}
+        name='Traditions'
+        component={Traditions}
+        options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
+          title: 'Traditions',
+          tabBarIcon: ({ color }) => (
+            <TabBarAwesomeIcon name='book' color={color} />
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('About')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1
+              })}>
+              <FontAwesome
+                name='info-circle'
+                size={25}
+                color={Colours[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          )
+        })}
       />
     </BottomTab.Navigator>
   );
 }
 
 // Icons for the tabs
-function TabBarIcon(props: {
+function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
   return <FontAwesome size={25} {...props} />;
+}
+
+function TabBarAwesome5Icon(props: {
+  name: React.ComponentProps<typeof FontAwesome5>['name'];
+  color: string;
+}) {
+  return <FontAwesome5 size={25} {...props} />;
+}
+
+function TabBarMaterialIcon(props: {
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+  color: string;
+}) {
+  return <MaterialCommunityIcons size={25} {...props} />;
 }

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Steps /> renders correctly 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "padding": 20,
+    }
+  }
+  style={
+    [
+      {
+        "backgroundColor": "#fff",
+      },
+      undefined,
+    ]
+  }
+>
+  <View>
+    <Text />
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          [
+            {
+              "fontSize": 20,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            {
+              "fontFamily": "space-mono",
+            },
+          ],
+        ]
+      }
+    >
+      Steps
+    </Text>
+  </View>
+</RCTScrollView>
+`;

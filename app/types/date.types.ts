@@ -1,22 +1,27 @@
 /* eslint-disable no-unused-vars */
-export enum IMonthNames {
-  January,
-  Feburary,
-  March,
-  April,
-  May,
-  June,
-  July,
-  August,
-  September,
-  October,
-  November,
-  December
+export interface IDate {
+  currentDate: number;
+  currentDay: string;
+  today: string;
 }
 
-export interface IMonthItems {
+export enum EDateFormat {
+  ddMM = 'ddMM'
+}
+
+export interface IMonthItem {
   id: string;
   name: string;
-  days: number;
-  onPress: () => void;
+  days: IDayItem[];
+  onPress?: () => void;
+}
+
+export interface IDayItem {
+  id: string;
+  name: string;
+  onPress?: () => void;
+}
+
+export interface ICalendar {
+  handleCalendarChange: (showCalendar: boolean, id: string) => void;
 }
