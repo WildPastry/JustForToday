@@ -6,7 +6,7 @@ export default {
     tabIconActive: '#000',
     tabIconDefault: '#8a8a8a',
     text: '#000',
-    seperator: '#eee'
+    seperator: '#bdc3c7'
   },
   dark: {
     background: '#2c2c54',
@@ -15,6 +15,6 @@ export default {
     tabIconActive: '#fff',
     tabIconDefault: '#8a8a8a',
     text: '#fff',
-    seperator: 'rgba(255,255,255,0.1)'
+    seperator: '#ffffff1a'
   }
 };

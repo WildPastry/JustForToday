@@ -15,9 +15,9 @@ import {
   RootTabParamList,
   RootTabScreenProps
 } from '../types/navigation.types';
+import About from '../screens/About';
 import Colors from '../constants/Colors';
 import Home from '../screens/Home';
-import Info from '../screens/Info';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
@@ -57,7 +57,7 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='Info' component={Info} />
+        <Stack.Screen name='About' component={About} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -101,7 +101,7 @@ function BottomTabNavigator() {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Info')}
+              onPress={() => navigation.navigate('About')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1
               })}>
@@ -125,7 +125,7 @@ function BottomTabNavigator() {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Info')}
+              onPress={() => navigation.navigate('About')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1
               })}>
@@ -149,7 +149,7 @@ function BottomTabNavigator() {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Info')}
+              onPress={() => navigation.navigate('About')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1
               })}>

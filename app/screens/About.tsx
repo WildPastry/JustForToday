@@ -4,21 +4,21 @@ import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { MonoText } from '../components/StyledText';
 import { StatusBar } from 'expo-status-bar';
-import useColorScheme from '../../app/hooks/useColorScheme';
+import useColorScheme from '../hooks/useColorScheme';
 
-const Info: React.FC = (): JSX.Element => {
+const About: React.FC = (): JSX.Element => {
   // Colour settings
   const colorScheme = useColorScheme();
 
   // Handling tap function
-  const handleUpgradeTap = (): void => {
+  const handleUpgrade = (): void => {
     console.log('Upgrade app');
   };
 
   return (
     <View style={styles.container}>
       {/* Title */}
-      <MonoText style={styles.title}>Info</MonoText>
+      <MonoText style={styles.title}>About the app</MonoText>
       {/* Divider */}
       <View
         style={styles.separator}
@@ -26,19 +26,16 @@ const Info: React.FC = (): JSX.Element => {
         darkColor={Colors[colorScheme].seperator}
       />
       <Text style={styles.text}>
-        JustForToday is a fast and sexy way to read the daily reflections,
-        twelve steps, and twelve tradtions on your smart phone. There are zero
-        advertisments and all functionality to use the app on a daily basis is
-        100% free.
+        Daily reflections, twelve steps, and twelve tradtions on your phone with
+        zero dvertisments.
       </Text>
       <Text style={styles.text}>
         If you want to support the developer to create more helpful projects,
-        you can upgrade the app to "Fellowship PRO" for $1 by tapping the button
-        below. Fellowship PRO includes new light and dark custom colour themes
-        to choose from.
+        you can upgrade the app to PRO for $1 by tapping the button below. PRO
+        version includes new light and dark custom colour themes.
       </Text>
-      <Pressable onPress={() => handleUpgradeTap()}>
-        <Text>UPGRADE TO FELLOWSHIP PRO</Text>
+      <Pressable onPress={() => handleUpgrade()}>
+        <Text>UPGRADE</Text>
       </Pressable>
       <Text style={styles.text}>...</Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -71,4 +68,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Info;
+export default About;
