@@ -7,15 +7,10 @@ import {
   createAsyncThunk,
   createSlice
 } from '@reduxjs/toolkit';
-import {
-  IReflection,
-  IData,
-  IStep,
-  ITraditions
-} from '../../types/data.types';
+import { IData, IReflection, IStep, ITraditions } from '../../types/data.types';
 import { IMonthItem } from '../../types/date.types';
-import getReflections from '../../api/getReflections';
 import getMonthItems from '../../api/getMonthItems';
+import getReflections from '../../api/getReflections';
 import getSteps from '../../api/getSteps';
 import getTraditions from '../../api/getTraditions';
 
