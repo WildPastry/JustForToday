@@ -31,13 +31,13 @@ const Calendar: React.FC<ICalendar> = ({
     setDays([]);
   };
 
-  // Handling click functions
-  const handleMonthClick = (month: IMonthItem): void => {
+  // Handling tap functions
+  const handleMonthTap = (month: IMonthItem): void => {
     setMonths([month]);
     setDays(month.days);
   };
 
-  const handleDayClick = (day: IDayItem): void => {
+  const handleDayTap = (day: IDayItem): void => {
     setDays([day]);
     handleCalendarChange(false, day.id);
   };
@@ -57,7 +57,7 @@ const Calendar: React.FC<ICalendar> = ({
             id={month.id}
             name={month.name}
             days={month.days}
-            onPress={() => handleMonthClick(month)}
+            onPress={() => handleMonthTap(month)}
           />
         ))}
         {/* Days */}
@@ -66,7 +66,7 @@ const Calendar: React.FC<ICalendar> = ({
             key={index}
             id={day.id}
             name={day.name}
-            onPress={() => handleDayClick(day)}
+            onPress={() => handleDayTap(day)}
           />
         ))}
       </ScrollView>

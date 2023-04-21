@@ -1,4 +1,5 @@
-import { Platform, StyleSheet } from 'react-native';
+/* eslint-disable no-console */
+import { Platform, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { MonoText } from '../components/StyledText';
@@ -8,6 +9,11 @@ import useColorScheme from '../../app/hooks/useColorScheme';
 const Info: React.FC = (): JSX.Element => {
   // Colour settings
   const colorScheme = useColorScheme();
+
+  // Handling tap function
+  const handleUpgradeTap = (): void => {
+    console.log('Upgrade app');
+  };
 
   return (
     <View style={styles.container}>
@@ -20,13 +26,21 @@ const Info: React.FC = (): JSX.Element => {
         darkColor={Colors[colorScheme].seperator}
       />
       <Text style={styles.text}>
-        Is an app with the daily reflections, twelve steps, and twelve tradtions
-        ready at the tap of button.
+        JustForToday is a fast and sexy way to read the daily reflections,
+        twelve steps, and twelve tradtions on your smart phone. There are zero
+        advertisments and all functionality to use the app on a daily basis is
+        100% free.
       </Text>
       <Text style={styles.text}>
-        To support the developer to create more helpful projects you can upgrade
-        the app to S Tier by clicking the button below.
+        If you want to support the developer to create more helpful projects,
+        you can upgrade the app to "Fellowship PRO" for $1 by tapping the button
+        below. Fellowship PRO includes new light and dark custom colour themes
+        to choose from.
       </Text>
+      <Pressable onPress={() => handleUpgradeTap()}>
+        <Text>UPGRADE TO FELLOWSHIP PRO</Text>
+      </Pressable>
+      <Text style={styles.text}>...</Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
