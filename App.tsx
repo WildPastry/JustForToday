@@ -1,3 +1,4 @@
+import { ColorSchemeName } from 'react-native';
 import Navigation from './app/navigation';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,7 +9,7 @@ import useColorScheme from './app/hooks/useColorScheme';
 
 export default function App() {
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   // Loading settings
   const isLoadingComplete = useCachedResources();

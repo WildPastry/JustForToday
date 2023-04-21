@@ -1,3 +1,4 @@
+import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { View } from '../components/Themed';
 import { useEffect, useRef } from 'react';
 import { AppState } from '../redux/store';
@@ -6,7 +7,6 @@ import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import Step from '../components/Step';
-import { StyleSheet } from 'react-native';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useIsFocused } from '@react-navigation/native';
@@ -24,7 +24,7 @@ const Steps: React.FC = (): JSX.Element => {
   });
 
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   useEffect(() => {
     if (isFocused) {

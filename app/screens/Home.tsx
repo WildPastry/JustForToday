@@ -1,3 +1,4 @@
+import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { ScrollView, View } from '../components/Themed';
 import {
   constructDateFromId,
@@ -15,7 +16,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
 import { MonoText } from '../components/StyledText';
 import Reflection from '../components/Reflection';
-import { StyleSheet } from 'react-native';
 import { setData } from '../redux/slices/dataSlice';
 import useColorScheme from '../../app/hooks/useColorScheme';
 
@@ -39,7 +39,7 @@ const Home: React.FC = (): JSX.Element => {
   });
 
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   // Dispatch settings
   const dispatch = useAppDispatch();
@@ -95,10 +95,10 @@ const Home: React.FC = (): JSX.Element => {
           <ScrollView>
             {/* Logo */}
             <FontAwesome5
-              style={styles.text}
+              style={styles.icon}
               name='chair'
               size={50}
-              color={Colors[colorScheme].text}
+              color={Colors[colorScheme].icon}
             />
             {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
@@ -110,11 +110,11 @@ const Home: React.FC = (): JSX.Element => {
             />
             {/* Calendar icon */}
             <FontAwesome5
-              style={styles.text}
+              style={styles.icon}
               name='calendar-alt'
               size={25}
               onPress={() => toggleCalendar()}
-              color={Colors[colorScheme].text}
+              color={Colors[colorScheme].icon}
             />
             {/* Components */}
             {showCalendar ? (
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center'
   },
-  text: {
+  icon: {
     textAlign: 'center'
   },
   separator: {

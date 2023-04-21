@@ -1,6 +1,6 @@
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/Themed';
-import { Pressable, StyleSheet } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colors from '../constants/Colors';
@@ -24,7 +24,7 @@ const Traditions: React.FC = (): JSX.Element => {
   });
 
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   // Tradition types local state
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);

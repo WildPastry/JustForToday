@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Platform, Pressable, StyleSheet } from 'react-native';
+import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -9,7 +9,7 @@ import useColorScheme from '../hooks/useColorScheme';
 
 const About: React.FC = (): JSX.Element => {
   // Colour settings
-  const colorScheme = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   const handleUpgrade = (): void => {
     console.log('Upgrade app');
@@ -55,9 +55,7 @@ const About: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
     padding: 20
   },
   title: {
@@ -71,9 +69,11 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   icon: {
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'center'
   },
   separator: {
+    alignSelf: 'center',
     marginVertical: 20,
     height: 1,
     width: '80%'
