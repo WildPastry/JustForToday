@@ -2,7 +2,7 @@ import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { View } from '../components/Themed';
 import { useEffect, useRef } from 'react';
 import { AppState } from '../redux/store';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
@@ -42,15 +42,15 @@ const Steps: React.FC = (): JSX.Element => {
         style={styles.icon}
         name='stairs'
         size={50}
-        color={Colors[colorScheme].text}
+        color={Colours[colorScheme].text}
       />
       {/* Title */}
       <MonoText style={styles.title}>Steps</MonoText>
       {/* Divider */}
       <View
         style={styles.separator}
-        lightColor={Colors[colorScheme].seperator}
-        darkColor={Colors[colorScheme].seperator}
+        lightColor={Colours[colorScheme].seperator}
+        darkColor={Colours[colorScheme].seperator}
       />
       {/* Steps */}
       {steps.map((step, index) => (

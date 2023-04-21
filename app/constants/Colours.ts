@@ -17,6 +17,6 @@ export default {
     tabIconDefault: '#8a8a8a',
     text: '#fff',
     icon: '#fff',
-    seperator: '#ffffff1a'
+    seperator: '#4c4c75'
   }
 };

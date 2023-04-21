@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StatusBar } from 'expo-status-bar';
@@ -22,15 +22,15 @@ const About: React.FC = (): JSX.Element => {
         style={styles.icon}
         name='info-circle'
         size={50}
-        color={Colors[colorScheme].text}
+        color={Colours[colorScheme].text}
       />
       {/* Title */}
       <MonoText style={styles.title}>About the app</MonoText>
       {/* Divider */}
       <View
         style={styles.separator}
-        lightColor={Colors[colorScheme].seperator}
-        darkColor={Colors[colorScheme].seperator}
+        lightColor={Colours[colorScheme].seperator}
+        darkColor={Colours[colorScheme].seperator}
       />
       <Text style={styles.text}>
         Daily reflections, steps, and tradtions with zero advertisments.

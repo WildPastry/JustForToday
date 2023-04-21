@@ -4,12 +4,12 @@ import {
   View as DefaultView
 } from 'react-native';
 import React, { forwardRef } from 'react';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import useColorScheme from '../hooks/useColorScheme';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+  colorName: keyof typeof Colours.light & keyof typeof Colours.dark
 ) {
   // Colour settings
   const theme = useColorScheme();
@@ -19,7 +19,7 @@ export function useThemeColor(
   if (colorFromProps) {
     return colorFromProps;
   }
-  return Colors[theme][colorName];
+  return Colours[theme][colorName];
 }
 
 // Export props

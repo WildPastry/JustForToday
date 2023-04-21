@@ -3,7 +3,7 @@ import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/Themed';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import Tradition from '../components/Tradition';
@@ -47,15 +47,15 @@ const Traditions: React.FC = (): JSX.Element => {
         style={styles.text}
         name='book'
         size={50}
-        color={Colors[colorScheme].text}
+        color={Colours[colorScheme].text}
       />
       {/* Title */}
       <MonoText style={styles.title}>Traditions</MonoText>
       {/* Divider */}
       <View
         style={styles.separator}
-        lightColor={Colors[colorScheme].seperator}
-        darkColor={Colors[colorScheme].seperator}
+        lightColor={Colours[colorScheme].seperator}
+        darkColor={Colours[colorScheme].seperator}
       />
       {/* Controls */}
       <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>

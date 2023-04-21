@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Calendar from '../components/Calendar';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import LoadingScreen from './LoadingScreen';
@@ -103,15 +103,15 @@ const Home: React.FC = (): JSX.Element => {
               style={styles.icon}
               name='chair'
               size={50}
-              color={Colors[colorScheme].icon}
+              color={Colours[colorScheme].icon}
             />
             {/* Title */}
             <MonoText style={styles.title}>Just for today</MonoText>
             {/* Divider */}
             <View
               style={styles.separator}
-              lightColor={Colors[colorScheme].seperator}
-              darkColor={Colors[colorScheme].seperator}
+              lightColor={Colours[colorScheme].seperator}
+              darkColor={Colours[colorScheme].seperator}
             />
             {/* Calendar icon */}
             <FontAwesome5
@@ -119,7 +119,7 @@ const Home: React.FC = (): JSX.Element => {
               name='calendar-alt'
               size={25}
               onPress={() => toggleCalendar()}
-              color={Colors[colorScheme].icon}
+              color={Colours[colorScheme].icon}
             />
             {/* Components */}
             {showCalendar ? (

@@ -16,7 +16,7 @@ import {
   RootTabScreenProps
 } from '../types/navigation.types';
 import About from '../screens/About';
-import Colors from '../constants/Colors';
+import Colours from '../constants/Colours';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -74,20 +74,20 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName='Home'
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tabIconActive,
-        tabBarInactiveTintColor: Colors[colorScheme].tabIconDefault,
+        tabBarActiveTintColor: Colours[colorScheme].tabIconActive,
+        tabBarInactiveTintColor: Colours[colorScheme].tabIconDefault,
         tabBarLabelStyle: { marginBottom: 7 },
         tabBarIconStyle: { marginTop: 7 },
         tabBarStyle: {
-          backgroundColor: Colors[colorScheme].navBackground,
+          backgroundColor: Colours[colorScheme].navBackground,
           height: 55,
-          borderTopColor: Colors[colorScheme].navBorder,
+          borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
         },
         headerStyle: {
-          backgroundColor: Colors[colorScheme].navBackground,
-          borderBottomColor: Colors[colorScheme].navBorder,
+          backgroundColor: Colours[colorScheme].navBackground,
+          borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
           height: 70
         }
@@ -109,7 +109,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -133,7 +133,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -157,7 +157,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
