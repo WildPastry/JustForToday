@@ -11,13 +11,13 @@ import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Selectors for store
-  const dailyReflections = useAppSelector(
+  const dailyReflections: IDailyReflection[] = useAppSelector(
     (state: AppState): IDailyReflection[] => {
       return state.data.dailyReflections;
     }
   );
 
-  const dates = useAppSelector((state: AppState): IDate => {
+  const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
 

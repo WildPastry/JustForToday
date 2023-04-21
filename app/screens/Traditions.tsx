@@ -13,15 +13,17 @@ import { useIsFocused } from '@react-navigation/native';
 
 const Traditions: React.FC = (): JSX.Element => {
   // Create ref for functional scroll view
-  const scrollViewRef = useRef<any>(null);
+  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
 
   // Set up isFocused hook for tracking component
-  const isFocused = useIsFocused();
+  const isFocused: boolean = useIsFocused();
 
   // Selectors for store
-  const traditions = useAppSelector((state: AppState): ITraditions => {
-    return state.data.traditions;
-  });
+  const traditions: ITraditions = useAppSelector(
+    (state: AppState): ITraditions => {
+      return state.data.traditions;
+    }
+  );
 
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();

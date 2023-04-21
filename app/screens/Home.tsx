@@ -1,13 +1,17 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { ScrollView, View } from '../components/Themed';
 import {
+  NavigationProp,
+  useIsFocused,
+  useNavigation
+} from '@react-navigation/native';
+import {
   constructDateFromId,
   setCurrentDate,
   setCurrentDay
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useRef, useState } from 'react';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { AppState } from '../redux/store';
 import Calendar from '../components/Calendar';
 import Colors from '../constants/Colors';
@@ -21,20 +25,21 @@ import useColorScheme from '../../app/hooks/useColorScheme';
 
 const Home: React.FC = (): JSX.Element => {
   // Create ref for functional scroll view
-  const scrollViewRef = useRef<any>(null);
+  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
 
   // Set up isFocused hook for tracking component
-  const isFocused = useIsFocused();
+  const isFocused: boolean = useIsFocused();
 
   // Navigation
-  const navigation = useNavigation();
+  const navigation: NavigationProp<ReactNavigation.RootParamList> =
+    useNavigation();
 
   // Selectors for store
-  const appLoading = useAppSelector((state: AppState): boolean => {
+  const appLoading: boolean = useAppSelector((state: AppState): boolean => {
     return state.data.loading;
   });
 
-  const appError = useAppSelector((state: AppState): boolean => {
+  const appError: boolean = useAppSelector((state: AppState): boolean => {
     return state.data.error;
   });
 

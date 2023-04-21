@@ -12,9 +12,11 @@ const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
   // App selector for month data
-  const monthItems = useAppSelector((state: AppState): IMonthItem[] => {
-    return state.data.monthItems;
-  });
+  const monthItems: IMonthItem[] = useAppSelector(
+    (state: AppState): IMonthItem[] => {
+      return state.data.monthItems;
+    }
+  );
 
   // Local data
   const [months, setMonths] = useState<IMonthItem[]>([]);

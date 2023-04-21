@@ -12,7 +12,7 @@ export default function App() {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   // Loading settings
-  const isLoadingComplete = useCachedResources();
+  const isLoadingComplete: boolean = useCachedResources();
   if (!isLoadingComplete) {
     return null;
   }

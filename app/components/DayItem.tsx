@@ -7,62 +7,46 @@ import useColorScheme from '../hooks/useColorScheme';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Selectors for store
-  const dates = useAppSelector((state: AppState): IDate => {
+  const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
-  const color = 'red';
-  const textStyle = styles[`${color}Text`];
+
   // Colour settings
-  // const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const dayItemTheme = styles[`${colorScheme}DayItemToday`];
 
   return (
-    <Text style={textStyle}>Hello, world!</Text>
-    // <Pressable
-    //   style={[
-    //     styles.dayItem,
-    //     dates.today === props.id ? styles.dayItemToday : styles.dayItemDefault
-    //   ]}
-    //   onPress={props.onPress}>
-    //   <Text style={styles.text}>{props.name}</Text>
-    // </Pressable>
+    <Pressable
+      style={[
+        styles.dayItem,
+        dates.today === props.id ? dayItemTheme : styles.dayItemDefault
+      ]}
+      onPress={props.onPress}>
+      <Text style={styles.text}>{props.name}</Text>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'blue',
+    textAlign: 'center'
   },
-  redText: {
-    color: 'red',
+  dayItem: {
+    borderRadius: 7,
+    marginBottom: 5,
+    paddingHorizontal: 7,
+    paddingVertical: 5
   },
-  blueText: {
-    color: 'blue',
+  lightDayItemToday: {
+    borderColor: '#131324',
+    borderWidth: 0.5
   },
+  darkDayItemToday: {
+    backgroundColor: '#131324'
+  },
+  dayItemDefault: {
+    backgroundColor: 'transparent'
+  }
 });
-
-// const styles = StyleSheet.create({
-//   text: {
-//     textAlign: 'center'
-//   },
-//   dayItem: {
-//     borderRadius: 3,
-//     marginBottom: 5,
-//     paddingHorizontal: 10,
-//     paddingVertical: 5
-//   },
-//   dayItemToday: {
-//     backgroundColor: '#131324'
-//   },
-//   dayItemDefault: {
-//     backgroundColor: 'transparent'
-//   }
-// });
 
 export default DayItem;
