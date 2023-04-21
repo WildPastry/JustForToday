@@ -8,20 +8,20 @@ import {
   createSlice
 } from '@reduxjs/toolkit';
 import {
-  IDailyReflection,
+  IReflection,
   IData,
   IStep,
   ITraditions
 } from '../../types/data.types';
 import { IMonthItem } from '../../types/date.types';
-import getDailyReflections from '../../api/getDailyReflections';
+import getReflections from '../../api/getReflections';
 import getMonthItems from '../../api/getMonthItems';
-import getTwelveSteps from '../../api/getTwelveSteps';
-import getTwelveTraditions from '../../api/getTwelveTraditions';
+import getSteps from '../../api/getSteps';
+import getTraditions from '../../api/getTraditions';
 
 // Set initialState
 const initialState: IData = {
-  dailyReflections: [] as IDailyReflection[],
+  reflections: [] as IReflection[],
   steps: [] as IStep[],
   traditions: {} as ITraditions,
   monthItems: [] as IMonthItem[],
@@ -56,7 +56,7 @@ const dataSlice = createSlice({
    */
   extraReducers: (
     builder: ActionReducerMapBuilder<{
-      dailyReflections: IDailyReflection[];
+      reflections: IReflection[];
       steps: IStep[];
       traditions: ITraditions;
       monthItems: IMonthItem[];
@@ -71,7 +71,7 @@ const dataSlice = createSlice({
       })
       .addCase(fetchDailyReflectionsFromAPI.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyReflections = action.payload;
+        state.reflections = action.payload;
       })
       .addCase(fetchDailyReflectionsFromAPI.rejected, (state) => {
         state.loading = false;
@@ -120,7 +120,7 @@ const dataSlice = createSlice({
 export const fetchDailyReflectionsFromAPI = createAsyncThunk(
   'mySlice/fetchDailyReflectionsFromAPI',
   async () => {
-    const response = await getDailyReflections();
+    const response = await getReflections();
     return response;
   }
 );
@@ -129,7 +129,7 @@ export const fetchDailyReflectionsFromAPI = createAsyncThunk(
 export const fetchStepsFromAPI = createAsyncThunk(
   'mySlice/fetchStepsFromAPI',
   async () => {
-    const response = await getTwelveSteps();
+    const response = await getSteps();
     return response;
   }
 );
@@ -138,7 +138,7 @@ export const fetchStepsFromAPI = createAsyncThunk(
 export const fetchTraditionsFromAPI = createAsyncThunk(
   'mySlice/fetchTraditionsFromAPI',
   async () => {
-    const response = await getTwelveTraditions();
+    const response = await getTraditions();
     return response;
   }
 );

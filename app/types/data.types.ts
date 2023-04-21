@@ -2,7 +2,7 @@
 import { IMonthItem } from './date.types';
 
 export interface IData {
-  dailyReflections: IDailyReflection[];
+  reflections: IReflection[];
   steps: IStep[];
   traditions: ITraditions;
   monthItems: IMonthItem[];
@@ -10,7 +10,7 @@ export interface IData {
   error: boolean;
 }
 
-export interface IDailyReflection {
+export interface IReflection {
   id: string;
   date: string;
   title: string;

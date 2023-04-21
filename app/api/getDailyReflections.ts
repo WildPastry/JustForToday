@@ -1,8 +1,8 @@
-import { IDailyReflection } from '../types/data.types';
-import dailyReflections from '../assets/data/daily-reflections.json';
+import { IReflection } from '../types/data.types';
+import reflections from '../assets/data/reflections.json';
 
-const getDailyReflections = (): IDailyReflection[] => {
-  return dailyReflections;
+const getReflections = (): IReflection[] => {
+  return reflections;
 };
 
-export default getDailyReflections;
+export default getReflections;

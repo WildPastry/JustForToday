@@ -5,15 +5,15 @@ import { setCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
-import { IDailyReflection } from '../types/data.types';
+import { IReflection } from '../types/data.types';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Selectors for store
-  const dailyReflections: IDailyReflection[] = useAppSelector(
-    (state: AppState): IDailyReflection[] => {
-      return state.data.dailyReflections;
+  const reflections: IReflection[] = useAppSelector(
+    (state: AppState): IReflection[] => {
+      return state.data.reflections;
     }
   );
 
@@ -25,7 +25,7 @@ const Reflection: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   // Data local state
-  const [reflection, setReflection] = useState<IDailyReflection>({
+  const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',
     title: '',
@@ -36,8 +36,8 @@ const Reflection: React.FC = (): JSX.Element => {
 
   // Effect for setting the current reflection based on date
   useEffect(() => {
-    selectReflection(dates.currentDay, dailyReflections);
-  }, [dailyReflections]);
+    selectReflection(dates.currentDay, reflections);
+  }, [reflections]);
 
   const getCurrentDay = (): string => {
     // Calculate current day
@@ -73,9 +73,9 @@ const Reflection: React.FC = (): JSX.Element => {
   // Select the reflection from the data
   const selectReflection = (
     id: string,
-    dailyReflections: IDailyReflection[]
+    reflections: IReflection[]
   ): void => {
-    const currentReflection = dailyReflections.find((dailyReflection) => {
+    const currentReflection = reflections.find((dailyReflection) => {
       return dailyReflection.id === id;
     });
     // If a matching reflection is found - set with matched data
@@ -114,15 +114,15 @@ const Reflection: React.FC = (): JSX.Element => {
     <View>
       {/* Controls */}
       <Pressable
-        onPress={() => selectReflection(getPrevDay(), dailyReflections)}>
+        onPress={() => selectReflection(getPrevDay(), reflections)}>
         <Text>PREV</Text>
       </Pressable>
       <Pressable
-        onPress={() => selectReflection(getCurrentDay(), dailyReflections)}>
+        onPress={() => selectReflection(getCurrentDay(), reflections)}>
         <Text>TODAY</Text>
       </Pressable>
       <Pressable
-        onPress={() => selectReflection(getNextDay(), dailyReflections)}>
+        onPress={() => selectReflection(getNextDay(), reflections)}>
         <Text>NEXT</Text>
       </Pressable>
       {/* Reflection */}
