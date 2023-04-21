@@ -16,7 +16,7 @@ export interface IReflection {
   title: string;
   quote: string;
   source: string;
-  dailyReflection: string;
+  reflection: string;
 }
 
 export interface IStep {

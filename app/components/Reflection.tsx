@@ -31,7 +31,7 @@ const Reflection: React.FC = (): JSX.Element => {
     title: '',
     quote: '',
     source: '',
-    dailyReflection: ''
+    reflection: ''
   });
 
   // Effect for setting the current reflection based on date
@@ -71,12 +71,9 @@ const Reflection: React.FC = (): JSX.Element => {
   };
 
   // Select the reflection from the data
-  const selectReflection = (
-    id: string,
-    reflections: IReflection[]
-  ): void => {
-    const currentReflection = reflections.find((dailyReflection) => {
-      return dailyReflection.id === id;
+  const selectReflection = (id: string, reflections: IReflection[]): void => {
+    const currentReflection = reflections.find((reflection) => {
+      return reflection.id === id;
     });
     // If a matching reflection is found - set with matched data
     if (currentReflection) {
@@ -86,7 +83,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: currentReflection.title,
         quote: currentReflection.quote,
         source: currentReflection.source,
-        dailyReflection: verifyData(currentReflection.dailyReflection)
+        reflection: verifyData(currentReflection.reflection)
       });
       // Set a blank reflection otherwise
     } else {
@@ -96,7 +93,7 @@ const Reflection: React.FC = (): JSX.Element => {
         title: 'No data available',
         quote: '',
         source: '',
-        dailyReflection: ''
+        reflection: ''
       });
     }
   };
@@ -113,23 +110,20 @@ const Reflection: React.FC = (): JSX.Element => {
   return (
     <View>
       {/* Controls */}
-      <Pressable
-        onPress={() => selectReflection(getPrevDay(), reflections)}>
+      <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
         <Text>PREV</Text>
       </Pressable>
-      <Pressable
-        onPress={() => selectReflection(getCurrentDay(), reflections)}>
+      <Pressable onPress={() => selectReflection(getCurrentDay(), reflections)}>
         <Text>TODAY</Text>
       </Pressable>
-      <Pressable
-        onPress={() => selectReflection(getNextDay(), reflections)}>
+      <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
         <Text>NEXT</Text>
       </Pressable>
       {/* Reflection */}
       <Text style={styles.title}>{reflection.date}</Text>
       <Text style={styles.title}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.dailyReflection}</Text>
+      <Text style={styles.text}>{reflection.reflection}</Text>
     </View>
   );
 };
