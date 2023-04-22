@@ -1,5 +1,5 @@
 name: Build and test project
-run-name: ${{ github.actor }} - ${{ env.GITHUB_REF_NAME }}
+run-name: ${{ github.actor }} - ${{ github.action }} - ${{ github.ref_name }}
 
 on: push
 
