@@ -11,7 +11,7 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 20,
+        "padding": 15,
       },
     ]
   }
@@ -24,7 +24,6 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
         },
         {
           "fontSize": 20,
-          "fontWeight": "bold",
         },
       ]
     }
