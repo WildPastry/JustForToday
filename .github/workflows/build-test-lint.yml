@@ -1,10 +1,10 @@
 name: Build test lint
-run-name: Build test lint - run by ${{ github.actor }} - on branch ${{ github.ref_name }}
+run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
 
 on: push
 
 jobs:
-  build-and-test:
+  build-test-lint:
     runs-on: ubuntu-latest
 
     strategy:
@@ -12,25 +12,25 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: |
-        npm install -g expo-cli
-        npm install
+      - name: Install dependencies
+        run: |
+          npm install -g expo-cli
+          npm install
 
-    - name: Build project
-    
-      run: expo export:web
+      - name: Build project
 
-    - name: Lint project
-      run: npm run lint
+        run: expo export:web
 
-    - name: Test project
-      run: npm run test
+      - name: Lint project
+        run: npm run lint
+
+      - name: Test project
+        run: npm run test

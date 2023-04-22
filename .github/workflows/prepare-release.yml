@@ -1,0 +1,46 @@
+name: Prepare release
+run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
+
+on:
+  push:
+    branches:
+      - release/*
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bump package.json version
+        id: bump
+        run: |
+          npm version minor --no-git-tag-version --force
+          echo "::set-output name=version::$(node -p "require('./package.json').version")"
+
+      - name: Commit version bump
+        uses: stefanzweifel/git-auto-commit-action@v4.9.2
+        with:
+          commit_message: 'Bump version to v${{ steps.bump.outputs.version }}'
+          commit_user_name: 'GitHub Actions'
+          commit_user_email: 'actions@github.com'
+          commit_branch: ${{ github.ref }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
