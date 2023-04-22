@@ -1,5 +1,5 @@
 name: Build and test project
-run-name: ${{ github.repository }} ${{ github.event.name }}
+run-name: ${{ github.repository }} ${{ GITHUB_REF_NAME }}
 
 on: push
 
@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x]
 
     steps:
     - name: Checkout code
