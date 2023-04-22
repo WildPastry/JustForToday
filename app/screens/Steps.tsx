@@ -1,6 +1,6 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { View } from '../components/Themed';
-import { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { IStep } from '../types/data.types';
@@ -9,29 +9,25 @@ import { MonoText } from '../components/StyledText';
 import Step from '../components/Step';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
-import { useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Steps: React.FC = (): JSX.Element => {
-  // Create ref for functional scroll view
+  // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
-  // Set up isFocused hook for tracking component
-  const isFocused: boolean = useIsFocused();
-
-  // Selectors for store
+  // Data from store
   const steps: IStep[] = useAppSelector((state: AppState): IStep[] => {
     return state.data.steps;
   });
 
-  // Colour settings
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-
-  useEffect(() => {
-    if (isFocused) {
-      // Re-render component when focused to reset scroll view
+  useFocusEffect(
+    React.useCallback(() => {
+      // Scroll to top on focus
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-    }
-  }, [isFocused]);
+      return () => null;
+    }, [scrollViewRef])
+  );
 
   return (
     <ForwardedScrollView
@@ -62,11 +58,10 @@ const Steps: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20,
-    marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
   },
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '80%'
+    width: '100%'
   }
 });
 

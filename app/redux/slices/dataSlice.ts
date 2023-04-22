@@ -27,7 +27,7 @@ const initialState: IData = {
 /*
  * Create dataSlice with combined actions and reducers
  * Including App data states:
- * Daily Reflections
+ *  Reflections
  * Month Items
  */
 const dataSlice = createSlice({
@@ -60,15 +60,15 @@ const dataSlice = createSlice({
     }>
   ) => {
     builder
-      // Daily reflections
-      .addCase(fetchDailyReflectionsFromAPI.pending, (state) => {
+      // Reflections
+      .addCase(fetchReflectionsFromAPI.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchDailyReflectionsFromAPI.fulfilled, (state, action) => {
+      .addCase(fetchReflectionsFromAPI.fulfilled, (state, action) => {
         state.loading = false;
         state.reflections = action.payload;
       })
-      .addCase(fetchDailyReflectionsFromAPI.rejected, (state) => {
+      .addCase(fetchReflectionsFromAPI.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
@@ -111,9 +111,9 @@ const dataSlice = createSlice({
   }
 });
 
-// Fetch daily reflections
-export const fetchDailyReflectionsFromAPI = createAsyncThunk(
-  'mySlice/fetchDailyReflectionsFromAPI',
+// Fetch reflections
+export const fetchReflectionsFromAPI = createAsyncThunk(
+  'mySlice/fetchReflectionsFromAPI',
   async () => {
     const response = await getReflections();
     return response;
@@ -156,7 +156,7 @@ export const setData =
     try {
       // Dispatch both thunks in parallel
       await Promise.all([
-        dispatch(fetchDailyReflectionsFromAPI()),
+        dispatch(fetchReflectionsFromAPI()),
         dispatch(fetchStepsFromAPI()),
         dispatch(fetchTraditionsFromAPI()),
         dispatch(fetchMonthItemsFromAPI())

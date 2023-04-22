@@ -12,7 +12,10 @@ const About: React.FC = (): JSX.Element => {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   const handleUpgrade = (): void => {
-    console.log('Upgrade app');
+    console.log('UPGRADE');
+  };
+  const handleSuggestions = (): void => {
+    console.log('SUGGESTIONS');
   };
 
   return (
@@ -41,16 +44,31 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       <Text style={styles.subTitle}>Love the app?</Text>
       <Text style={styles.text}>
-        Help the developer create other benificial projects by upgrading the
-        app. PRO version is cosmetic only and includes new custom colour themes.
+        Help the developer create other benificial projects by upgrading. The
+        PRO version contains cosmetic changes only and includes custom colour
+        themes.
       </Text>
+      <Pressable style={styles.btn} onPress={() => handleUpgrade()}>
+        <Text>UPGRADE</Text>
+      </Pressable>
+      <Text style={styles.subTitle}>Suggestions?</Text>
+      <Text style={styles.text}>
+        If you have any suggestions or requests for features to improve the app
+        you can send them directly to the developer.
+      </Text>
+      <Pressable onPress={() => handleSuggestions()}>
+        <Text>SUGGESTIONS</Text>
+      </Pressable>
+      {/* Divider */}
+      <View
+        style={styles.separator}
+        lightColor={Colours[colorScheme].seperator}
+        darkColor={Colours[colorScheme].seperator}
+      />
       <Text style={styles.text}>
         All literature is taken with permission from Alcoholics Anonymous World
         Services, Inc.
       </Text>
-      <Pressable onPress={() => handleUpgrade()}>
-        <Text>UPGRADE</Text>
-      </Pressable>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -60,7 +78,7 @@ const About: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20,
@@ -77,6 +95,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 10
   },
+  btn: {
+    marginBottom: 10
+  },
   icon: {
     marginBottom: 10,
     textAlign: 'center'
@@ -85,7 +106,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '80%'
+    width: '100%'
   }
 });
 

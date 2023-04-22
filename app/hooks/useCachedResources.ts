@@ -1,13 +1,17 @@
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { setData, setError } from '../redux/slices/dataSlice';
 import { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+import { useAppDispatch } from '../redux/hooks';
 
-export default function useCachedResources() {
+export default function useCachedResources(): boolean {
+  // Function settings
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const dispatch = useAppDispatch();
 
   // Load any resources or data that we need prior to rendering the app
-  useEffect(() => {
+  useEffect((): void => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
@@ -17,11 +21,18 @@ export default function useCachedResources() {
           ...FontAwesome.font,
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf')
         });
+
+        // Load data
+        await dispatch(setData());
       } catch (e) {
-        // We might want to provide this error information to an error reporting service
+        // Set error screen if failed
+        dispatch(setError(true));
       } finally {
         setLoadingComplete(true);
-        SplashScreen.hideAsync();
+        // Replicate API
+        setTimeout(() => {
+          SplashScreen.hideAsync();
+        }, 3000);
       }
     }
 

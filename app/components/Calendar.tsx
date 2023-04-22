@@ -11,23 +11,21 @@ import { useAppSelector } from '../redux/hooks';
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
-  // App selector for month data
+  // Component settings
+  const [months, setMonths] = useState<IMonthItem[]>([]);
+  const [days, setDays] = useState<IDayItem[]>([]);
+
+  // Data from store
   const monthItems: IMonthItem[] = useAppSelector(
     (state: AppState): IMonthItem[] => {
       return state.data.monthItems;
     }
   );
 
-  // Local data
-  const [months, setMonths] = useState<IMonthItem[]>([]);
-  const [days, setDays] = useState<IDayItem[]>([]);
-
-  // Effect for setting the month items
   useEffect(() => {
     setMonths(monthItems);
   }, [monthItems]);
 
-  // Reset to all months
   const getAllMonths = (): void => {
     setMonths(monthItems);
     setDays([]);
@@ -48,7 +46,7 @@ const Calendar: React.FC<ICalendar> = ({
       <MonoText style={styles.title}>Calendar</MonoText>
       {/* Reset to all months */}
       <Pressable onPress={() => getAllMonths()}>
-        <Text>ALL MONTHS</Text>
+        <Text style={[styles.text, styles.bold]}>ALL MONTHS</Text>
       </Pressable>
       <ScrollView>
         {/* Months */}
@@ -79,11 +77,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
-    padding: 20
+    justifyContent: 'center'
+  },
+  text: {
+    marginBottom: 10
+  },
+  bold: {
+    fontWeight: 'bold'
   },
   title: {
-    fontSize: 20
+    fontSize: 20,
+    marginBottom: 10,
+    textAlign: 'center'
   }
 });
 
