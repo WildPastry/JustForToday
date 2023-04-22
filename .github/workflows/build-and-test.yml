@@ -1,5 +1,5 @@
 name: Build and test project
-run-name: ${{ github.actor }} build and test project ${{ github.repository }}
+run-name: ${{ github.actor }} build and test project ${{ github.repository.branch }}
 
 on: push
 
@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [14.x, 16.x]
 
     steps:
     - name: Checkout code
