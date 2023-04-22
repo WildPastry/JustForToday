@@ -7,7 +7,7 @@ repo:
   - package/core/*
   - package/core/**/*
 
-# Add 'test' label to any change to *.spec.js files within the source dir
+# Add 'test' label to any change to *.spec.tsx files within the source dir
 test:
   - src/**/*.spec.tsx
 
@@ -15,7 +15,7 @@ test:
 source:
   - any: ['src/**/*', '!src/docs/*']
 
-# Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
+# Add 'frontend` label to any change to *.tsx files as long as the `App.tsx` hasn't changed
 frontend:
   - any: ['src/**/*.tsx']
     all: ['!App.tsx']
