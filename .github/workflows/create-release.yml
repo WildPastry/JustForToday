@@ -1,5 +1,5 @@
 name: Create release
-run-name: Create release - run by ${{ github.actor }} - on branch ${{ github.ref_name }}
+run-name: Create release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:

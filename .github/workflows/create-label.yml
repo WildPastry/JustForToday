@@ -1,5 +1,5 @@
-name: Pull request labeler
-run-name: ${{ github.actor }} pull request labeler
+name: Create label
+run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
 
 on: [pull_request_target]
 
