@@ -1,4 +1,5 @@
 name: Build and test project
+run-name: ${{ github.repository }} ${{ github.ref }}
 
 on: push
 
@@ -11,27 +12,25 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: |
-          npm install -g expo-cli
-          npm install
+    - name: Install dependencies
+      run: |
+        npm install -g expo-cli
+        npm install
 
-      - name: Build project
-        env:
-          RUN_NAME: ${{ github.repository }} - ${{ github_ref_name }}
-        run: expo export:web
-          echo "::set-env name=RUN_NAME::${RUN_NAME}"
+    - name: Build project
+    
+      run: expo export:web
 
-      - name: Lint project
-        run: npm run lint
+    - name: Lint project
+      run: npm run lint
 
-      - name: Test project
-        run: npm run test
+    - name: Test project
+      run: npm run test
