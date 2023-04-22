@@ -67,6 +67,14 @@ const Home: React.FC = (): JSX.Element => {
       <ForwardedScrollView
         contentContainerStyle={styles.container}
         ref={scrollViewRef}>
+        {/* Calendar icon */}
+        <FontAwesome5
+          style={styles.calendarIcon}
+          name='calendar-alt'
+          size={25}
+          onPress={() => toggleCalendar()}
+          color={Colours[colorScheme].icon}
+        />
         {/* Logo */}
         <FontAwesome5
           style={styles.icon}
@@ -81,14 +89,6 @@ const Home: React.FC = (): JSX.Element => {
           style={styles.separator}
           lightColor={Colours[colorScheme].seperator}
           darkColor={Colours[colorScheme].seperator}
-        />
-        {/* Calendar icon */}
-        <FontAwesome5
-          style={styles.icon}
-          name='calendar-alt'
-          size={25}
-          onPress={() => toggleCalendar()}
-          color={Colours[colorScheme].icon}
         />
         {/* Components */}
         {showCalendar ? (
@@ -106,16 +106,18 @@ const Home: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20,
-    marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
   },
   icon: {
     textAlign: 'center'
+  },
+  calendarIcon: {
+    textAlign: 'right'
   },
   separator: {
     alignSelf: 'center',

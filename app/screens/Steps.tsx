@@ -58,11 +58,10 @@ const Steps: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20,
-    marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
   },

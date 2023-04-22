@@ -10,7 +10,18 @@ import add from 'date-fns/add';
 import format from 'date-fns/format';
 
 const Reflection: React.FC = (): JSX.Element => {
-  // Selectors for store
+  // Component settings
+  const dispatch = useAppDispatch();
+  const [reflection, setReflection] = useState<IReflection>({
+    id: '',
+    date: '',
+    title: '',
+    quote: '',
+    source: '',
+    reflection: ''
+  });
+
+  // Data from store
   const reflections: IReflection[] = useAppSelector(
     (state: AppState): IReflection[] => {
       return state.data.reflections;
@@ -19,19 +30,6 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
-  });
-
-  // Dispatch settings
-  const dispatch = useAppDispatch();
-
-  // Data local state
-  const [reflection, setReflection] = useState<IReflection>({
-    id: '',
-    date: '',
-    title: '',
-    quote: '',
-    source: '',
-    reflection: ''
   });
 
   // Effect for setting the current reflection based on date
@@ -110,18 +108,21 @@ const Reflection: React.FC = (): JSX.Element => {
   return (
     <View>
       {/* Controls */}
-      <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-        <Text>PREV</Text>
-      </Pressable>
-      <Pressable onPress={() => selectReflection(getCurrentDay(), reflections)}>
-        <Text>TODAY</Text>
-      </Pressable>
-      <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-        <Text>NEXT</Text>
-      </Pressable>
+      <View style={styles.controls}>
+        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
+          <Text>PREV</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => selectReflection(getCurrentDay(), reflections)}>
+          <Text>TODAY</Text>
+        </Pressable>
+        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
+          <Text>NEXT</Text>
+        </Pressable>
+      </View>
       {/* Reflection */}
       <Text style={styles.title}>{reflection.date}</Text>
-      <Text style={styles.title}>{reflection.title}</Text>
+      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
       <Text style={styles.text}>{reflection.quote}</Text>
       <Text style={styles.text}>{reflection.reflection}</Text>
     </View>
@@ -129,15 +130,24 @@ const Reflection: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10
+  },
   text: {
     lineHeight: 20,
     marginBottom: 10,
     textAlign: 'left'
   },
   title: {
+    fontSize: 18,
     lineHeight: 20,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  bold: {
+    fontWeight: 'bold'
   }
 });
 

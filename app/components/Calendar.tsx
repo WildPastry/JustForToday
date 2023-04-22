@@ -11,23 +11,21 @@ import { useAppSelector } from '../redux/hooks';
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
-  // App selector for month data
+  // Component settings
+  const [months, setMonths] = useState<IMonthItem[]>([]);
+  const [days, setDays] = useState<IDayItem[]>([]);
+
+  // Data from store
   const monthItems: IMonthItem[] = useAppSelector(
     (state: AppState): IMonthItem[] => {
       return state.data.monthItems;
     }
   );
 
-  // Local data
-  const [months, setMonths] = useState<IMonthItem[]>([]);
-  const [days, setDays] = useState<IDayItem[]>([]);
-
-  // Effect for setting the month items
   useEffect(() => {
     setMonths(monthItems);
   }, [monthItems]);
 
-  // Reset to all months
   const getAllMonths = (): void => {
     setMonths(monthItems);
     setDays([]);
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20

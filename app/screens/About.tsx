@@ -78,7 +78,7 @@ const About: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20
+    padding: 15
   },
   title: {
     fontSize: 20,

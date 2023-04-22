@@ -52,12 +52,18 @@ const Traditions: React.FC = (): JSX.Element => {
         darkColor={Colours[colorScheme].seperator}
       />
       {/* Controls */}
-      <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
-        <Text>SHORT</Text>
-      </Pressable>
-      <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
-        <Text>LONG</Text>
-      </Pressable>
+      <View style={styles.controls}>
+        <Pressable
+          style={styles.control}
+          onPress={() => setTraditionType(ETraditionTypes.short)}>
+          <Text>SHORT</Text>
+        </Pressable>
+        <Pressable
+          style={styles.control}
+          onPress={() => setTraditionType(ETraditionTypes.long)}>
+          <Text>LONG</Text>
+        </Pressable>
+      </View>
       {/* Traditions */}
       {traditions[traditionType].map((tradition, index) => (
         <Tradition
@@ -74,9 +80,16 @@ const styles = StyleSheet.create({
   container: {
     padding: 20
   },
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 10
+  },
+  control: {
+    marginHorizontal: 10
+  },
   title: {
     fontSize: 20,
-    marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
   },
