@@ -1,4 +1,6 @@
-name: Pull Request Labeler
+name: Pull request labeler
+run-name: ${{ github.actor }} pull request labeler
+
 on: [pull_request_target]
 
 jobs:
