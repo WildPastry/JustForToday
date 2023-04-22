@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '80%'
+    width: '100%'
   }
 });
 

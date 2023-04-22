@@ -1,7 +1,7 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/Themed';
-import { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
@@ -9,34 +9,28 @@ import { MonoText } from '../components/StyledText';
 import Tradition from '../components/Tradition';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
-import { useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Traditions: React.FC = (): JSX.Element => {
-  // Create ref for functional scroll view
+  // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
 
-  // Set up isFocused hook for tracking component
-  const isFocused: boolean = useIsFocused();
-
-  // Selectors for store
+  // Data from store
   const traditions: ITraditions = useAppSelector(
     (state: AppState): ITraditions => {
       return state.data.traditions;
     }
   );
 
-  // Colour settings
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-
-  // Tradition types local state
-  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
-
-  useEffect(() => {
-    if (isFocused) {
-      // Re-render component when focused to reset scroll view
+  useFocusEffect(
+    React.useCallback(() => {
+      // Scroll to top on focus
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-    }
-  }, [isFocused]);
+      return () => null;
+    }, [scrollViewRef])
+  );
 
   return (
     <ForwardedScrollView
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '80%'
+    width: '100%'
   }
 });
 

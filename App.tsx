@@ -7,7 +7,15 @@ import store from './app/redux/store';
 import useCachedResources from './app/hooks/useCachedResources';
 import useColorScheme from './app/hooks/useColorScheme';
 
-export default function App() {
+const AppWithProvider: React.FC = (): JSX.Element => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+const App: React.FC = (): JSX.Element | null => {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
@@ -16,13 +24,12 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   }
-
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    </Provider>
+    <SafeAreaProvider>
+      <Navigation colorScheme={colorScheme} />
+      <StatusBar />
+    </SafeAreaProvider>
   );
-}
+};
+
+export default AppWithProvider;
