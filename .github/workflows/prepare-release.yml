@@ -3,9 +3,9 @@ run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:
-  types: [open]
-  branches:
-    - release/*
+    types: [opened]
+    branches:
+      - release/*
 
 jobs:
   prepare-release:
