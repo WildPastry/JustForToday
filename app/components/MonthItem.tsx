@@ -5,6 +5,7 @@ import { Text } from './Themed';
 const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   return (
     <Pressable style={styles.btn} onPress={props.onPress}>
+      {/* Month item */}
       <Text style={styles.text}>{props.id}</Text>
     </Pressable>
   );
