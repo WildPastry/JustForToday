@@ -1,5 +1,5 @@
-name: Build and test project
-run-name: ${{ github.actor }} - ${{ github.action }} - ${{ github.ref_name }}
+name: Build test lint
+run-name: ${{ github.actor }} - Build test lint - ${{ github.ref_name }}
 
 on: push
 
