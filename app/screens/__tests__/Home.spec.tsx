@@ -6,8 +6,7 @@ import { makeStore } from '../../redux/store';
 import { render } from '@testing-library/react-native';
 
 describe('<Home />', () => {
-  it('renders correctly with data', () => {
-    // Create test store and data
+  it('renders correctly', () => {
     const store = makeStore();
 
     render(

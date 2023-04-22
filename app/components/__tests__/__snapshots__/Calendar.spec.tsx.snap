@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NotFoundScreen /> renders correctly 1`] = `
+exports[`<Calendar /> renders correctly 1`] = `
 <View
   style={
     [
@@ -11,7 +11,6 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 20,
       },
     ]
   }
@@ -22,14 +21,20 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 20,
-          "fontWeight": "bold",
-        },
+        [
+          {
+            "fontSize": 20,
+            "marginBottom": 10,
+            "textAlign": "center",
+          },
+          {
+            "fontFamily": "space-mono",
+          },
+        ],
       ]
     }
   >
-    This screen doesn't exist.
+    Calendar
   </Text>
   <View
     accessibilityState={
@@ -52,20 +57,15 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
     accessible={true}
     collapsable={false}
     focusable={true}
+    onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
-    style={
-      {
-        "marginTop": 15,
-        "opacity": 1,
-        "paddingVertical": 15,
-      }
-    }
   >
     <Text
       style={
@@ -73,15 +73,31 @@ exports[`<NotFoundScreen /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "color": "#2e78b7",
-            "fontSize": 14,
-          },
+          [
+            {
+              "marginBottom": 10,
+            },
+            {
+              "fontWeight": "bold",
+            },
+          ],
         ]
       }
     >
-      Go to home screen!
+      ALL MONTHS
     </Text>
   </View>
+  <RCTScrollView
+    style={
+      [
+        {
+          "backgroundColor": "#fff",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View />
+  </RCTScrollView>
 </View>
 `;
