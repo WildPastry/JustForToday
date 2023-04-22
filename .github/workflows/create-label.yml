@@ -1,4 +1,6 @@
-name: Pull Request Labeler
+name: Create label
+run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
+
 on: [pull_request_target]
 
 jobs:
