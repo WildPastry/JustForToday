@@ -26,7 +26,7 @@ jobs:
 
       - name: Build project
         env:
-          RUN_NAME: ${{ github.workflow }} - ${{ github.head_ref }}
+          RUN_NAME: ${{ github.repository }} - ${{ github_ref_name }}
         run: expo export:web
           echo "::set-env name=RUN_NAME::${RUN_NAME}"
 
