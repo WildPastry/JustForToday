@@ -6,14 +6,14 @@ import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
-  // Selectors for store
+  // Component settings
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const dayItemTheme = styles[`${colorScheme}DayItemToday`];
+
+  // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
-
-  // Colour settings
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const dayItemTheme = styles[`${colorScheme}DayItemToday`];
 
   return (
     <Pressable
@@ -22,6 +22,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
         dates.today === props.id ? dayItemTheme : styles.dayItemDefault
       ]}
       onPress={props.onPress}>
+      {/* Day item */}
       <Text style={styles.text}>{props.name}</Text>
     </Pressable>
   );
