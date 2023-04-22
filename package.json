@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "format": "npx prettier --check \"**/*.{js,jsx,ts,tsx}\"",
     "format:fix": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
     "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix",
     "test": "jest -u"

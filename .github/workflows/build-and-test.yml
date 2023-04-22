@@ -1,5 +1,5 @@
 name: Build and test project
-run-name: ${{ github.actor }} build and test project ${{ github.repository.branch }}
+run-name: ${{ github.repository }} ${{ github.event.name }}
 
 on: push
 
@@ -27,6 +27,9 @@ jobs:
 
     - name: Build project
       run: expo export:web
+
+    - name: Lint project
+      run: npm run lint
 
     - name: Test project
       run: npm run test
