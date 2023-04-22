@@ -1,5 +1,5 @@
 name: Build and test project
-run-name: ${{ github.repository }} ${{ GITHUB_REF_NAME }}
+run-name: ${{ github.repository }} ${{ github.ref.name }}
 
 on: push
 
