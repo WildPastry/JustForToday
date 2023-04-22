@@ -5,7 +5,7 @@ import { Text } from './Themed';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 
-const DayItem:  React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
+const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const dayItemTheme = styles[`${colorScheme}DayItemToday`];
