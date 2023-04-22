@@ -1,7 +1,10 @@
 name: Build test lint
 run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
 
-on: push
+on:
+  push:
+    branches:
+      - release/*
 
 jobs:
   build-test-lint:
