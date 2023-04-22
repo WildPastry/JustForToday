@@ -9,24 +9,25 @@ on:
 jobs:
   prepare-release:
   runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Bump Version
-        uses: anothrNick/github-tag-action@1.10.0
-        with:
-          version: 'patch'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Commit version changes
-        run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
-          git commit -am "Bump package.json version"
+    - name: Bump Version
+      uses: anothrNick/github-tag-action@1.10.0
+      with:
+        version: 'patch'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+    - name: Commit version changes
+      run: |
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git config --global user.name "${{ github.actor }}"
+        git commit -am "Bump package.json version"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
