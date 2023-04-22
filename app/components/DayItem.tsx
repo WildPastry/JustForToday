@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   dayItem: {
     borderRadius: 7,
     marginBottom: 5,
-    paddingHorizontal: 7,
+    paddingHorizontal: 6,
     paddingVertical: 5
   },
   lightDayItemToday: {
