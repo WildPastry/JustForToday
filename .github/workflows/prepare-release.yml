@@ -11,23 +11,86 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Bump Version
-        uses: anothrNick/github-tag-action@1.10.0
+      - uses: actions/checkout@v3
         with:
-          version: 'patch'
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit version changes
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: Git config
         run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
-          git commit -am "Bump package.json version"
+          git config --global user.email "${{ secrets.GH_ORG_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ORG_NAME }}"
+      - name: Apply version bump (major)
+        if: startsWith(github.head_ref, 'release/major'
+        run: npm version major
+      - name: Apply version bump (minor)
+        if: startsWith(github.head_ref, 'release/minor'
+        run: npm version minor
+      - name: Apply version bump (patch)
+        if: startsWith(github.head_ref, 'release/patch'
+        run: npm version patch
+      - name: Git push version bump
+        run: git push origin ${{ github.ref_name }} --force
+      - id: set-version
+        name: Output version change
+        run: npm pkg get version
+      # - name: Checkout code
+      #   uses: actions/checkout@v3
 
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+      # - name: Bump Version
+      #   uses: anothrNick/github-tag-action@1.10.0
+      #   with:
+      #     version: 'patch'
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Commit version changes
+      #   run: |
+      #     git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      #     git config --global user.name "${{ github.actor }}"
+      #     git commit -am "Bump package.json version"
+
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@v0.6.0
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}
+# name: 'Dev - PR Close'
+# on:
+#   pull_request:
+#     branches:
+#       - dev
+#     types:
+#       - closed
+# jobs:
+#   merge_pr:
+#     name: 'PR Merged'
+#     if: github.event.pull_request.merged == true
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           token: ${{ secrets.GH_ORG_PAT }}
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: '16.x'
+#           cache: 'npm'
+#       - name: Git config
+#         run: |
+#           git config --global user.email "${{ secrets.GH_ORG_EMAIL }}"
+#           git config --global user.name "${{ secrets.GH_ORG_NAME }}"
+#       - name: Apply version bump (major)
+#         if: contains(github.event.pull_request.labels.*.name, 'major')
+#         run: npm version major
+#       - name: Apply version bump (minor)
+#         if: contains(github.event.pull_request.labels.*.name, 'minor')
+#         run: npm version minor
+#       - name: Apply version bump (patch)
+#         if: contains(github.event.pull_request.labels.*.name, 'patch')
+#         run: npm version patch
+#       - name: Git push version bump
+#         run: git push origin dev --follow-tags --force
+#       - id: set-version
+#         name: Output version change
+#         run: npm pkg get version
