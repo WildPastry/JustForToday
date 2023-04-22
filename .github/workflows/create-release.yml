@@ -1,0 +1,47 @@
+name: create-release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Create Release
+    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/major') || startsWith(github.head_ref, 'release/minor') || startsWith(github.head_ref, 'release/patch'))
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: 'JustForToday'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Get Version
+        run: |
+          echo "::set-output name=version::$(cat package.json| grep 'version'| awk '{print $2}'| tr -d \",)"
+        id: version
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: JustForToday ${{ steps.version.outputs.version }}
+          body: |
+            Built from ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+  # this job will only run if the PR has been closed without being merged or the base branch was not named 'release'
+  close_job:
+    name: Skipping Release Creation
+    if: github.event.pull_request.merged == false || (!startsWith(github.head_ref, 'release/major') || !startsWith(github.head_ref, 'release/minor') || !startsWith(github.head_ref, 'release/patch'))
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Skipping Release Creation
