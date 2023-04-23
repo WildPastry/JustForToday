@@ -4,13 +4,14 @@ run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
 on: [pull_request_target]
 
 jobs:
-  label:
+  create-label:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
 
     steps:
-      - uses: actions/labeler@v4
+      - name: Create label
+        uses: actions/labeler@v4
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          token: '${{ secrets.GITHUB_TOKEN }}'

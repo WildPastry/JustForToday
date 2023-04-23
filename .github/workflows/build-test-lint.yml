@@ -2,7 +2,7 @@ name: Build test lint
 run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  push:
+  create:
     branches:
       - release/*
 
@@ -17,11 +17,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Install dependencies
         run: |
