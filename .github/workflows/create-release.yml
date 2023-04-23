@@ -11,11 +11,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/major') || startsWith(github.head_ref, 'release/minor') || startsWith(github.head_ref, 'release/patch'))
-    defaults:
-      run: 
-        shell: bash
-        working-directory: 'JustForToday'
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
