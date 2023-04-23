@@ -16,3 +16,9 @@ frontend:
 
 test:
   - app/**/*.spec.tsx
+
+screen:
+  - app/screens/**/*.tsx
+
+component:
+  - app/components/**/*.tsx

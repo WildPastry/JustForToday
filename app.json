@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "just-for-today",
-    "slug": "just-for-today",
+    "slug": "justfortoday",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
@@ -30,6 +30,12 @@
     "web": {
       "bundler": "metro",
       "favicon": "./app/assets/images/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
+      }
+    },
+    "owner": "wildpastry"
   }
 }
