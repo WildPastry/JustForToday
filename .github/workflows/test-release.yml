@@ -3,7 +3,7 @@ run-name: Test release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:
-    types: [created]
+    types: [opened]
     branches:
       - main
 
