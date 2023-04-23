@@ -14,4 +14,4 @@ jobs:
       - name: Create label
         uses: actions/labeler@v4
         with:
-          token: '${{ secrets.GITHUB_TOKEN }}'
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'

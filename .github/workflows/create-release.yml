@@ -3,7 +3,7 @@ run-name: Create release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:
-    types: [closed]
+    types: [merged]
     branches:
       - main
 
