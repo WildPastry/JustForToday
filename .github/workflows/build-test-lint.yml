@@ -2,9 +2,10 @@ name: Build test lint
 run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  create:
+  pull_request:
+    types: [closed]
     branches:
-      - test/*
+      - main
 
 jobs:
   build-test-lint:

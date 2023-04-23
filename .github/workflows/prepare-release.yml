@@ -40,7 +40,7 @@ jobs:
         run: npm version minor
 
       - name: Apply version bump (patch)
-        if: startsWith(github.head_ref, 'release/patch')
+        if: startsWith( ${{ github.head_ref }}, 'release/patch')
         run: npm version patch
 
       - name: Git push version bump
