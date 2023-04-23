@@ -36,8 +36,10 @@ jobs:
       #   if: startsWith(github.head_ref, 'release/patch/')
       #   run: npm version patch
 
-      - name: Git push version bump
+      - name: Run version patch
         run: npm version patch
+
+      - name: Git push version bump
         run: git push origin ${{ github.ref_name }} --force
       - id: set-version
 
