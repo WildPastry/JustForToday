@@ -32,15 +32,15 @@ jobs:
           git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
 
       - name: Apply version bump (major)
-        if: startsWith(github.head_ref, "release/major")
+        if: startsWith(github.head_ref, release/major)
         run: npm version major
 
       - name: Apply version bump (minor)
-        if: startsWith(github.head_ref, "release/minor")
+        if: startsWith(github.head_ref, release/minor)
         run: npm version minor
 
       - name: Apply version bump (patch)
-        if: startsWith(github.head_ref, "release/patch")
+        if: startsWith(github.head_ref, release/patch)
         run: npm version patch
 
       - name: Git push version bump
