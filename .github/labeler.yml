@@ -2,20 +2,18 @@
 repo:
   - '*'
 
-# Add '@domain/core' label to any change within the 'core' package
-'@domain/core':
-  - package/core/*
-  - package/core/**/*
-
-# Add 'test' label to any change to *.spec.tsx files within the source dir
+# Add 'test' label to any change to *.spec.tsx files within the app dir
 test:
-  - src/**/*.spec.tsx
+  - app/**/*.spec.tsx
 
-# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+# Add 'source' label to any change to src files within the app dir EXCEPT for the docs sub-folder
 source:
-  - any: ['src/**/*', '!src/docs/*']
+  - any: ['app/**/*', '!app/docs/*']
 
 # Add 'frontend` label to any change to *.tsx files as long as the `App.tsx` hasn't changed
 frontend:
-  - any: ['src/**/*.tsx']
+  - any: ['app/**/*.tsx']
     all: ['!App.tsx']
+
+workflow:
+  - /*.yml

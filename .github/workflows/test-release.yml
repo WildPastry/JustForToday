@@ -1,27 +1,27 @@
-name: Build test lint
-run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
+name: Test release
+run-name: Test release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  push:
+  pull_request:
+    types: [created]
     branches:
-      - release/*
+      - main
 
 jobs:
-  build-test-lint:
+  test-release:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
+          cache: 'npm'
 
       - name: Install dependencies
         run: |
@@ -29,7 +29,6 @@ jobs:
           npm install
 
       - name: Build project
-
         run: expo export:web
 
       - name: Lint project

@@ -2,7 +2,7 @@ name: Prepare release
 run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  push:
+  create:
     branches:
       - release/*
 
@@ -10,37 +10,38 @@ jobs:
   prepare-release:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Bump package.json version
-        id: bump
+      - name: Git config
         run: |
-          npm version minor --no-git-tag-version --force
-          echo "::set-output name=version::$(node -p "require('./package.json').version")"
+          git config --global user.email "${{ secrets.GH_ADMIN_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
 
-      - name: Commit version bump
-        uses: stefanzweifel/git-auto-commit-action@v4.9.2
-        with:
-          commit_message: 'Bump version to v${{ steps.bump.outputs.version }}'
-          commit_user_name: 'GitHub Actions'
-          commit_user_email: 'actions@github.com'
-          commit_branch: ${{ github.ref }}
+      - name: Apply version bump (major)
+        if: startsWith(github.ref_name, 'release/major')
+        run: npm version major
 
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Apply version bump (minor)
+        if: startsWith(github.ref_name, 'release/minor')
+        run: npm version minor
+
+      - name: Apply version bump (patch)
+        if: startsWith(github.ref_name, 'release/patch')
+        run: npm version patch
+
+      - name: Git push version bump
+        run: git push origin ${{ github.ref_name }}
+      - id: set-version
+
+        name: Output version change
+        run: npm pkg get version
