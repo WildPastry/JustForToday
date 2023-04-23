@@ -16,4 +16,4 @@ frontend:
     all: ['!App.tsx']
 
 workflow:
-  - /*.yml
+  - .github/**/*.yml
