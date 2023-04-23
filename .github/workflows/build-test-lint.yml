@@ -1,5 +1,5 @@
-name: Build test lint
-run-name: Build test lint | ${{ github.actor }} | ${{ github.ref_name }}
+name: Test release
+run-name: Test release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  build-test-lint:
+  test-release:
     runs-on: ubuntu-latest
 
     steps:

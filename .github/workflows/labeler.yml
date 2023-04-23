@@ -4,7 +4,7 @@ run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
 on: [pull_request_target]
 
 jobs:
-  create-label:
+  labeler:
     runs-on: ubuntu-latest
     permissions:
       contents: read
