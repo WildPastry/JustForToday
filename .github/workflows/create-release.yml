@@ -8,28 +8,24 @@ on:
       - main
 
 jobs:
-  build:
-    name: Create Release
-    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/major') || startsWith(github.head_ref, 'release/minor') || startsWith(github.head_ref, 'release/patch'))
+  create-release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: 'JustForToday'
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/major') || startsWith(github.head_ref, 'release/minor') || startsWith(github.head_ref, 'release/patch'))
 
-      - name: Get Version
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get version
         run: |
           echo "::set-output name=version::$(cat package.json| grep 'version'| awk '{print $2}'| tr -d \",)"
         id: version
 
-      - name: Create Release
+      - name: Create release
         id: create_release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.version }}
           release_name: JustForToday ${{ steps.version.outputs.version }}
@@ -38,11 +34,10 @@ jobs:
           draft: false
           prerelease: false
 
-  # this job will only run if the PR has been closed without being merged or the base branch was not named 'release'
-  close_job:
-    name: Skipping Release Creation
-    if: github.event.pull_request.merged == false || (!startsWith(github.head_ref, 'release/major') || !startsWith(github.head_ref, 'release/minor') || !startsWith(github.head_ref, 'release/patch'))
+  close-job:
     runs-on: ubuntu-latest
+    name: Skipping release creation
+    if: github.event.pull_request.merged == false || (!startsWith(github.head_ref, 'release/major') || !startsWith(github.head_ref, 'release/minor') || !startsWith(github.head_ref, 'release/patch'))
     steps:
       - run: |
-          echo Skipping Release Creation
+          echo Skipping release creation
