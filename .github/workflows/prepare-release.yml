@@ -13,26 +13,38 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           cache: 'npm'
+
       - name: Git config
         run: |
-          git config --global user.email "${{ secrets.GH_ORG_EMAIL }}"
-          git config --global user.name "${{ secrets.GH_ORG_NAME }}"
-      - name: Apply version bump (major)
-        if: startsWith(github.head_ref, 'release/major')
-        run: npm version major
-      - name: Apply version bump (minor)
-        if: startsWith(github.head_ref, 'release/minor')
-        run: npm version minor
-      - name: Apply version bump (patch)
-        if: startsWith(github.head_ref, 'release/patch')
-        run: npm version patch
+          git config --global user.email "${{ secrets.GH_ADMIN_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
+
+      # - name: Apply version bump (major)
+      #   if: startsWith(github.head_ref, 'release/major/')
+      #   run: npm version major
+
+      # - name: Apply version bump (minor)
+      #   if: startsWith(github.head_ref, 'release/minor/')
+      #   run: npm version minor
+
+      # - name: Apply version bump (patch)
+      #   if: startsWith(github.head_ref, 'release/patch/')
+      #   run: npm version patch
+
       - name: Git push version bump
+        run: npm version patch
         run: git push origin ${{ github.ref_name }} --force
       - id: set-version
+
         name: Output version change
         run: npm pkg get version
+
+# - name: Update package version
+#         run: |
+#           # Increment the patch version
+#           node -e "const fs = require('fs'); const pkg = JSON.parse(fs.readFileSync('./package.json')); pkg.version = pkg.version.replace(/(\d+)$/, (match, p1) => parseInt(p1, 10) + 1); fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2));"
