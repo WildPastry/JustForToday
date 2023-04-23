@@ -1,19 +1,18 @@
-# Add 'repo' label to any root file changes
+# Config file for creating labels. 
+# The attributes below will have labels created when the criteria are met.
+# Labels are created when a PR is created.
+
 repo:
   - '*'
 
-# Add 'test' label to any change to *.spec.tsx files within the app dir
-test:
-  - app/**/*.spec.tsx
-
-# Add 'source' label to any change to src files within the app dir EXCEPT for the docs sub-folder
 source:
-  - any: ['app/**/*', '!app/docs/*']
-
-# Add 'frontend` label to any change to *.tsx files as long as the `App.tsx` hasn't changed
-frontend:
-  - any: ['app/**/*.tsx']
-    all: ['!App.tsx']
+  - any: ['app/**/*']
 
 workflow:
   - .github/**/*.yml
+
+frontend:
+  - any: ['app/**/*.tsx']
+
+test:
+  - app/**/*.spec.tsx
