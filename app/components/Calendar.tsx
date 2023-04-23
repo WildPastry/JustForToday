@@ -8,7 +8,7 @@ import { MonoText } from '../components/StyledText';
 import MonthItem from '../components/MonthItem';
 import { useAppSelector } from '../redux/hooks';
 
-const Calendar:   React.FC<ICalendar> = ({
+const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
   // Component settings
