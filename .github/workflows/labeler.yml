@@ -17,7 +17,7 @@ jobs:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Create release label
-        if: contains(github.head_ref, 'release/patch')
+        if: startsWith(github.ref_name, 'release/patch')
         uses: actions/label@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
