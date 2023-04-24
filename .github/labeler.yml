@@ -23,6 +23,12 @@ screen:
 component:
   - app/components/**/*.tsx
 
+documentation:
+  - README.md
+
+packages:
+  - ['package.json', 'package-lock.json']
+
 # Release versions
 major:
   if: startsWith(github.ref_name, 'release/major')
