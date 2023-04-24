@@ -1,5 +1,5 @@
 name: Create script label
-run-name: Create script label | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: Create script label | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
@@ -8,29 +8,49 @@ on:
 jobs:
   create-script-label:
     runs-on: ubuntu-latest
-    
+  
     steps:
-      - name: Add label to pull request
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create label
+        if: contains(github.head_ref, 'release/patch')
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const branchName = context.payload.pull_request.head.ref;
-            let labelName = "";
-            if (branchName.includes("bug")) {
-              labelName = "bug";
-            } else if (branchName.includes("feature")) {
-              labelName = "feature";
-            } else if (branchName.includes("release/patch")) {
-              labelName = "patch release";
-            } else if (branchName.includes("release/minor")) {
-              labelName = "minor release";
-            } else if (branchName.includes("release/major")) {
-              labelName = "major release";
-            }
-            const label = await github.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              labels: [labelName]
-            });
+            const payload = {
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              issue_number: context.payload.number,
+              labels: ["patch-release"]
+            };
+            await github.issues.addLabels(payload);
+
+    # steps:
+    #   - name: Add label to pull request
+    #     uses: actions/github-script@v6
+    #     with:
+    #       github-token: ${{ secrets.GITHUB_TOKEN }}
+    #       script: |
+    #         const branchName = context.payload.pull_request.head.ref;
+    #         let labelName = "";
+    #         if (branchName.includes("bug")) {
+    #           labelName = "bug";
+    #         } else if (branchName.includes("feature")) {
+    #           labelName = "feature";
+    #         } else if (branchName.includes("release/patch")) {
+    #           labelName = "patch release";
+    #         } else if (branchName.includes("release/minor")) {
+    #           labelName = "minor release";
+    #         } else if (branchName.includes("release/major")) {
+    #           labelName = "major release";
+    #         }
+    #         const label = await github.issues.addLabels({
+    #           owner: context.repo.owner,
+    #           repo: context.repo.repo,
+    #           issue_number: context.payload.pull_request.number,
+    #           labels: [labelName]
+    #         });
