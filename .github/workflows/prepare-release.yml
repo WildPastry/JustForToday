@@ -39,21 +39,14 @@ jobs:
         if: startsWith(github.ref_name, 'release/patch')
         run: npm version patch
 
+      - name: Update app.json version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          npx json -I -f app.json -e "this.version='$VERSION'"
+
       - name: Git push version bump
         run: git push origin ${{ github.ref_name }}
       - id: set-version
-
-      - name: Update app.json version
-        run: |
-          # Get the version from package.json
-          VERSION=$(node -p "require('./package.json').version")
-          # Update app.json version
-          npx json -I -f app.json -e "this.version='$VERSION'"
-          # Commit and push the changes
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Update app.json version to $VERSION" app.json
-          git push
 
         name: Output version change
         run: npm pkg get version
