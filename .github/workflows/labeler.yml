@@ -1,5 +1,5 @@
 name: Create label
-run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: Create label | ${{ github.actor }} | ${{ github.head_ref }}
 
 on: [pull_request_target]
 
@@ -17,7 +17,7 @@ jobs:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Create release label
-        if: startsWith(github.ref_name, 'release/patch')
+        if: startsWith(github.head_ref, 'release/patch')
         uses: actions/label@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
