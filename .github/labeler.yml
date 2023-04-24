@@ -29,6 +29,7 @@ component:
 test:
   - app/**/*.spec.tsx
 
-patch release:
+rules:
   - if: head_branch =~ /^release\/patch/
-
+    then:
+      - patch release
