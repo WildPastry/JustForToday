@@ -13,23 +13,20 @@ jobs:
       - name: Add label to pull request
         uses: actions/github-script@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const branchName = context.payload.pull_request.head.ref;
             let labelName = "";
             if (branchName.includes("bug")) {
               labelName = "bug";
-            if (branchName.includes("feature")) {
+            } else if (branchName.includes("feature")) {
               labelName = "feature";
-            if (branchName.includes("release/patch")) {
+            } else if (branchName.includes("release/patch")) {
               labelName = "patch release";
             } else if (branchName.includes("release/minor")) {
               labelName = "minor release";
             } else if (branchName.includes("release/major")) {
               labelName = "major release";
-            } else {
-              console.log(`Branch ${branchName} does not match any label criteria`);
-              return;
             }
             const label = await github.issues.addLabels({
               owner: context.repo.owner,
@@ -37,4 +34,3 @@ jobs:
               issue_number: context.payload.pull_request.number,
               labels: [labelName]
             });
-            console.log(`Added label ${labelName} to pull request ${context.payload.pull_request.number}`);
