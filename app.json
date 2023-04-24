@@ -25,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/adaptive-icon.png",
         "backgroundColor": "#2c2c54"
-      }
+      },
+      "package": "nz.co.mikeparker.jft"
     },
     "web": {
       "bundler": "metro",
