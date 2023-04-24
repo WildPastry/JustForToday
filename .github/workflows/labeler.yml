@@ -1,29 +1,17 @@
 name: Create label
-run-name: Create label | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: Create label | ${{ github.actor }} | ${{ github.head_ref }}
 
 on: [pull_request_target]
 
-# jobs:
-#   labeler:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       pull-requests: write
-
-#     steps:
-#       - name: Create label
-#         uses: actions/labeler@v4
-#         with:
-#           repo-token: '${{ secrets.GITHUB_TOKEN }}'
 jobs:
-  add-label:
+  labeler:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Add label
-        # if: contains(github.head_ref, 'release/patch')
-        uses: actions/label@v2
+      - name: Create label
+        uses: actions/labeler@v4
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          name: patch release
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
