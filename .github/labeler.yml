@@ -11,11 +11,14 @@ source:
 workflow:
   - .github/**/*.yml
 
+documentation:
+  - README.md
+
+packages:
+  - ['package.json', 'package-lock.json']
+
 frontend:
   - any: ['app/**/*.tsx']
-
-test:
-  - app/**/*.spec.tsx
 
 screen:
   - app/screens/**/*.tsx
@@ -23,18 +26,5 @@ screen:
 component:
   - app/components/**/*.tsx
 
-documentation:
-  - README.md
-
-packages:
-  - ['package.json', 'package-lock.json']
-
-# Release versions
-major:
-  if: startsWith(github.ref_name, 'release/major')
-
-minor:
-  if: startsWith(github.ref_name, 'release/minor')
-
-patch:
-  if: startsWith(github.ref_name, 'release/patch')
+test:
+  - app/**/*.spec.tsx
