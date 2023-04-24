@@ -41,13 +41,9 @@ jobs:
 
       - name: Update app.json version
         run: |
-          # Get the version from package.json
           VERSION=$(node -p "require('./package.json').version")
-          # Update app.json version
-          npx json -I -f app.json -e "this.version='$VERSION'"
-          # Commit and push the changes
+          npx json -I -f app.json -e "this.expo.version='$VERSION'"
           git commit -m "Update app.json version to $VERSION" app.json
-          git push
 
       - name: Git push version bump
         run: git push origin ${{ github.ref_name }}
