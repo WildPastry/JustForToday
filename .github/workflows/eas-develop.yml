@@ -5,7 +5,10 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
-      - "feature/*"
+      - "refs/heads/feature/*"
+  push:
+    branches:
+      - "refs/heads/feature/*"
 
 jobs:
   eas-develop:

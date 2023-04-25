@@ -44,7 +44,7 @@ const Steps: React.FC = (): JSX.Element => {
       <MonoText style={styles.title}>Steps</MonoText>
       {/* Divider */}
       <View
-        style={styles.separator}
+        style={styles.divider}
         lightColor={Colours[colorScheme].seperator}
         darkColor={Colours[colorScheme].seperator}
       />
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
   icon: {
     textAlign: 'center'
   },
-  separator: {
+  divider: {
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '100%'
+    width: '70%'
   }
 });
 

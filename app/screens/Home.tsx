@@ -75,18 +75,20 @@ const Home: React.FC = (): JSX.Element => {
           onPress={() => toggleCalendar()}
           color={Colours[colorScheme].icon}
         />
-        {/* Logo */}
-        <FontAwesome5
-          style={styles.icon}
-          name='chair'
-          size={50}
-          color={Colours[colorScheme].icon}
-        />
-        {/* Title */}
-        <MonoText style={styles.title}>Just for today</MonoText>
+        <View style={styles.logoContainer}>
+          {/* Logo */}
+          <FontAwesome5
+            style={styles.icon}
+            name='chair'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
+          {/* Title */}
+          <MonoText style={styles.title}>Just for today</MonoText>
+        </View>
         {/* Divider */}
         <View
-          style={styles.separator}
+          style={styles.divider}
           lightColor={Colours[colorScheme].seperator}
           darkColor={Colours[colorScheme].seperator}
         />
@@ -108,10 +110,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     padding: 15
   },
+  logoContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: 10
+  },
   title: {
     fontSize: 20,
-    marginTop: 10,
-    textAlign: 'center'
+    marginLeft: 5
   },
   icon: {
     textAlign: 'center'
@@ -119,11 +126,11 @@ const styles = StyleSheet.create({
   calendarIcon: {
     textAlign: 'right'
   },
-  separator: {
+  divider: {
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '100%'
+    width: '70%'
   }
 });
 

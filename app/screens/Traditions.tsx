@@ -47,7 +47,7 @@ const Traditions: React.FC = (): JSX.Element => {
       <MonoText style={styles.title}>Traditions</MonoText>
       {/* Divider */}
       <View
-        style={styles.separator}
+        style={styles.divider}
         lightColor={Colours[colorScheme].seperator}
         darkColor={Colours[colorScheme].seperator}
       />
@@ -96,11 +96,11 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center'
   },
-  separator: {
+  divider: {
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '100%'
+    width: '70%'
   }
 });
 
