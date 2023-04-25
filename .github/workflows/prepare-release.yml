@@ -2,9 +2,8 @@ name: Prepare release
 run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  create:
-    branches:
-      - release/*
+  branches:
+    - 'release/*'
 
 jobs:
   prepare-release:
