@@ -4,7 +4,7 @@
     "requireCommit": true
   },
   "build": {
-    "development": {
+    "develop": {
       "channel": "develop",
       "developmentClient": true,
       "distribution": "internal",

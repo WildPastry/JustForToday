@@ -13,7 +13,8 @@
       "backgroundColor": "#2c2c54"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -38,6 +39,9 @@
         "projectId": "5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
       }
     },
-    "owner": "wildpastry"
+    "owner": "wildpastry",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
   }
 }
