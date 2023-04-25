@@ -4,11 +4,10 @@ run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 on:
   create:
     branches:
-      - release/
+      - 'z'
 
 jobs:
   prepare-release:
-    if: startsWith(github.ref_name, 'release/')
     runs-on: ubuntu-latest
 
     steps:
