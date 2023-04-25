@@ -2,7 +2,8 @@ name: Prepare release
 run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  create:
+  pull_request:
+    types: [opened]
     branches:
       - release/*
 
@@ -20,7 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: npm
 
       - name: Git config
         run: |
@@ -38,6 +39,13 @@ jobs:
       - name: Apply version bump (patch)
         if: startsWith(github.ref_name, 'release/patch')
         run: npm version patch
+
+      - name: Update app.json version
+        if: startsWith(github.ref_name, 'release/')
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          npx json -I -f app.json -e "this.expo.version='$VERSION'"
+          git commit -m "Update app.json version to $VERSION" app.json
 
       - name: Git push version bump
         run: git push origin ${{ github.ref_name }}

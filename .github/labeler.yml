@@ -11,8 +11,20 @@ source:
 workflow:
   - .github/**/*.yml
 
+documentation:
+  - README.md
+
+packages:
+  - ['package.json', 'package-lock.json']
+
 frontend:
   - any: ['app/**/*.tsx']
+
+screen:
+  - app/screens/**/*.tsx
+
+component:
+  - app/components/**/*.tsx
 
 test:
   - app/**/*.spec.tsx
