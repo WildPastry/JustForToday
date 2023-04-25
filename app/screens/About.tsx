@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { ScrollView, Text, View } from '../components/Themed';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StatusBar } from 'expo-status-bar';
+import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
 
 const About: React.FC = (): JSX.Element => {
@@ -18,8 +19,12 @@ const About: React.FC = (): JSX.Element => {
     console.log('SUGGESTIONS');
   };
 
+  const getAppVersion = (): string => {
+    return packageJson.version.toString();
+  };
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Logo */}
       <FontAwesome
         style={styles.icon}
@@ -29,6 +34,9 @@ const About: React.FC = (): JSX.Element => {
       />
       {/* Title */}
       <MonoText style={styles.title}>About the app</MonoText>
+      <Text style={styles.text}>
+        JustForToday app version {getAppVersion()}
+      </Text>
       {/* Divider */}
       <View
         style={styles.separator}
@@ -71,7 +79,7 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </View>
+    </ScrollView>
   );
 };
 
