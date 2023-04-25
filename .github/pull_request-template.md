@@ -1,7 +1,3 @@
-> ## ProTips:
-> 
-> One of the key jobs of validating a pull request is running a series of tests to check that it won't break any existing work when merging in, and that the work that is does add actually... works.
-
 # Pull Request Process
 
 ## Before submitting a pull request
