@@ -1,5 +1,5 @@
-name: EAS develop preview
-run-name: EAS develop preview | ${{ github.actor }} | ${{ github.head_ref }}
+name: EAS develop
+run-name: EAS develop | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
     - feature/*
 
 jobs:
-  eas-develop-preview:
+  eas-develop:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -17,7 +17,7 @@ jobs:
     - name: Check for EXPO_TOKEN
       run: |
         if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
-          echo "You must provide an EXPO_TOKEN secretrepo's secrets
+          echo "You must provide an EXPO_TOKEN secret"
           exit 1
         fi
 

@@ -1,5 +1,5 @@
-name: EAS staging preview
-run-name: EAS staging preview | ${{ github.actor }} | ${{ github.head_ref }}
+name: EAS staging
+run-name: EAS staging | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
     - release/*
 
 jobs:
-  eas-staging-preview:
+  eas-staging:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -17,7 +17,7 @@ jobs:
     - name: Check for EXPO_TOKEN
       run: |
         if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
-          echo "You must provide an EXPO_TOKEN secretrepo's secrets
+          echo "You must provide an EXPO_TOKEN secret"
           exit 1
         fi
 
@@ -46,4 +46,4 @@ jobs:
     - name: Create preview
       uses: expo/expo-github-action/preview@v8
       with:
-        command: eas update --branch develop
+        command: eas update --branch staging
