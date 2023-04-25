@@ -8,6 +8,7 @@ on:
 
 jobs:
   prepare-release:
+    if: startsWith(github.ref_name, 'release/')
     runs-on: ubuntu-latest
 
     steps:

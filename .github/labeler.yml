@@ -28,8 +28,3 @@ component:
 
 test:
   - app/**/*.spec.tsx
-
-labels:
-  - label: "feat"
-    matcher:
-      branch: "^feat/.*"
