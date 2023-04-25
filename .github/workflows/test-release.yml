@@ -1,5 +1,5 @@
 name: Test release
-run-name: Test release | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: Test release | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
@@ -15,13 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: |

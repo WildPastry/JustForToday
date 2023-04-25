@@ -1,5 +1,5 @@
 name: Create release
-run-name: Create release | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: Create release | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get version
         run: |

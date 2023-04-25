@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "just-for-today",
-    "slug": "just-for-today",
-    "version": "1.0.0",
+    "slug": "justfortoday",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
     "scheme": "myapp",
@@ -13,23 +13,35 @@
       "backgroundColor": "#2c2c54"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "nz.co.mikeparker.jft"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/adaptive-icon.png",
         "backgroundColor": "#2c2c54"
-      }
+      },
+      "package": "nz.co.mikeparker.jft"
     },
     "web": {
       "bundler": "metro",
       "favicon": "./app/assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
+      }
+    },
+    "owner": "wildpastry",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
