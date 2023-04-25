@@ -3,9 +3,7 @@ run-name: EAS develop | ${{ github.actor }} | ${{ github.head_ref }}
 
 on:
   pull_request:
-    types: [opened, synchronize]
-    branches:
-      - feature/*
+    types: [opened, edited, synchronize]
 
 jobs:
   eas-develop:
