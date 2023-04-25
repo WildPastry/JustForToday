@@ -44,4 +44,4 @@ jobs:
       - name: Create develop preview
         uses: expo/expo-github-action/preview@v8
         with:
-          command: eas update --branch develop --message EAS develop preview from ${{ github.actor }} | ${{ github.head_ref }}
+          command: eas update --branch develop --message 'EAS develop preview from ${{ github.actor }} | ${{ github.head_ref }}'
