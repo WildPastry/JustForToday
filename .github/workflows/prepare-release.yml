@@ -2,7 +2,8 @@ name: Prepare release
 run-name: Prepare release | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
-  create:
+  pull_request:
+    types: [opened]
     branches:
       - release/*
 
@@ -20,7 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: npm
 
       - name: Git config
         run: |
