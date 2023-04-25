@@ -29,7 +29,7 @@ component:
 test:
   - app/**/*.spec.tsx
 
-rules:
-  - if: head_branch =~ /^release\/patch/
-    then:
-      - patch release
+labels:
+  - label: "feat"
+    matcher:
+      branch: "^feat/.*"

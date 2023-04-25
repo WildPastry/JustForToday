@@ -1,17 +1,40 @@
 name: Create label
 run-name: Create label | ${{ github.actor }} | ${{ github.head_ref }}
 
-on: [pull_request_target]
+on:
+  pull_request_target:
+  # for OSS with public contributions (forked PR)   
+
+  pull_request:
+  # Useful for triaging code review, and generate compliance status check.
+  # Semantic release? Done.
+  # Make a file change in a mono repo. Tag the mono repo getting changed to generate better release!
+
+  issues:
+  # Useful for triaging error!
+  # '- [x] Is this a bug?' = 'bug' label!
+
+  issue_comment:
+  # To pickup comment body in pr or issue and generate a label. 
+  # Imagine someone comment 'Me too, I get TimeoutException from ...' in comment body. 
+  # Generate a 'bug/timeout' label for better triaging!
+
+permissions:
+  # Setting up permissions in the workflow to limit the scope of what it can do. Optional!
+  contents: read # the config file
+  issues: write # for labeling issues (on: issues)
+  pull-requests: write # for labeling pull requests (on: pull_request_target or on: pull_request)
+  statuses: write # to generate status
+  checks: write # to generate status
 
 jobs:
   labeler:
+    name: Labeler
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-
     steps:
-      - name: Create label
-        uses: actions/labeler@v4
+      # follows semantic versioning. Lock to different version: v1, v1.5, v1.5.0 or use a commit hash.
+      - uses: fuxingloh/multi-labeler@v2 # v2
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          github-token: ${{secrets.GITHUB_TOKEN}} # optional, default to '${{ github.token }}'  
+          config-path: .github/labeler.yml # optional, default to '.github/labeler.yml'
+          config-repo: my-org/my-repo # optional, default to '${{ github.repository }}'
