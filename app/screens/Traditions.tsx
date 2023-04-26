@@ -36,31 +36,29 @@ const Traditions: React.FC = (): JSX.Element => {
     <ForwardedScrollView
       contentContainerStyle={styles.container}
       ref={scrollViewRef}>
-      {/* Logo */}
-      <FontAwesome
-        style={styles.text}
-        name='book'
-        size={50}
-        color={Colours[colorScheme].text}
-      />
-      {/* Title */}
-      <MonoText style={styles.title}>Traditions</MonoText>
+      <View style={styles.logoContainer}>
+        {/* Logo */}
+        <FontAwesome
+          style={styles.text}
+          name='book'
+          size={25}
+          color={Colours[colorScheme].text}
+        />
+        {/* Title */}
+        <MonoText style={styles.title}>Traditions</MonoText>
+      </View>
       {/* Divider */}
       <View
-        style={styles.separator}
+        style={styles.divider}
         lightColor={Colours[colorScheme].seperator}
         darkColor={Colours[colorScheme].seperator}
       />
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable
-          style={styles.control}
-          onPress={() => setTraditionType(ETraditionTypes.short)}>
+        <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
           <Text>SHORT</Text>
         </Pressable>
-        <Pressable
-          style={styles.control}
-          onPress={() => setTraditionType(ETraditionTypes.long)}>
+        <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
           <Text>LONG</Text>
         </Pressable>
       </View>
@@ -78,29 +76,31 @@ const Traditions: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 15
+  },
+  logoContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10
   },
   controls: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     marginBottom: 10
-  },
-  control: {
-    marginHorizontal: 10
   },
   title: {
     fontSize: 20,
-    marginTop: 10,
-    textAlign: 'center'
+    marginLeft: 10
   },
   text: {
     textAlign: 'center'
   },
-  separator: {
+  divider: {
     alignSelf: 'center',
     marginVertical: 20,
     height: 1,
-    width: '100%'
+    width: '70%'
   }
 });
 
