@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { EDateFormat, IDate } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
@@ -6,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IReflection } from '../types/data.types';
+import { SwipeView } from './SwipeView';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
@@ -105,27 +107,35 @@ const Reflection: React.FC = (): JSX.Element => {
     return verifiedData;
   };
 
+  // Screen swiping actions
+  const swipeLeft = () => selectReflection(getNextDay(), reflections);
+  const swipeRight = () => selectReflection(getPrevDay(), reflections);
+
   return (
-    <View>
-      {/* Controls */}
-      <View style={styles.controls}>
-        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <Text>PREV</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => selectReflection(getCurrentDay(), reflections)}>
-          <Text>TODAY</Text>
-        </Pressable>
-        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <Text>NEXT</Text>
-        </Pressable>
+    <SwipeView onSwipeLeft={swipeLeft} onSwipeRight={swipeRight}>
+      <View>
+        {/* Controls */}
+        <View style={styles.controls}>
+          <Pressable
+            onPress={() => selectReflection(getPrevDay(), reflections)}>
+            <Text>PREV</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => selectReflection(getCurrentDay(), reflections)}>
+            <Text>TODAY</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => selectReflection(getNextDay(), reflections)}>
+            <Text>NEXT</Text>
+          </Pressable>
+        </View>
+        {/* Reflection */}
+        <Text style={styles.title}>{reflection.date}</Text>
+        <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
+        <Text style={styles.text}>{reflection.quote}</Text>
+        <Text style={styles.text}>{reflection.reflection}</Text>
       </View>
-      {/* Reflection */}
-      <Text style={styles.title}>{reflection.date}</Text>
-      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
-      <Text style={styles.text}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
-    </View>
+    </SwipeView>
   );
 };
 
