@@ -117,8 +117,7 @@ const styles = StyleSheet.create({
   },
   versionText: {
     textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: 10
+    lineHeight: 20
   },
   btn: {
     marginBottom: 10
