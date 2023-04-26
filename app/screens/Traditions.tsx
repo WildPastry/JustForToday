@@ -76,7 +76,7 @@ const Traditions: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 15
   },
   logoContainer: {
     alignItems: 'center',

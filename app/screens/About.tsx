@@ -1,15 +1,18 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
-import { ScrollView, Text, View } from '../components/Themed';
+import ForwardedScrollView, { Text, View } from '../components/Themed';
+import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
+import { useFocusEffect } from '@react-navigation/native';
 
 const About: React.FC = (): JSX.Element => {
-  // Colour settings
+  // Screen settings
+  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   const handleUpgrade = (): void => {
@@ -23,8 +26,18 @@ const About: React.FC = (): JSX.Element => {
     return packageJson.version.toString();
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      // Scroll to top on focus
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+      return () => null;
+    }, [scrollViewRef])
+  );
+
   return (
-    <ScrollView style={styles.container}>
+    <ForwardedScrollView
+      contentContainerStyle={styles.container}
+      ref={scrollViewRef}>
       {/* Logo */}
       <FontAwesome
         style={styles.icon}
@@ -79,13 +92,12 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </ScrollView>
+    </ForwardedScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 15
   },
   title: {
