@@ -29,10 +29,8 @@ export default function useCachedResources(): boolean {
         dispatch(setError(true));
       } finally {
         setLoadingComplete(true);
-        // Replicate API
-        setTimeout(() => {
-          SplashScreen.hideAsync();
-        }, 3000);
+        // Hide splash
+        SplashScreen.hideAsync();
       }
     }
 
