@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     marginTop: 10
   },
   title: {
     fontSize: 20,
-    marginLeft: 5
+    marginLeft: 10
   },
   icon: {
     textAlign: 'center'

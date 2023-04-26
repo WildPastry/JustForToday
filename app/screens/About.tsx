@@ -34,7 +34,7 @@ const About: React.FC = (): JSX.Element => {
       />
       {/* Title */}
       <MonoText style={styles.title}>About the app</MonoText>
-      <Text style={styles.text}>
+      <Text style={styles.versionText}>
         JustForToday app version {getAppVersion()}
       </Text>
       {/* Divider */}
@@ -100,6 +100,11 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'left',
+    lineHeight: 20,
+    marginBottom: 10
+  },
+  versionText: {
+    textAlign: 'center',
     lineHeight: 20,
     marginBottom: 10
   },

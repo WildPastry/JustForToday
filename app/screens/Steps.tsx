@@ -33,15 +33,17 @@ const Steps: React.FC = (): JSX.Element => {
     <ForwardedScrollView
       contentContainerStyle={styles.container}
       ref={scrollViewRef}>
-      {/* Logo */}
-      <MaterialCommunityIcons
-        style={styles.icon}
-        name='stairs'
-        size={50}
-        color={Colours[colorScheme].text}
-      />
-      {/* Title */}
-      <MonoText style={styles.title}>Steps</MonoText>
+      <View style={styles.logoContainer}>
+        {/* Logo */}
+        <MaterialCommunityIcons
+          style={styles.icon}
+          name='stairs'
+          size={25}
+          color={Colours[colorScheme].text}
+        />
+        {/* Title */}
+        <MonoText style={styles.title}>Steps</MonoText>
+      </View>
       {/* Divider */}
       <View
         style={styles.divider}
@@ -60,10 +62,15 @@ const styles = StyleSheet.create({
   container: {
     padding: 15
   },
+  logoContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10
+  },
   title: {
     fontSize: 20,
-    marginTop: 10,
-    textAlign: 'center'
+    marginLeft: 10
   },
   icon: {
     textAlign: 'center'
