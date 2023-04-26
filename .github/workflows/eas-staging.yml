@@ -1,14 +1,14 @@
 name: EAS staging
-run-name: EAS staging | ${{ github.actor }} | ${{ github.head_ref }}
+run-name: EAS staging | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
-      - "refs/heads/release/*"
+      - "release/*"
   push:
     branches:
-      - "refs/heads/release/*"
+      - "release/*"
 
 jobs:
   eas-staging:

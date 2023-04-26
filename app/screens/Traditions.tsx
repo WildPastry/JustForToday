@@ -55,14 +55,10 @@ const Traditions: React.FC = (): JSX.Element => {
       />
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable
-          style={styles.control}
-          onPress={() => setTraditionType(ETraditionTypes.short)}>
+        <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
           <Text>SHORT</Text>
         </Pressable>
-        <Pressable
-          style={styles.control}
-          onPress={() => setTraditionType(ETraditionTypes.long)}>
+        <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
           <Text>LONG</Text>
         </Pressable>
       </View>
@@ -90,11 +86,8 @@ const styles = StyleSheet.create({
   },
   controls: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     marginBottom: 10
-  },
-  control: {
-    marginHorizontal: 10
   },
   title: {
     fontSize: 20,

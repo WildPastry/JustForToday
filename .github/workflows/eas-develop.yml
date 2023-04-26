@@ -1,5 +1,5 @@
 name: EAS develop
-run-name: EAS develop | ${{ github.actor }} | ${{ github.head_ref }}
+run-name: EAS develop | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   pull_request:

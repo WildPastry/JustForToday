@@ -5,7 +5,7 @@ on:
   pull_request:
     types: [opened]
     branches:
-      - "refs/heads/release/*"
+      - "release/*"
 
 jobs:
   prepare-release:
