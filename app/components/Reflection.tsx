@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import { IReflection } from '../types/data.types';
-import { SwipeView } from './SwipeView';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
@@ -107,12 +106,7 @@ const Reflection: React.FC = (): JSX.Element => {
     return verifiedData;
   };
 
-  // Screen swiping actions
-  const swipeLeft = () => selectReflection(getNextDay(), reflections);
-  const swipeRight = () => selectReflection(getPrevDay(), reflections);
-
   return (
-    <SwipeView onSwipeLeft={swipeLeft} onSwipeRight={swipeRight}>
       <View>
         {/* Controls */}
         <View style={styles.controls}>
@@ -135,7 +129,6 @@ const Reflection: React.FC = (): JSX.Element => {
         <Text style={styles.text}>{reflection.quote}</Text>
         <Text style={styles.text}>{reflection.reflection}</Text>
       </View>
-    </SwipeView>
   );
 };
 
