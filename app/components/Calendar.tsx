@@ -75,12 +75,13 @@ const Calendar: React.FC<ICalendar> = ({
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
+    // alignItems: 'center',
+    // flex: 1,
+    // justifyContent: 'center'
   },
   text: {
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'center'
   },
   bold: {
     fontWeight: 'bold'
