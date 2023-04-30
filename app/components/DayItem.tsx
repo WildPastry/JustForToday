@@ -19,7 +19,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     <Pressable
       style={[
         styles.dayItem,
-        dates.today === props.id ? dayItemTheme : styles.dayItemDefault
+        dates.today === props.id
+          ? dayItemTheme
+          : styles[`${colorScheme}DayItem`]
       ]}
       onPress={props.onPress}>
       {/* Day item */}
@@ -38,15 +40,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 5
   },
+  lightDayItem: {
+    backgroundColor: '#e5edf9'
+  },
+  darkDayItem: {
+    backgroundColor: '#1a1d49'
+  },
   lightDayItemToday: {
     borderColor: '#131324',
     borderWidth: 0.5
   },
   darkDayItemToday: {
     backgroundColor: '#131324'
-  },
-  dayItemDefault: {
-    backgroundColor: 'transparent'
   }
 });
 

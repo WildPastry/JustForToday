@@ -42,7 +42,7 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <MonoText style={styles.title}>Calendar</MonoText>
       {/* Reset to all months */}
       <Pressable onPress={() => getAllMonths()}>
@@ -74,11 +74,6 @@ const Calendar: React.FC<ICalendar> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // alignItems: 'center',
-    // flex: 1,
-    // justifyContent: 'center'
-  },
   text: {
     marginBottom: 10,
     textAlign: 'center'
