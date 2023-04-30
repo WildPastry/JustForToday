@@ -60,14 +60,16 @@ const Calendar: React.FC<ICalendar> = ({
           />
         ))}
         {/* Days */}
-        {days.map((day, index) => (
-          <DayItem
-            key={index}
-            id={day.id}
-            name={day.name}
-            onPress={() => handleDay(day)}
-          />
-        ))}
+        <View style={styles.dayView}>
+          {days.map((day, index) => (
+            <DayItem
+              key={index}
+              id={day.id}
+              name={day.name}
+              onPress={() => handleDay(day)}
+            />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -85,6 +87,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  dayView: {
+    flex: 3
   }
 });
 
