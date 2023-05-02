@@ -17,7 +17,7 @@
     "update": "eas update --branch develop"
   },
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "expo": "~48.0.15",
     "expo-asset": "~8.9.1",
     "expo-dev-client": "~2.2.1",
