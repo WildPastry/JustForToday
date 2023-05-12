@@ -1,0 +1,35 @@
+name: Bump versions
+run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-versions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          npm install -g ncu
+          npm install
+
+      - name: Update packages
+        run: |
+          npm run ncu -u
+          npm install
+          git commit -m "Auotomated version control" package.json
+
+      - name: Push updates
+        run: git push origin ${{ github.ref_name }}
