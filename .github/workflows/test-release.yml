@@ -6,9 +6,6 @@ on:
     types: [opened, edited, synchronize, reopened]
     branches:
       - main
-  push:
-    branches:
-      - main
 
 jobs:
   test-release:

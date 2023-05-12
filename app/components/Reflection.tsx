@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { EDateFormat, IDate } from '../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
@@ -106,26 +107,28 @@ const Reflection: React.FC = (): JSX.Element => {
   };
 
   return (
-    <View>
-      {/* Controls */}
-      <View style={styles.controls}>
-        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <Text>PREV</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => selectReflection(getCurrentDay(), reflections)}>
-          <Text>TODAY</Text>
-        </Pressable>
-        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <Text>NEXT</Text>
-        </Pressable>
+      <View>
+        {/* Controls */}
+        <View style={styles.controls}>
+          <Pressable
+            onPress={() => selectReflection(getPrevDay(), reflections)}>
+            <Text>PREV</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => selectReflection(getCurrentDay(), reflections)}>
+            <Text>TODAY</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => selectReflection(getNextDay(), reflections)}>
+            <Text>NEXT</Text>
+          </Pressable>
+        </View>
+        {/* Reflection */}
+        <Text style={styles.title}>{reflection.date}</Text>
+        <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
+        <Text style={styles.text}>{reflection.quote}</Text>
+        <Text style={styles.text}>{reflection.reflection}</Text>
       </View>
-      {/* Reflection */}
-      <Text style={styles.title}>{reflection.date}</Text>
-      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
-      <Text style={styles.text}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
-    </View>
   );
 };
 

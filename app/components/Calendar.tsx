@@ -42,7 +42,7 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <MonoText style={styles.title}>Calendar</MonoText>
       {/* Reset to all months */}
       <Pressable onPress={() => getAllMonths()}>
@@ -60,27 +60,25 @@ const Calendar: React.FC<ICalendar> = ({
           />
         ))}
         {/* Days */}
-        {days.map((day, index) => (
-          <DayItem
-            key={index}
-            id={day.id}
-            name={day.name}
-            onPress={() => handleDay(day)}
-          />
-        ))}
+        <View style={styles.dayView}>
+          {days.map((day, index) => (
+            <DayItem
+              key={index}
+              id={day.id}
+              name={day.name}
+              onPress={() => handleDay(day)}
+            />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  },
   text: {
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'center'
   },
   bold: {
     fontWeight: 'bold'
@@ -89,6 +87,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  dayView: {
+    flex: 3
   }
 });
 
