@@ -6,6 +6,7 @@
 
 - [ ] New feature
 - [ ] Bugfix
+- [ ] Versions
 - [ ] Documentation
 - [ ] Workflow
 - [ ] Test
