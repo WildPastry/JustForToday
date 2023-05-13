@@ -28,7 +28,7 @@ jobs:
       - name: Update packages
         run: |
           npm run ncu -u
-          npm install
+          npm install --force
           git commit -m "Auotomated version control" package.json
 
       - name: Push updates
