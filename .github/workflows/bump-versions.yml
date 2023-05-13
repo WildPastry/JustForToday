@@ -3,6 +3,8 @@ run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
+    branch:
+      default: "develop"
 
 jobs:
   bump-versions:
