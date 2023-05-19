@@ -41,7 +41,18 @@ jobs:
       - name: Push updates
         run: git push origin ${{ github.ref_name }}
 
+      - name: Install jq
+        run: sudo apt-get -y install jq
+
       - name: Dependabot rebase
         run: |
-          npm install -g github-pr-rebase
-          github-pr-rebase --author dependabot[bot]
+          PULLS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&head=dependabot")
+
+          for PULL in $(echo "${PULLS}" | jq -r '.[].number'); do
+            curl -s -X POST \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/${PULL}/update-branch" \
+              -d '{"expected_head_sha": null}'
+          done
