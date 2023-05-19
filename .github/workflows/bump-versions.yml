@@ -40,3 +40,6 @@ jobs:
 
       - name: Push updates
         run: git push origin ${{ github.ref_name }}
+
+      - name: Dependabot rebase
+        run: npx dependabot-auto-merge

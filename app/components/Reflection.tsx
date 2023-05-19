@@ -126,7 +126,7 @@ const Reflection: React.FC = (): JSX.Element => {
         {/* Reflection */}
         <Text style={styles.title}>{reflection.date}</Text>
         <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
-        <Text style={styles.text}>{reflection.quote}</Text>
+        <Text style={styles.quote}>{reflection.quote}</Text>
         <Text style={styles.text}>{reflection.reflection}</Text>
       </View>
   );
@@ -139,15 +139,23 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   text: {
-    lineHeight: 20,
+    fontSize: 15,
+    lineHeight: 23,
     marginBottom: 10,
     textAlign: 'left'
   },
   title: {
-    fontSize: 18,
-    lineHeight: 20,
+    fontSize: 20,
+    lineHeight: 25,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  quote: {
+    fontWeight: 'bold',
+    fontSize: 17,
+    lineHeight: 23,
+    marginBottom: 10,
+    textAlign: 'left'
   },
   bold: {
     fontWeight: 'bold'
