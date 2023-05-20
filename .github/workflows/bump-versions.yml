@@ -51,7 +51,7 @@ jobs:
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: $STATUS" == 'unclean'
+    if: $STATUS == 'unclean'
 
     steps:
       - run: |
@@ -60,7 +60,7 @@ jobs:
   close-job:
     needs: setup
     runs-on: ubuntu-latest
-    if: $STATUS" == 'clean'
+    if: $STATUS == 'clean'
 
     steps:
       - run: |
