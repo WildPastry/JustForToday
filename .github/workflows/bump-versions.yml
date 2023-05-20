@@ -7,7 +7,7 @@ on:
       default: "develop"
 
 jobs:
-  check-for-new-versions:
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,16 +35,29 @@ jobs:
         run: |
           ncu -u
 
+      - name: Check working directory
+        id: check_status
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "::set-output name=status::unclean"
+          else
+            echo "::set-output name=status::clean"
+          fi
+
   bump-versions:
+    needs: setup
     runs-on: ubuntu-latest
-    if: "! $(git status --porcelain)"
+    if: needs.setup.outputs.check_status == 'unclean'
+
     steps:
       - run: |
-          echo Bumping versions
+          echo Bump versions
 
   close-job:
+    needs: setup
     runs-on: ubuntu-latest
-    if: "$(git status --porcelain)"
+    if: needs.setup.outputs.check_status == 'clean'
+
     steps:
       - run: |
           echo Skipping version bump
