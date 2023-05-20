@@ -52,7 +52,7 @@ jobs:
           git commit -m "Auotomated version control"
 
       - name: Push updates
-        if: ${{ steps.check_status.outputs.clean_working_tree !== 'true' }}
+        if: ${{ steps.check_status.outputs.clean_working_tree != 'true' }}
         continue-on-error: false
         run: git push origin ${{ github.ref_name }}
 
@@ -80,6 +80,6 @@ jobs:
 
     steps:
       - name: Skipping version bump
-        if: ${{ steps.check_status.outputs.clean_working_tree === 'true' }}
+        if: ${{ steps.check_status.outputs.clean_working_tree == 'true' }}
         run: |
           echo "Working tree is clean. No pending commits."
