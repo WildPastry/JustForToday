@@ -39,19 +39,19 @@ jobs:
         id: check_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            echo "STATUS=unclean" >> $GITHUB_ENV
+            echo "::set-output name=status::unclean"
           else
-            echo "STATUS=clean" >> $GITHUB_ENV
+            echo "::set-output name=status::clean"
           fi
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: ${{ env.STATUS }}"
+          echo "STATUS: ${{ steps.check_status.outputs.status }}"
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ env.STATUS }} == 'unclean'
+    if: needs.setup.outputs.status == 'unclean'
 
     steps:
       - run: |
@@ -60,7 +60,7 @@ jobs:
   close-job:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ env.STATUS }} == 'clean'
+    if: needs.setup.outputs.status == 'clean'
 
     steps:
       - run: |
