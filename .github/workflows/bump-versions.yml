@@ -41,7 +41,7 @@ jobs:
       - name: Push updates
         run: git push origin ${{ github.ref_name }}
 
-      - name: Dependabot rebase
+      - name: Check dependabot pull requests
         run: |
           GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
           REPO_OWNER="${{ github.repository_owner }}"
@@ -59,3 +59,16 @@ jobs:
               -d '{"state": "closed"}' \
               "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls/$PR"
           done
+
+  close-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Skipping version bump
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "There are uncommitted changes in the working tree."
+            exit 1
+          else
+            echo "Working tree is clean. No pending commits."
+          fi
