@@ -30,15 +30,30 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g npm-check-updates
-          npm install
 
       - name: Update packages
         run: |
           ncu -u
           npm install --force
-          git commit -m "Auotomated version control" package.json
+
+      - name: Check working tree
+        id: check_status
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "There are uncommitted changes in the working tree."
+            exit 1
+          else
+            echo "Working tree is clean. No pending commits."
+          fi
+
+      - name: Add and commit changes
+        run: |
+          git add .
+          git commit -m "Auotomated version control"
 
       - name: Push updates
+        if: ${{ steps.check_status.outputs.clean_working_tree !== 'true' }}
+        continue-on-error: false
         run: git push origin ${{ github.ref_name }}
 
       - name: Check dependabot pull requests
@@ -65,10 +80,6 @@ jobs:
 
     steps:
       - name: Skipping version bump
+        if: ${{ steps.check_status.outputs.clean_working_tree === 'true' }}
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "There are uncommitted changes in the working tree."
-            exit 1
-          else
-            echo "Working tree is clean. No pending commits."
-          fi
+          echo "Working tree is clean. No pending commits."
