@@ -7,7 +7,7 @@ on:
       default: "develop"
 
 jobs:
-  bump-versions:
+  check-for-new-versions:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,54 +31,20 @@ jobs:
         run: |
           npm install -g npm-check-updates
 
-      - name: Update packages
+      - name: Check forz
         run: |
           ncu -u
-          npm install --force
 
-      - name: Add and commit changes
-        run: |
-          git add .
-          git diff --quiet || git commit -m "Automated version control"
-
-      - name: Push updates
-        run: git push origin ${{ github.ref_name }}
-
-      - name: Check dependabot pull requests
-        run: |
-          GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
-          REPO_OWNER="${{ github.repository_owner }}"
-          REPO_NAME="${{ github.event.repository.name }}"
-
-          PR_LIST=$(curl -s -X GET \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls?state=open&labels=dependencies")
-
-          for PR in $(echo "$PR_LIST" | jq -r '.[].number'); do
-            curl -s -X POST \
-              -H "Authorization: Bearer $GITHUB_TOKEN" \
-              -H "Accept: application/vnd.github.v3+json" \
-              -d '{"state": "closed"}' \
-              "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls/$PR"
-          done
+  bump-versions:
+    runs-on: ubuntu-latest
+    if: -n $(git status --porcelain)
+    steps:
+      - run: |
+          echo Bumping versions
 
   close-job:
     runs-on: ubuntu-latest
-
+    if: $(git status --porcelain)
     steps:
-      - name: Checking working tree status
-        id: check_status
-        run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "Working tree is not clean."
-            echo "::set-output name=working_tree_clean::false"
-          else
-            echo "Working tree is clean. No need to run version bump."
-            echo "::set-output name=working_tree_clean::true"
-          fi
-
-      - name: Skipping version bump
-        if: steps.check_status.outputs.working_tree_clean == 'true'
-        run: |
-          echo "Working tree is clean. No need to run version bump."
+      - run: |
+          echo Skipping version bump
