@@ -46,12 +46,12 @@ jobs:
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: $STATUS"
+          echo "STATUS: ${{ env.STATUS }}"
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: $STATUS == 'unclean'
+    if: ${{ env.STATUS }} == 'unclean'
 
     steps:
       - run: |
@@ -60,7 +60,7 @@ jobs:
   close-job:
     needs: setup
     runs-on: ubuntu-latest
-    if: $STATUS == 'clean'
+    if: ${{ env.STATUS }} == 'clean'
 
     steps:
       - run: |
