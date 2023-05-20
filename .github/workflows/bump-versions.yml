@@ -31,20 +31,20 @@ jobs:
         run: |
           npm install -g npm-check-updates
 
-      - name: Check forz
+      - name: Check for updates
         run: |
           ncu -u
 
   bump-versions:
     runs-on: ubuntu-latest
-    if: -n $(git status --porcelain)
+    if: "! $(git status --porcelain)"
     steps:
       - run: |
           echo Bumping versions
 
   close-job:
     runs-on: ubuntu-latest
-    if: $(git status --porcelain)
+    if: "$(git status --porcelain)"
     steps:
       - run: |
           echo Skipping version bump
