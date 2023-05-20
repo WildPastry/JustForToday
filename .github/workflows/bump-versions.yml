@@ -44,10 +44,14 @@ jobs:
             echo "STATUS=clean" >> $GITHUB_ENV
           fi
 
+      - name: Print STATUS variable
+        run: |
+          echo "STATUS: $STATUS"
+
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ env.STATUS }}" == 'unclean'
+    if: $STATUS" == 'unclean'
 
     steps:
       - run: |
@@ -56,7 +60,7 @@ jobs:
   close-job:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ env.STATUS }}" == 'clean'
+    if: $STATUS" == 'clean'
 
     steps:
       - run: |
