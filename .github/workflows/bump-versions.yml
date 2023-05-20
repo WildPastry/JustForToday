@@ -42,6 +42,7 @@ jobs:
             echo "STATUS=unclean" >> $GITHUB_ENV
           else
             echo "STATUS=clean" >> $GITHUB_ENV
+          fi
 
   bump-versions:
     needs: setup
