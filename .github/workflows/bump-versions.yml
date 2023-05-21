@@ -36,26 +36,15 @@ jobs:
           ncu -u
 
       - name: Check working directory
-        env:
-          STATUS: false
+        id: check_dir
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             echo "Files ready to commit, run the next job."
-            STATUS=true
-            echo $STATUS
+            echo "::set-output name=status::true"
           else
             echo "Working directory clean, exit the job."
-            STATUS=false
-            echo $STATUS
+            echo "::set-output name=status::false"
           fi
 
-      # - name: Check working directory
-      #   run: |
-      #     if [[ -n $(git status --porcelain) ]]; then
-      #       echo "Files ready to commit, run the next job."
-      #     else
-      #       echo "Working directory clean, exit the job."
-      #     fi
-
       - name: Print variable
-        run: echo "$STATUS"
+        run: echo "${{ steps.check_dir.outputs.status }}"
