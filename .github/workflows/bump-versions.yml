@@ -51,7 +51,7 @@ jobs:
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: setup.outputs.status == 'unclean'
+    if: ${{ steps.setup.outputs.status == 'unclean' }}
 
     steps:
       - run: |
@@ -60,7 +60,7 @@ jobs:
   skip-version-bump:
     needs: setup
     runs-on: ubuntu-latest
-    if: setup.outputs.status == 'clean'
+    if: ${{ steps.setup.outputs.status == 'clean' }}
 
     steps:
       - run: |
