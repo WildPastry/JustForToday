@@ -45,7 +45,7 @@ jobs:
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: ${{ steps.setup.outputs.status }}"
+          echo "STATUS: ${{ steps.outputs.status }}"
 
   bump-versions:
     needs: setup
