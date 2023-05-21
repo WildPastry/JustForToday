@@ -7,7 +7,7 @@ on:
       default: "develop"
 
 jobs:
-  setup:
+  setup_directory:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,17 +36,19 @@ jobs:
           ncu -u
 
       - name: Check working directory
-        id: status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
+            echo "::set-output name=directory_status::true"
             echo "Files ready to commit, run the next job."
           else
+            echo "::set-output name=directory_status::false"
             echo "Working directory clean, exit the job."
           fi
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
+    if: needs.setup_directory.outputs.directory_status == 'true'
 
     steps:
       - run: |
@@ -55,6 +57,7 @@ jobs:
   skip-version-bump:
     needs: bump-versions
     runs-on: ubuntu-latest
+    if: needs.setup_directory.outputs.directory_status == 'false'
 
     steps:
       - run: |
