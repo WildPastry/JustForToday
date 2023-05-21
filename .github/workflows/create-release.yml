@@ -35,7 +35,7 @@ jobs:
           draft: false
           prerelease: false
 
-  close-job:
+  skip-release-creation:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == false || (!startsWith(github.head_ref, 'release/major') || !startsWith(github.head_ref, 'release/minor') || !startsWith(github.head_ref, 'release/patch'))
 

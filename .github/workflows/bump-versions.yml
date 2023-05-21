@@ -60,7 +60,7 @@ jobs:
       - run: |
           echo Bump versions
 
-  close-job:
+  skip-version-bump:
     needs: setup
     runs-on: ubuntu-latest
     if: ${{ env.STATUS == 'false' }}
