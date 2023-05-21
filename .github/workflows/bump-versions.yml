@@ -1,6 +1,9 @@
 name: Bump versions
 run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
 
+env:
+  STATUS: "false"
+
 on:
   workflow_dispatch:
     branch:
@@ -42,3 +45,7 @@ jobs:
           else
             echo "Working directory clean, exit the job."
           fi
+
+      - name: Print variable
+
+        run: echo "$STATUS"
