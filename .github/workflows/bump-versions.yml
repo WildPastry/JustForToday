@@ -1,6 +1,9 @@
 name: Bump versions
 run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
 
+env:
+  STATUS: false
+
 on:
   workflow_dispatch:
     branch:
@@ -39,19 +42,19 @@ jobs:
         id: check_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            echo "::set-output name=status::unclean"
+            echo "::set-env name=STATUS::true"
           else
-            echo "::set-output name=status::clean"
+            echo "::set-env name=STATUS::false"
           fi
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: ${{ steps.check_status.outputs.status }}"
+          echo "STATUS: ${{ env.STATUS }}
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.status == 'unclean'
+    if: ${{ env.STATUS == 'true' }}
 
     steps:
       - run: |
@@ -60,7 +63,7 @@ jobs:
   close-job:
     needs: setup
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.status == 'clean'
+    if: ${{ env.STATUS == 'false' }}
 
     steps:
       - run: |
