@@ -7,61 +7,16 @@ on:
       default: "develop"
 
 jobs:
-  setup:
+  job1:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Step 1
+        id: set-output-step
+        run: echo "::set-output name=my_output::Hello, world!"
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: npm
-
-      - name: Git config
-        run: |
-          git config --global user.email "${{ secrets.GH_ADMIN_EMAIL }}"
-          git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
-
-      - name: Install dependencies
-        run: |
-          npm install -g npm-check-updates
-
-      - name: Check for updates
-        run: |
-          ncu -u
-
-      - name: Check working directory
-        id: status
-        run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "::set-output name=status::unclean"
-          else
-            echo "::set-output name=status::clean"
-          fi
-
-      - name: Print STATUS variable
-        run: |
-          echo "STATUS: ${{ setup.outputs.status }}"
-
-  bump-versions:
-    needs: setup
+  job2:
+    needs: job1
     runs-on: ubuntu-latest
-    if: ${{ setup.outputs.status == 'unclean' }}
-
     steps:
-      - run: |
-          echo Bump versions
-
-  skip-version-bump:
-    needs: setup
-    runs-on: ubuntu-latest
-    if: ${{ setup.outputs.status == 'clean' }}
-
-    steps:
-      - run: |
-          echo Skip version bump
+      - name: Step 1
+        run: echo "The value of my_output is ${{ needs.job1.outputs.my_output }}"
