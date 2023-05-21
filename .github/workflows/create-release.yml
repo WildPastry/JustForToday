@@ -41,4 +41,4 @@ jobs:
 
     steps:
       - run: |
-          echo Skipping release creation
+          echo Skip release creation
