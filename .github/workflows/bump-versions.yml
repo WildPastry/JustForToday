@@ -39,31 +39,31 @@ jobs:
         id: directory_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
+            echo "::set-output name=directory_status::true"
             echo "Files ready to commit, run the next job."
-            echo "true" > directory_status.txt
           else
+            echo "::set-output name=directory_status::false"
             echo "Working directory clean, exit the job."
-            echo "false" > directory_status.txt
           fi
 
   bump-versions:
     needs: setup_directory
     runs-on: ubuntu-latest
-    if: steps.setup_directory.outputs.directory_status == 'true'
+    if: needs.setup_directory.outputs.directory_status == 'true'
 
     steps:
       - name: Retrieve directory status
         run: |
-          directory_status=$(cat directory_status.txt)
+          directory_status=$(needs.setup_directory.outputs.directory_status)
           echo "Bump versions $directory_status"
 
   skip-version-bump:
     needs: setup_directory
     runs-on: ubuntu-latest
-    if: steps.setup_directory.outputs.directory_status == 'false'
+    if: needs.setup_directory.outputs.directory_status == 'false'
 
     steps:
       - name: Retrieve directory status
         run: |
-          directory_status=$(cat directory_status.txt)
+          directory_status=$(needs.setup_directory.outputs.directory_status)
           echo "Skip version bump $directory_status"
