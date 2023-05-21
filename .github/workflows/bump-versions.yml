@@ -1,9 +1,6 @@
 name: Bump versions
 run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
 
-env:
-  STATUS: "false"
-
 on:
   workflow_dispatch:
     branch:
@@ -39,9 +36,8 @@ jobs:
           ncu -u
 
       - name: Check working directory
-        shell: bash
         env:
-          STATUS: ${{ shellOutput('git status --porcelain') }}
+          STATUS: $(git status --porcelain)
         run: |
           if [[ -n "$STATUS" ]]; then
             echo "Files ready to commit, run the next job."
