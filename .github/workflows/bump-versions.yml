@@ -39,11 +39,11 @@ jobs:
         id: directory_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            echo "::set-output name=directory_status::true"
-            echo "Files ready to commit, run the next job. $directory_status"
+            echo "STATUS=true" >>$GITHUB_OUTPUT
+            echo "Files ready to commit, run the next job. ${{STATUS}}"
           else
-            echo "::set-output name=directory_status::false"
-            echo "Working directory clean, exit the job. $directory_status"
+            echo "STATUS=false" >>$GITHUB_OUTPUT
+            echo "Working directory clean, exit the job. ${{STATUS}}"
           fi
 
   # bump-versions:
