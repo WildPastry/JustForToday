@@ -46,12 +46,12 @@ jobs:
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: ${{ steps.setup.outputs.status }}"
+          echo "STATUS: ${{ setup.outputs.status }}"
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ steps.setup.outputs.status == 'unclean' }}
+    if: ${{ setup.outputs.status == 'unclean' }}
 
     steps:
       - run: |
@@ -60,7 +60,7 @@ jobs:
   skip-version-bump:
     needs: setup
     runs-on: ubuntu-latest
-    if: ${{ steps.setup.outputs.status == 'clean' }}
+    if: ${{ setup.outputs.status == 'clean' }}
 
     steps:
       - run: |
