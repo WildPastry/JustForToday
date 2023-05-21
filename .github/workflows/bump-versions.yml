@@ -1,13 +1,16 @@
 name: Bump versions
 run-name: Bump versions | ${{ github.actor }} | ${{ github.ref_name }}
 
+env:
+  STATUS: false
+
 on:
   workflow_dispatch:
     branch:
       default: "develop"
 
 jobs:
-  bump-versions:
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,16 +33,38 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g npm-check-updates
-          npm install
 
-      - name: Update packages
+      - name: Check for updates
         run: |
           ncu -u
-          npm install --force
-          git commit -m "Auotomated version control" package.json
 
-      - name: Push updates
-        run: git push origin ${{ github.ref_name }}
+      - name: Check working directory
+        id: check_status
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "::set-env name=STATUS::true"
+          else
+            echo "::set-env name=STATUS::false"
+          fi
 
-      - name: Dependabot rebase
-        run: npx dependabot-auto-merge
+      - name: Print STATUS variable
+        run: |
+          echo "STATUS: ${{ env.STATUS }}
+
+  bump-versions:
+    needs: setup
+    runs-on: ubuntu-latest
+    if: ${{ env.STATUS == 'true' }}
+
+    steps:
+      - run: |
+          echo Bump versions
+
+  close-job:
+    needs: setup
+    runs-on: ubuntu-latest
+    if: ${{ env.STATUS == 'false' }}
+
+    steps:
+      - run: |
+          echo Skipping version bump
