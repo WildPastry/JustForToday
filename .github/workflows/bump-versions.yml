@@ -42,7 +42,6 @@ jobs:
             echo "Files ready to commit, run the next job."
           else
             echo "Working directory clean, exit the job."
-            exit 78
           fi
 
   bump-versions:
