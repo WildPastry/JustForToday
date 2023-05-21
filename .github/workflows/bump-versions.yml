@@ -36,32 +36,9 @@ jobs:
           ncu -u
 
       - name: Check working directory
-        id: directory_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             echo "Files ready to commit, run the next job."
           else
             echo "Working directory clean, exit the job."
           fi
-
-  # bump-versions:
-  #   # needs: setup_directory
-  #   runs-on: ubuntu-latest
-  #   if: needs.setup_directory.outputs.directory_status == 'true'
-
-  #   steps:
-  #     - name: Retrieve directory status
-  #       run: |
-  #         directory_status=$(needs.setup_directory.outputs.directory_status)
-  #         echo "Bump versions $directory_status"
-
-  # skip-version-bump:
-  #   # needs: setup_directory
-  #   runs-on: ubuntu-latest
-  #   if: needs.setup_directory.outputs.directory_status == 'false'
-
-  #   steps:
-  #     - name: Retrieve directory status
-  #       run: |
-  #         directory_status=$(needs.setup_directory.outputs.directory_status)
-  #         echo "Skip version bump $directory_status"
