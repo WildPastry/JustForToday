@@ -37,12 +37,16 @@ jobs:
 
       - name: Check working directory
         env:
-          STATUS: $(git status --porcelain)
+          STATUS: false
         run: |
-          if [[ -n "$STATUS" ]]; then
-            echo "Files ready to commit, run the next job. $STATUS"
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Files ready to commit, run the next job."
+            STATUS=true
+            echo $STATUS
           else
-            echo "Working directory clean, exit the job. $STATUS"
+            echo "Working directory clean, exit the job."
+            STATUS=false
+            echo $STATUS
           fi
 
       # - name: Check working directory
