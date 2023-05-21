@@ -7,15 +7,24 @@ on:
       default: "develop"
 
 jobs:
-  job1:
+  check_directory:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1
-        run: echo "##[set-env name=MY_VARIABLE]Hello, world!"
+      - name: Check working directory
+        id: status
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo "The working directory is not clean. Skipping the second job."
+            exit 78  # Exit with a neutral exit code (78) to indicate a skipped job
+          else
+            echo "The working directory is clean. Proceeding to the second job."
+          fi
 
-  job2:
-    needs: job1
+  second_job:
+    needs: check_directory
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1
-        run: echo "The value of MY_VARIABLE is ${{ env.MY_VARIABLE }}"
+      - name: Run the second job
+        run: |
+          echo "This is the second job."
+          # Perform the necessary actions for the second job
