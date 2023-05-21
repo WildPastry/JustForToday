@@ -36,6 +36,7 @@ jobs:
           ncu -u
 
       - name: Check working directory
+        id: status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             echo "::set-output name=status::unclean"
@@ -45,12 +46,12 @@ jobs:
 
       - name: Print STATUS variable
         run: |
-          echo "STATUS: ${{ steps.outputs.status }}"
+          echo "STATUS: ${{ steps.setup.outputs.status }}"
 
   bump-versions:
     needs: setup
     runs-on: ubuntu-latest
-    if: steps.outputs.status == 'unclean'
+    if: steps.setup.outputs.status == 'unclean'
 
     steps:
       - run: |
@@ -59,7 +60,7 @@ jobs:
   skip-version-bump:
     needs: setup
     runs-on: ubuntu-latest
-    if: steps.outputs.status == 'clean'
+    if: steps.setup.outputs.status == 'clean'
 
     steps:
       - run: |
