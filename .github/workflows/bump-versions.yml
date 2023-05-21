@@ -39,11 +39,9 @@ jobs:
         id: directory_status
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            echo "STATUS=true" >>$GITHUB_OUTPUT
-            echo "Files ready to commit, run the next job. ${{STATUS}}"
+            echo "Files ready to commit, run the next job."
           else
-            echo "STATUS=false" >>$GITHUB_OUTPUT
-            echo "Working directory clean, exit the job. ${{STATUS}}"
+            echo "Working directory clean, exit the job."
           fi
 
   # bump-versions:
