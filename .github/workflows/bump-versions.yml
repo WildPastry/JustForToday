@@ -47,4 +47,5 @@ jobs:
           fi
 
       - name: Print variable
+        if: "${{ steps.check_dir.outputs.status == true }}"
         run: echo "${{ steps.check_dir.outputs.status }}"
