@@ -46,7 +46,7 @@ jobs:
           fi
 
   bump-versions:
-    needs: setup
+    needs: setup_directory
     runs-on: ubuntu-latest
     if: needs.setup_directory.outputs.directory_status == 'true'
 
@@ -55,7 +55,7 @@ jobs:
           echo Bump versions
 
   skip-version-bump:
-    needs: bump-versions
+    needs: setup_directory
     runs-on: ubuntu-latest
     if: needs.setup_directory.outputs.directory_status == 'false'
 
