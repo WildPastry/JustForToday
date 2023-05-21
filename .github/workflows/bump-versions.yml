@@ -37,7 +37,7 @@ jobs:
 
       - name: Check working directory
         env:
-          STATUS: $(git status --porcelain)
+          STATUS: "true"
         run: |
           if [[ -n "$STATUS" ]]; then
             echo "Files ready to commit, run the next job."
