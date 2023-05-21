@@ -47,15 +47,15 @@ jobs:
 
   bump-versions:
     runs-on: ubuntu-latest
-    if: needs.setup_directory.outputs.directory_status == 'true'
+    # if: needs.setup_directory.outputs.directory_status == 'true'
 
     steps:
       - run: |
-          echo Bump versions
+          echo Bump versions ${{ needs.setup_directory.outputs.directory_status }}
 
   skip-version-bump:
     runs-on: ubuntu-latest
-    if: needs.setup_directory.outputs.directory_status == 'false'
+    # if: needs.setup_directory.outputs.directory_status == 'false'
 
     steps:
       - run: |
