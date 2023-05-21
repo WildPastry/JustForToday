@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
-        id: set-output-step
-        run: echo "::set-output name=my_output::Hello, world!"
+        run: echo "##[set-env name=MY_VARIABLE]Hello, world!"
 
   job2:
     needs: job1
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
-        run: echo "The value of my_output is ${{ needs.job1.outputs.my_output }}"
+        run: echo "The value of MY_VARIABLE is ${{ env.MY_VARIABLE }}"
