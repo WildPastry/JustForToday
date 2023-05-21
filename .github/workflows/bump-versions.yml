@@ -7,24 +7,56 @@ on:
       default: "develop"
 
 jobs:
-  check_directory:
+  setup:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Git config
+        run: |
+          git config --global user.email "${{ secrets.GH_ADMIN_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
+
+      - name: Install dependencies
+        run: |
+          npm install -g npm-check-updates
+
+      - name: Check for updates
+        run: |
+          ncu -u
+
       - name: Check working directory
         id: status
         run: |
-          if [[ $(git status --porcelain) ]]; then
-            echo "The working directory is not clean. Skipping the second job."
-            exit 78  # Exit with a neutral exit code (78) to indicate a skipped job
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Files ready to commit, run the next job."
           else
-            echo "The working directory is clean. Proceeding to the second job."
+            echo "Working directory clean, exit the job."
+            exit 78
           fi
 
-  second_job:
-    needs: check_directory
+  bump-versions:
+    needs: setup
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run the second job
-        run: |
-          echo "This is the second job."
-          # Perform the necessary actions for the second job
+      - run: |
+          echo Bump versions
+
+  skip-version-bump:
+    needs: bump-versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo Skip version bump
