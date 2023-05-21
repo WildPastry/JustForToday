@@ -39,13 +39,23 @@ jobs:
           ncu -u
 
       - name: Check working directory
+        shell: bash
+        env:
+          STATUS: ${{ shellOutput('git status --porcelain') }}
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
+          if [[ -n "$STATUS" ]]; then
             echo "Files ready to commit, run the next job."
           else
             echo "Working directory clean, exit the job."
           fi
 
-      - name: Print variable
+      # - name: Check working directory
+      #   run: |
+      #     if [[ -n $(git status --porcelain) ]]; then
+      #       echo "Files ready to commit, run the next job."
+      #     else
+      #       echo "Working directory clean, exit the job."
+      #     fi
 
+      - name: Print variable
         run: echo "$STATUS"
