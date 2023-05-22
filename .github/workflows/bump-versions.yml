@@ -46,6 +46,29 @@ jobs:
             echo "::set-output name=status::false"
           fi
 
-      - name: Print variable
+      - name: Bump versions
+        if: "${{ steps.check_dir.outputs.status == 'true' }}"
+        run: |
+          git add .
+          git commit -m "Automated version control"
+          git push origin ${{ github.ref_name }}
+          GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+            REPO_OWNER="${{ github.repository_owner }}"
+            REPO_NAME="${{ github.event.repository.name }}"
+
+            PR_LIST=$(curl -s -X GET \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls?state=open&labels=dependencies")
+
+            for PR in $(echo "$PR_LIST" | jq -r '.[].number'); do
+              curl -s -X POST \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Accept: application/vnd.github.v3+json" \
+                -d '{"state": "closed"}' \
+                "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls/$PR"
+            done
+
+      - name: Skipping version bump
         if: "${{ steps.check_dir.outputs.status == 'false' }}"
-        run: echo "${{ steps.check_dir.outputs.status }}"
+        run: echo Skipping version bump
