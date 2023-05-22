@@ -7,7 +7,7 @@ on:
       default: "develop"
 
 jobs:
-  setup_directory:
+  bump-versions:
     runs-on: ubuntu-latest
 
     steps:
