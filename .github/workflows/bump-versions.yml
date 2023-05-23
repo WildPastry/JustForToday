@@ -49,7 +49,7 @@ jobs:
       - name: Bump versions
         if: "${{ steps.check_dir.outputs.status == 'true' }}"
         run: |
-          npm i
+          npm i --force
           git add .
           git commit -m "Automated version control"
           git push origin ${{ github.ref_name }}
