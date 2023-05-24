@@ -15,7 +15,7 @@ export function useThemeColor(
   const theme = useColorScheme();
   const colorFromProps = props[theme];
 
-  // Logic for theme selection
+  // Logic for theme
   if (colorFromProps) {
     return colorFromProps;
   }
