@@ -47,7 +47,7 @@ jobs:
           fi
 
       - name: Bump versions
-        if: "${{ steps.check_dir.GITHUB_OUTPUT.status == 'true' }}"
+        if: "${{ steps.check_dir.$GITHUB_OUTPUT.status == 'true' }}"
         run: |
           npm i --force
           git add .
@@ -71,5 +71,5 @@ jobs:
             done
 
       - name: Skipping version bump
-        if: "${{ steps.check_dir.GITHUB_OUTPUT.status == 'false' }}"
+        if: "${{ steps.check_dir.$GITHUB_OUTPUT.status == 'false' }}"
         run: echo Skipping version bump
