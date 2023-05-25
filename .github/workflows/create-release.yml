@@ -20,7 +20,7 @@ jobs:
 
       - name: Get version
         run: |
-          echo "::set-output name=version::$(cat package.json| grep 'version'| awk '{print $2}'| tr -d \",)"
+          echo "version=$(cat package.json| grep 'version'| awk '{print $2}'| tr -d \",)" >> $GITHUB_OUTPUT
         id: version
 
       - name: Create release
