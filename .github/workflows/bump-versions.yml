@@ -71,5 +71,5 @@ jobs:
             done
 
       - name: Skipping version bump
-        if: "${{ steps.check_dir.outputs.status == 'false' }}"
+        if: "${{ steps.check_dir.GITHUB_OUTPUT.status == 'false' }}"
         run: echo Skipping version bump
