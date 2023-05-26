@@ -1,5 +1,5 @@
 name: EAS staging
-run-name: EAS staging | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: EAS staging | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 
 on:
   pull_request:
@@ -49,4 +49,4 @@ jobs:
       - name: Create staging preview
         uses: expo/expo-github-action/preview@v8
         with:
-          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | ${{ github.head_ref }}"
+          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.head_ref }}"

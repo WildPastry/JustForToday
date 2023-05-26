@@ -1,5 +1,5 @@
 name: EAS update
-run-name: EAS update | ${{ github.actor }} | ${{ github.ref_name }}
+run-name: EAS update | ${{ github.run_id }} | ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
@@ -61,4 +61,4 @@ jobs:
       - name: Create ${{ github.event.inputs.branch }} preview
         uses: expo/expo-github-action/preview@v8
         with:
-          command: eas update --branch ${{ github.event.inputs.branch }} --message "EAS ${{ github.event.inputs.branch }} preview from ${{ github.actor }} | ${{ github.head_ref }}"
+          command: eas update --branch ${{ github.event.inputs.branch }} --message "EAS ${{ github.event.inputs.branch }} preview from ${{ github.actor }} | branch - ${{ github.head_ref }}"
