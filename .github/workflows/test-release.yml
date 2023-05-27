@@ -1,5 +1,5 @@
 name: Test release
-run-name: Test release | ${{ github.actor }} | ${{ github.head_ref }}
+run-name: Test release | ${{ github.run_id }} | branch - ${{ github.head_ref }}
 
 on:
   pull_request:

@@ -1,5 +1,5 @@
 name: Create label
-run-name: Create label | ${{ github.actor }} | ${{ github.head_ref }}
+run-name: Create label | ${{ github.run_id }} | branch - ${{ github.head_ref }}
 
 on: [pull_request_target]
 
@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
 
     steps:
-    - name: Create label
-      uses: actions/labeler@v4
-      with:
-        repo-token: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Create label
+        uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

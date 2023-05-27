@@ -5,9 +5,6 @@
 repo:
   - "*"
 
-source:
-  - any: ["app/**/*"]
-
 workflow:
   - .github/**/*.yml
 
