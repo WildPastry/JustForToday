@@ -12,10 +12,22 @@ documentation:
   - README.md
 
 packages:
-  - ["package.json", "package-lock.json"]
+  - package.json"
 
 frontend:
   - any: ["app/**/*.tsx"]
+
+assets:
+  - any: ["app/assets/*"]
+
+api:
+  - "app/api/**/*"
+
+screens:
+  - any: ["app/screens/*"]
+
+components:
+  - any: ["app/components/*"]
 
 test:
   - app/**/*.spec.tsx
