@@ -17,5 +17,17 @@ packages:
 frontend:
   - any: ["app/**/*.tsx"]
 
+assets:
+  - any: ["app/assets/*"]
+
+api:
+  - any: ["app/api/*"]
+
+screens:
+  - any: ["app/screens/*"]
+
+components:
+  - any: ["app/components/*"]
+
 test:
   - app/**/*.spec.tsx
