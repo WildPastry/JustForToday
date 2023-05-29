@@ -12,7 +12,7 @@ documentation:
   - README.md
 
 packages:
-  - ["package.json", "package-lock.json"]
+  - package.json"
 
 frontend:
   - any: ["app/**/*.tsx"]
@@ -21,7 +21,7 @@ assets:
   - any: ["app/assets/*"]
 
 api:
-  - any: ["app/api/*"]
+  - "app/api/**/*"
 
 screens:
   - any: ["app/screens/*"]
