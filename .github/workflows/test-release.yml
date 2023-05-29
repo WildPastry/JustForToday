@@ -3,7 +3,7 @@ run-name: Test release | ${{ github.run_id }} | branch - ${{ github.head_ref }}
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
