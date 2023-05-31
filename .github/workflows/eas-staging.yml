@@ -3,7 +3,7 @@ run-name: EAS staging | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, synchronize, reopened]
     branches:
       - "release/*"
   push:
@@ -49,4 +49,4 @@ jobs:
       - name: Create staging preview
         uses: expo/expo-github-action/preview@v8
         with:
-          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.head_ref }}"
+          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.ref_name }}"
