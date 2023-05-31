@@ -49,4 +49,4 @@ jobs:
       - name: Create staging preview
         uses: expo/expo-github-action/preview@v8
         with:
-          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.head_ref }}"
+          command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.ref_name }}"
