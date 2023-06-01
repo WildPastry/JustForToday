@@ -1,4 +1,4 @@
-name: Prepare release
+name: Prepare release test
 run-name: Prepare release | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 
 on:
