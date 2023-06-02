@@ -8,7 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const dayItemTheme = styles[`${colorScheme}DayItemToday`];
+  const currentDayTheme = styles[`${colorScheme}CurrentDay`];
 
   // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
@@ -20,7 +20,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
       style={[
         styles.dayItem,
         dates.today === props.id
-          ? dayItemTheme
+          ? currentDayTheme
           : styles[`${colorScheme}DayItem`]
       ]}
       onPress={props.onPress}>
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
   darkDayItem: {
     backgroundColor: '#171b43'
   },
-  lightDayItemToday: {
+  lightCurrentDay: {
     borderColor: '#131324',
     borderWidth: 0.5
   },
-  darkDayItemToday: {
+  darkCurrentDay: {
     backgroundColor: '#131324'
   }
 });
