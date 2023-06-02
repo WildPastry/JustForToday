@@ -16,7 +16,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   });
 
   const isCurrentDay = (): boolean => {
-    return dates.today === props.id;
+    return dates.currentDay === props.id;
   };
 
   return (

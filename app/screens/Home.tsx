@@ -51,14 +51,14 @@ const Home: React.FC = (): JSX.Element => {
   // Update the current reflection
   const updateReflection = (
     showCalendar: boolean,
-    selectedDay: string
+    currentDay: string
   ): void => {
-    const selectedDate: number = constructDateFromId(selectedDay);
+    const currentDate: number = constructDateFromId(currentDay);
     // Set calendar status
     setShowCalendar(showCalendar);
     // Update store
-    dispatch(setSelectedDate(selectedDate));
-    dispatch(setSelectedDay(selectedDay));
+    dispatch(setSelectedDate(currentDate));
+    dispatch(setSelectedDay(currentDay));
   };
 
   // Render app

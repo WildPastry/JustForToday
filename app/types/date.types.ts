@@ -3,7 +3,7 @@ export interface IDate {
   selectedDate: number;
   selectedDay: string;
   currentMonth: string;
-  today: string;
+  currentDay: string;
 }
 
 export enum EDateFormat {

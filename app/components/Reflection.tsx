@@ -40,17 +40,17 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const getCurrentDay = (): string => {
     // Calculate current day
-    const selectedDay = format(new Date(), EDateFormat.ddMM);
+    const currentDay = format(new Date(), EDateFormat.ddMM);
     // Update store
     dispatch(setSelectedDate(Date.now()));
-    dispatch(setSelectedDay(selectedDay));
-    return selectedDay;
+    dispatch(setSelectedDay(currentDay));
+    return currentDay;
   };
 
   const getPrevDay = (): string => {
     // Calculate previous day
-    const selectedDate = new Date(dates.selectedDate);
-    const prevDate = add(selectedDate, { days: -1 });
+    const currentDate = new Date(dates.selectedDate);
+    const prevDate = add(currentDate, { days: -1 });
     const prevDay = format(prevDate, EDateFormat.ddMM);
     // Update store
     dispatch(setSelectedDate(prevDate.getTime()));
@@ -60,8 +60,8 @@ const Reflection: React.FC = (): JSX.Element => {
 
   const getNextDay = (): string => {
     // Calculate next day
-    const selectedDate = new Date(dates.selectedDate);
-    const nextDate = add(selectedDate, { days: 1 });
+    const currentDate = new Date(dates.selectedDate);
+    const nextDate = add(currentDate, { days: 1 });
     const nextDay = format(nextDate, EDateFormat.ddMM);
     // Update store
     dispatch(setSelectedDate(nextDate.getTime()));

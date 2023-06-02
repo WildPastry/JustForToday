@@ -7,7 +7,7 @@ const initialState: IDate = {
   selectedDate: Date.now(),
   selectedDay: format(new Date(), EDateFormat.ddMM),
   currentMonth: format(new Date(), EDateFormat.MMM),
-  today: format(new Date(), EDateFormat.ddMM)
+  currentDay: format(new Date(), EDateFormat.ddMM)
 };
 
 // Create dateSlice which holds the current date items
@@ -26,7 +26,7 @@ const dateSlice = createSlice({
 
 /**
  * Function to convert a 4 digit string ID into a timestamp
- * @param {string} id 'selectedDay' ID passed from the calendar
+ * @param {string} id 'currentDay' ID passed from the calendar
  * @returns {number} The current date as timestamp
  */
 export const constructDateFromId = (id: string): number => {
@@ -36,8 +36,8 @@ export const constructDateFromId = (id: string): number => {
   const year: number = new Date().getFullYear();
   const currentDateString: string = `${year}-${month}-${day}`;
   // Convert to timestamp for storage
-  const selectedDate: number = new Date(currentDateString).getTime();
-  return selectedDate;
+  const currentDate: number = new Date(currentDateString).getTime();
+  return currentDate;
 };
 
 // Export date actions
