@@ -6,6 +6,9 @@ on:
     types: [opened]
     branches:
       - "release/*"
+  push:
+    branches:
+      - "release/*"
 
 jobs:
   eas-staging:

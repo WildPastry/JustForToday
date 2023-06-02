@@ -6,6 +6,9 @@ on:
     types: [opened]
     branches:
       - "feature/*"
+  push:
+    branches:
+      - "feature/*"
 
 jobs:
   eas-develop:
