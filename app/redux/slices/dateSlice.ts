@@ -5,6 +5,7 @@ import format from 'date-fns/format';
 // Set initialState
 const initialState: IDate = {
   currentDate: Date.now(),
+  currentMonth: format(new Date(), EDateFormat.MMM),
   currentDay: format(new Date(), EDateFormat.ddMM),
   today: format(new Date(), EDateFormat.ddMM)
 };

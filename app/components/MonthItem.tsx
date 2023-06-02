@@ -16,9 +16,7 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   });
 
   const isCurrentMonth = (): boolean => {
-    console.log(props.id, props.name)
-    console.log(dates.today)
-    return true;
+    return dates.currentMonth === props.id;
   };
 
   return (
@@ -44,10 +42,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12
   },
   lightMonthItem: {
-    backgroundColor: '#e6e6f9'
+    backgroundColor: '#e5edf9'
   },
   darkMonthItem: {
-    backgroundColor: '#131324'
+    backgroundColor: '#171b43'
   },
   lightCurrentMonth: {
     borderColor: '#131324',

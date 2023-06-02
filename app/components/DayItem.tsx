@@ -15,13 +15,15 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     return state.date;
   });
 
+  const isCurrentDay = (): boolean => {
+    return dates.today === props.id;
+  };
+
   return (
     <Pressable
       style={[
         styles.dayItem,
-        dates.today === props.id
-          ? currentDayTheme
-          : styles[`${colorScheme}DayItem`]
+        isCurrentDay() ? currentDayTheme : styles[`${colorScheme}DayItem`]
       ]}
       onPress={props.onPress}>
       {/* Day item */}
