@@ -3,8 +3,8 @@ import ForwardedScrollView, { View } from '../components/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
-  setCurrentDate,
-  setCurrentDay
+  setSelectedDate,
+  setSelectedDay
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
@@ -51,14 +51,14 @@ const Home: React.FC = (): JSX.Element => {
   // Update the current reflection
   const updateReflection = (
     showCalendar: boolean,
-    currentDay: string
+    selectedDay: string
   ): void => {
-    const currentDate: number = constructDateFromId(currentDay);
+    const selectedDate: number = constructDateFromId(selectedDay);
     // Set calendar status
     setShowCalendar(showCalendar);
     // Update store
-    dispatch(setCurrentDate(currentDate));
-    dispatch(setCurrentDay(currentDay));
+    dispatch(setSelectedDate(selectedDate));
+    dispatch(setSelectedDay(selectedDay));
   };
 
   // Render app

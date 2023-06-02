@@ -4,9 +4,9 @@ import format from 'date-fns/format';
 
 // Set initialState
 const initialState: IDate = {
-  currentDate: Date.now(),
+  selectedDate: Date.now(),
+  selectedDay: format(new Date(), EDateFormat.ddMM),
   currentMonth: format(new Date(), EDateFormat.MMM),
-  currentDay: format(new Date(), EDateFormat.ddMM),
   today: format(new Date(), EDateFormat.ddMM)
 };
 
@@ -15,18 +15,18 @@ const dateSlice = createSlice({
   name: 'date',
   initialState,
   reducers: {
-    setCurrentDate(state, action: PayloadAction<number>) {
-      state.currentDate = action.payload;
+    setSelectedDate(state, action: PayloadAction<number>) {
+      state.selectedDate = action.payload;
     },
-    setCurrentDay(state, action: PayloadAction<string>) {
-      state.currentDay = action.payload;
+    setSelectedDay(state, action: PayloadAction<string>) {
+      state.selectedDay = action.payload;
     }
   }
 });
 
 /**
  * Function to convert a 4 digit string ID into a timestamp
- * @param {string} id 'currentDay' ID passed from the calendar
+ * @param {string} id 'selectedDay' ID passed from the calendar
  * @returns {number} The current date as timestamp
  */
 export const constructDateFromId = (id: string): number => {
@@ -36,12 +36,12 @@ export const constructDateFromId = (id: string): number => {
   const year: number = new Date().getFullYear();
   const currentDateString: string = `${year}-${month}-${day}`;
   // Convert to timestamp for storage
-  const currentDate: number = new Date(currentDateString).getTime();
-  return currentDate;
+  const selectedDate: number = new Date(currentDateString).getTime();
+  return selectedDate;
 };
 
 // Export date actions
-export const { setCurrentDate, setCurrentDay } = dateSlice.actions;
+export const { setSelectedDate, setSelectedDay } = dateSlice.actions;
 
 // Export reducer
 export default dateSlice.reducer;
