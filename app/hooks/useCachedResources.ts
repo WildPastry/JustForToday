@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { setData, setError } from '../redux/slices/dataSlice';
@@ -19,7 +20,8 @@ export default function useCachedResources(): boolean {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf')
+          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'montserrat-regular': require('../assets/fonts/Montserrat-Regular.otf')
         });
 
         // Load data

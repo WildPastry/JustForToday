@@ -1,6 +1,6 @@
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
+import { View } from '../components/styles/Themed';
 
 const ErrorScreen: React.FC = (): JSX.Element => {
   return (

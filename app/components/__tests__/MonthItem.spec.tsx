@@ -1,4 +1,4 @@
-import MonthItem from '../MonthItem';
+import MonthItem from '../layout/MonthItem';
 import renderer from 'react-test-renderer';
 
 describe('<MonthItem />', () => {

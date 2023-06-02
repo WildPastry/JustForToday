@@ -1,5 +1,5 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/Themed';
+import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
@@ -8,12 +8,12 @@ import {
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
-import Calendar from '../components/Calendar';
+import Calendar from '../components/layout/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
-import Reflection from '../components/Reflection';
+import { MonoText } from '../components/styles/StyledText';
+import Reflection from '../components/layout/Reflection';
 import useColorScheme from '../../app/hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 

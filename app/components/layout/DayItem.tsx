@@ -1,9 +1,9 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
-import { IDate, IDayItem } from '../types/date.types';
-import { AppState } from '../redux/store';
-import { Text } from './Themed';
-import { useAppSelector } from '../redux/hooks';
-import useColorScheme from '../hooks/useColorScheme';
+import { IDate, IDayItem } from '../../types/date.types';
+import { AppState } from '../../redux/store';
+import { Text } from '../styles/Themed';
+import { useAppSelector } from '../../redux/hooks';
+import useColorScheme from '../../hooks/useColorScheme';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings

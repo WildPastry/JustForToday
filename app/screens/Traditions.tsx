@@ -1,12 +1,12 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
-import ForwardedScrollView, { Text, View } from '../components/Themed';
+import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
-import Tradition from '../components/Tradition';
+import { MonoText } from '../components/styles/StyledText';
+import Tradition from '../components/layout/Tradition';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';

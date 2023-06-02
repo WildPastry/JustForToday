@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
-import ForwardedScrollView, { Text, View } from '../components/Themed';
+import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
+import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components/styles/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
@@ -90,6 +91,11 @@ const About: React.FC = (): JSX.Element => {
         All literature is taken with permission from Alcoholics Anonymous World
         Services, Inc.
       </Text>
+      <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
+        <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
+          AA link
+        </Text>
+      </ExternalLink>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </ForwardedScrollView>
@@ -131,6 +137,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     height: 1,
     width: '70%'
+  },
+  helpLink: {
+    paddingVertical: 15
+  },
+  helpLinkText: {
+    textAlign: 'center'
   }
 });
 

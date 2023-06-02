@@ -1,4 +1,4 @@
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
 
 const LoadingScreen: React.FC = (): JSX.Element => {

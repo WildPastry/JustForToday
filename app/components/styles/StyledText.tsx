@@ -8,3 +8,12 @@ export function MonoText(styledText: TextProps) {
     />
   );
 }
+
+export function BodyRegular(styledText: TextProps) {
+  return (
+    <Text
+      {...styledText}
+      style={[styledText.style, { fontFamily: 'montserrat-regular' }]}
+    />
+  );
+}

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import { EDateFormat, IDate } from '../types/date.types';
+import { EDateFormat, IDate } from '../../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { setSelectedDate, setSelectedDay } from '../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { Text, View } from '../styles/Themed';
+import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
-import { AppState } from '../redux/store';
-import { IReflection } from '../types/data.types';
+import { AppState } from '../../redux/store';
+import { IReflection } from '../../types/data.types';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
