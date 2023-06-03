@@ -17,28 +17,43 @@ exports[`<Steps /> renders correctly 1`] = `
   }
 >
   <View>
-    <Text />
-    <Text
+    <View
       style={
         [
           {
-            "color": "#000",
+            "backgroundColor": "#fff",
           },
-          [
-            {
-              "fontSize": 20,
-              "marginTop": 10,
-              "textAlign": "center",
-            },
-            {
-              "fontFamily": "space-mono",
-            },
-          ],
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginTop": 10,
+          },
         ]
       }
     >
-      Steps
-    </Text>
+      <Text />
+      <Text
+        style={
+          [
+            {
+              "color": "#000",
+            },
+            [
+              {
+                "fontSize": 20,
+                "marginLeft": 10,
+              },
+              {
+                "fontFamily": "font-display",
+              },
+            ],
+          ]
+        }
+      >
+        Steps
+      </Text>
+    </View>
     <View
       style={
         [
@@ -49,7 +64,7 @@ exports[`<Steps /> renders correctly 1`] = `
             "alignSelf": "center",
             "height": 1,
             "marginVertical": 20,
-            "width": "100%",
+            "width": "70%",
           },
         ]
       }

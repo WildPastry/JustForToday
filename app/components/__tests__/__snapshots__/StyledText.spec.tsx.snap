@@ -10,7 +10,7 @@ exports[`<StyledText /> renders correctly 1`] = `
       [
         undefined,
         {
-          "fontFamily": "space-mono",
+          "fontFamily": "font-display",
         },
       ],
     ]

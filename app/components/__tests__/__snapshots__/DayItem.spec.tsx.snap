@@ -35,12 +35,12 @@ exports[`<DayItem /> renders correctly 1`] = `
     [
       {
         "borderRadius": 7,
-        "marginBottom": 5,
+        "marginBottom": 8,
         "paddingHorizontal": 6,
         "paddingVertical": 5,
       },
       {
-        "backgroundColor": "transparent",
+        "backgroundColor": "#e5edf9",
       },
     ]
   }

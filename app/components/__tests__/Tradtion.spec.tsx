@@ -1,4 +1,4 @@
-import Calendar from '../Calendar';
+import Calendar from '../layout/Calendar';
 import { Provider } from 'react-redux';
 import { makeStore } from '../../redux/store';
 import renderer from 'react-test-renderer';
