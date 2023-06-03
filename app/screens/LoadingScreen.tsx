@@ -1,4 +1,4 @@
-import { DisplayRegular } from '../components/styles/StyledText';
+import { fontDisplay } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
 
 const LoadingScreen: React.FC = (): JSX.Element => {
@@ -7,7 +7,7 @@ const LoadingScreen: React.FC = (): JSX.Element => {
     return 'Loading';
   };
 
-  return <DisplayRegular style={styles.title}>{selectLoadingQuote()}</DisplayRegular>;
+  return <fontDisplay style={styles.title}>{selectLoadingQuote()}</fontDisplay>;
 };
 
 const styles = StyleSheet.create({

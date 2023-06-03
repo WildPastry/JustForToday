@@ -5,7 +5,7 @@ import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { DisplayRegular } from '../components/styles/StyledText';
+import { fontDisplay } from '../components/styles/StyledText';
 import Step from '../components/layout/Step';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
@@ -42,7 +42,7 @@ const Steps: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <DisplayRegular style={styles.title}>Steps</DisplayRegular>
+        <fontDisplay style={styles.title}>Steps</fontDisplay>
       </View>
       {/* Divider */}
       <View

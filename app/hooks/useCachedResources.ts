@@ -20,8 +20,11 @@ export default function useCachedResources(): boolean {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
-          'montserrat-regular': require('../assets/fonts/Montserrat-Regular.otf')
+          'font-display': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'font-thin': require('../assets/fonts/Montserrat-Thin.otf'),
+          'font-light': require('../assets/fonts/Montserrat-Light.otf'),
+          'font-regular': require('../assets/fonts/Montserrat-Regular.otf'),
+          'font-bold': require('../assets/fonts/Montserrat-Bold.otf')
         });
 
         // Load data

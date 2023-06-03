@@ -5,7 +5,7 @@ import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
-import { DisplayRegular } from '../components/styles/StyledText';
+import { fontDisplay } from '../components/styles/StyledText';
 import Tradition from '../components/layout/Tradition';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
@@ -45,7 +45,7 @@ const Traditions: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <DisplayRegular style={styles.title}>Traditions</DisplayRegular>
+        <fontDisplay style={styles.title}>Traditions</fontDisplay>
       </View>
       {/* Divider */}
       <View

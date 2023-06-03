@@ -1,19 +1,44 @@
 import { Text, TextProps } from './Themed';
 
-export function DisplayRegular(styledText: TextProps) {
+export function FontDisplay(styledText: TextProps) {
   return (
     <Text
       {...styledText}
-      style={[styledText.style, { fontFamily: 'space-mono' }]}
+      style={[styledText.style, { fontFamily: 'font-display' }]}
     />
   );
 }
 
-export function BodyRegular(styledText: TextProps) {
+export function FontThin(styledText: TextProps) {
   return (
     <Text
       {...styledText}
-      style={[styledText.style, { fontFamily: 'montserrat-regular' }]}
+      style={[styledText.style, { fontFamily: 'font-thin' }]}
+    />
+  );
+}
+
+export function FontLight(styledText: TextProps) {
+  return (
+    <Text
+      {...styledText}
+      style={[styledText.style, { fontFamily: 'font-light' }]}
+    />
+  );
+}
+export function FontRegular(styledText: TextProps) {
+  return (
+    <Text
+      {...styledText}
+      style={[styledText.style, { fontFamily: 'font-regular' }]}
+    />
+  );
+}
+export function FontBold(styledText: TextProps) {
+  return (
+    <Text
+      {...styledText}
+      style={[styledText.style, { fontFamily: 'font-bold' }]}
     />
   );
 }
