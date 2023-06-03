@@ -1,4 +1,4 @@
-import DayItem from '../DayItem';
+import DayItem from '../layout/DayItem';
 import { Provider } from 'react-redux';
 import { makeStore } from '../../redux/store';
 import renderer from 'react-test-renderer';

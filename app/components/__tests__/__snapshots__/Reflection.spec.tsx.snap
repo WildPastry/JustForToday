@@ -165,8 +165,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
-          "fontSize": 18,
-          "lineHeight": 20,
+          "fontSize": 20,
+          "lineHeight": 25,
           "marginBottom": 10,
           "textAlign": "center",
         },
@@ -181,8 +181,8 @@ exports[`<Reflection /> renders correctly 1`] = `
         },
         [
           {
-            "fontSize": 18,
-            "lineHeight": 20,
+            "fontSize": 20,
+            "lineHeight": 25,
             "marginBottom": 10,
             "textAlign": "center",
           },
@@ -200,7 +200,9 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
-          "lineHeight": 20,
+          "fontSize": 17,
+          "fontWeight": "bold",
+          "lineHeight": 23,
           "marginBottom": 10,
           "textAlign": "left",
         },
@@ -214,7 +216,8 @@ exports[`<Reflection /> renders correctly 1`] = `
           "color": "#000",
         },
         {
-          "lineHeight": 20,
+          "fontSize": 15,
+          "lineHeight": 23,
           "marginBottom": 10,
           "textAlign": "left",
         },

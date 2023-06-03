@@ -7,11 +7,7 @@ exports[`<Calendar /> renders correctly 1`] = `
       {
         "backgroundColor": "#fff",
       },
-      {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      },
+      undefined,
     ]
   }
 >
@@ -28,7 +24,7 @@ exports[`<Calendar /> renders correctly 1`] = `
             "textAlign": "center",
           },
           {
-            "fontFamily": "space-mono",
+            "fontFamily": "font-display",
           },
         ],
       ]
@@ -76,6 +72,7 @@ exports[`<Calendar /> renders correctly 1`] = `
           [
             {
               "marginBottom": 10,
+              "textAlign": "center",
             },
             {
               "fontWeight": "bold",
@@ -97,7 +94,20 @@ exports[`<Calendar /> renders correctly 1`] = `
       ]
     }
   >
-    <View />
+    <View>
+      <View
+        style={
+          [
+            {
+              "backgroundColor": "#fff",
+            },
+            {
+              "flex": 3,
+            },
+          ]
+        }
+      />
+    </View>
   </RCTScrollView>
 </View>
 `;

@@ -4,9 +4,10 @@ import format from 'date-fns/format';
 
 // Set initialState
 const initialState: IDate = {
-  currentDate: Date.now(),
-  currentDay: format(new Date(), EDateFormat.ddMM),
-  today: format(new Date(), EDateFormat.ddMM)
+  selectedDate: Date.now(),
+  selectedDay: format(new Date(), EDateFormat.ddMM),
+  currentMonth: format(new Date(), EDateFormat.MMM),
+  currentDay: format(new Date(), EDateFormat.ddMM)
 };
 
 // Create dateSlice which holds the current date items
@@ -14,11 +15,11 @@ const dateSlice = createSlice({
   name: 'date',
   initialState,
   reducers: {
-    setCurrentDate(state, action: PayloadAction<number>) {
-      state.currentDate = action.payload;
+    setSelectedDate(state, action: PayloadAction<number>) {
+      state.selectedDate = action.payload;
     },
-    setCurrentDay(state, action: PayloadAction<string>) {
-      state.currentDay = action.payload;
+    setSelectedDay(state, action: PayloadAction<string>) {
+      state.selectedDay = action.payload;
     }
   }
 });
@@ -40,7 +41,7 @@ export const constructDateFromId = (id: string): number => {
 };
 
 // Export date actions
-export const { setCurrentDate, setCurrentDay } = dateSlice.actions;
+export const { setSelectedDate, setSelectedDay } = dateSlice.actions;
 
 // Export reducer
 export default dateSlice.reducer;

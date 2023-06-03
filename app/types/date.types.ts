@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 export interface IDate {
-  currentDate: number;
+  selectedDate: number;
+  selectedDay: string;
+  currentMonth: string;
   currentDay: string;
-  today: string;
 }
 
 export enum EDateFormat {
-  ddMM = 'ddMM'
+  ddMM = 'ddMM',
+  MMM = 'MMM'
 }
 
 export interface IMonthItem {

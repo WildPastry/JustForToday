@@ -1,4 +1,4 @@
-import { MonoText } from '../components/StyledText';
+import { FontDisplay } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
 
 const LoadingScreen: React.FC = (): JSX.Element => {
@@ -7,7 +7,7 @@ const LoadingScreen: React.FC = (): JSX.Element => {
     return 'Loading';
   };
 
-  return <MonoText style={styles.title}>{selectLoadingQuote()}</MonoText>;
+  return <FontDisplay style={styles.title}>{selectLoadingQuote()}</FontDisplay>;
 };
 
 const styles = StyleSheet.create({

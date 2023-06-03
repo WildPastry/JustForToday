@@ -12,7 +12,7 @@ exports[`<LoadingScreen /> renders correctly 1`] = `
           "fontSize": 20,
         },
         {
-          "fontFamily": "space-mono",
+          "fontFamily": "font-display",
         },
       ],
     ]
