@@ -1,27 +1,29 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
-import { IDate, IDayItem } from '../types/date.types';
-import { AppState } from '../redux/store';
-import { Text } from './Themed';
-import { useAppSelector } from '../redux/hooks';
-import useColorScheme from '../hooks/useColorScheme';
+import { IDate, IDayItem } from '../../types/date.types';
+import { AppState } from '../../redux/store';
+import { Text } from '../styles/Themed';
+import { useAppSelector } from '../../redux/hooks';
+import useColorScheme from '../../hooks/useColorScheme';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const dayItemTheme = styles[`${colorScheme}DayItemToday`];
+  const currentDayTheme = styles[`${colorScheme}CurrentDay`];
 
   // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
 
+  const isCurrentDay = (): boolean => {
+    return dates.currentDay === props.id;
+  };
+
   return (
     <Pressable
       style={[
         styles.dayItem,
-        dates.today === props.id
-          ? dayItemTheme
-          : styles[`${colorScheme}DayItem`]
+        isCurrentDay() ? currentDayTheme : styles[`${colorScheme}DayItem`]
       ]}
       onPress={props.onPress}>
       {/* Day item */}
@@ -46,11 +48,11 @@ const styles = StyleSheet.create({
   darkDayItem: {
     backgroundColor: '#171b43'
   },
-  lightDayItemToday: {
+  lightCurrentDay: {
     borderColor: '#131324',
     borderWidth: 0.5
   },
-  darkDayItemToday: {
+  darkCurrentDay: {
     backgroundColor: '#131324'
   }
 });

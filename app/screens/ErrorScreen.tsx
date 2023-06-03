@@ -1,11 +1,11 @@
-import { MonoText } from '../components/StyledText';
+import { fontDisplay } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
+import { View } from '../components/styles/Themed';
 
 const ErrorScreen: React.FC = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>ErrorScreen</MonoText>
+      <fontDisplay style={styles.title}>ErrorScreen</fontDisplay>
     </View>
   );
 };

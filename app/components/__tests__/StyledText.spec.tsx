@@ -1,9 +1,9 @@
-import { MonoText } from '../StyledText';
+import { fontDisplay } from '../styles/StyledText';
 import renderer from 'react-test-renderer';
 
 describe('<StyledText />', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<MonoText>Snapshot</MonoText>).toJSON();
+    const tree = renderer.create(<fontDisplay>Snapshot</fontDisplay>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

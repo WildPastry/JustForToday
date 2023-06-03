@@ -1,12 +1,12 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/Themed';
+import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
-import Step from '../components/Step';
+import { fontDisplay } from '../components/styles/StyledText';
+import Step from '../components/layout/Step';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -42,7 +42,7 @@ const Steps: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <MonoText style={styles.title}>Steps</MonoText>
+        <fontDisplay style={styles.title}>Steps</fontDisplay>
       </View>
       {/* Divider */}
       <View

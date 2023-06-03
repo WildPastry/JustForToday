@@ -1,12 +1,12 @@
 /* eslint-disable */
-import { EDateFormat, IDate } from '../types/date.types';
+import { EDateFormat, IDate } from '../../types/date.types';
 import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { setCurrentDate, setCurrentDay } from '../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { Text, View } from '../styles/Themed';
+import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
-import { AppState } from '../redux/store';
-import { IReflection } from '../types/data.types';
+import { AppState } from '../../redux/store';
+import { IReflection } from '../../types/data.types';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 
@@ -35,37 +35,37 @@ const Reflection: React.FC = (): JSX.Element => {
 
   // Effect for setting the current reflection based on date
   useEffect(() => {
-    selectReflection(dates.currentDay, reflections);
+    selectReflection(dates.selectedDay, reflections);
   }, [reflections]);
 
   const getCurrentDay = (): string => {
     // Calculate current day
     const currentDay = format(new Date(), EDateFormat.ddMM);
     // Update store
-    dispatch(setCurrentDate(Date.now()));
-    dispatch(setCurrentDay(currentDay));
+    dispatch(setSelectedDate(Date.now()));
+    dispatch(setSelectedDay(currentDay));
     return currentDay;
   };
 
   const getPrevDay = (): string => {
     // Calculate previous day
-    const currentDate = new Date(dates.currentDate);
+    const currentDate = new Date(dates.selectedDate);
     const prevDate = add(currentDate, { days: -1 });
     const prevDay = format(prevDate, EDateFormat.ddMM);
     // Update store
-    dispatch(setCurrentDate(prevDate.getTime()));
-    dispatch(setCurrentDay(prevDay));
+    dispatch(setSelectedDate(prevDate.getTime()));
+    dispatch(setSelectedDay(prevDay));
     return prevDay;
   };
 
   const getNextDay = (): string => {
     // Calculate next day
-    const currentDate = new Date(dates.currentDate);
+    const currentDate = new Date(dates.selectedDate);
     const nextDate = add(currentDate, { days: 1 });
     const nextDay = format(nextDate, EDateFormat.ddMM);
     // Update store
-    dispatch(setCurrentDate(nextDate.getTime()));
-    dispatch(setCurrentDay(nextDay));
+    dispatch(setSelectedDate(nextDate.getTime()));
+    dispatch(setSelectedDay(nextDay));
     return nextDay;
   };
 

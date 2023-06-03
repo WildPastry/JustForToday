@@ -1,19 +1,19 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/Themed';
+import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
-  setCurrentDate,
-  setCurrentDay
+  setSelectedDate,
+  setSelectedDay
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
-import Calendar from '../components/Calendar';
+import Calendar from '../components/layout/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
-import Reflection from '../components/Reflection';
+import { FontDisplay } from '../components/styles/StyledText';
+import Reflection from '../components/layout/Reflection';
 import useColorScheme from '../../app/hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -57,8 +57,8 @@ const Home: React.FC = (): JSX.Element => {
     // Set calendar status
     setShowCalendar(showCalendar);
     // Update store
-    dispatch(setCurrentDate(currentDate));
-    dispatch(setCurrentDay(currentDay));
+    dispatch(setSelectedDate(currentDate));
+    dispatch(setSelectedDay(currentDay));
   };
 
   // Render app
@@ -84,7 +84,7 @@ const Home: React.FC = (): JSX.Element => {
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
-          <MonoText style={styles.title}>Just for today</MonoText>
+          <FontDisplay style={styles.title}>Just for today</FontDisplay>
         </View>
         {/* Divider */}
         <View

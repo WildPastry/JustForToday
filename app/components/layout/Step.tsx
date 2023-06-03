@@ -1,6 +1,6 @@
-import { IStep } from '../types/data.types';
+import { IStep } from '../../types/data.types';
 import { StyleSheet } from 'react-native';
-import { Text } from './Themed';
+import { Text } from '../styles/Themed';
 
 const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
   return (
