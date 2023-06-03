@@ -4,7 +4,7 @@ import { ScrollView, Text, View } from '../styles/Themed';
 import { useEffect, useState } from 'react';
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
-import { MonoText } from '../styles/StyledText';
+import { DisplayRegular } from '../styles/StyledText';
 import MonthItem from './MonthItem';
 import { useAppSelector } from '../../redux/hooks';
 
@@ -43,7 +43,7 @@ const Calendar: React.FC<ICalendar> = ({
 
   return (
     <View>
-      <MonoText style={styles.title}>Calendar</MonoText>
+      <DisplayRegular style={styles.title}>Calendar</DisplayRegular>
       {/* Reset to all months */}
       <Pressable onPress={() => getAllMonths()}>
         <Text style={[styles.text, styles.bold]}>ALL MONTHS</Text>

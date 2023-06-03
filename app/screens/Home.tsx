@@ -10,9 +10,9 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
 import Calendar from '../components/layout/Calendar';
 import Colours from '../constants/Colours';
+import { DisplayRegular } from '../components/styles/StyledText';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { MonoText } from '../components/styles/StyledText';
 import Reflection from '../components/layout/Reflection';
 import useColorScheme from '../../app/hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -84,7 +84,7 @@ const Home: React.FC = (): JSX.Element => {
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
-          <MonoText style={styles.title}>Just for today</MonoText>
+          <DisplayRegular style={styles.title}>Just for today</DisplayRegular>
         </View>
         {/* Divider */}
         <View

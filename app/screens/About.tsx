@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
 import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
-import { MonoText } from '../components/styles/StyledText';
+import { DisplayRegular } from '../components/styles/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
@@ -47,7 +47,7 @@ const About: React.FC = (): JSX.Element => {
         color={Colours[colorScheme].text}
       />
       {/* Title */}
-      <MonoText style={styles.title}>About the app</MonoText>
+      <DisplayRegular style={styles.title}>About the app</DisplayRegular>
       <Text style={styles.versionText}>
         JustForToday app version {getAppVersion()}
       </Text>

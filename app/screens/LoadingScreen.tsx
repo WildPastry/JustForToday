@@ -1,4 +1,4 @@
-import { MonoText } from '../components/styles/StyledText';
+import { DisplayRegular } from '../components/styles/StyledText';
 import { StyleSheet } from 'react-native';
 
 const LoadingScreen: React.FC = (): JSX.Element => {
@@ -7,7 +7,7 @@ const LoadingScreen: React.FC = (): JSX.Element => {
     return 'Loading';
   };
 
-  return <MonoText style={styles.title}>{selectLoadingQuote()}</MonoText>;
+  return <DisplayRegular style={styles.title}>{selectLoadingQuote()}</DisplayRegular>;
 };
 
 const styles = StyleSheet.create({

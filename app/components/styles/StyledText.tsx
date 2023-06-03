@@ -1,6 +1,6 @@
 import { Text, TextProps } from './Themed';
 
-export function MonoText(styledText: TextProps) {
+export function DisplayRegular(styledText: TextProps) {
   return (
     <Text
       {...styledText}
