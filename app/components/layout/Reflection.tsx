@@ -1,5 +1,5 @@
-/* eslint-disable */
 import { EDateFormat, IDate } from '../../types/date.types';
+import { FontBold, FontLight, FontRegular } from '../styles/StyledText';
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../styles/Themed';
 import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
@@ -122,10 +122,10 @@ const Reflection: React.FC = (): JSX.Element => {
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={styles.title}>{reflection.date}</Text>
-      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
-      <Text style={styles.quote}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
+      <FontLight style={styles.date}>{reflection.date}</FontLight>
+      <FontBold style={styles.title}>{reflection.title}</FontBold>
+      <FontLight style={styles.quote}>{reflection.quote}</FontLight>
+      <FontRegular style={styles.text}>{reflection.reflection}</FontRegular>
     </View>
   );
 };
@@ -136,27 +136,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10
   },
+  date: {
+    fontSize: 21,
+    lineHeight: 25,
+    letterSpacing: 1,
+    marginBottom: 10,
+    textAlign: 'center'
+  },
   text: {
-    fontSize: 15,
-    lineHeight: 23,
+    fontSize: 17,
+    lineHeight: 25,
+    letterSpacing: 0.3,
     marginBottom: 10,
     textAlign: 'left'
   },
   title: {
-    fontSize: 20,
+    fontSize: 21,
     lineHeight: 25,
+    letterSpacing: 1,
     marginBottom: 10,
     textAlign: 'center'
   },
   quote: {
-    fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: 19,
     lineHeight: 23,
+    letterSpacing: 0.3,
     marginBottom: 10,
     textAlign: 'left'
-  },
-  bold: {
-    fontWeight: 'bold'
   }
 });
 
