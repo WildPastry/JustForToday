@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    lineHeight: 25,
+    lineHeight: 22,
     letterSpacing: 0.3,
     marginBottom: 10,
     textAlign: 'left'
@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   quote: {
-    fontSize: 19,
-    lineHeight: 23,
+    fontSize: 17,
+    lineHeight: 22,
     letterSpacing: 0.3,
     marginBottom: 10,
     textAlign: 'left'

@@ -20,7 +20,7 @@ export default function useCachedResources(): boolean {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'font-display': require('../assets/fonts/lmroman10-bold.otf'),
+          'font-display': require('../assets/fonts/Rambla-Regular.otf'),
           'font-light': require('../assets/fonts/AlegreyaSans-Light.otf'),
           'font-regular': require('../assets/fonts/AlegreyaSans-Regular.otf'),
           'font-bold': require('../assets/fonts/AlegreyaSans-Bold.otf')

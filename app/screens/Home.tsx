@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   title: {
-    fontSize: 25,
-    marginLeft: 10
+    fontSize: 30,
+    marginLeft: 15
   },
   icon: {
     textAlign: 'center'
