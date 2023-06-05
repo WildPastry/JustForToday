@@ -1,7 +1,7 @@
-import { ColorSchemeName, StyleSheet } from 'react-native';
 import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
+import { ColorSchemeName } from 'react-native';
 import Colours from '../constants/colours';
 import { FontBold } from '../components/styles/StyledText';
 import { IStep } from '../types/data.types';
@@ -32,9 +32,9 @@ const Steps: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={globlStyles.mainContainer}
       ref={scrollViewRef}>
-      <View style={styles.logoContainer}>
+      <View style={globlStyles.headerContainer}>
         {/* Logo */}
         <MaterialCommunityIcons
           name='stairs'
@@ -42,7 +42,7 @@ const Steps: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={globlStyles.titleWithIcon}>STEPS</FontBold>
+        <FontBold style={globlStyles.header}>STEPS</FontBold>
       </View>
       {/* Divider */}
       <View
@@ -57,17 +57,5 @@ const Steps: React.FC = (): JSX.Element => {
     </ForwardedScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 15
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10
-  }
-});
 
 export default Steps;

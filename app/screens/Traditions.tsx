@@ -35,13 +35,13 @@ const Traditions: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={globlStyles.mainContainer}
       ref={scrollViewRef}>
-      <View style={styles.logoContainer}>
+      <View style={globlStyles.headerContainer}>
         {/* Logo */}
         <FontAwesome name='book' size={25} color={Colours[colorScheme].text} />
         {/* Title */}
-        <FontBold style={globlStyles.titleWithIcon}>TRADITIONS</FontBold>
+        <FontBold style={globlStyles.header}>TRADITIONS</FontBold>
       </View>
       {/* Divider */}
       <View
@@ -71,15 +71,6 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 15
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10
-  },
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
