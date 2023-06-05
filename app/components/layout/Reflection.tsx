@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 21,
-    lineHeight: 25,
+    lineHeight: 21,
     letterSpacing: 1,
     marginBottom: 10,
     textAlign: 'center'

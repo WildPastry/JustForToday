@@ -16,7 +16,7 @@ import {
   RootTabScreenProps
 } from '../types/navigation.types';
 import About from '../screens/About';
-import Colours from '../constants/Colours';
+import Colours from '../constants/colours';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';

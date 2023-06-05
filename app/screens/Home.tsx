@@ -9,7 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
 import Calendar from '../components/layout/Calendar';
-import Colours from '../constants/Colours';
+import Colours from '../constants/colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
@@ -77,12 +77,11 @@ const Home: React.FC = (): JSX.Element => {
         />
         <View style={styles.logoContainer}>
           {/* Logo */}
-          <FontAwesome5
-            style={styles.icon}
+          {/* <FontAwesome5
             name='chair'
-            size={25}
+            size={30}
             color={Colours[colorScheme].icon}
-          />
+          /> */}
           {/* Title */}
           <FontDisplay style={styles.title}>Just for today</FontDisplay>
         </View>
@@ -119,9 +118,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     marginLeft: 15
-  },
-  icon: {
-    textAlign: 'center'
   },
   calendarIcon: {
     textAlign: 'right'

@@ -3,7 +3,7 @@ import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
-import Colours from '../constants/Colours';
+import Colours from '../constants/colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
 import Tradition from '../components/layout/Tradition';
