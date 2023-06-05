@@ -42,7 +42,7 @@ const Steps: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={styles.title}>STEPS</FontBold>
+        <FontBold style={globlStyles.titleWithIcon}>STEPS</FontBold>
       </View>
       {/* Divider */}
       <View
@@ -67,11 +67,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10
-  },
-  title: {
-    fontSize: 21,
-    letterSpacing: 1,
-    marginLeft: 10
   }
 });
 

@@ -6,6 +6,11 @@ const globalStyles = StyleSheet.create({
     marginVertical: 20,
     height: 1,
     width: '70%'
+  },
+  titleWithIcon: {
+    fontSize: 25,
+    letterSpacing: 1,
+    marginLeft: 10
   }
 });
 
