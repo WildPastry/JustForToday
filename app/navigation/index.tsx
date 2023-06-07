@@ -25,6 +25,9 @@ import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useColorScheme from '../hooks/useColorScheme';
+import { Text, View } from '../components/styles/Themed';
+import globlStyles from './../constants/styles';
+import { FontBold } from '../components/styles/StyledText';
 
 export default function Navigation({
   colorScheme
@@ -69,6 +72,21 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  
+  function StepsHeader() {
+    return (
+      <View style={globlStyles.headerContainer}>
+              {/* Title */}
+      <FontBold style={globlStyles.header}>STEPS</FontBold>
+      {/* Logo */}
+      <MaterialCommunityIcons
+        name='stairs'
+        size={25}
+        color={Colours[colorScheme].text}
+      />
+    </View>
+    );
+  }
 
   return (
     <BottomTab.Navigator
@@ -121,6 +139,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
+          headerTitle: () => <StepsHeader />,
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon name='stairs' color={color} />
           ),

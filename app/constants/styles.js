@@ -9,15 +9,11 @@ const globalStyles = StyleSheet.create({
     letterSpacing: 0.3,
     lineHeight: 22
   },
-  numberContainer: {
-    backgroundColor: 'pink',
-    alignItems: 'flex-start',
-    marginRight: 10,
-    width: 32
-  },
   number: {
-    fontSize: 35,
-    lineHeight: 35
+    fontSize: 22,
+    letterSpacing: 0.3,
+    lineHeight: 22,
+    marginRight: 10
   },
   divider: {
     alignSelf: 'center',
@@ -33,7 +29,7 @@ const globalStyles = StyleSheet.create({
   header: {
     fontSize: 20,
     letterSpacing: 1,
-    marginLeft: 10
+    marginRight: 5
   }
 });
 
