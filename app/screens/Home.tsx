@@ -76,12 +76,6 @@ const Home: React.FC = (): JSX.Element => {
           color={Colours[colorScheme].icon}
         />
         <View style={styles.logoContainer}>
-          {/* Logo */}
-          {/* <FontAwesome5
-            name='chair'
-            size={30}
-            color={Colours[colorScheme].icon}
-          /> */}
           {/* Title */}
           <FontDisplay style={styles.title}>Just for today</FontDisplay>
         </View>
