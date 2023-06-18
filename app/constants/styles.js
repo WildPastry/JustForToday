@@ -30,6 +30,11 @@ const globalStyles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: 1,
     marginLeft: 5
+  },
+  headerSteps: {
+    fontSize: 20,
+    letterSpacing: 1,
+    marginLeft: 3
   }
 });
 

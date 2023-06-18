@@ -100,7 +100,7 @@ function BottomTabNavigator() {
           style={{ marginTop: 2 }}
         />
         {/* Title */}
-        <FontBold style={globlStyles.header}>STEPS</FontBold>
+        <FontBold style={globlStyles.headerSteps}>STEPS</FontBold>
       </View>
     );
   }
@@ -150,7 +150,7 @@ function BottomTabNavigator() {
           title: 'Home',
           headerTitle: () => <HomeHeader />,
           tabBarIcon: ({ color }) => (
-            <TabBarAwesome5Icon name='chair' color={color} />
+            <FontAwesome5 name='chair' size={18} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -175,7 +175,7 @@ function BottomTabNavigator() {
           title: 'Steps',
           headerTitle: () => <StepsHeader />,
           tabBarIcon: ({ color }) => (
-            <TabBarMaterialIcon name='stairs' color={color} />
+            <MaterialCommunityIcons name='stairs' size={24} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -200,7 +200,7 @@ function BottomTabNavigator() {
           title: 'Traditions',
           headerTitle: () => <TraditionsHeader />,
           tabBarIcon: ({ color }) => (
-            <TabBarAwesomeIcon name='book' color={color} />
+            <FontAwesome name='book' size={20} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -220,26 +220,4 @@ function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
-}
-
-// Icons for the tabs
-function TabBarAwesomeIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={25} {...props} />;
-}
-
-function TabBarAwesome5Icon(props: {
-  name: React.ComponentProps<typeof FontAwesome5>['name'];
-  color: string;
-}) {
-  return <FontAwesome5 size={25} {...props} />;
-}
-
-function TabBarMaterialIcon(props: {
-  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
-  color: string;
-}) {
-  return <MaterialCommunityIcons size={25} {...props} />;
 }
