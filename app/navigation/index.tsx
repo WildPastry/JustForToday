@@ -17,17 +17,17 @@ import {
 } from '../types/navigation.types';
 import About from '../screens/About';
 import Colours from '../constants/colours';
+import { FontBold } from '../components/styles/StyledText';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
+import { View } from '../components/styles/Themed';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import useColorScheme from '../hooks/useColorScheme';
-import { Text, View } from '../components/styles/Themed';
 import globlStyles from './../constants/styles';
-import { FontBold } from '../components/styles/StyledText';
+import useColorScheme from '../hooks/useColorScheme';
 
 export default function Navigation({
   colorScheme
@@ -72,19 +72,52 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  
+
+  function HomeHeader() {
+    return (
+      <View style={globlStyles.headerContainer}>
+        {/* Logo */}
+        <FontAwesome5
+          name='chair'
+          size={14}
+          color={Colours[colorScheme].text}
+          style={{ marginTop: 2 }}
+        />
+        {/* Title */}
+        <FontBold style={globlStyles.header}>HOME</FontBold>
+      </View>
+    );
+  }
+
   function StepsHeader() {
     return (
       <View style={globlStyles.headerContainer}>
-              {/* Title */}
-      <FontBold style={globlStyles.header}>STEPS</FontBold>
-      {/* Logo */}
-      <MaterialCommunityIcons
-        name='stairs'
-        size={25}
-        color={Colours[colorScheme].text}
-      />
-    </View>
+        {/* Logo */}
+        <MaterialCommunityIcons
+          name='stairs'
+          size={20}
+          color={Colours[colorScheme].text}
+          style={{ marginTop: 2 }}
+        />
+        {/* Title */}
+        <FontBold style={globlStyles.header}>STEPS</FontBold>
+      </View>
+    );
+  }
+
+  function TraditionsHeader() {
+    return (
+      <View style={globlStyles.headerContainer}>
+        {/* Logo */}
+        <FontAwesome
+          name='book'
+          size={16}
+          color={Colours[colorScheme].text}
+          style={{ marginTop: 4 }}
+        />
+        {/* Title */}
+        <FontBold style={globlStyles.header}>TRADITIONS</FontBold>
+      </View>
     );
   }
 
@@ -115,6 +148,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
+          headerTitle: () => <HomeHeader />,
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon name='chair' color={color} />
           ),
@@ -164,6 +198,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
+          headerTitle: () => <TraditionsHeader />,
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon name='book' color={color} />
           ),

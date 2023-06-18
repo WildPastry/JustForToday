@@ -29,7 +29,7 @@ const globalStyles = StyleSheet.create({
   header: {
     fontSize: 20,
     letterSpacing: 1,
-    marginRight: 5
+    marginLeft: 5
   }
 });
 
