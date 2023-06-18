@@ -1,21 +1,15 @@
-import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
-import { ColorSchemeName } from 'react-native';
-import Colours from '../constants/colours';
-import { FontBold } from '../components/styles/StyledText';
+import ForwardedScrollView from '../components/styles/Themed';
 import { IStep } from '../types/data.types';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Step from '../components/layout/Step';
 import globlStyles from './../constants/styles';
 import { useAppSelector } from '../redux/hooks';
-import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Steps: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   // Data from store
   const steps: IStep[] = useAppSelector((state: AppState): IStep[] => {
@@ -34,22 +28,6 @@ const Steps: React.FC = (): JSX.Element => {
     <ForwardedScrollView
       contentContainerStyle={globlStyles.mainContainer}
       ref={scrollViewRef}>
-      <View style={globlStyles.headerContainer}>
-        {/* Logo */}
-        <MaterialCommunityIcons
-          name='stairs'
-          size={25}
-          color={Colours[colorScheme].text}
-        />
-        {/* Title */}
-        <FontBold style={globlStyles.header}>STEPS</FontBold>
-      </View>
-      {/* Divider */}
-      <View
-        style={globlStyles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
-      />
       {/* Steps */}
       {steps.map((step, index) => (
         <Step key={index} id={step.id} step={step.step} />
