@@ -1,7 +1,7 @@
 import { FontBold, FontRegular } from '../styles/StyledText';
-import { Text, View } from '../../components/styles/Themed';
 import { IStep } from '../../types/data.types';
 import { StyleSheet } from 'react-native';
+import { View } from '../../components/styles/Themed';
 import globlStyles from './../../constants/styles';
 
 const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
