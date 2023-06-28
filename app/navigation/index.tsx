@@ -161,7 +161,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -186,7 +186,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -211,7 +211,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
