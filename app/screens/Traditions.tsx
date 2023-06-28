@@ -1,17 +1,20 @@
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
-import { Pressable, StyleSheet } from 'react-native';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Tradition from '../components/layout/Tradition';
 import globlStyles from './../constants/styles';
 import { useAppSelector } from '../redux/hooks';
+import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Traditions: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const activeButtonTheme = styles[`${colorScheme}ActiveButton`];
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -28,17 +31,47 @@ const Traditions: React.FC = (): JSX.Element => {
     }, [scrollViewRef])
   );
 
+  const isActiveButton = (currentTraditionType: ETraditionTypes): boolean => {
+    return currentTraditionType === traditionType;
+  };
+
   return (
     <ForwardedScrollView
       contentContainerStyle={globlStyles.mainContainer}
       ref={scrollViewRef}>
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
-          <Text>SHORT</Text>
+        <Pressable
+          style={[
+            styles.button,
+            isActiveButton(ETraditionTypes.short)
+              ? activeButtonTheme
+              : styles[`${colorScheme}Button`]
+          ]}
+          onPress={() => setTraditionType(ETraditionTypes.short)}>
+          <Text
+            style={[
+              styles.text,
+              isActiveButton(ETraditionTypes.short) ? styles.textWhite : null
+            ]}>
+            SHORT
+          </Text>
         </Pressable>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
-          <Text>LONG</Text>
+        <Pressable
+          style={[
+            styles.button,
+            isActiveButton(ETraditionTypes.long)
+              ? activeButtonTheme
+              : styles[`${colorScheme}Button`]
+          ]}
+          onPress={() => setTraditionType(ETraditionTypes.long)}>
+          <Text
+            style={[
+              styles.text,
+              isActiveButton(ETraditionTypes.long) ? styles.textWhite : null
+            ]}>
+            LONG
+          </Text>
         </Pressable>
       </View>
       {/* Traditions */}
@@ -54,6 +87,30 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center'
+  },
+  textWhite: {
+    color: '#fff'
+  },
+  button: {
+    backgroundColor: 'blue',
+    borderRadius: 12,
+    paddingVertical: 12,
+    width: '40%'
+  },
+  lightButton: {
+    backgroundColor: '#e5edf9'
+  },
+  lightActiveButton: {
+    backgroundColor: '#171b43'
+  },
+  darkButton: {
+    backgroundColor: '#171b43'
+  },
+  darkActiveButton: {
+    backgroundColor: '#131324'
+  },
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
