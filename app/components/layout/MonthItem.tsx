@@ -27,7 +27,9 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
       ]}
       onPress={props.onPress}>
       {/* Month item */}
-      <Text style={styles.text}>{props.id}</Text>
+      <Text style={[styles.text, isCurrentMonth() ? styles.textWhite : null]}>
+        {props.id}
+      </Text>
     </Pressable>
   );
 };
@@ -35,6 +37,9 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
 const styles = StyleSheet.create({
   text: {
     textAlign: 'center'
+  },
+  textWhite: {
+    color: '#fff'
   },
   monthItem: {
     borderRadius: 12,
@@ -44,12 +49,11 @@ const styles = StyleSheet.create({
   lightMonthItem: {
     backgroundColor: '#e5edf9'
   },
-  darkMonthItem: {
+  lightCurrentMonth: {
     backgroundColor: '#171b43'
   },
-  lightCurrentMonth: {
-    borderColor: '#131324',
-    borderWidth: 0.5
+  darkMonthItem: {
+    backgroundColor: '#171b43'
   },
   darkCurrentMonth: {
     backgroundColor: '#131324'

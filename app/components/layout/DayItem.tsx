@@ -27,7 +27,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
       ]}
       onPress={props.onPress}>
       {/* Day item */}
-      <Text style={styles.text}>{props.name}</Text>
+      <Text style={[styles.text, isCurrentDay() ? styles.textWhite : null]}>
+        {props.name}
+      </Text>
     </Pressable>
   );
 };
@@ -35,6 +37,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 const styles = StyleSheet.create({
   text: {
     textAlign: 'center'
+  },
+  textWhite: {
+    color: '#fff'
   },
   dayItem: {
     borderRadius: 7,
@@ -45,12 +50,11 @@ const styles = StyleSheet.create({
   lightDayItem: {
     backgroundColor: '#e5edf9'
   },
-  darkDayItem: {
+  lightCurrentDay: {
     backgroundColor: '#171b43'
   },
-  lightCurrentDay: {
-    borderColor: '#131324',
-    borderWidth: 0.5
+  darkDayItem: {
+    backgroundColor: '#171b43'
   },
   darkCurrentDay: {
     backgroundColor: '#131324'
