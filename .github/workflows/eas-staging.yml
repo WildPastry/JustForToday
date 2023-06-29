@@ -3,9 +3,9 @@ run-name: EAS staging | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 
 on:
   pull_request:
-    types: [opened, synchronize, edited]
+    types: [opened, synchronize]
     branches:
-      - "release/*"
+      - "release/**"
 
 jobs:
   eas-staging:
