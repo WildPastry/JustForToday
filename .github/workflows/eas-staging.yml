@@ -4,11 +4,10 @@ run-name: EAS staging | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 on:
   pull_request:
     types: [opened, synchronize]
-    branches:
-      - "release/**"
 
 jobs:
   eas-staging:
+    if: startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
