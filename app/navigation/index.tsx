@@ -78,9 +78,8 @@ function BottomTabNavigator() {
         {/* Logo */}
         <FontAwesome5
           name='chair'
-          size={14}
+          size={18}
           color={Colours[colorScheme].text}
-          style={{ marginTop: 2 }}
         />
         {/* Title */}
         <FontBold style={globlStyles.header}>HOME</FontBold>
@@ -94,9 +93,8 @@ function BottomTabNavigator() {
         {/* Logo */}
         <MaterialCommunityIcons
           name='stairs'
-          size={20}
+          size={25}
           color={Colours[colorScheme].text}
-          style={{ marginTop: 2 }}
         />
         {/* Title */}
         <FontBold style={globlStyles.headerSteps}>STEPS</FontBold>
@@ -108,12 +106,7 @@ function BottomTabNavigator() {
     return (
       <View style={globlStyles.headerContainer}>
         {/* Logo */}
-        <FontAwesome
-          name='book'
-          size={16}
-          color={Colours[colorScheme].text}
-          style={{ marginTop: 4 }}
-        />
+        <FontAwesome name='book' size={20} color={Colours[colorScheme].text} />
         {/* Title */}
         <FontBold style={globlStyles.header}>TRADITIONS</FontBold>
       </View>
@@ -147,6 +140,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
+          headerTitleAlign: 'left',
           headerTitle: () => <HomeHeader />,
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name='chair' size={18} color={color} />
@@ -172,6 +166,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
+          headerTitleAlign: 'left',
           headerTitle: () => <StepsHeader />,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name='stairs' size={24} color={color} />
@@ -197,6 +192,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
+          headerTitleAlign: 'left',
           headerTitle: () => <TraditionsHeader />,
           tabBarIcon: ({ color }) => (
             <FontAwesome name='book' size={20} color={color} />
