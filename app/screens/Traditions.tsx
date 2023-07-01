@@ -36,9 +36,7 @@ const Traditions: React.FC = (): JSX.Element => {
   };
 
   return (
-    <ForwardedScrollView
-      contentContainerStyle={globlStyles.mainContainer}
-      ref={scrollViewRef}>
+    <View>
       {/* Controls */}
       <View style={styles.controls}>
         <Pressable
@@ -74,15 +72,19 @@ const Traditions: React.FC = (): JSX.Element => {
           </Text>
         </Pressable>
       </View>
-      {/* Traditions */}
-      {traditions[traditionType].map((tradition, index) => (
-        <Tradition
-          key={index}
-          id={tradition.id}
-          tradition={tradition.tradition}
-        />
-      ))}
-    </ForwardedScrollView>
+      <ForwardedScrollView
+        contentContainerStyle={globlStyles.mainContainer}
+        ref={scrollViewRef}>
+        {/* Traditions */}
+        {traditions[traditionType].map((tradition, index) => (
+          <Tradition
+            key={index}
+            id={tradition.id}
+            tradition={tradition.tradition}
+          />
+        ))}
+      </ForwardedScrollView>
+    </View>
   );
 };
 
@@ -94,10 +96,8 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   button: {
-    backgroundColor: 'blue',
-    borderRadius: 12,
     paddingVertical: 12,
-    width: '40%'
+    width: '50%'
   },
   lightButton: {
     backgroundColor: '#e5edf9'
@@ -113,8 +113,7 @@ const styles = StyleSheet.create({
   },
   controls: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20
+    justifyContent: 'space-between'
   }
 });
 
