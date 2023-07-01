@@ -49,7 +49,7 @@ jobs:
 
   skip-eas-staging:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'release/' !== true)
+    if: "startsWith(github.head_ref, 'release/')"
 
     steps:
       - run: |

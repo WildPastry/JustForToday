@@ -49,7 +49,7 @@ jobs:
 
   skip-eas-develop:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'feature/' !== true)
+    if: "!startsWith(github.head_ref, 'feature/')"
 
     steps:
       - run: |
