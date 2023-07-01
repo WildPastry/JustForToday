@@ -46,3 +46,11 @@ jobs:
         uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --branch develop --message "EAS develop preview from ${{ github.actor }} | branch - ${{ github.ref_name }}"
+
+  skip-eas-develop:
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'feature/') !== true
+
+    steps:
+      - run: |
+          echo Skip EAS Develop
