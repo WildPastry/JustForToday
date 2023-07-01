@@ -4,11 +4,10 @@ run-name: EAS develop | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 on:
   pull_request:
     types: [opened, synchronize]
-    branches:
-      - "feature/**"
 
 jobs:
   eas-develop:
+    if: startsWith(github.head_ref, 'feature/')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
