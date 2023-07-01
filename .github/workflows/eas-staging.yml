@@ -46,11 +46,3 @@ jobs:
         uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --branch staging --message "EAS staging preview from ${{ github.actor }} | branch - ${{ github.ref_name }}"
-
-  skip-eas-staging:
-    runs-on: ubuntu-latest
-    if: "startsWith(github.head_ref, 'release/')"
-
-    steps:
-      - run: |
-          echo Skip EAS Staging
