@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
 import {
   DarkTheme,
   DefaultTheme,
@@ -23,7 +23,6 @@ import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
-import { View } from '../components/styles/Themed';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import globlStyles from './../constants/styles';
