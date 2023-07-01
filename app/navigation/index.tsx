@@ -46,6 +46,24 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  // Colour settings
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+
+  function AboutHeader() {
+    return (
+      <View style={globlStyles.headerContainer}>
+        {/* Logo */}
+        <FontAwesome
+          name='info-circle'
+          size={20}
+          color={Colours[colorScheme].text}
+        />
+        {/* Title */}
+        <FontBold style={globlStyles.header}>ABOUT</FontBold>
+      </View>
+    );
+  }
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -59,7 +77,15 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='About' component={About} />
+        <Stack.Screen
+          name='About'
+          component={About}
+          options={{
+            title: 'About',
+            headerTitleAlign: 'left',
+            headerTitle: () => <AboutHeader />
+          }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
