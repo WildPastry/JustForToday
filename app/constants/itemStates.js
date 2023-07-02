@@ -5,10 +5,10 @@ const itemStates = StyleSheet.create({
     backgroundColor: '#e5edf9'
   },
   lightActiveItem: {
-    backgroundColor: '#171b43'
+    backgroundColor: '#067b84'
   },
   darkItem: {
-    backgroundColor: '#171b43'
+    backgroundColor: '#131324'
   },
   darkActiveItem: {
     backgroundColor: '#067b84'

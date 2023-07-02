@@ -43,10 +43,9 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   dayItem: {
-    borderRadius: 7,
-    marginBottom: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 5
+    borderRadius: 8,
+    marginBottom: 12,
+    paddingVertical: 8
   }
 });
 
