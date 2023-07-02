@@ -25,7 +25,7 @@ import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import globlStyles from './../constants/styles';
+import globalStyles from '../constants/globalStyles';
 import useColorScheme from '../hooks/useColorScheme';
 
 export default function Navigation({
@@ -51,7 +51,7 @@ function RootNavigator() {
 
   function AboutHeader() {
     return (
-      <View style={globlStyles.headerContainer}>
+      <View style={globalStyles.headerContainer}>
         {/* Logo */}
         <FontAwesome
           name='info-circle'
@@ -59,7 +59,7 @@ function RootNavigator() {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={globlStyles.header}>ABOUT</FontBold>
+        <FontBold style={globalStyles.header}>ABOUT</FontBold>
       </View>
     );
   }
@@ -100,7 +100,7 @@ function BottomTabNavigator() {
 
   function HomeHeader() {
     return (
-      <View style={globlStyles.headerContainer}>
+      <View style={globalStyles.headerContainer}>
         {/* Logo */}
         <FontAwesome5
           name='chair'
@@ -108,14 +108,14 @@ function BottomTabNavigator() {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={globlStyles.header}>HOME</FontBold>
+        <FontBold style={globalStyles.header}>HOME</FontBold>
       </View>
     );
   }
 
   function StepsHeader() {
     return (
-      <View style={globlStyles.headerContainer}>
+      <View style={globalStyles.headerContainer}>
         {/* Logo */}
         <MaterialCommunityIcons
           name='stairs'
@@ -123,18 +123,18 @@ function BottomTabNavigator() {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={globlStyles.headerSteps}>STEPS</FontBold>
+        <FontBold style={globalStyles.headerSteps}>STEPS</FontBold>
       </View>
     );
   }
 
   function TraditionsHeader() {
     return (
-      <View style={globlStyles.headerContainer}>
+      <View style={globalStyles.headerContainer}>
         {/* Logo */}
         <FontAwesome name='book' size={20} color={Colours[colorScheme].text} />
         {/* Title */}
-        <FontBold style={globlStyles.header}>TRADITIONS</FontBold>
+        <FontBold style={globalStyles.header}>TRADITIONS</FontBold>
       </View>
     );
   }

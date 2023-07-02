@@ -3,7 +3,7 @@ import { AppState } from '../redux/store';
 import ForwardedScrollView from '../components/styles/Themed';
 import { IStep } from '../types/data.types';
 import Step from '../components/layout/Step';
-import globlStyles from './../constants/styles';
+import globalStyles from '../constants/globalStyles';
 import { useAppSelector } from '../redux/hooks';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -26,7 +26,7 @@ const Steps: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={globlStyles.mainContainer}
+      contentContainerStyle={globalStyles.mainContainer}
       ref={scrollViewRef}>
       {/* Steps */}
       {steps.map((step, index) => (

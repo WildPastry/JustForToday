@@ -4,7 +4,8 @@ import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Tradition from '../components/layout/Tradition';
-import globlStyles from './../constants/styles';
+import globalStyles from '../constants/globalStyles';
+import itemStates from '../constants/itemStates';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -14,7 +15,7 @@ const Traditions: React.FC = (): JSX.Element => {
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const activeButtonTheme = styles[`${colorScheme}ActiveButton`];
+  const activeButtonTheme = itemStates[`${colorScheme}ActiveItem`];
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -44,7 +45,7 @@ const Traditions: React.FC = (): JSX.Element => {
             styles.button,
             isActiveButton(ETraditionTypes.short)
               ? activeButtonTheme
-              : styles[`${colorScheme}Button`]
+              : itemStates[`${colorScheme}Item`]
           ]}
           onPress={() => setTraditionType(ETraditionTypes.short)}>
           <Text
@@ -60,7 +61,7 @@ const Traditions: React.FC = (): JSX.Element => {
             styles.button,
             isActiveButton(ETraditionTypes.long)
               ? activeButtonTheme
-              : styles[`${colorScheme}Button`]
+              : itemStates[`${colorScheme}Item`]
           ]}
           onPress={() => setTraditionType(ETraditionTypes.long)}>
           <Text
@@ -73,7 +74,7 @@ const Traditions: React.FC = (): JSX.Element => {
         </Pressable>
       </View>
       <ForwardedScrollView
-        contentContainerStyle={globlStyles.mainContainer}
+        contentContainerStyle={globalStyles.mainContainer}
         ref={scrollViewRef}>
         {/* Traditions */}
         {traditions[traditionType].map((tradition, index) => (
@@ -98,18 +99,6 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 12,
     width: '50%'
-  },
-  lightButton: {
-    backgroundColor: '#e5edf9'
-  },
-  lightActiveButton: {
-    backgroundColor: '#171b43'
-  },
-  darkButton: {
-    backgroundColor: '#171b43'
-  },
-  darkActiveButton: {
-    backgroundColor: '#131324'
   },
   controls: {
     flexDirection: 'row',

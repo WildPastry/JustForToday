@@ -7,6 +7,8 @@ export default {
     tabIconDefault: '#8a8a8a',
     text: '#000',
     icon: '#000',
+    item: '#e5edf9',
+    activeItem: '#171b43',
     seperator: '#bdc3c7'
   },
   dark: {
@@ -17,6 +19,8 @@ export default {
     tabIconDefault: '#8a8a8a',
     text: '#fff',
     icon: '#fff',
+    item: '#171b43',
+    activeItem: '#067b84',
     seperator: '#4c4c75'
   }
 };

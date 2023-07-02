@@ -2,7 +2,7 @@ import { FontBold, FontRegular } from '../styles/StyledText';
 import { ITradition } from '../../types/data.types';
 import { StyleSheet } from 'react-native';
 import { View } from '../../components/styles/Themed';
-import globlStyles from './../../constants/styles';
+import globalStyles from '../../constants/globalStyles';
 
 const TraditionItem: React.FC<ITradition> = (
   props: ITradition
@@ -10,8 +10,8 @@ const TraditionItem: React.FC<ITradition> = (
   return (
     // Tradition
     <View style={styles.stepContainer}>
-      <FontBold style={globlStyles.number}>{props.id}</FontBold>
-      <FontRegular style={globlStyles.body}>{props.tradition}</FontRegular>
+      <FontBold style={globalStyles.number}>{props.id}</FontBold>
+      <FontRegular style={globalStyles.body}>{props.tradition}</FontRegular>
     </View>
   );
 };

@@ -2,14 +2,14 @@ import { FontBold, FontRegular } from '../styles/StyledText';
 import { IStep } from '../../types/data.types';
 import { StyleSheet } from 'react-native';
 import { View } from '../../components/styles/Themed';
-import globlStyles from './../../constants/styles';
+import globalStyles from '../../constants/globalStyles';
 
 const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
   return (
     // Step
     <View style={styles.stepContainer}>
-      <FontBold style={globlStyles.number}>{props.id}</FontBold>
-      <FontRegular style={globlStyles.body}>{props.step}</FontRegular>
+      <FontBold style={globalStyles.number}>{props.id}</FontBold>
+      <FontRegular style={globalStyles.body}>{props.step}</FontRegular>
     </View>
   );
 };
