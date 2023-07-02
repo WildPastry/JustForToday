@@ -2,13 +2,14 @@ import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IMonthItem } from '../../types/date.types';
 import { AppState } from '../../redux/store';
 import { Text } from '../styles/Themed';
+import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
 
 const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const currentMonthTheme = styles[`${colorScheme}CurrentMonth`];
+  const currentMonthTheme = itemStates[`${colorScheme}ActiveItem`];
 
   // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
@@ -23,7 +24,7 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
     <Pressable
       style={[
         styles.monthItem,
-        isCurrentMonth() ? currentMonthTheme : styles[`${colorScheme}MonthItem`]
+        isCurrentMonth() ? currentMonthTheme : itemStates[`${colorScheme}Item`]
       ]}
       onPress={props.onPress}>
       {/* Month item */}
@@ -45,18 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 12,
     paddingVertical: 12
-  },
-  lightMonthItem: {
-    backgroundColor: '#e5edf9'
-  },
-  lightCurrentMonth: {
-    backgroundColor: '#171b43'
-  },
-  darkMonthItem: {
-    backgroundColor: '#171b43'
-  },
-  darkCurrentMonth: {
-    backgroundColor: '#131324'
   }
 });
 
