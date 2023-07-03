@@ -7,20 +7,20 @@ import {
   FontLight,
   FontRegular
 } from '../styles/StyledText';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, View } from '../styles/Themed';
 import {
   constructDateFromId,
   setSelectedDate,
-  setSelectedDay
+  setSelectedDay,
+  setSelectedMonth
 } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useEffect, useRef, useState } from 'react';
 
 import { AppState } from '../../redux/store';
 import Calendar from './Calendar';
 import Colours from '../../constants/colours';
 import { IReflection } from '../../types/data.types';
-import React from 'react';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 import globalStyles from '../../constants/globalStyles';
@@ -68,10 +68,12 @@ const Reflection: React.FC = (): JSX.Element => {
   }, [reflections]);
 
   const getCurrentDay = (): string => {
-    // Calculate current day
+    // Calculate current day and month
     const currentDay = format(new Date(), EDateFormat.ddMM);
+    const currentMonth = format(new Date(), EDateFormat.MMM);
     // Update store
     dispatch(setSelectedDate(Date.now()));
+    dispatch(setSelectedMonth(currentMonth));
     dispatch(setSelectedDay(currentDay));
     return currentDay;
   };

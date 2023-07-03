@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 export interface IDate {
   selectedDate: number;
+  selectedMonth: string;
   selectedDay: string;
   currentMonth: string;
   currentDay: string;
