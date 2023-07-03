@@ -1,18 +1,37 @@
 import { EDateFormat, IDate } from '../../types/date.types';
-import { FontBold, FontLight, FontRegular } from '../styles/StyledText';
-import { Pressable, StyleSheet } from 'react-native';
+import {
+  FontBold,
+  FontDisplay,
+  FontLight,
+  FontRegular
+} from '../styles/StyledText';
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../styles/Themed';
-import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
+import {
+  constructDateFromId,
+  setSelectedDate,
+  setSelectedDay
+} from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AppState } from '../../redux/store';
+import Colours from '../../constants/colours';
 import { IReflection } from '../../types/data.types';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
+import useColorScheme from '../../../app/hooks/useColorScheme';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { useFocusEffect } from 'expo-router';
+import React from 'react';
+import globalStyles from '../../constants/globalStyles';
+import Calendar from './Calendar';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
+  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const [showCalendar, setShowCalendar] = useState(false);
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',
@@ -32,6 +51,15 @@ const Reflection: React.FC = (): JSX.Element => {
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Scroll to top on focus
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+      // Hide calendar when unfocused
+      return () => setShowCalendar(false);
+    }, [])
+  );
 
   // Effect for setting the current reflection based on date
   useEffect(() => {
@@ -69,6 +97,11 @@ const Reflection: React.FC = (): JSX.Element => {
     return nextDay;
   };
 
+  // Hide or show calendar
+  const toggleCalendar = (): void => {
+    setShowCalendar(!showCalendar);
+  };
+
   // Select the reflection from the data
   const selectReflection = (id: string, reflections: IReflection[]): void => {
     const currentReflection = reflections.find((reflection) => {
@@ -97,6 +130,19 @@ const Reflection: React.FC = (): JSX.Element => {
     }
   };
 
+  // Update the current reflection
+  const updateReflection = (
+    showCalendar: boolean,
+    currentDay: string
+  ): void => {
+    const currentDate: number = constructDateFromId(currentDay);
+    // Set calendar status
+    setShowCalendar(showCalendar);
+    // Update store
+    dispatch(setSelectedDate(currentDate));
+    dispatch(setSelectedDay(currentDay));
+  };
+
   // Verify if the data needs new lines inserted
   const verifyData = (data: string): string => {
     // Create pattern to find new line symbol {}
@@ -111,21 +157,57 @@ const Reflection: React.FC = (): JSX.Element => {
       {/* Controls */}
       <View style={styles.controls}>
         <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <Text>PREV</Text>
+          <FontAwesome
+            name='chevron-left'
+            size={20}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
+        {/* Calendar and date */}
         <Pressable
           onPress={() => selectReflection(getCurrentDay(), reflections)}>
-          <Text>TODAY</Text>
+          <Text>JUST FOR TODAY</Text>
         </Pressable>
+
         <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <Text>NEXT</Text>
+          <FontAwesome
+            name='chevron-right'
+            size={20}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
       </View>
-      {/* Reflection */}
-      <FontLight style={styles.date}>{reflection.date}</FontLight>
-      <FontBold style={styles.title}>{reflection.title}</FontBold>
-      <FontLight style={styles.quote}>{reflection.quote}</FontLight>
-      <FontRegular style={styles.text}>{reflection.reflection}</FontRegular>
+      <View style={globalStyles.headerContainer}>
+        {/* Date */}
+        <FontDisplay style={styles.date}>{reflection.date}</FontDisplay>
+        {/* Calendar icon */}
+        <FontAwesome5
+          style={styles.calendarIcon}
+          name='calendar-alt'
+          size={25}
+          onPress={() => toggleCalendar()}
+          color={Colours[colorScheme].icon}
+        />
+      </View>
+      {/* Divider */}
+      <View
+        style={styles.divider}
+        lightColor={Colours[colorScheme].seperator}
+        darkColor={Colours[colorScheme].seperator}
+      />
+      <View>
+        {showCalendar ? (
+          <Calendar handleCalendarChange={updateReflection} />
+        ) : (
+          <View>
+            <FontBold style={styles.title}>{reflection.title}</FontBold>
+            <FontLight style={styles.quote}>{reflection.quote}</FontLight>
+            <FontRegular style={styles.text}>
+              {reflection.reflection}
+            </FontRegular>
+          </View>
+        )}
+      </View>
     </View>
   );
 };
@@ -134,34 +216,43 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 30,
+    marginTop: 15
+  },
+  calendarIcon: {
+    marginLeft: 15
   },
   date: {
-    fontSize: 21,
-    lineHeight: 25,
+    fontSize: 30,
     letterSpacing: 1,
-    marginBottom: 10,
     textAlign: 'center'
   },
+  divider: {
+    alignSelf: 'center',
+    marginVertical: 30,
+    height: 1,
+    padding: 0,
+    width: '70%'
+  },
   text: {
-    fontSize: 17,
+    fontSize: 18,
     lineHeight: 22,
-    letterSpacing: 0.3,
-    marginBottom: 10,
+    letterSpacing: 0.4,
+    marginBottom: 15,
     textAlign: 'left'
   },
   title: {
     fontSize: 21,
     lineHeight: 21,
     letterSpacing: 1,
-    marginBottom: 10,
+    marginBottom: 15,
     textAlign: 'center'
   },
   quote: {
-    fontSize: 17,
+    fontSize: 18,
     lineHeight: 22,
-    letterSpacing: 0.3,
-    marginBottom: 10,
+    letterSpacing: 0.4,
+    marginBottom: 15,
     textAlign: 'left'
   }
 });

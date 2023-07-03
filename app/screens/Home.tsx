@@ -68,23 +68,13 @@ const Home: React.FC = (): JSX.Element => {
         contentContainerStyle={styles.container}
         ref={scrollViewRef}>
         {/* Calendar icon */}
-        <FontAwesome5
+        {/* <FontAwesome5
           style={styles.calendarIcon}
           name='calendar-alt'
           size={25}
           onPress={() => toggleCalendar()}
           color={Colours[colorScheme].icon}
-        />
-        <View style={styles.logoContainer}>
-          {/* Title */}
-          <FontDisplay style={styles.title}>Just for today</FontDisplay>
-        </View>
-        {/* Divider */}
-        <View
-          style={styles.divider}
-          lightColor={Colours[colorScheme].seperator}
-          darkColor={Colours[colorScheme].seperator}
-        />
+        /> */}
         {/* Components */}
         {showCalendar ? (
           <Calendar handleCalendarChange={updateReflection} />

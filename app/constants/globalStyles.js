@@ -5,13 +5,13 @@ const globalStyles = StyleSheet.create({
     padding: 20
   },
   body: {
-    fontSize: 17,
-    letterSpacing: 0.3,
+    fontSize: 18,
+    letterSpacing: 0.4,
     lineHeight: 22
   },
   number: {
     fontSize: 22,
-    letterSpacing: 0.3,
+    letterSpacing: 0.4,
     lineHeight: 22,
     marginRight: 10
   },
