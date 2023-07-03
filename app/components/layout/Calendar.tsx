@@ -1,11 +1,11 @@
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
-import { Pressable, StyleSheet } from 'react-native';
-import { ScrollView, Text, View } from '../styles/Themed';
+import { ScrollView, View } from '../styles/Themed';
 import { useEffect, useState } from 'react';
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
+import { StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/hooks';
 
 const Calendar: React.FC<ICalendar> = ({
@@ -43,11 +43,14 @@ const Calendar: React.FC<ICalendar> = ({
 
   return (
     <View>
-      <FontDisplay style={styles.title}>Calendar</FontDisplay>
-      {/* Reset to all months */}
-      <Pressable onPress={() => getAllMonths()}>
-        <Text style={[styles.text, styles.bold]}>ALL MONTHS</Text>
-      </Pressable>
+      <View style={styles.keyContainer}>
+        <FontDisplay style={[styles.key, styles.keyCurrent]}>
+          TODAY'S DATE
+        </FontDisplay>
+        <FontDisplay style={[styles.key, styles.keySelected]}>
+          SELECTED DATE
+        </FontDisplay>
+      </View>
       <ScrollView>
         {/* Months */}
         {months.map((month, index) => (
@@ -60,7 +63,7 @@ const Calendar: React.FC<ICalendar> = ({
           />
         ))}
         {/* Days */}
-        <View style={styles.dayView}>
+        <View>
           {days.map((day, index) => (
             <DayItem
               key={index}
@@ -76,20 +79,22 @@ const Calendar: React.FC<ICalendar> = ({
 };
 
 const styles = StyleSheet.create({
-  text: {
-    marginBottom: 10,
-    textAlign: 'center'
+  keyContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 30
   },
-  bold: {
-    fontWeight: 'bold'
+  key: {
+    textAlign: 'center',
+    width: '30%',
+    paddingBottom: 5,
+    borderBottomWidth: 15
   },
-  title: {
-    fontSize: 20,
-    marginBottom: 10,
-    textAlign: 'center'
+  keyCurrent: {
+    borderBottomColor: '#067b84'
   },
-  dayView: {
-    flex: 3
+  keySelected: {
+    borderBottomColor: '#2c2cb9'
   }
 });
 

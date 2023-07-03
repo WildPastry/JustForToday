@@ -1,11 +1,12 @@
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../../types/date.types';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import {
   FontBold,
   FontDisplay,
   FontLight,
   FontRegular
 } from '../styles/StyledText';
-import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../styles/Themed';
 import {
   constructDateFromId,
@@ -14,17 +15,17 @@ import {
 } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useRef, useState } from 'react';
+
 import { AppState } from '../../redux/store';
+import Calendar from './Calendar';
 import Colours from '../../constants/colours';
 import { IReflection } from '../../types/data.types';
+import React from 'react';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
-import useColorScheme from '../../../app/hooks/useColorScheme';
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import { useFocusEffect } from 'expo-router';
-import React from 'react';
 import globalStyles from '../../constants/globalStyles';
-import Calendar from './Calendar';
+import useColorScheme from '../../../app/hooks/useColorScheme';
+import { useFocusEffect } from 'expo-router';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
@@ -136,6 +137,8 @@ const Reflection: React.FC = (): JSX.Element => {
     currentDay: string
   ): void => {
     const currentDate: number = constructDateFromId(currentDay);
+    // Set local status
+    selectReflection(currentDay, reflections);
     // Set calendar status
     setShowCalendar(showCalendar);
     // Update store
@@ -156,6 +159,7 @@ const Reflection: React.FC = (): JSX.Element => {
     <View>
       {/* Controls */}
       <View style={styles.controls}>
+        {/* Previous day */}
         <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
           <FontAwesome
             name='chevron-left'
@@ -165,10 +169,13 @@ const Reflection: React.FC = (): JSX.Element => {
         </Pressable>
         {/* Calendar and date */}
         <Pressable
-          onPress={() => selectReflection(getCurrentDay(), reflections)}>
+          onPress={() => {
+            selectReflection(getCurrentDay(), reflections);
+            setShowCalendar(false);
+          }}>
           <Text>JUST FOR TODAY</Text>
         </Pressable>
-
+        {/* Next day */}
         <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
           <FontAwesome
             name='chevron-right'
@@ -196,9 +203,11 @@ const Reflection: React.FC = (): JSX.Element => {
         darkColor={Colours[colorScheme].seperator}
       />
       <View>
+        {/* Calendar */}
         {showCalendar ? (
           <Calendar handleCalendarChange={updateReflection} />
         ) : (
+          // Reflection
           <View>
             <FontBold style={styles.title}>{reflection.title}</FontBold>
             <FontLight style={styles.quote}>{reflection.quote}</FontLight>
@@ -229,7 +238,8 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 30,
+    marginTop: 30,
+    marginBottom: 25,
     height: 1,
     padding: 0,
     width: '70%'

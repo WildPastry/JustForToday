@@ -9,6 +9,7 @@ export default {
     icon: '#000',
     item: '#e5edf9',
     activeItem: '#171b43',
+    selectedItem: '#171b43',
     seperator: '#bdc3c7'
   },
   dark: {
@@ -21,6 +22,7 @@ export default {
     icon: '#fff',
     item: '#171b43',
     activeItem: '#067b84',
+    selectedItem: '#2c2cb9',
     seperator: '#4c4c75'
   }
 };
