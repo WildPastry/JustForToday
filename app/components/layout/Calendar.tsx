@@ -1,17 +1,19 @@
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
 import { ScrollView, View } from '../styles/Themed';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
 import { StyleSheet } from 'react-native';
-import { useAppSelector } from '../../redux/hooks';
+import { setSelectedMonth } from '../../redux/slices/dateSlice';
 
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
 }: ICalendar): JSX.Element => {
   // Component settings
+  const dispatch = useAppDispatch();
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
 
@@ -32,6 +34,8 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   const handleMonth = (month: IMonthItem): void => {
+    console.log(month)
+    dispatch(setSelectedMonth(month.id));
     setMonths([month]);
     setDays(month.days);
   };

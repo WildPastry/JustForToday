@@ -20,9 +20,12 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
     return state.date;
   });
 
-  // useEffect(() => {
-  //   setMonthTheme(EItemStates.ITEM);
-  // }, []);
+  useEffect(() => {
+    console.log(dates.currentMonth)
+    console.log(dates.selectedMonth)
+    console.log(props.id)
+    console.log(props.name)
+  }, []);
 
   // const checkMonth = (): string | undefined => {
   //   if (dates.currentMonth === props.id) {
