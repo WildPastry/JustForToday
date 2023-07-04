@@ -44,12 +44,12 @@ const Calendar: React.FC<ICalendar> = ({
   return (
     <View>
       <View style={styles.keyContainer}>
-        <FontDisplay style={[styles.key, styles.keyCurrent]}>
-          TODAY'S DATE
-        </FontDisplay>
-        <FontDisplay style={[styles.key, styles.keySelected]}>
-          SELECTED DATE
-        </FontDisplay>
+        <View style={[styles.key, styles.keyCurrent]}>
+          <FontDisplay style={styles.keyText}>TODAY'S DATE</FontDisplay>
+        </View>
+        <View style={[styles.key, styles.keySelected]}>
+          <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
+        </View>
       </View>
       <ScrollView>
         {/* Months */}
@@ -85,10 +85,13 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   key: {
-    textAlign: 'center',
     width: '30%',
     paddingBottom: 5,
+    borderStyle: 'solid',
     borderBottomWidth: 15
+  },
+  keyText: {
+    textAlign: 'center'
   },
   keyCurrent: {
     borderBottomColor: '#067b84'

@@ -13,9 +13,9 @@ import { useFocusEffect } from '@react-navigation/native';
 const Traditions: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
-  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const activeButtonTheme = itemStates[`${colorScheme}ActiveItem`];
+  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const activeButtonTheme = itemStates[`${colorScheme}CurrentItem`];
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
