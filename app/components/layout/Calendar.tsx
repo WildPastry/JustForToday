@@ -7,7 +7,7 @@ import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
 import { StyleSheet } from 'react-native';
-import { setSelectedMonth } from '../../redux/slices/dateSlice';
+import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
 
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
@@ -34,13 +34,13 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   const handleMonth = (month: IMonthItem): void => {
-    console.log(month)
     dispatch(setSelectedMonth(month.id));
     setMonths([month]);
     setDays(month.days);
   };
 
   const handleDay = (day: IDayItem): void => {
+    dispatch(setSelectedDay(day.id));
     setDays([day]);
     handleCalendarChange(false, day.id);
   };
