@@ -81,12 +81,12 @@ const Reflection: React.FC = (): JSX.Element => {
   const getPrevDay = (): string => {
     // Calculate previous day
     const currentDate = new Date(dates.selectedDate);
-    const currentMonth = format(currentDate, EDateFormat.MMM);
     const prevDate = add(currentDate, { days: -1 });
+    const prevMonth = format(prevDate, EDateFormat.MMM);
     const prevDay = format(prevDate, EDateFormat.ddMM);
     // Update store
     dispatch(setSelectedDate(prevDate.getTime()));
-    dispatch(setSelectedMonth(currentMonth));
+    dispatch(setSelectedMonth(prevMonth));
     dispatch(setSelectedDay(prevDay));
     return prevDay;
   };
@@ -94,12 +94,12 @@ const Reflection: React.FC = (): JSX.Element => {
   const getNextDay = (): string => {
     // Calculate next day
     const currentDate = new Date(dates.selectedDate);
-    const currentMonth = format(currentDate, EDateFormat.MMM);
     const nextDate = add(currentDate, { days: 1 });
+    const nextMonth = format(nextDate, EDateFormat.MMM);
     const nextDay = format(nextDate, EDateFormat.ddMM);
     // Update store
     dispatch(setSelectedDate(nextDate.getTime()));
-    dispatch(setSelectedMonth(currentMonth));
+    dispatch(setSelectedMonth(nextMonth));
     dispatch(setSelectedDay(nextDay));
     return nextDay;
   };

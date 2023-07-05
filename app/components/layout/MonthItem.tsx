@@ -6,6 +6,7 @@ import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useEffect } from 'react';
 
 const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   // Component settings
