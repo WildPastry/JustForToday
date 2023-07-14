@@ -179,7 +179,7 @@ const Reflection: React.FC = (): JSX.Element => {
             selectReflection(getCurrentDay(), reflections);
             setShowCalendar(false);
           }}>
-          <Text>JUST FOR TODAY</Text>
+          <FontDisplay>JUST FOR TODAY</FontDisplay>
         </Pressable>
         {/* Next day */}
         <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
