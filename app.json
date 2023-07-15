@@ -42,6 +42,9 @@
     "owner": "wildpastry",
     "runtimeVersion": {
       "policy": "sdkVersion"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
