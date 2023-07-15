@@ -53,14 +53,14 @@ const Reflection: React.FC = (): JSX.Element => {
     return state.date;
   });
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      // Hide calendar when unfocused
-      return () => setShowCalendar(false);
-    }, [])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // Scroll to top on focus
+  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  //     // Hide calendar when unfocused
+  //     return () => setShowCalendar(false);
+  //   }, [])
+  // );
 
   // Effect for setting the current reflection based on date
   useEffect(() => {

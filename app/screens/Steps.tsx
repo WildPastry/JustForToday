@@ -16,13 +16,13 @@ const Steps: React.FC = (): JSX.Element => {
     return state.data.steps;
   });
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      return () => null;
-    }, [scrollViewRef])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // Scroll to top on focus
+  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  //     return () => null;
+  //   }, [scrollViewRef])
+  // );
 
   return (
     <ForwardedScrollView

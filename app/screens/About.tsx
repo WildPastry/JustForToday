@@ -27,13 +27,13 @@ const About: React.FC = (): JSX.Element => {
     return packageJson.version.toString();
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      return () => null;
-    }, [scrollViewRef])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // Scroll to top on focus
+  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  //     return () => null;
+  //   }, [scrollViewRef])
+  // );
 
   return (
     <ForwardedScrollView

@@ -24,13 +24,13 @@ const Traditions: React.FC = (): JSX.Element => {
     }
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      return () => null;
-    }, [scrollViewRef])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // Scroll to top on focus
+  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  //     return () => null;
+  //   }, [scrollViewRef])
+  // );
 
   const isActiveButton = (currentTraditionType: ETraditionTypes): boolean => {
     return currentTraditionType === traditionType;
