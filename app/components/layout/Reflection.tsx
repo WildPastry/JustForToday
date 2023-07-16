@@ -7,8 +7,7 @@ import {
   FontLight,
   FontRegular
 } from '../styles/StyledText';
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, View } from '../styles/Themed';
+import React, { useEffect, useState } from 'react';
 import {
   constructDateFromId,
   setSelectedDate,
@@ -21,16 +20,15 @@ import { AppState } from '../../redux/store';
 import Calendar from './Calendar';
 import Colours from '../../constants/colours';
 import { IReflection } from '../../types/data.types';
+import { View } from '../styles/Themed';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 import globalStyles from '../../constants/globalStyles';
 import useColorScheme from '../../../app/hooks/useColorScheme';
-import { useFocusEffect } from 'expo-router';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
-  const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [showCalendar, setShowCalendar] = useState(false);
   const [reflection, setReflection] = useState<IReflection>({
@@ -52,15 +50,6 @@ const Reflection: React.FC = (): JSX.Element => {
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // Scroll to top on focus
-  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-  //     // Hide calendar when unfocused
-  //     return () => setShowCalendar(false);
-  //   }, [])
-  // );
 
   // Effect for setting the current reflection based on date
   useEffect(() => {

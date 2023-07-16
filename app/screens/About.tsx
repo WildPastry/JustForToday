@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Colours from '../constants/colours';
 import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
@@ -9,12 +9,13 @@ import { FontDisplay } from '../components/styles/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
-import { useFocusEffect } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const About: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const isFocused = useIsFocused();
 
   const handleUpgrade = (): void => {
     console.log('UPGRADE');
@@ -27,13 +28,17 @@ const About: React.FC = (): JSX.Element => {
     return packageJson.version.toString();
   };
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // Scroll to top on focus
-  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-  //     return () => null;
-  //   }, [scrollViewRef])
-  // );
+  // Scroll to top function
+  const scrollTop = () => {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  };
+
+  // Scroll to top on focus
+  useEffect(() => {
+    if (isFocused) {
+      scrollTop();
+    }
+  }, [isFocused]);
 
   return (
     <ForwardedScrollView

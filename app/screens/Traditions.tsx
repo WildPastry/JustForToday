@@ -1,14 +1,14 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Tradition from '../components/layout/Tradition';
 import globalStyles from '../constants/globalStyles';
 import itemStates from '../constants/itemStates';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
-import { useFocusEffect } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const Traditions: React.FC = (): JSX.Element => {
   // Screen settings
@@ -16,6 +16,7 @@ const Traditions: React.FC = (): JSX.Element => {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
   const activeButtonTheme = itemStates[`${colorScheme}CurrentItem`];
+  const isFocused = useIsFocused();
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -24,13 +25,17 @@ const Traditions: React.FC = (): JSX.Element => {
     }
   );
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // Scroll to top on focus
-  //     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-  //     return () => null;
-  //   }, [scrollViewRef])
-  // );
+  // Scroll to top function
+  const scrollTop = () => {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  };
+
+  // Scroll to top on focus
+  useEffect(() => {
+    if (isFocused) {
+      scrollTop();
+    }
+  }, [isFocused]);
 
   const isActiveButton = (currentTraditionType: ETraditionTypes): boolean => {
     return currentTraditionType === traditionType;
