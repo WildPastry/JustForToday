@@ -2,6 +2,7 @@
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useEffect, useRef } from 'react';
+
 import Colours from '../constants/colours';
 import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';

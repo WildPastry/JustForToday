@@ -1,5 +1,6 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IMonthItem } from '../../types/date.types';
+
 import { AppState } from '../../redux/store';
 import { Text } from '../styles/Themed';
 import itemStates from '../../constants/itemStates';

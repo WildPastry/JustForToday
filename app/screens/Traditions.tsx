@@ -2,6 +2,7 @@ import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useEffect, useRef, useState } from 'react';
+
 import { AppState } from '../redux/store';
 import Tradition from '../components/layout/Tradition';
 import globalStyles from '../constants/globalStyles';

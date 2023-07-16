@@ -1,4 +1,5 @@
 import { FontBold, FontRegular } from '../styles/StyledText';
+
 import { ITradition } from '../../types/data.types';
 import { StyleSheet } from 'react-native';
 import { View } from '../../components/styles/Themed';

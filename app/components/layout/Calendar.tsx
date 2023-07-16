@@ -1,13 +1,14 @@
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
+import { Pressable, StyleSheet } from 'react-native';
 import { ScrollView, View } from '../styles/Themed';
+import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
+
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
-import { StyleSheet } from 'react-native';
-import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
 
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange
@@ -47,6 +48,9 @@ const Calendar: React.FC<ICalendar> = ({
 
   return (
     <View>
+      <Pressable onPress={() => getAllMonths()}>
+        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
+      </Pressable>
       <View style={styles.keyContainer}>
         <View style={[styles.key, styles.keyCurrent]}>
           <FontDisplay style={styles.keyText}>TODAY'S DATE</FontDisplay>
@@ -102,6 +106,11 @@ const styles = StyleSheet.create({
   },
   keySelected: {
     borderBottomColor: '#2c2cb9'
+  },
+  all: {
+    fontSize: 30,
+    letterSpacing: 1,
+    textAlign: 'center'
   }
 });
 

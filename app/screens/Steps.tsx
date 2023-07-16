@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+
 import { AppState } from '../redux/store';
 import ForwardedScrollView from '../components/styles/Themed';
 import { IStep } from '../types/data.types';

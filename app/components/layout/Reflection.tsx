@@ -7,6 +7,7 @@ import {
   FontLight,
   FontRegular
 } from '../styles/StyledText';
+import { IReflection, IReflectionComponent } from '../../types/data.types';
 import React, { useEffect, useState } from 'react';
 import {
   constructDateFromId,
@@ -19,7 +20,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { AppState } from '../../redux/store';
 import Calendar from './Calendar';
 import Colours from '../../constants/colours';
-import { IReflection, IReflectionComponent } from '../../types/data.types';
 import { View } from '../styles/Themed';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
