@@ -40,7 +40,7 @@ const Home: React.FC = (): JSX.Element => {
       <ForwardedScrollView
         contentContainerStyle={styles.container}
         ref={scrollViewRef}>
-        <Reflection />
+        <Reflection handleScrollTop={scrollTop} />
       </ForwardedScrollView>
     );
   };

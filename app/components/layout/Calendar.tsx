@@ -34,7 +34,6 @@ const Calendar: React.FC<ICalendar> = ({
   };
 
   const handleMonth = (month: IMonthItem): void => {
-    console.log(month.id)
     dispatch(setSelectedMonth(month.id));
     setMonths([month]);
     setDays(month.days);

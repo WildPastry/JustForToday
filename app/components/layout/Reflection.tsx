@@ -19,14 +19,16 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { AppState } from '../../redux/store';
 import Calendar from './Calendar';
 import Colours from '../../constants/colours';
-import { IReflection } from '../../types/data.types';
+import { IReflection, IReflectionComponent } from '../../types/data.types';
 import { View } from '../styles/Themed';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 import globalStyles from '../../constants/globalStyles';
 import useColorScheme from '../../../app/hooks/useColorScheme';
 
-const Reflection: React.FC = (): JSX.Element => {
+const Reflection: React.FC<IReflectionComponent> = ({
+  handleScrollTop
+}: IReflectionComponent): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
@@ -139,6 +141,8 @@ const Reflection: React.FC = (): JSX.Element => {
     // Update store
     dispatch(setSelectedDate(currentDate));
     dispatch(setSelectedDay(currentDay));
+    // Pass change information to home page
+    handleScrollTop();
   };
 
   // Verify if the data needs new lines inserted
@@ -152,66 +156,64 @@ const Reflection: React.FC = (): JSX.Element => {
 
   return (
     <View>
-      {/* Controls */}
-      <View style={styles.controls}>
-        {/* Previous day */}
-        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <FontAwesome
-            name='chevron-left'
-            size={20}
-            color={Colours[colorScheme].icon}
-          />
-        </Pressable>
-        {/* Calendar and date */}
-        <Pressable
-          onPress={() => {
-            selectReflection(getCurrentDay(), reflections);
-            setShowCalendar(false);
-          }}>
-          <FontDisplay>JUST FOR TODAY</FontDisplay>
-        </Pressable>
-        {/* Next day */}
-        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <FontAwesome
-            name='chevron-right'
-            size={20}
-            color={Colours[colorScheme].icon}
-          />
-        </Pressable>
-      </View>
-      <View style={globalStyles.headerContainer}>
-        {/* Date */}
-        <FontDisplay style={styles.date}>{reflection.date}</FontDisplay>
-        {/* Calendar icon */}
-        <FontAwesome5
-          style={styles.calendarIcon}
-          name='calendar-alt'
-          size={25}
-          onPress={() => toggleCalendar()}
-          color={Colours[colorScheme].icon}
-        />
-      </View>
-      {/* Divider */}
-      <View
-        style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
-      />
-      <View>
-        {/* Calendar */}
-        {showCalendar ? (
-          <Calendar handleCalendarChange={updateReflection} />
-        ) : (
-          // Reflection
-          <View>
-            <FontBold style={styles.title}>{reflection.title}</FontBold>
-            <FontLight style={styles.quote}>{reflection.quote}</FontLight>
-            <FontRegular style={styles.text}>
-              {reflection.reflection}
-            </FontRegular>
+      {/* Calendar */}
+      {showCalendar ? (
+        <Calendar handleCalendarChange={updateReflection} />
+      ) : (
+        <View>
+          {/* Controls */}
+          <View style={styles.controls}>
+            {/* Previous day */}
+            <Pressable
+              onPress={() => selectReflection(getPrevDay(), reflections)}>
+              <FontAwesome
+                name='chevron-left'
+                size={20}
+                color={Colours[colorScheme].icon}
+              />
+            </Pressable>
+            {/* Calendar and date */}
+            <Pressable
+              onPress={() => {
+                selectReflection(getCurrentDay(), reflections);
+                setShowCalendar(false);
+              }}>
+              <FontDisplay>JUST FOR TODAY</FontDisplay>
+            </Pressable>
+            {/* Next day */}
+            <Pressable
+              onPress={() => selectReflection(getNextDay(), reflections)}>
+              <FontAwesome
+                name='chevron-right'
+                size={20}
+                color={Colours[colorScheme].icon}
+              />
+            </Pressable>
           </View>
-        )}
-      </View>
+          <View style={globalStyles.headerContainer}>
+            {/* Date */}
+            <FontDisplay style={styles.date}>{reflection.date}</FontDisplay>
+            {/* Calendar icon */}
+            <FontAwesome5
+              style={styles.calendarIcon}
+              name='calendar-alt'
+              size={25}
+              onPress={() => toggleCalendar()}
+              color={Colours[colorScheme].icon}
+            />
+          </View>
+          {/* Divider */}
+          <View
+            style={styles.divider}
+            lightColor={Colours[colorScheme].seperator}
+            darkColor={Colours[colorScheme].seperator}
+          />
+          {/* Reflection */}
+          <FontBold style={styles.title}>{reflection.title}</FontBold>
+          <FontLight style={styles.quote}>{reflection.quote}</FontLight>
+          <FontRegular style={styles.text}>{reflection.reflection}</FontRegular>
+        </View>
+      )}
     </View>
   );
 };
