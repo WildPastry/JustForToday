@@ -1,11 +1,5 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../../types/date.types';
-import {
-  constructDateFromId,
-  setSelectedDate,
-  setSelectedDay,
-  setSelectedMonth
-} from '../../redux/slices/dateSlice';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import {
   FontBold,
@@ -14,6 +8,12 @@ import {
   FontRegular
 } from '../styles/StyledText';
 import React, { useEffect, useState } from 'react';
+import {
+  constructDateFromId,
+  setSelectedDate,
+  setSelectedDay,
+  setSelectedMonth
+} from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { AppState } from '../../redux/store';
