@@ -1,4 +1,4 @@
-import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
+import { ColorSchemeName, ImageBackground, Pressable, StyleSheet } from 'react-native';
 import { IDate, IDayItem } from '../../types/date.types';
 
 import { AppState } from '../../redux/store';
@@ -30,7 +30,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   } => {
     let currentBg: string = '#131324';
     if (combinedDay()) {
-
+      console.log('combined day');
     }
     else if (dates.currentDay === props.id) {
       currentBg = '#067b84';
@@ -49,6 +49,10 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 
   return (
     <Pressable style={getDayTheme()} onPress={props.onPress}>
+      {/* <ImageBackground source={require('../../assets/images/button.png')} resizeMode="cover">
+      <Text style={styles.text}>{props.name}</Text>
+
+    </ImageBackground> */}
       {/* Day item */}
       <Text style={styles.text}>{props.name}</Text>
     </Pressable>

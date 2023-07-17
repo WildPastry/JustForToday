@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   all: {
     fontSize: 30,
     letterSpacing: 1,
+    marginBottom: 15,
     textAlign: 'center'
   }
 });
