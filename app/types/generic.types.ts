@@ -15,3 +15,7 @@ export enum EItemStates {
   SELECTED = 'Selected',
   COMBINED = 'Combined'
 }
+
+export interface IReflectionProps {
+  handleScrollTop: () => void;
+}

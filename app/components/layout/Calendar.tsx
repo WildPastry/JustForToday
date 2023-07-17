@@ -10,9 +10,7 @@ import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
 
-const Calendar: React.FC<ICalendar> = ({
-  handleCalendarChange
-}: ICalendar): JSX.Element => {
+const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
   const [months, setMonths] = useState<IMonthItem[]>([]);
@@ -43,7 +41,7 @@ const Calendar: React.FC<ICalendar> = ({
   const handleDay = (day: IDayItem): void => {
     dispatch(setSelectedDay(day.id));
     setDays([day]);
-    handleCalendarChange(false, day.id);
+    props.handleCalendarChange(false, day.id);
   };
 
   return (

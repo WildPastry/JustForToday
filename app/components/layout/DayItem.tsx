@@ -6,7 +6,6 @@ import { Text } from '../styles/Themed';
 import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect } from 'react';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
@@ -30,7 +29,10 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     backgroundColor: string;
   } => {
     let currentBg: string = '#131324';
-    if (dates.currentDay === props.id) {
+    if (combinedDay()) {
+
+    }
+    else if (dates.currentDay === props.id) {
       currentBg = '#067b84';
     } else if (dates.selectedDay === props.id) {
       currentBg = '#2c2cb9';
@@ -48,20 +50,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   return (
     <Pressable style={getDayTheme()} onPress={props.onPress}>
       {/* Day item */}
-      {combinedDay() ? (
-        <LinearGradient
-          colors={['#067b84', '#2c2cb9']}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-          style={styles.gradient}>
-          <Text style={styles.text}>{props.name}</Text>
-        </LinearGradient>
-      ) : (
-        <Text style={styles.text}>{props.name}</Text>
-      )}
+      <Text style={styles.text}>{props.name}</Text>
     </Pressable>
   );
-
 };
 
 const styles = StyleSheet.create({
@@ -69,9 +60,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     paddingVertical: 8
-  },
-  gradient: {
-    borderRadius: 8
   }
 });
 

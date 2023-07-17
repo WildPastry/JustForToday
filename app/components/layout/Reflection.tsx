@@ -1,5 +1,11 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../../types/date.types';
+import {
+  constructDateFromId,
+  setSelectedDate,
+  setSelectedDay,
+  setSelectedMonth
+} from '../../redux/slices/dateSlice';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import {
   FontBold,
@@ -7,28 +13,23 @@ import {
   FontLight,
   FontRegular
 } from '../styles/StyledText';
-import { IReflection, IReflectionComponent } from '../../types/data.types';
 import React, { useEffect, useState } from 'react';
-import {
-  constructDateFromId,
-  setSelectedDate,
-  setSelectedDay,
-  setSelectedMonth
-} from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { AppState } from '../../redux/store';
 import Calendar from './Calendar';
 import Colours from '../../constants/colours';
+import { IReflection } from '../../types/data.types';
+import { IReflectionProps } from '../../types/generic.types';
 import { View } from '../styles/Themed';
 import add from 'date-fns/add';
 import format from 'date-fns/format';
 import globalStyles from '../../constants/globalStyles';
 import useColorScheme from '../../../app/hooks/useColorScheme';
 
-const Reflection: React.FC<IReflectionComponent> = ({
-  handleScrollTop
-}: IReflectionComponent): JSX.Element => {
+const Reflection: React.FC<IReflectionProps> = (
+  props: IReflectionProps
+): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
@@ -142,7 +143,7 @@ const Reflection: React.FC<IReflectionComponent> = ({
     dispatch(setSelectedDate(currentDate));
     dispatch(setSelectedDay(currentDay));
     // Pass change information to home page
-    handleScrollTop();
+    props.handleScrollTop();
   };
 
   // Verify if the data needs new lines inserted

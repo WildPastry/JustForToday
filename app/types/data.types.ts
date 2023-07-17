@@ -19,10 +19,6 @@ export interface IReflection {
   reflection: string;
 }
 
-export interface IReflectionComponent {
-  handleScrollTop: () => void;
-}
-
 export interface IStep {
   id: string;
   step: string;
