@@ -76,16 +76,18 @@ const About: React.FC = (): JSX.Element => {
         PRO version contains cosmetic changes only and includes custom colour
         themes.
       </Text>
+      {/* Upgrade button */}
       <Pressable style={styles.btn} onPress={() => handleUpgrade()}>
-        <Text>UPGRADE</Text>
+        <FontDisplay style={styles.textCenter}>UPGRADE</FontDisplay>
       </Pressable>
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
         you can send them directly to the developer.
       </Text>
-      <Pressable onPress={() => handleSuggestions()}>
-        <Text>SUGGESTIONS</Text>
+      {/* Suggestions button */}
+      <Pressable style={styles.btn} onPress={() => handleSuggestions()}>
+        <FontDisplay style={styles.textCenter}>SUGGESTIONS</FontDisplay>
       </Pressable>
       {/* Divider */}
       <View
@@ -127,12 +129,18 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 10
   },
+  textCenter: {
+    textAlign: 'center'
+  },
   versionText: {
     textAlign: 'center',
     lineHeight: 20
   },
   btn: {
-    marginBottom: 10
+    backgroundColor: '#131324',
+    borderRadius: 12,
+    marginBottom: 10,
+    paddingVertical: 12
   },
   icon: {
     marginBottom: 10,

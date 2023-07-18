@@ -6,7 +6,6 @@ import { Text } from '../styles/Themed';
 import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
-import { useEffect } from 'react';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings

@@ -1,12 +1,12 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IMonthItem } from '../../types/date.types';
+import { Text, View } from '../styles/Themed';
 
 import { AppState } from '../../redux/store';
-import { Text } from '../styles/Themed';
+import { MaterialIcons } from '@expo/vector-icons';
 import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
-import { useEffect } from 'react';
 
 const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   // Component settings
@@ -37,27 +37,30 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
     }
 
     const monthTheme = {
+      backgroundColor: currentBg,
       borderRadius: 12,
       marginBottom: 12,
-      backgroundColor: currentBg
+      paddingVertical: 12
     };
 
     return monthTheme;
   };
 
   return (
-    <Pressable style={getMonthTheme()} onPress={props.onPress}>
-      {/* Month item */}
-      <Text style={styles.text}>{props.id}</Text>
-    </Pressable>
+    <View>
+      {/* <MaterialIcons name='arrow-back' size={24} color='white' /> */}
+      <Pressable style={getMonthTheme()} onPress={props.onPress}>
+        {/* Month item */}
+        <Text style={styles.text}>{props.id}</Text>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   text: {
     color: '#fff',
-    textAlign: 'center',
-    paddingVertical: 12
+    textAlign: 'center'
   }
 });
 
