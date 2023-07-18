@@ -1,4 +1,9 @@
-import { ColorSchemeName, ImageBackground, Pressable, StyleSheet } from 'react-native';
+import {
+  ColorSchemeName,
+  ImageBackground,
+  Pressable,
+  StyleSheet
+} from 'react-native';
 import { IDate, IDayItem } from '../../types/date.types';
 
 import { AppState } from '../../redux/store';
@@ -6,6 +11,7 @@ import { Text } from '../styles/Themed';
 import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
+import { FontDisplay } from '../styles/StyledText';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
@@ -30,8 +36,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     let currentBg: string = '#131324';
     if (combinedDay()) {
       console.log('combined day');
-    }
-    else if (dates.currentDay === props.id) {
+    } else if (dates.currentDay === props.id) {
       currentBg = '#067b84';
     } else if (dates.selectedDay === props.id) {
       currentBg = '#2c2cb9';
@@ -53,7 +58,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 
     </ImageBackground> */}
       {/* Day item */}
-      <Text style={styles.text}>{props.name}</Text>
+      <FontDisplay style={styles.text}>{props.name}</FontDisplay>
     </Pressable>
   );
 };
