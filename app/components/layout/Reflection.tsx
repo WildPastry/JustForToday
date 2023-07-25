@@ -159,7 +159,10 @@ const Reflection: React.FC<IReflectionProps> = (
     <View>
       {/* Calendar */}
       {showCalendar ? (
-        <Calendar handleCalendarChange={updateReflection} />
+        <Calendar
+          handleCalendarChange={updateReflection}
+          handleCalendarState={setShowCalendar}
+        />
       ) : (
         <View>
           {/* Controls */}

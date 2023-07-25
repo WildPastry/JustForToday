@@ -27,4 +27,5 @@ export interface IDayItem {
 
 export interface ICalendar {
   handleCalendarChange: (showCalendar: boolean, id: string) => void;
+  handleCalendarState: (showCalendar: boolean) => void;
 }

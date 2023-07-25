@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
+import { MaterialIcons } from '@expo/vector-icons';
 import MonthItem from './MonthItem';
 
 const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
@@ -44,11 +45,22 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
     props.handleCalendarChange(false, day.id);
   };
 
+  const toggleCalendar = (): void => {
+    props.handleCalendarState(false);
+  };
+
   return (
     <View>
-      <Pressable onPress={() => getAllMonths()}>
+      {/* Controls */}
+      <View style={styles.controls}>
+        <Pressable onPress={() => toggleCalendar()}>
+          <MaterialIcons name='arrow-back' size={25} color='white' />
+        </Pressable>
+        <FontDisplay style={styles.all}>Calendar</FontDisplay>
+      </View>
+      {/* <Pressable onPress={() => getAllMonths()}>
         <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
-      </Pressable>
+      </Pressable> */}
       <View style={styles.keyContainer}>
         <View style={[styles.key, styles.keyCurrent]}>
           <FontDisplay style={styles.keyText}>TODAY'S DATE</FontDisplay>
@@ -85,6 +97,12 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 30,
+    marginTop: 15
+  },
   keyContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',

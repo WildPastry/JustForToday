@@ -63,24 +63,28 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   };
 
   return (
-    <View>
-      {combinedMonth() ? (
-        <View style={styles.combinedTheme}>
-          <ImageBackground
-            style={styles.img}
-            source={require('../../assets/images/button.png')}
-            resizeMode='cover'
-            imageStyle={{ borderRadius: 12 }}>
-            <FontDisplay style={styles.combinedText}>{props.id}</FontDisplay>
-          </ImageBackground>
-        </View>
-      ) : (
-        <Pressable style={getMonthTheme()} onPress={props.onPress}>
-          {/* Month item */}
-          <FontDisplay style={styles.text}>{props.id}</FontDisplay>
-        </Pressable>
-      )}
-    </View>
+    <Pressable style={getMonthTheme()} onPress={props.onPress}>
+      {/* Month item */}
+      <FontDisplay style={styles.text}>{props.id}</FontDisplay>
+    </Pressable>
+    // <View>
+    //   {combinedMonth() ? (
+    //     <View style={styles.combinedTheme}>
+    //       <ImageBackground
+    //         style={styles.img}
+    //         source={require('../../assets/images/button.png')}
+    //         resizeMode='cover'
+    //         imageStyle={{ borderRadius: 12 }}>
+    //         <FontDisplay style={styles.combinedText}>{props.id}</FontDisplay>
+    //       </ImageBackground>
+    //     </View>
+    //   ) : (
+    //     <Pressable style={getMonthTheme()} onPress={props.onPress}>
+    //       {/* Month item */}
+    //       <FontDisplay style={styles.text}>{props.id}</FontDisplay>
+    //     </Pressable>
+    //   )}
+    // </View>
   );
 };
 
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingVertical: 12,
     textAlign: 'center'
-  },
+  }
 });
 
 export default MonthItem;
