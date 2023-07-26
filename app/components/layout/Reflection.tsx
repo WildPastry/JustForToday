@@ -167,7 +167,6 @@ const Reflection: React.FC<IReflectionProps> = (
         <View>
           {/* Controls */}
           <View style={styles.controls}>
-            {/* Previous day */}
             <Pressable
               onPress={() => selectReflection(getPrevDay(), reflections)}>
               <FontAwesome
@@ -176,7 +175,6 @@ const Reflection: React.FC<IReflectionProps> = (
                 color={Colours[colorScheme].icon}
               />
             </Pressable>
-            {/* Calendar and date */}
             <Pressable
               onPress={() => {
                 selectReflection(getCurrentDay(), reflections);
@@ -184,7 +182,6 @@ const Reflection: React.FC<IReflectionProps> = (
               }}>
               <FontDisplay>JUST FOR TODAY</FontDisplay>
             </Pressable>
-            {/* Next day */}
             <Pressable
               onPress={() => selectReflection(getNextDay(), reflections)}>
               <FontAwesome

@@ -53,10 +53,10 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
     <View>
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable onPress={() => toggleCalendar()}>
+        <Pressable style={styles.backIcon} onPress={() => toggleCalendar()}>
           <MaterialIcons name='arrow-back' size={25} color='white' />
         </Pressable>
-        <FontDisplay style={styles.all}>Calendar</FontDisplay>
+        <FontDisplay style={styles.title}>Calendar</FontDisplay>
       </View>
       {/* <Pressable onPress={() => getAllMonths()}>
         <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
@@ -98,15 +98,25 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 
 const styles = StyleSheet.create({
   controls: {
+    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     marginBottom: 30,
     marginTop: 15
+  },
+  title: {
+    fontSize: 30,
+    flex: 1,
+    letterSpacing: 1,
+    textAlign: 'center',
+    paddingRight: 25
   },
   keyContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 30
+  },
+  backIcon: {
+    width: 25
   },
   key: {
     width: '30%',
@@ -122,12 +132,6 @@ const styles = StyleSheet.create({
   },
   keySelected: {
     borderBottomColor: '#2c2cb9'
-  },
-  all: {
-    fontSize: 30,
-    letterSpacing: 1,
-    marginBottom: 15,
-    textAlign: 'center'
   }
 });
 
