@@ -1,5 +1,10 @@
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
-import { FlatList, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { ScrollView, Text, View } from '../styles/Themed';
 import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -11,6 +16,7 @@ import { FontDisplay } from '../styles/StyledText';
 import { MaterialIcons } from '@expo/vector-icons';
 import MonthItem from './MonthItem';
 
+// FLATLIST STUFF
 type ItemData = {
   id: string;
   title: string;
@@ -19,16 +25,16 @@ type ItemData = {
 const DATA: ItemData[] = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    title: '1'
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    title: '2'
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
+    title: '3'
+  }
 ];
 
 type ItemProps = {
@@ -38,13 +44,32 @@ type ItemProps = {
   textColor: string;
 };
 
-const Item = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
+const Item = ({ item, onPress, backgroundColor, textColor }: ItemProps) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[styles.item, { backgroundColor }]}>
+    <Text style={[styles.itemText, { color: textColor }]}>{item.title}</Text>
   </TouchableOpacity>
 );
 
 const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
+  // FLATLIST STUFF
+  const [selectedId, setSelectedId] = useState<string>();
+
+  const renderItem = ({ item }: { item: ItemData }) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
+    );
+  };
+
   // Component settings
   const dispatch = useAppDispatch();
   const [months, setMonths] = useState<IMonthItem[]>([]);
@@ -81,21 +106,6 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   const toggleCalendar = (): void => {
     props.handleCalendarState(false);
   };
-  
-  const [selectedId, setSelectedId] = useState<string>();
-  const renderItem = ({item}: {item: ItemData}) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
-
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={backgroundColor}
-        textColor={color}
-      />
-    );
-  };
 
   return (
     <View>
@@ -118,15 +128,16 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
         </View>
       </View>
 
+      {/* FLATLIST STUFF */}
       <FlatList
+        numColumns={3}
         data={DATA}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         extraData={selectedId}
       />
 
       <ScrollView>
-        {/* Months */}
         {months.map((month, index) => (
           <MonthItem
             key={index}
@@ -136,7 +147,6 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
             onPress={() => handleMonth(month)}
           />
         ))}
-        {/* Days */}
         <View>
           {days.map((day, index) => (
             <DayItem
@@ -154,9 +164,13 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 
 const styles = StyleSheet.create({
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: 5,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    width: '30%'
+  },
+  itemText: {
+    textAlign: 'center'
   },
   controls: {
     alignItems: 'center',
