@@ -1,8 +1,10 @@
+import { StyleProp, ViewStyle } from 'react-native';
+
 /* eslint-disable no-unused-vars */
 export interface IExternalLink {
   children: JSX.Element;
   href: string;
-  style: {};
+  style: StyleProp<ViewStyle>;
 }
 
 export interface IEditScreenInfo {

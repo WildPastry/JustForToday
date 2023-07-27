@@ -16,18 +16,24 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   const renderMonth = ({ item }: { item: IMonthItem }) => {
     const { id, name, days } = item;
     return (
-      <MonthItem
-        id={id}
-        name={name}
-        days={days}
-        onPress={() => handleMonth(item)}
-      />
+      <Pressable style={styles.month}>
+        <MonthItem
+          id={id}
+          name={name}
+          days={days}
+          onPress={() => handleMonth(item)}
+        />
+      </Pressable>
     );
   };
 
   const renderDay = ({ item }: { item: IDayItem }) => {
     const { id, name } = item;
-    return <DayItem id={id} name={name} onPress={() => handleDay(item)} />;
+    return (
+      <Pressable style={styles.day}>
+        <DayItem id={id} name={name} onPress={() => handleDay(item)} />
+      </Pressable>
+    );
   };
 
   // Component settings
@@ -84,9 +90,6 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
           <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
         </View>
       </View>
-      <Pressable onPress={() => getAllMonths()}>
-        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
-      </Pressable>
       {/* Months */}
       <FlatList
         numColumns={3}
@@ -113,7 +116,13 @@ const styles = StyleSheet.create({
   all: {
     fontSize: 15
   },
-  item: {
+  month: {
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    width: '30%'
+  },
+  day: {
     padding: 5,
     marginVertical: 5,
     marginHorizontal: 5,
