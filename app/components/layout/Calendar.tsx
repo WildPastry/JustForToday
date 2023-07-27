@@ -108,7 +108,16 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+
+<FlatList
+        numColumns={3}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
+      />
+
       {/* Controls */}
       <View style={styles.controls}>
         <Pressable style={styles.backIcon} onPress={() => toggleCalendar()}>
@@ -129,13 +138,13 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
       </View>
 
       {/* FLATLIST STUFF */}
-      <FlatList
+      {/* <FlatList
         numColumns={3}
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
-      />
+      /> */}
 
       <ScrollView>
         {months.map((month, index) => (
@@ -163,6 +172,10 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignSelf: 'stretch',
+    padding: 15
+  },
   item: {
     padding: 5,
     marginVertical: 5,
