@@ -1,11 +1,5 @@
+import { FlatList, Pressable, StyleSheet } from 'react-native';
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
-import {
-  FlatList,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native';
-import { ScrollView, Text, View } from '../styles/Themed';
 import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
@@ -15,59 +9,25 @@ import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import { MaterialIcons } from '@expo/vector-icons';
 import MonthItem from './MonthItem';
-
-// FLATLIST STUFF
-type ItemData = {
-  id: string;
-  title: string;
-};
-
-const DATA: ItemData[] = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: '1'
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: '2'
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: '3'
-  }
-];
-
-type ItemProps = {
-  item: ItemData;
-  onPress: () => void;
-  backgroundColor: string;
-  textColor: string;
-};
-
-const Item = ({ item, onPress, backgroundColor, textColor }: ItemProps) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[styles.item, { backgroundColor }]}>
-    <Text style={[styles.itemText, { color: textColor }]}>{item.title}</Text>
-  </TouchableOpacity>
-);
+import { View } from '../styles/Themed';
 
 const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
-  // FLATLIST STUFF
-  const [selectedId, setSelectedId] = useState<string>();
-
-  const renderItem = ({ item }: { item: ItemData }) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
-
+  // Set up list render functions
+  const renderMonth = ({ item }: { item: IMonthItem }) => {
+    const { id, name, days } = item;
     return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={backgroundColor}
-        textColor={color}
+      <MonthItem
+        id={id}
+        name={name}
+        days={days}
+        onPress={() => handleMonth(item)}
       />
     );
+  };
+
+  const renderDay = ({ item }: { item: IDayItem }) => {
+    const { id, name } = item;
+    return <DayItem id={id} name={name} onPress={() => handleDay(item)} />;
   };
 
   // Component settings
@@ -109,15 +69,6 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 
   return (
     <View style={styles.container}>
-
-<FlatList
-        numColumns={3}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-      />
-
       {/* Controls */}
       <View style={styles.controls}>
         <Pressable style={styles.backIcon} onPress={() => toggleCalendar()}>
@@ -125,9 +76,6 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
         </Pressable>
         <FontDisplay style={styles.title}>Calendar</FontDisplay>
       </View>
-      {/* <Pressable onPress={() => getAllMonths()}>
-        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
-      </Pressable> */}
       <View style={styles.keyContainer}>
         <View style={[styles.key, styles.keyCurrent]}>
           <FontDisplay style={styles.keyText}>TODAY'S DATE</FontDisplay>
@@ -136,45 +84,34 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
           <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
         </View>
       </View>
-
-      {/* FLATLIST STUFF */}
-      {/* <FlatList
+      <Pressable onPress={() => getAllMonths()}>
+        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
+      </Pressable>
+      {/* Months */}
+      <FlatList
         numColumns={3}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-      /> */}
-
-      <ScrollView>
-        {months.map((month, index) => (
-          <MonthItem
-            key={index}
-            id={month.id}
-            name={month.name}
-            days={month.days}
-            onPress={() => handleMonth(month)}
-          />
-        ))}
-        <View>
-          {days.map((day, index) => (
-            <DayItem
-              key={index}
-              id={day.id}
-              name={day.name}
-              onPress={() => handleDay(day)}
-            />
-          ))}
-        </View>
-      </ScrollView>
+        data={months}
+        renderItem={renderMonth}
+        keyExtractor={(month) => month.id}
+      />
+      {/* Days */}
+      <FlatList
+        numColumns={7}
+        data={days}
+        renderItem={renderDay}
+        keyExtractor={(day) => day.id}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: 'stretch',
+    flex: 1,
     padding: 15
+  },
+  all: {
+    fontSize: 15
   },
   item: {
     padding: 5,
