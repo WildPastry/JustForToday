@@ -8,7 +8,7 @@ import { useAppDispatch } from '../redux/hooks';
 
 export default function useCachedResources(): boolean {
   // Function settings
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [isLoadingComplete, setLoadingComplete] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   // Load any resources or data that we need prior to rendering the app

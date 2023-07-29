@@ -26,9 +26,9 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
 
     const monthTheme = {
       backgroundColor: currentBg,
-      borderRadius: 12,
-      marginBottom: 12,
-      paddingVertical: 12
+      // borderRadius: 12,
+      // marginBottom: 12,
+      // paddingVertical: 12
     };
 
     return monthTheme;
@@ -49,14 +49,6 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1
-  },
-  combinedTheme: {
-    marginBottom: 12
-  },
-  combinedText: {
-    color: '#fff',
-    paddingVertical: 12,
-    textAlign: 'center'
   }
 });
 

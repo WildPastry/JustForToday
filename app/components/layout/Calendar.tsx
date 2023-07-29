@@ -36,8 +36,17 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
     );
   };
 
+  const renderAllMonthsBtn = () => {
+    return (
+      <Pressable onPress={() => getAllMonths()}>
+      <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
+    </Pressable>
+    );
+  };
+
   // Component settings
   const dispatch = useAppDispatch();
+  const [allMonths, setAllMonths] = useState<boolean>(false);
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
 
@@ -90,20 +99,23 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
           <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
         </View>
       </View>
-      {/* Months */}
-      <FlatList
-        numColumns={3}
-        data={months}
-        renderItem={renderMonth}
-        keyExtractor={(month) => month.id}
-      />
-      {/* Days */}
-      <FlatList
-        numColumns={7}
-        data={days}
-        renderItem={renderDay}
-        keyExtractor={(day) => day.id}
-      />
+      <View>
+        {allMonths ? renderAllMonthsBtn() : null}
+        {/* Months */}
+        <FlatList
+          numColumns={3}
+          data={months}
+          renderItem={renderMonth}
+          keyExtractor={(month) => month.id}
+        />
+        {/* Days */}
+        <FlatList
+          numColumns={7}
+          data={days}
+          renderItem={renderDay}
+          keyExtractor={(day) => day.id}
+        />
+      </View>
     </View>
   );
 };
@@ -113,19 +125,23 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15
   },
+  listItems: {
+    justifyContent: 'space-around',
+    padding: 10
+  },
   all: {
     fontSize: 15
   },
   month: {
-    padding: 10,
-    marginVertical: 5,
-    marginHorizontal: 5,
-    width: '30%'
+    // padding: 10,
+    // marginVertical: 5,
+    // marginHorizontal: 5,
+    // width: '33%'
   },
   day: {
-    padding: 5,
-    marginVertical: 5,
-    marginHorizontal: 5,
+    // padding: 5,
+    // marginVertical: 5,
+    // marginHorizontal: 5,
     width: '30%'
   },
   itemText: {

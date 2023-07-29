@@ -30,7 +30,7 @@ const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',

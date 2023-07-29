@@ -15,7 +15,9 @@ const Traditions: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const [traditionType, setTraditionType] = useState<ETraditionTypes>(
+    ETraditionTypes.short
+  );
   const activeButtonTheme = itemStates[`${colorScheme}CurrentItem`];
   const isFocused = useIsFocused();
 
