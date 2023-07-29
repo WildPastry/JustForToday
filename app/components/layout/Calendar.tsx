@@ -46,7 +46,7 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 
   // Component settings
   const dispatch = useAppDispatch();
-  const [allMonths, setAllMonths] = useState<boolean>(false);
+  const [allMonthsBtn, setAllMonthsBtn] = useState<boolean>(false);
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
 
@@ -62,12 +62,14 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   }, [monthItems]);
 
   const getAllMonths = (): void => {
+    setAllMonthsBtn(false);
     setMonths(monthItems);
     setDays([]);
   };
 
   const handleMonth = (month: IMonthItem): void => {
     dispatch(setSelectedMonth(month.id));
+    setAllMonthsBtn(true);
     setMonths([month]);
     setDays(month.days);
   };
@@ -100,7 +102,7 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
         </View>
       </View>
       <View>
-        {allMonths ? renderAllMonthsBtn() : null}
+        {allMonthsBtn ? renderAllMonthsBtn() : null}
         {/* Months */}
         <FlatList
           numColumns={3}
