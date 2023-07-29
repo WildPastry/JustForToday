@@ -39,8 +39,8 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
   const renderAllMonthsBtn = () => {
     return (
       <Pressable onPress={() => getAllMonths()}>
-      <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
-    </Pressable>
+        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
+      </Pressable>
     );
   };
 
@@ -135,16 +135,14 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   month: {
-    // padding: 10,
-    // marginVertical: 5,
-    // marginHorizontal: 5,
-    // width: '33%'
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    width: '33%'
   },
   day: {
-    // padding: 5,
-    // marginVertical: 5,
-    // marginHorizontal: 5,
-    width: '30%'
+    paddingHorizontal: 5,
+    marginVertical: 5,
+    width: '14.3%'
   },
   itemText: {
     textAlign: 'center'

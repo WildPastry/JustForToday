@@ -1,17 +1,11 @@
-import {
-  ColorSchemeName,
-  ImageBackground,
-  Pressable,
-  StyleSheet
-} from 'react-native';
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IDayItem } from '../../types/date.types';
 
 import { AppState } from '../../redux/store';
-import { Text } from '../styles/Themed';
+import { FontDisplay } from '../styles/StyledText';
 import itemStates from '../../constants/itemStates';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
-import { FontDisplay } from '../styles/StyledText';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
@@ -29,9 +23,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 
   // Styles for each day item
   const getDayTheme = (): {
-    borderRadius: number;
-    marginBottom: number;
     backgroundColor: string;
+    borderRadius: number;
+    paddingVertical: number;
   } => {
     let currentBg: string = '#131324';
     if (combinedDay()) {
@@ -43,9 +37,9 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     }
 
     const dayTheme = {
+      backgroundColor: currentBg,
       borderRadius: 8,
-      marginBottom: 12,
-      backgroundColor: currentBg
+      paddingVertical: 8
     };
 
     return dayTheme;
@@ -53,10 +47,6 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 
   return (
     <Pressable style={getDayTheme()} onPress={props.onPress}>
-      {/* <ImageBackground source={require('../../assets/images/button.png')} resizeMode="cover">
-      <Text style={styles.text}>{props.name}</Text>
-
-    </ImageBackground> */}
       {/* Day item */}
       <FontDisplay style={styles.text}>{props.name}</FontDisplay>
     </Pressable>

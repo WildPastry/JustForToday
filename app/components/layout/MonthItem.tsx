@@ -13,9 +13,9 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
 
   // Styles for each month item
   const getMonthTheme = (): {
-    borderRadius: number;
-    marginBottom: number;
     backgroundColor: string;
+    borderRadius: number;
+    paddingVertical: number;
   } => {
     let currentBg: string = '#131324';
     if (dates.currentMonth === props.id) {
@@ -26,9 +26,8 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
 
     const monthTheme = {
       backgroundColor: currentBg,
-      // borderRadius: 12,
-      // marginBottom: 12,
-      // paddingVertical: 12
+      borderRadius: 12,
+      paddingVertical: 24
     };
 
     return monthTheme;
