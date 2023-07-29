@@ -38,8 +38,13 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
 
   const renderAllMonthsBtn = () => {
     return (
-      <Pressable onPress={() => getAllMonths()}>
-        <FontDisplay style={styles.all}>ALL MONTHS</FontDisplay>
+      <Pressable style={styles.allContainer} onPress={() => getAllMonths()}>
+        <MaterialIcons
+          style={styles.all}
+          name='arrow-back'
+          size={15}
+          color='white'
+        />
       </Pressable>
     );
   };
@@ -101,7 +106,7 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
           <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
         </View>
       </View>
-      <View>
+      <View style={styles.monthContainer}>
         {allMonthsBtn ? renderAllMonthsBtn() : null}
         {/* Months */}
         <FlatList
@@ -110,14 +115,15 @@ const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
           renderItem={renderMonth}
           keyExtractor={(month) => month.id}
         />
-        {/* Days */}
-        <FlatList
-          numColumns={7}
-          data={days}
-          renderItem={renderDay}
-          keyExtractor={(day) => day.id}
-        />
       </View>
+
+      {/* Days */}
+      <FlatList
+        numColumns={7}
+        data={days}
+        renderItem={renderDay}
+        keyExtractor={(day) => day.id}
+      />
     </View>
   );
 };
@@ -127,12 +133,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15
   },
-  listItems: {
-    justifyContent: 'space-around',
-    padding: 10
+  allContainer: {
+    paddingLeft: 5
   },
   all: {
-    fontSize: 15
+    backgroundColor: '#131324',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 24
+  },
+  monthContainer: {
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   month: {
     paddingHorizontal: 10,
@@ -166,6 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   backIcon: {
+    paddingLeft: 5,
     width: 25
   },
   key: {
