@@ -221,7 +221,7 @@ const Reflection: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    padding: 20
   },
   controls: {
     flexDirection: 'row',
