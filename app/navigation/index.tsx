@@ -17,7 +17,7 @@ import {
 } from '../types/navigation.types';
 import About from '../screens/About';
 import Colours from '../constants/colours';
-import { FontBold } from '../components/styles/StyledText';
+import { FontDisplay } from '../components/styles/StyledText';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -46,24 +46,6 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  // Colour settings
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-
-  function AboutHeader() {
-    return (
-      <View style={globalStyles.headerContainer}>
-        {/* Logo */}
-        <FontAwesome
-          name='info-circle'
-          size={20}
-          color={Colours[colorScheme].text}
-        />
-        {/* Title */}
-        <FontBold style={globalStyles.header}>ABOUT</FontBold>
-      </View>
-    );
-  }
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -80,11 +62,7 @@ function RootNavigator() {
         <Stack.Screen
           name='About'
           component={About}
-          options={{
-            title: 'About',
-            headerTitleAlign: 'left',
-            headerTitle: () => <AboutHeader />
-          }}
+          options={{ title: 'Back' }}
         />
       </Stack.Group>
     </Stack.Navigator>
@@ -98,7 +76,7 @@ function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
-  function HomeHeader() {
+  const Header: React.FC = (): JSX.Element => {
     return (
       <View style={globalStyles.headerContainer}>
         {/* Logo */}
@@ -108,36 +86,10 @@ function BottomTabNavigator() {
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontBold style={globalStyles.header}>HOME</FontBold>
+        <FontDisplay style={globalStyles.header}>Just for today</FontDisplay>
       </View>
     );
-  }
-
-  function StepsHeader() {
-    return (
-      <View style={globalStyles.headerContainer}>
-        {/* Logo */}
-        <MaterialCommunityIcons
-          name='stairs'
-          size={25}
-          color={Colours[colorScheme].text}
-        />
-        {/* Title */}
-        <FontBold style={globalStyles.headerSteps}>STEPS</FontBold>
-      </View>
-    );
-  }
-
-  function TraditionsHeader() {
-    return (
-      <View style={globalStyles.headerContainer}>
-        {/* Logo */}
-        <FontAwesome name='book' size={20} color={Colours[colorScheme].text} />
-        {/* Title */}
-        <FontBold style={globalStyles.header}>TRADITIONS</FontBold>
-      </View>
-    );
-  }
+  };
 
   return (
     <BottomTab.Navigator
@@ -167,7 +119,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
           headerTitleAlign: 'left',
-          headerTitle: () => <HomeHeader />,
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name='chair' size={18} color={color} />
           ),
@@ -193,7 +145,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
           headerTitleAlign: 'left',
-          headerTitle: () => <StepsHeader />,
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name='stairs' size={24} color={color} />
           ),
@@ -219,7 +171,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
           headerTitleAlign: 'left',
-          headerTitle: () => <TraditionsHeader />,
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
             <FontAwesome name='book' size={20} color={color} />
           ),
