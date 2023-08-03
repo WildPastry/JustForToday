@@ -167,22 +167,26 @@ const Reflection: React.FC = (): JSX.Element => {
         {/* Controls */}
         <View style={styles.controls}>
           <Pressable
+            style={styles.prevNextBtn}
             onPress={() => selectReflection(getPrevDay(), reflections)}>
             <FontAwesome
               name='chevron-left'
               size={20}
               color={Colours[colorScheme].icon}
             />
+            <FontLight style={{ marginLeft: 10 }}>PREV</FontLight>
           </Pressable>
           <Pressable
             onPress={() => {
               selectReflection(getCurrentDay(), reflections);
               setShowCalendar(false);
             }}>
-            <FontDisplay>BACK TO TODAY</FontDisplay>
+            <FontLight>BACK TO TODAY</FontLight>
           </Pressable>
           <Pressable
+            style={styles.prevNextBtn}
             onPress={() => selectReflection(getNextDay(), reflections)}>
+            <FontLight style={{ marginRight: 10 }}>NEXT</FontLight>
             <FontAwesome
               name='chevron-right'
               size={20}
@@ -228,6 +232,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 30,
     marginTop: 15
+  },
+  prevNextBtn: {
+    flexDirection: 'row'
   },
   calendarIcon: {
     marginLeft: 15
