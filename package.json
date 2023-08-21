@@ -56,7 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@wildpastry/eslint-config": "^1.6.4",
     "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.33.2",
     "eslint": "^8.44.0",
     "expo-dev-client": "~2.4.6",
     "hermes-engine": "^0.11.0",
