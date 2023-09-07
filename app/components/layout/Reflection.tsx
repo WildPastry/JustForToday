@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../../types/date.types';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
@@ -150,6 +151,14 @@ const Reflection: React.FC = (): JSX.Element => {
     return verifiedData;
   };
 
+  // Title for controls
+  const getMiddleButton = (): string => {
+    if (dates.currentDay === format(new Date(), EDateFormat.ddMM)) {
+      return 'TODAY';
+    }
+    return 'BACK TO TODAY';
+  };
+
   // Calendar screen
   const calendarScreen = (): JSX.Element => {
     return (
@@ -181,7 +190,7 @@ const Reflection: React.FC = (): JSX.Element => {
               selectReflection(getCurrentDay(), reflections);
               setShowCalendar(false);
             }}>
-            <FontLight>BACK TO TODAY</FontLight>
+            <FontLight>{getMiddleButton()}</FontLight>
           </Pressable>
           <Pressable
             style={styles.prevNextBtn}
