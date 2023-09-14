@@ -18,9 +18,6 @@ const About: React.FC = (): JSX.Element => {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const isFocused = useIsFocused();
 
-  const handleUpgrade = (): void => {
-    console.log('UPGRADE');
-  };
   const handleSuggestions = (): void => {
     console.log('SUGGESTIONS');
   };
@@ -70,16 +67,6 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
-      <Text style={styles.subTitle}>Love the app?</Text>
-      <Text style={styles.text}>
-        Help the developer create other benificial projects by upgrading. The
-        PRO version contains cosmetic changes only and includes custom colour
-        themes.
-      </Text>
-      {/* Upgrade button */}
-      <Pressable style={styles.btn} onPress={() => handleUpgrade()}>
-        <FontDisplay style={styles.textCenter}>UPGRADE</FontDisplay>
-      </Pressable>
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
