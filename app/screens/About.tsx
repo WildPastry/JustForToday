@@ -18,7 +18,7 @@ const About: React.FC = (): JSX.Element => {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const isFocused = useIsFocused();
 
-  const handleSuggestions = (): void => {
+  const handleFeedback = (): void => {
     console.log('SUGGESTIONS');
   };
 
@@ -67,14 +67,14 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
-      <Text style={styles.subTitle}>Suggestions?</Text>
+      <Text style={styles.subTitle}>Questions?</Text>
       <Text style={styles.text}>
-        If you have any suggestions or requests for features to improve the app
-        you can send them directly to the developer.
+        Questions, concerns and feedback can be sent to the team using the
+        button below.
       </Text>
       {/* Suggestions button */}
-      <Pressable style={styles.btn} onPress={() => handleSuggestions()}>
-        <FontDisplay style={styles.textCenter}>SUGGESTIONS</FontDisplay>
+      <Pressable style={styles.btn} onPress={() => handleFeedback()}>
+        <FontDisplay style={styles.textCenter}>Send feedback</FontDisplay>
       </Pressable>
       {/* Divider */}
       <View
@@ -88,7 +88,7 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
         <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
-          AA link
+          Alcoholics Anonymous
         </Text>
       </ExternalLink>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   textCenter: {
+    color: 'white',
     textAlign: 'center'
   },
   versionText: {
@@ -126,7 +127,6 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#131324',
     borderRadius: 12,
-    marginBottom: 10,
     paddingVertical: 12
   },
   icon: {
