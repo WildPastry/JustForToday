@@ -83,14 +83,17 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colours[colorScheme].seperator}
       />
       <Text style={styles.text}>
-        All literature is taken with permission from Alcoholics Anonymous World
-        Services, Inc.
+        All literature is taken with permission from{' '}
+        <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
+          <Text
+            style={styles.helpLinkText}
+            lightColor={Colours.light.link}
+            darkColor={Colours.light.link}>
+            Alcoholics Anonymous World Services, Inc.
+          </Text>
+        </ExternalLink>
       </Text>
-      <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
-        <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
-          Alcoholics Anonymous
-        </Text>
-      </ExternalLink>
+
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </ForwardedScrollView>
@@ -127,6 +130,7 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#131324',
     borderRadius: 12,
+    marginTop: 10,
     paddingVertical: 12
   },
   icon: {

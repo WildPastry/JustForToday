@@ -59,11 +59,7 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name='About'
-          component={About}
-          options={{ title: 'Back' }}
-        />
+        <Stack.Screen name='About' component={About} />
       </Stack.Group>
     </Stack.Navigator>
   );
