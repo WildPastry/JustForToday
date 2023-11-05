@@ -1,25 +1,24 @@
 /* eslint-disable no-console */
 import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
-import React, { useRef } from 'react';
-import Colours from '../constants/Colours';
+import React, { useEffect, useRef } from 'react';
+
+import Colours from '../constants/colours';
 import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
 import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
-import { useFocusEffect } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const About: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const isFocused = useIsFocused();
 
-  const handleUpgrade = (): void => {
-    console.log('UPGRADE');
-  };
-  const handleSuggestions = (): void => {
+  const handleFeedback = (): void => {
     console.log('SUGGESTIONS');
   };
 
@@ -27,13 +26,17 @@ const About: React.FC = (): JSX.Element => {
     return packageJson.version.toString();
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      return () => null;
-    }, [scrollViewRef])
-  );
+  // Scroll to top function
+  const scrollTop = () => {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  };
+
+  // Scroll to top on focus
+  useEffect(() => {
+    if (isFocused) {
+      scrollTop();
+    }
+  }, [isFocused]);
 
   return (
     <ForwardedScrollView
@@ -64,22 +67,14 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
-      <Text style={styles.subTitle}>Love the app?</Text>
+      <Text style={styles.subTitle}>Questions?</Text>
       <Text style={styles.text}>
-        Help the developer create other benificial projects by upgrading. The
-        PRO version contains cosmetic changes only and includes custom colour
-        themes.
+        Questions, concerns and feedback can be sent to the team using the
+        button below.
       </Text>
-      <Pressable style={styles.btn} onPress={() => handleUpgrade()}>
-        <Text>UPGRADE</Text>
-      </Pressable>
-      <Text style={styles.subTitle}>Suggestions?</Text>
-      <Text style={styles.text}>
-        If you have any suggestions or requests for features to improve the app
-        you can send them directly to the developer.
-      </Text>
-      <Pressable onPress={() => handleSuggestions()}>
-        <Text>SUGGESTIONS</Text>
+      {/* Suggestions button */}
+      <Pressable style={styles.btn} onPress={() => handleFeedback()}>
+        <FontDisplay style={styles.textCenter}>Send feedback</FontDisplay>
       </Pressable>
       {/* Divider */}
       <View
@@ -88,14 +83,17 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colours[colorScheme].seperator}
       />
       <Text style={styles.text}>
-        All literature is taken with permission from Alcoholics Anonymous World
-        Services, Inc.
+        All literature is taken with permission from{' '}
+        <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
+          <Text
+            style={styles.helpLinkText}
+            lightColor={Colours.light.link}
+            darkColor={Colours.light.link}>
+            Alcoholics Anonymous World Services, Inc.
+          </Text>
+        </ExternalLink>
       </Text>
-      <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
-        <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
-          AA link
-        </Text>
-      </ExternalLink>
+
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </ForwardedScrollView>
@@ -121,12 +119,19 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 10
   },
+  textCenter: {
+    color: 'white',
+    textAlign: 'center'
+  },
   versionText: {
     textAlign: 'center',
     lineHeight: 20
   },
   btn: {
-    marginBottom: 10
+    backgroundColor: '#131324',
+    borderRadius: 12,
+    marginTop: 10,
+    paddingVertical: 12
   },
   icon: {
     marginBottom: 10,

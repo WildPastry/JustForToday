@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 export interface IDate {
   selectedDate: number;
+  selectedMonth: string;
   selectedDay: string;
   currentMonth: string;
   currentDay: string;
@@ -26,4 +27,5 @@ export interface IDayItem {
 
 export interface ICalendar {
   handleCalendarChange: (showCalendar: boolean, id: string) => void;
+  handleCalendarState: (showCalendar: boolean) => void;
 }

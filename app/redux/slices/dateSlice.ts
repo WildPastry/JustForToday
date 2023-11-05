@@ -5,6 +5,7 @@ import format from 'date-fns/format';
 // Set initialState
 const initialState: IDate = {
   selectedDate: Date.now(),
+  selectedMonth: format(new Date(), EDateFormat.MMM),
   selectedDay: format(new Date(), EDateFormat.ddMM),
   currentMonth: format(new Date(), EDateFormat.MMM),
   currentDay: format(new Date(), EDateFormat.ddMM)
@@ -17,6 +18,9 @@ const dateSlice = createSlice({
   reducers: {
     setSelectedDate(state, action: PayloadAction<number>) {
       state.selectedDate = action.payload;
+    },
+    setSelectedMonth(state, action: PayloadAction<string>) {
+      state.selectedMonth = action.payload;
     },
     setSelectedDay(state, action: PayloadAction<string>) {
       state.selectedDay = action.payload;
@@ -41,7 +45,8 @@ export const constructDateFromId = (id: string): number => {
 };
 
 // Export date actions
-export const { setSelectedDate, setSelectedDay } = dateSlice.actions;
+export const { setSelectedDate, setSelectedMonth, setSelectedDay } =
+  dateSlice.actions;
 
 // Export reducer
 export default dateSlice.reducer;

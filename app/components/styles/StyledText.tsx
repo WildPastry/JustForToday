@@ -9,15 +9,6 @@ export function FontDisplay(styledText: TextProps) {
   );
 }
 
-export function FontThin(styledText: TextProps) {
-  return (
-    <Text
-      {...styledText}
-      style={[styledText.style, { fontFamily: 'font-thin' }]}
-    />
-  );
-}
-
 export function FontLight(styledText: TextProps) {
   return (
     <Text

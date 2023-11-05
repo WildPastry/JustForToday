@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
 import {
   DarkTheme,
   DefaultTheme,
@@ -16,7 +16,8 @@ import {
   RootTabScreenProps
 } from '../types/navigation.types';
 import About from '../screens/About';
-import Colours from '../constants/Colours';
+import Colours from '../constants/colours';
+import { FontDisplay } from '../components/styles/StyledText';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -24,6 +25,7 @@ import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import globalStyles from '../constants/globalStyles';
 import useColorScheme from '../hooks/useColorScheme';
 
 export default function Navigation({
@@ -70,6 +72,21 @@ function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
+  const Header: React.FC = (): JSX.Element => {
+    return (
+      <View style={globalStyles.headerContainer}>
+        {/* Logo */}
+        <FontAwesome5
+          name='chair'
+          size={18}
+          color={Colours[colorScheme].text}
+        />
+        {/* Title */}
+        <FontDisplay style={globalStyles.header}>Just for today</FontDisplay>
+      </View>
+    );
+  };
+
   return (
     <BottomTab.Navigator
       initialRouteName='Home'
@@ -97,8 +114,10 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
+          headerTitleAlign: 'left',
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
-            <TabBarAwesome5Icon name='chair' color={color} />
+            <FontAwesome5 name='chair' size={18} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -109,7 +128,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -121,8 +140,10 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
+          headerTitleAlign: 'left',
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
-            <TabBarMaterialIcon name='stairs' color={color} />
+            <MaterialCommunityIcons name='stairs' size={24} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -133,7 +154,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -145,8 +166,10 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
+          headerTitleAlign: 'left',
+          headerTitle: () => <Header />,
           tabBarIcon: ({ color }) => (
-            <TabBarAwesomeIcon name='book' color={color} />
+            <FontAwesome name='book' size={20} color={color} />
           ),
           headerRight: () => (
             <Pressable
@@ -157,7 +180,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name='info-circle'
                 size={25}
-                color={Colours[colorScheme].text}
+                color={Colours[colorScheme].icon}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -166,26 +189,4 @@ function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
-}
-
-// Icons for the tabs
-function TabBarAwesomeIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={25} {...props} />;
-}
-
-function TabBarAwesome5Icon(props: {
-  name: React.ComponentProps<typeof FontAwesome5>['name'];
-  color: string;
-}) {
-  return <FontAwesome5 size={25} {...props} />;
-}
-
-function TabBarMaterialIcon(props: {
-  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
-  color: string;
-}) {
-  return <MaterialCommunityIcons size={25} {...props} />;
 }

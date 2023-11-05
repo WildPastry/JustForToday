@@ -10,6 +10,9 @@ describe('<Calendar />', () => {
       .create(
         <Provider store={store}>
           <Calendar
+            handleCalendarState={() => {
+              true;
+            }}
             handleCalendarChange={() => {
               true;
             }}

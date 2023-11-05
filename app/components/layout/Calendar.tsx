@@ -1,17 +1,57 @@
+import { FlatList, Pressable, StyleSheet } from 'react-native';
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
-import { Pressable, StyleSheet } from 'react-native';
-import { ScrollView, Text, View } from '../styles/Themed';
+import { setSelectedDay, setSelectedMonth } from '../../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
+
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
+import { MaterialIcons } from '@expo/vector-icons';
 import MonthItem from './MonthItem';
-import { useAppSelector } from '../../redux/hooks';
+import { View } from '../styles/Themed';
 
-const Calendar: React.FC<ICalendar> = ({
-  handleCalendarChange
-}: ICalendar): JSX.Element => {
+const Calendar: React.FC<ICalendar> = (props: ICalendar): JSX.Element => {
+  // Set up list render functions
+  const renderMonth = ({ item }: { item: IMonthItem }) => {
+    const { id, name, days } = item;
+    return (
+      <Pressable style={styles.month}>
+        <MonthItem
+          id={id}
+          name={name}
+          days={days}
+          onPress={() => handleMonth(item)}
+        />
+      </Pressable>
+    );
+  };
+
+  const renderDay = ({ item }: { item: IDayItem }) => {
+    const { id, name } = item;
+    return (
+      <Pressable style={styles.day}>
+        <DayItem id={id} name={name} onPress={() => handleDay(item)} />
+      </Pressable>
+    );
+  };
+
+  const renderAllMonthsBtn = () => {
+    return (
+      <Pressable style={styles.allContainer} onPress={() => getAllMonths()}>
+        <MaterialIcons
+          style={styles.all}
+          name='arrow-back'
+          size={15}
+          color='white'
+        />
+      </Pressable>
+    );
+  };
+
   // Component settings
+  const dispatch = useAppDispatch();
+  const [allMonthsBtn, setAllMonthsBtn] = useState<boolean>(false);
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
 
@@ -27,69 +67,134 @@ const Calendar: React.FC<ICalendar> = ({
   }, [monthItems]);
 
   const getAllMonths = (): void => {
+    setAllMonthsBtn(false);
     setMonths(monthItems);
     setDays([]);
   };
 
   const handleMonth = (month: IMonthItem): void => {
+    dispatch(setSelectedMonth(month.id));
+    setAllMonthsBtn(true);
     setMonths([month]);
     setDays(month.days);
   };
 
   const handleDay = (day: IDayItem): void => {
+    dispatch(setSelectedDay(day.id));
     setDays([day]);
-    handleCalendarChange(false, day.id);
+    props.handleCalendarChange(false, day.id);
+  };
+
+  const toggleCalendar = (): void => {
+    props.handleCalendarState(false);
   };
 
   return (
-    <View>
-      <FontDisplay style={styles.title}>Calendar</FontDisplay>
-      {/* Reset to all months */}
-      <Pressable onPress={() => getAllMonths()}>
-        <Text style={[styles.text, styles.bold]}>ALL MONTHS</Text>
-      </Pressable>
-      <ScrollView>
-        {/* Months */}
-        {months.map((month, index) => (
-          <MonthItem
-            key={index}
-            id={month.id}
-            name={month.name}
-            days={month.days}
-            onPress={() => handleMonth(month)}
-          />
-        ))}
-        {/* Days */}
-        <View style={styles.dayView}>
-          {days.map((day, index) => (
-            <DayItem
-              key={index}
-              id={day.id}
-              name={day.name}
-              onPress={() => handleDay(day)}
-            />
-          ))}
+    <View style={styles.container}>
+      {/* Controls */}
+      <View style={styles.controls}>
+        <Pressable style={styles.backIcon} onPress={() => toggleCalendar()}>
+          <MaterialIcons name='arrow-back' size={25} color='white' />
+        </Pressable>
+        <FontDisplay style={styles.title}>Calendar</FontDisplay>
+      </View>
+      <View style={styles.keyContainer}>
+        <View style={[styles.key, styles.keyCurrent]}>
+          <FontDisplay style={styles.keyText}>TODAY'S DATE</FontDisplay>
         </View>
-      </ScrollView>
+        <View style={[styles.key, styles.keySelected]}>
+          <FontDisplay style={styles.keyText}>SELECTED DATE</FontDisplay>
+        </View>
+      </View>
+      <View style={styles.monthContainer}>
+        {allMonthsBtn ? renderAllMonthsBtn() : null}
+        {/* Months */}
+        <FlatList
+          numColumns={3}
+          data={months}
+          renderItem={renderMonth}
+          keyExtractor={(month) => month.id}
+        />
+      </View>
+
+      {/* Days */}
+      <FlatList
+        numColumns={7}
+        data={days}
+        renderItem={renderDay}
+        keyExtractor={(day) => day.id}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    marginBottom: 10,
+  container: {
+    flex: 1,
+    padding: 15
+  },
+  allContainer: {
+    paddingLeft: 5
+  },
+  all: {
+    backgroundColor: '#131324',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 24
+  },
+  monthContainer: {
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  month: {
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    width: '33%'
+  },
+  day: {
+    paddingHorizontal: 5,
+    marginVertical: 5,
+    width: '14.3%'
+  },
+  itemText: {
     textAlign: 'center'
   },
-  bold: {
-    fontWeight: 'bold'
+  controls: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 30,
+    marginTop: 15
   },
   title: {
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 30,
+    flex: 1,
+    letterSpacing: 1,
+    textAlign: 'center',
+    paddingRight: 25
+  },
+  keyContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 30
+  },
+  backIcon: {
+    paddingLeft: 5,
+    width: 25
+  },
+  key: {
+    width: '30%',
+    paddingBottom: 5,
+    borderStyle: 'solid',
+    borderBottomWidth: 15
+  },
+  keyText: {
     textAlign: 'center'
   },
-  dayView: {
-    flex: 3
+  keyCurrent: {
+    borderBottomColor: '#067b84'
+  },
+  keySelected: {
+    borderBottomColor: '#2c2cb9'
   }
 });
 

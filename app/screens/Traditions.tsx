@@ -1,21 +1,25 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { AppState } from '../redux/store';
-import Colours from '../constants/Colours';
-import { FontAwesome } from '@expo/vector-icons';
-import { FontDisplay } from '../components/styles/StyledText';
 import Tradition from '../components/layout/Tradition';
+import globalStyles from '../constants/globalStyles';
+import itemStates from '../constants/itemStates';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
-import { useFocusEffect } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const Traditions: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const [traditionType, setTraditionType] = useState<ETraditionTypes>(
+    ETraditionTypes.short
+  );
+  const activeButtonTheme = itemStates[`${colorScheme}CurrentItem`];
+  const isFocused = useIsFocused();
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -24,83 +28,89 @@ const Traditions: React.FC = (): JSX.Element => {
     }
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      return () => null;
-    }, [scrollViewRef])
-  );
+  // Scroll to top function
+  const scrollTop = () => {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  };
+
+  // Scroll to top on focus
+  useEffect(() => {
+    if (isFocused) {
+      scrollTop();
+    }
+  }, [isFocused]);
+
+  const isActiveButton = (currentTraditionType: ETraditionTypes): boolean => {
+    return currentTraditionType === traditionType;
+  };
 
   return (
-    <ForwardedScrollView
-      contentContainerStyle={styles.container}
-      ref={scrollViewRef}>
-      <View style={styles.logoContainer}>
-        {/* Logo */}
-        <FontAwesome
-          style={styles.text}
-          name='book'
-          size={25}
-          color={Colours[colorScheme].text}
-        />
-        {/* Title */}
-        <FontDisplay style={styles.title}>Traditions</FontDisplay>
-      </View>
-      {/* Divider */}
-      <View
-        style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
-      />
+    <View>
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
-          <Text>SHORT</Text>
+        <Pressable
+          style={[
+            styles.button,
+            isActiveButton(ETraditionTypes.short)
+              ? activeButtonTheme
+              : itemStates[`${colorScheme}Item`]
+          ]}
+          onPress={() => setTraditionType(ETraditionTypes.short)}>
+          <Text
+            style={[
+              styles.text,
+              isActiveButton(ETraditionTypes.short) ? styles.textWhite : null
+            ]}>
+            SHORT
+          </Text>
         </Pressable>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
-          <Text>LONG</Text>
+        <Pressable
+          style={[
+            styles.button,
+            isActiveButton(ETraditionTypes.long)
+              ? activeButtonTheme
+              : itemStates[`${colorScheme}Item`]
+          ]}
+          onPress={() => setTraditionType(ETraditionTypes.long)}>
+          <Text
+            style={[
+              styles.text,
+              isActiveButton(ETraditionTypes.long) ? styles.textWhite : null
+            ]}>
+            LONG
+          </Text>
         </Pressable>
       </View>
-      {/* Traditions */}
-      {traditions[traditionType].map((tradition, index) => (
-        <Tradition
-          key={index}
-          id={tradition.id}
-          tradition={tradition.tradition}
-        />
-      ))}
-    </ForwardedScrollView>
+      <ForwardedScrollView
+        contentContainerStyle={globalStyles.mainContainer}
+        ref={scrollViewRef}>
+        {/* Traditions */}
+        {traditions[traditionType].map((tradition, index) => (
+          <Tradition
+            key={index}
+            id={tradition.id}
+            tradition={tradition.tradition}
+          />
+        ))}
+      </ForwardedScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 15
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10
-  },
-  controls: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10
-  },
-  title: {
-    fontSize: 20,
-    marginLeft: 10
-  },
   text: {
     textAlign: 'center'
   },
-  divider: {
-    alignSelf: 'center',
-    marginVertical: 20,
-    height: 1,
-    width: '70%'
+  textWhite: {
+    color: '#fff'
+  },
+  button: {
+    paddingVertical: 12,
+    width: '50%'
+  },
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 
