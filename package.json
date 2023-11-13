@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
-    "@types/react": "~18.2.15",
+    "@types/react": "~18.2.37",
     "date-fns": "^2.30.0",
     "expo-asset": "~8.10.1",
     "expo-dev-client": "~2.4.6",
@@ -52,7 +52,7 @@
     "@types/react-native": "~0.72.2",
     "@types/react-redux": "^7.1.25",
     "@types/react-test-renderer": "^18.0.0",
-    "@types/react": "~18.2.15",
+    "@types/react": "~18.2.37",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@wildpastry/eslint-config": "^1.6.4",
     "eslint-plugin-prettier": "^5.0.0",
