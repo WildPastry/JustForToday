@@ -57,7 +57,7 @@
     "@wildpastry/eslint-config": "^1.6.4",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "expo-dev-client": "~2.4.12",
     "hermes-engine": "^0.11.0",
     "jest-expo": "~49.0.0",
