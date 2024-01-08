@@ -41,7 +41,7 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.3",
+    "@babel/core": "^7.23.7",
     "@expo/vector-icons": "^13.0.0",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native-stack": "^6.9.17",
