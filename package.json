@@ -28,7 +28,7 @@
     "expo-status-bar": "~1.7.1",
     "expo-updates": "~0.18.17",
     "expo-web-browser": "~12.5.0",
-    "expo": "^49.0.18",
+    "expo": "^49.0.22",
     "react-dom": "18.2.0",
     "react-native-gesture-handler": "~2.13.4",
     "react-native-reanimated": "~3.5.4",
