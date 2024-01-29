@@ -19,7 +19,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@types/react": "~18.2.37",
     "date-fns": "^2.30.0",
-    "expo-asset": "~8.10.1",
+    "expo-asset": "~9.0.2",
     "expo-dev-client": "~2.4.12",
     "expo-font": "~11.6.0",
     "expo-linking": "~6.0.0",
