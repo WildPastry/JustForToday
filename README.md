@@ -1,6 +1,6 @@
 # JustForToday
 
-React Native
+Daily reflections and more
 
 ## Development
 
