@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Step /> renders correctly 1`] = `
+<Text
+  style={
+    [
+      {
+        "color": "#000",
+      },
+      {
+        "lineHeight": 20,
+        "marginBottom": 10,
+        "textAlign": "left",
+      },
+    ]
+  }
+>
+  #
+  : 
+</Text>
+`;

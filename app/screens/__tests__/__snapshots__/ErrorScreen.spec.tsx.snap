@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorScreen /> renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#fff",
+      },
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 15,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        [
+          {
+            "fontSize": 20,
+          },
+          {
+            "fontFamily": "font-display",
+          },
+        ],
+      ]
+    }
+  >
+    ErrorScreen
+  </Text>
+</View>
+`;
