@@ -2,7 +2,7 @@
   "expo": {
     "name": "just-for-today",
     "slug": "justfortoday",
-    "privacy": "private",
+    "privacy": "public",
     "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
