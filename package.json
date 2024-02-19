@@ -35,7 +35,7 @@
     "@react-navigation/bottom-tabs": "^6.5.12",
     "@react-navigation/native-stack": "^6.9.18",
     "@react-navigation/native": "^6.1.10",
-    "@reduxjs/toolkit": "^2.2.0",
+    "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/react-native": "^12.4.3",
     "@types/jest": "^29.5.12",
     "@types/react-native": "^0.73.0",
