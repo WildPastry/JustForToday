@@ -64,9 +64,7 @@ const Home: React.FC = (): JSX.Element => {
   // Render app
   const renderApp = () => {
     return (
-      <ForwardedScrollView
-        contentContainerStyle={styles.container}
-        ref={scrollViewRef}>
+      <View>
         {/* Calendar icon */}
         <FontAwesome5
           style={styles.calendarIcon}
@@ -98,7 +96,7 @@ const Home: React.FC = (): JSX.Element => {
         ) : (
           <Reflection />
         )}
-      </ForwardedScrollView>
+      </View>
     );
   };
   // Check for error state
