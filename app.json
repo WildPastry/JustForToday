@@ -5,34 +5,37 @@
     "privacy": "public",
     "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./app/assets/images/icon.png",
+    "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./app/assets/images/splash.png",
-      "resizeMode": "contain",
+      "image": "./app/assets/splash.png",
+      "resizeMode": "cover",
       "backgroundColor": "#2c2c54"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
-    },
+
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "nz.co.mikeparker.jft"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/images/icon.png",
+        "foregroundImage": "./app/assets/icon.png",
         "backgroundColor": "#2c2c54"
       },
       "package": "nz.co.mikeparker.jft"
     },
+    "description": "Daily reflections and more.",
     "githubUrl": "https://github.com/WildPastry/JustForToday",
     "extra": {
       "eas": {
         "projectId": "5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
       }
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
     },
     "owner": "wildpastry",
     "runtimeVersion": {

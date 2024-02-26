@@ -1,5 +1,5 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View, Text } from '../components/styles/Themed';
+import ForwardedScrollView, { View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
@@ -64,7 +64,41 @@ const Home: React.FC = (): JSX.Element => {
   // Render app
   const renderApp = () => {
     return (
-      <Text style={styles.title}>JFT</Text>
+      <ForwardedScrollView
+        contentContainerStyle={styles.container}
+        ref={scrollViewRef}>
+        {/* Calendar icon */}
+        <FontAwesome5
+          style={styles.calendarIcon}
+          name='calendar-alt'
+          size={25}
+          onPress={() => toggleCalendar()}
+          color={Colours[colorScheme].icon}
+        />
+        <View style={styles.logoContainer}>
+          {/* Logo */}
+          <FontAwesome5
+            style={styles.icon}
+            name='chair'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
+          {/* Title */}
+          <FontDisplay style={styles.title}>Just for today</FontDisplay>
+        </View>
+        {/* Divider */}
+        <View
+          style={styles.divider}
+          lightColor={Colours[colorScheme].seperator}
+          darkColor={Colours[colorScheme].seperator}
+        />
+        {/* Components */}
+        {showCalendar ? (
+          <Calendar handleCalendarChange={updateReflection} />
+        ) : (
+          <Reflection />
+        )}
+      </ForwardedScrollView>
     );
   };
   // Check for error state
