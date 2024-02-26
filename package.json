@@ -4,6 +4,8 @@
   "main": "./app/App.tsx",
   "scripts": {
     "start": "expo start --dev-client",
+    "build": "eas build -p android",
+    "submit": "eas submit -p android",
     "start-tunnel": "expo start --tunnel",
     "android": "expo run:android",
     "ios": "expo run:ios",
