@@ -28,7 +28,7 @@ export default function useCachedResources(): boolean {
         });
 
         // Load data
-        await dispatch(setData());
+        // await dispatch(setData());
       } catch (e) {
         // Set error screen if failed
         dispatch(setError(true));
