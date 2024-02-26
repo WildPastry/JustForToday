@@ -7,6 +7,7 @@
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "scheme":"nz.co.mikeparker.jft",
     "splash": {
       "image": "./app/assets/splash.png",
       "resizeMode": "cover",
