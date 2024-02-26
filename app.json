@@ -16,16 +16,14 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/5a7e0b8b-ed87-4a04-8f49-770e0a9f0a4c"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "nz.co.mikeparker.jft"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/images/adaptive-icon.png",
+        "foregroundImage": "./app/assets/images/icon.png",
         "backgroundColor": "#2c2c54"
       },
       "package": "nz.co.mikeparker.jft"
