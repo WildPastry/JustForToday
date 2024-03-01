@@ -7,7 +7,7 @@ on:
 
 jobs:
   eas-staging:
-    if: startsWith(github.head_ref, 'release/')
+    if: startsWith(github.ref_name, 'release/')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
