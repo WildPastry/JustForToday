@@ -4,7 +4,9 @@
   "main": "./app/App.tsx",
   "scripts": {
     "android": "expo run:android",
-    "build": "eas build -p android",
+    "build-production": "eas build -e production -p android --non-interactive",
+    "build-staging": "eas build -e preview -p android --non-interactive",
+    "build-develop": "eas build -e develop -p android --non-interactive",
     "clean": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\" && npm run lint:fix",
     "format:fix": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "format": "npx prettier --check \"**/*.{js,jsx,ts,tsx}\"",
