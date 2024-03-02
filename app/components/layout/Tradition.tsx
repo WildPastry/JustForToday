@@ -8,7 +8,7 @@ const TraditionItem: React.FC<ITradition> = (
   return (
     // Tradition
     <Text style={styles.text}>
-      #{props.id}: {props.tradition}
+      <Text style={styles.textBold}>{props.id}</Text> {props.tradition}
     </Text>
   );
 };
@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     lineHeight: 25,
     marginBottom: 20
+  },
+  textBold: {
+    fontWeight: 'bold'
   }
 });
 

@@ -6,7 +6,7 @@ const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
   return (
     // Step
     <Text style={styles.text}>
-      #{props.id}: {props.step}
+      <Text style={styles.textBold}>{props.id}</Text> {props.step}
     </Text>
   );
 };
@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     lineHeight: 25,
     marginBottom: 20
+  },
+  textBold: {
+    fontWeight: 'bold'
   }
 });
 

@@ -55,11 +55,15 @@ const Traditions: React.FC = (): JSX.Element => {
       />
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.short)}>
-          <Text>SHORT</Text>
+        <Pressable
+          style={[styles.traditionBtn, styles[`${colorScheme}TraditionBtn`]]}
+          onPress={() => setTraditionType(ETraditionTypes.short)}>
+          <Text style={styles.textCenter}>SHORT</Text>
         </Pressable>
-        <Pressable onPress={() => setTraditionType(ETraditionTypes.long)}>
-          <Text>LONG</Text>
+        <Pressable
+          style={[styles.traditionBtn, styles[`${colorScheme}TraditionBtn`]]}
+          onPress={() => setTraditionType(ETraditionTypes.long)}>
+          <Text style={styles.textCenter}>LONG</Text>
         </Pressable>
       </View>
       {/* Traditions */}
@@ -75,6 +79,9 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  textCenter: {
+    textAlign: 'center'
+  },
   container: {
     padding: 15
   },
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
   },
   controls: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 20,
     marginBottom: 20,
     marginTop: 10
   },
@@ -102,6 +109,17 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     height: 1,
     width: '70%'
+  },
+  traditionBtn: {
+    flex: 1,
+    borderRadius: 12,
+    paddingVertical: 12
+  },
+  lightTraditionBtn: {
+    backgroundColor: '#e5edf9'
+  },
+  darkTraditionBtn: {
+    backgroundColor: '#171b43'
   }
 });
 
