@@ -71,7 +71,7 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       <Text style={styles.text}>
         Created to give people in the fellowship fast access to well known AA
-        literature at the touch of a button.
+        literature at the touch of a Btn.
       </Text>
       {/* Suggestions */}
       <Text style={styles.subTitle}>Suggestions?</Text>
@@ -79,9 +79,9 @@ const About: React.FC = (): JSX.Element => {
         If you have any suggestions or requests for features to improve the app
         you can send them directly to the developer.
       </Text>
-      {/* Suggestions button */}
+      {/* Suggestions Btn */}
       <Pressable
-        style={[styles.helpLinkButton, styles[`${colorScheme}HelpLinkButton`]]}
+        style={[styles.helpLinkBtn, styles[`${colorScheme}HelpLinkBtn`]]}
         onPress={() => handleSuggestions()}>
         <Text style={styles.textCenter}>SUGGESTIONS</Text>
       </Pressable>
@@ -133,9 +133,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 20
   },
-  btn: {
-    marginBottom: 10
-  },
   icon: {
     marginBottom: 10,
     textAlign: 'center'
@@ -146,18 +143,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: '70%'
   },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkButton: {
+  helpLinkBtn: {
     borderRadius: 12,
-    marginVertical: 10,
+    marginVertical: 15,
     paddingVertical: 12
   },
-  lightHelpLinkButton: {
+  lightHelpLinkBtn: {
     backgroundColor: '#e5edf9'
   },
-  darkHelpLinkButton: {
+  darkHelpLinkBtn: {
     backgroundColor: '#171b43'
   }
 });
