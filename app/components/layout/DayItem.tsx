@@ -1,6 +1,7 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IDayItem } from '../../types/date.types';
 import { AppState } from '../../redux/store';
+import Colours from '../../constants/Colours';
 import { Text } from '../styles/Themed';
 import { useAppSelector } from '../../redux/hooks';
 import useColorScheme from '../../hooks/useColorScheme';
@@ -8,7 +9,6 @@ import useColorScheme from '../../hooks/useColorScheme';
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  const currentDayTheme = styles[`${colorScheme}CurrentDay`];
 
   // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
@@ -23,14 +23,15 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
     <Pressable
       style={[
         styles.dayItem,
-        isCurrentDay() ? currentDayTheme : styles[`${colorScheme}DayItem`]
+        isCurrentDay()
+          ? { backgroundColor: Colours[colorScheme].currentBtn }
+          : { backgroundColor: Colours[colorScheme].btn }
       ]}
       onPress={props.onPress}>
-      {/* Day item */}
       <Text
         style={[
           styles.text,
-          isCurrentDay() ? styles.currentDayItemText : null
+          isCurrentDay() ? { color: Colours[colorScheme].currentBtnText } : null
         ]}>
         {props.name}
       </Text>
@@ -46,21 +47,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginBottom: 15,
     paddingVertical: 10
-  },
-  lightDayItem: {
-    backgroundColor: '#e5edf9'
-  },
-  darkDayItem: {
-    backgroundColor: '#171b43'
-  },
-  lightCurrentDay: {
-    backgroundColor: '#0074c1'
-  },
-  darkCurrentDay: {
-    backgroundColor: '#0074c1'
-  },
-  currentDayItemText: {
-    color: '#fff'
   }
 });
 

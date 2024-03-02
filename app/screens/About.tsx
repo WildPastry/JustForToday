@@ -81,7 +81,10 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       {/* Suggestions Btn */}
       <Pressable
-        style={[styles.helpLinkBtn, styles[`${colorScheme}HelpLinkBtn`]]}
+        style={[
+          styles.helpLinkBtn,
+          { backgroundColor: Colours[colorScheme].btn }
+        ]}
         onPress={() => handleSuggestions()}>
         <Text style={styles.textCenter}>Send email</Text>
       </Pressable>
@@ -147,12 +150,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginVertical: 15,
     paddingVertical: 12
-  },
-  lightHelpLinkBtn: {
-    backgroundColor: '#e5edf9'
-  },
-  darkHelpLinkBtn: {
-    backgroundColor: '#171b43'
   }
 });
 

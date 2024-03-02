@@ -1,7 +1,9 @@
 export default {
   light: {
     background: '#fff',
-    btn: '#e6e6f9',
+    btn: '#e5edf9',
+    currentBtn: '#0074c1',
+    currentBtnText: '#fff',
     buttonText: '#fff',
     icon: '#000',
     link: '#0074c1',
@@ -14,7 +16,9 @@ export default {
   },
   dark: {
     background: '#2c2c54',
-    btn: '#131324',
+    btn: '#171b43',
+    currentBtn: '#0074c1',
+    currentBtnText: '#fff',
     buttonText: '#fff',
     icon: '#fff',
     link: '#0074c1',
