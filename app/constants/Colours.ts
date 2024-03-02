@@ -6,6 +6,7 @@ export default {
     tabIconActive: '#000',
     tabIconDefault: '#8a8a8a',
     text: '#000',
+    link: '#0074c1',
     icon: '#000',
     seperator: '#bdc3c7'
   },
@@ -16,6 +17,7 @@ export default {
     tabIconActive: '#fff',
     tabIconDefault: '#8a8a8a',
     text: '#fff',
+    link: '#0074c1',
     icon: '#fff',
     seperator: '#4c4c75'
   }

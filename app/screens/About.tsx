@@ -1,9 +1,14 @@
-/* eslint-disable no-console */
-import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
+/* eslint-disable max-len */
+import {
+  ColorSchemeName,
+  Linking,
+  Platform,
+  Pressable,
+  StyleSheet
+} from 'react-native';
 import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
-import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +22,13 @@ const About: React.FC = (): JSX.Element => {
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
   const handleSuggestions = (): void => {
-    console.log('SUGGESTIONS');
+    Linking.openURL(
+      'mailto:justfortoday@mikeparker.co.nz?subject=SendMail&body=App Suggestion'
+    );
+  };
+
+  const handleLink = (): void => {
+    Linking.openURL('https://www.aa.org/');
   };
 
   const getAppVersion = (): string => {
@@ -54,6 +65,7 @@ const About: React.FC = (): JSX.Element => {
         lightColor={Colours[colorScheme].seperator}
         darkColor={Colours[colorScheme].seperator}
       />
+      {/* Information */}
       <Text style={styles.text}>
         Daily reflections, steps, and tradtions with zero advertisments.
       </Text>
@@ -61,13 +73,17 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
+      {/* Suggestions */}
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
         you can send them directly to the developer.
       </Text>
-      <Pressable onPress={() => handleSuggestions()}>
-        <Text>SUGGESTIONS</Text>
+      {/* Suggestions button */}
+      <Pressable
+        style={[styles.helpLinkButton, styles[`${colorScheme}HelpLinkButton`]]}
+        onPress={() => handleSuggestions()}>
+        <Text style={styles.textCenter}>SUGGESTIONS</Text>
       </Pressable>
       {/* Divider */}
       <View
@@ -75,15 +91,16 @@ const About: React.FC = (): JSX.Element => {
         lightColor={Colours[colorScheme].seperator}
         darkColor={Colours[colorScheme].seperator}
       />
+      {/* AA disclaimer and link*/}
       <Text style={styles.text}>
-        All literature is taken with permission from Alcoholics Anonymous World
-        Services, Inc.
-      </Text>
-      <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
-        <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
-          AA link
+        All literature is taken with permission from{' '}
+        <Text
+          onPress={() => handleLink()}
+          lightColor={Colours.light.link}
+          darkColor={Colours.dark.link}>
+          Alcoholics Anonymous World Services, Inc.
         </Text>
-      </ExternalLink>
+      </Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </ForwardedScrollView>
@@ -91,6 +108,9 @@ const About: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  textCenter: {
+    textAlign: 'center'
+  },
   container: {
     padding: 15
   },
@@ -129,8 +149,16 @@ const styles = StyleSheet.create({
   helpLink: {
     paddingVertical: 15
   },
-  helpLinkText: {
-    textAlign: 'center'
+  helpLinkButton: {
+    borderRadius: 12,
+    marginVertical: 10,
+    paddingVertical: 12
+  },
+  lightHelpLinkButton: {
+    backgroundColor: '#e5edf9'
+  },
+  darkHelpLinkButton: {
+    backgroundColor: '#171b43'
   }
 });
 
