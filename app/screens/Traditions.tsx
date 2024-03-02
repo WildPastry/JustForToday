@@ -32,6 +32,10 @@ const Traditions: React.FC = (): JSX.Element => {
     }, [scrollViewRef])
   );
 
+  const isSelected = (activeTraditionType: ETraditionTypes): boolean => {
+    return activeTraditionType === traditionType;
+  };
+
   return (
     <ForwardedScrollView
       contentContainerStyle={styles.container}
@@ -58,7 +62,9 @@ const Traditions: React.FC = (): JSX.Element => {
         <Pressable
           style={[
             styles.traditionBtn,
-            { backgroundColor: Colours[colorScheme].btn }
+            isSelected(ETraditionTypes.short)
+              ? { backgroundColor: Colours[colorScheme].currentBtn }
+              : { backgroundColor: Colours[colorScheme].btn }
           ]}
           onPress={() => setTraditionType(ETraditionTypes.short)}>
           <Text style={styles.textCenter}>SHORT</Text>
@@ -66,7 +72,9 @@ const Traditions: React.FC = (): JSX.Element => {
         <Pressable
           style={[
             styles.traditionBtn,
-            { backgroundColor: Colours[colorScheme].btn }
+            isSelected(ETraditionTypes.long)
+              ? { backgroundColor: Colours[colorScheme].currentBtn }
+              : { backgroundColor: Colours[colorScheme].btn }
           ]}
           onPress={() => setTraditionType(ETraditionTypes.long)}>
           <Text style={styles.textCenter}>LONG</Text>
