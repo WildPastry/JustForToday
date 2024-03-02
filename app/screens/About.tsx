@@ -83,7 +83,7 @@ const About: React.FC = (): JSX.Element => {
       <Pressable
         style={[styles.helpLinkBtn, styles[`${colorScheme}HelpLinkBtn`]]}
         onPress={() => handleSuggestions()}>
-        <Text style={styles.textCenter}>SUGGESTIONS</Text>
+        <Text style={styles.textCenter}>Send email</Text>
       </Pressable>
       {/* Divider */}
       <View

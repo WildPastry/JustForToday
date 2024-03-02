@@ -1,16 +1,20 @@
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../../types/date.types';
-import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../styles/Themed';
 import { add, format } from 'date-fns';
 import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../../redux/store';
+import Colours from '../../constants/Colours';
+import { FontAwesome } from '@expo/vector-icons';
 import { IReflection } from '../../types/data.types';
+import useColorScheme from '../../hooks/useColorScheme';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',
@@ -35,15 +39,6 @@ const Reflection: React.FC = (): JSX.Element => {
   useEffect(() => {
     selectReflection(dates.selectedDay, reflections);
   }, [reflections]);
-
-  const getCurrentDay = (): string => {
-    // Calculate current day
-    const currentDay = format(new Date(), EDateFormat.ddMM);
-    // Update store
-    dispatch(setSelectedDate(Date.now()));
-    dispatch(setSelectedDay(currentDay));
-    return currentDay;
-  };
 
   const getPrevDay = (): string => {
     // Calculate previous day
@@ -108,19 +103,26 @@ const Reflection: React.FC = (): JSX.Element => {
     <View>
       {/* Controls */}
       <View style={styles.controls}>
+        {/* Left chevron */}
         <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <Text>PREV</Text>
+          <FontAwesome
+            name='chevron-circle-left'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
-        <Pressable
-          onPress={() => selectReflection(getCurrentDay(), reflections)}>
-          <Text>TODAY</Text>
-        </Pressable>
+        {/* Date */}
+        <Text style={styles.title}>{reflection.date}</Text>
+        {/* Right chevron */}
         <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <Text>NEXT</Text>
+          <FontAwesome
+            name='chevron-circle-right'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={styles.title}>{reflection.date}</Text>
       <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
       <Text style={styles.quote}>{reflection.quote}</Text>
       <Text style={styles.text}>{reflection.reflection}</Text>
