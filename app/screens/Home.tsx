@@ -89,8 +89,8 @@ const Home: React.FC = (): JSX.Element => {
         {/* Divider */}
         <View
           style={styles.divider}
-          lightColor={Colours[colorScheme].seperator}
-          darkColor={Colours[colorScheme].seperator}
+          lightColor={Colours.light.seperator}
+          darkColor={Colours.dark.seperator}
         />
         {/* Components */}
         {showCalendar ? (

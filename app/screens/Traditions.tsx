@@ -50,18 +50,24 @@ const Traditions: React.FC = (): JSX.Element => {
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
       {/* Controls */}
       <View style={styles.controls}>
         <Pressable
-          style={[styles.traditionBtn, styles[`${colorScheme}TraditionBtn`]]}
+          style={[
+            styles.traditionBtn,
+            { backgroundColor: Colours[colorScheme].btn }
+          ]}
           onPress={() => setTraditionType(ETraditionTypes.short)}>
           <Text style={styles.textCenter}>SHORT</Text>
         </Pressable>
         <Pressable
-          style={[styles.traditionBtn, styles[`${colorScheme}TraditionBtn`]]}
+          style={[
+            styles.traditionBtn,
+            { backgroundColor: Colours[colorScheme].btn }
+          ]}
           onPress={() => setTraditionType(ETraditionTypes.long)}>
           <Text style={styles.textCenter}>LONG</Text>
         </Pressable>
@@ -114,12 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 12,
     paddingVertical: 12
-  },
-  lightTraditionBtn: {
-    backgroundColor: '#e5edf9'
-  },
-  darkTraditionBtn: {
-    backgroundColor: '#171b43'
   }
 });
 

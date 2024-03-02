@@ -1,5 +1,6 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from '../components/styles/Themed';
+import Colours from '../constants/Colours';
 import { RootStackScreenProps } from '../types/navigation.types';
 
 export default function NotFoundScreen({
@@ -11,7 +12,12 @@ export default function NotFoundScreen({
       <TouchableOpacity
         onPress={() => navigation.replace('Root')}
         style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
+        <Text
+          style={styles.linkText}
+          lightColor={Colours.light.link}
+          darkColor={Colours.dark.link}>
+          Go to home screen
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -32,7 +38,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15
   },
   linkText: {
-    fontSize: 14,
-    color: '#2e78b7'
+    fontSize: 14
   }
 });

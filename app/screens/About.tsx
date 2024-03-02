@@ -62,8 +62,8 @@ const About: React.FC = (): JSX.Element => {
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
       {/* Information */}
       <Text style={styles.text}>
@@ -91,8 +91,8 @@ const About: React.FC = (): JSX.Element => {
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
       {/* AA disclaimer and link*/}
       <Text style={styles.text}>
