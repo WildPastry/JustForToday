@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
   monthItem: {
     borderRadius: 12,
-    marginBottom: 12,
-    paddingVertical: 12
+    marginBottom: 20,
+    paddingVertical: 20
   },
   lightMonthItem: {
     backgroundColor: '#e5edf9'

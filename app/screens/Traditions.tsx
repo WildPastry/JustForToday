@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 20,
+    marginTop: 10
   },
   title: {
     fontSize: 20,

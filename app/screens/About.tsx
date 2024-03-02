@@ -117,17 +117,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     textAlign: 'center',
-    marginBottom: 10
+    marginBottom: 20
   },
   subTitle: {
     fontSize: 18,
     textAlign: 'left',
-    marginBottom: 10
+    marginBottom: 20
   },
   text: {
     textAlign: 'left',
-    lineHeight: 20,
-    marginBottom: 10
+    lineHeight: 25,
+    marginBottom: 20
   },
   versionText: {
     textAlign: 'center',

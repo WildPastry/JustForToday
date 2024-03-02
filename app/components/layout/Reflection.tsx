@@ -112,7 +112,7 @@ const Reflection: React.FC = (): JSX.Element => {
           />
         </Pressable>
         {/* Date */}
-        <Text style={styles.title}>{reflection.date}</Text>
+        <Text style={styles.date}>{reflection.date}</Text>
         {/* Right chevron */}
         <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
           <FontAwesome
@@ -134,25 +134,31 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginVertical: 20
+  },
+  date: {
+    fontSize: 20,
+    lineHeight: 25,
+    marginBottom: 10,
+    textAlign: 'center'
   },
   text: {
     fontSize: 15,
-    lineHeight: 23,
-    marginBottom: 10,
+    lineHeight: 25,
+    marginBottom: 20,
     textAlign: 'left'
   },
   title: {
     fontSize: 20,
     lineHeight: 25,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: 'center'
   },
   quote: {
     fontWeight: 'bold',
     fontSize: 17,
     lineHeight: 23,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: 'left'
   },
   bold: {

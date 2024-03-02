@@ -44,9 +44,8 @@ const styles = StyleSheet.create({
   },
   dayItem: {
     borderRadius: 7,
-    marginBottom: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 5
+    marginBottom: 15,
+    paddingVertical: 10
   },
   lightDayItem: {
     backgroundColor: '#e5edf9'

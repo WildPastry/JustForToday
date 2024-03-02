@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
+    marginBottom: 10,
+    marginTop: 20,
     height: 1,
     width: '70%'
   }

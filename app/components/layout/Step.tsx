@@ -14,8 +14,8 @@ const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
 const styles = StyleSheet.create({
   text: {
     textAlign: 'left',
-    lineHeight: 20,
-    marginBottom: 10
+    lineHeight: 25,
+    marginBottom: 20
   }
 });
 
