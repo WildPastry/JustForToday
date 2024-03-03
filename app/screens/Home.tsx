@@ -1,4 +1,5 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
+import { FontDisplay, FontDisplayBold } from '../components/styles/StyledText';
 import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
@@ -12,7 +13,6 @@ import Calendar from '../components/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { FontDisplay } from '../components/styles/StyledText';
 import Reflection from '../components/Reflection';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -90,7 +90,13 @@ const Home: React.FC = (): JSX.Element => {
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
-          <FontDisplay style={styles.title}>Just for today</FontDisplay>
+          <FontDisplay style={styles.title}>
+            Just for{' '}
+            <FontDisplayBold
+              style={[styles.title, { color: Colours[colorScheme].link }]}>
+              today
+            </FontDisplayBold>
+          </FontDisplay>
         </View>
         {/* Divider */}
         <View

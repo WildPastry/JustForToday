@@ -8,3 +8,12 @@ export function FontDisplay(styledText: TextProps) {
     />
   );
 }
+
+export function FontDisplayBold(styledText: TextProps) {
+  return (
+    <Text
+      {...styledText}
+      style={[styledText.style, { fontFamily: 'font-display-bold' }]}
+    />
+  );
+}

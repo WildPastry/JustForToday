@@ -20,7 +20,8 @@ export default function useCachedResources(): boolean {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'font-display': require('../assets/fonts/SpaceMono-Regular.ttf')
+          'font-display': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'font-display-bold': require('../assets/fonts/SpaceMono-Bold.ttf')
         });
 
         // Load data
