@@ -20,7 +20,7 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginBottom": 10,
+          "marginVertical": 20,
         },
       ]
     }
@@ -56,19 +56,23 @@ exports[`<Reflection /> renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
     >
-      <Text
-        style={
-          [
-            {
-              "color": "#000",
-            },
-            undefined,
-          ]
-        }
-      >
-        PREV
-      </Text>
+      <Text />
     </View>
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
+            "marginBottom": 10,
+            "textAlign": "center",
+          },
+        ]
+      }
+    />
     <View
       accessibilityState={
         {
@@ -100,79 +104,9 @@ exports[`<Reflection /> renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
     >
-      <Text
-        style={
-          [
-            {
-              "color": "#000",
-            },
-            undefined,
-          ]
-        }
-      >
-        TODAY
-      </Text>
-    </View>
-    <View
-      accessibilityState={
-        {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessibilityValue={
-        {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
-      accessible={true}
-      collapsable={false}
-      focusable={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-    >
-      <Text
-        style={
-          [
-            {
-              "color": "#000",
-            },
-            undefined,
-          ]
-        }
-      >
-        NEXT
-      </Text>
+      <Text />
     </View>
   </View>
-  <Text
-    style={
-      [
-        {
-          "color": "#000",
-        },
-        {
-          "fontSize": 20,
-          "lineHeight": 25,
-          "marginBottom": 10,
-          "textAlign": "center",
-        },
-      ]
-    }
-  />
   <Text
     style={
       [
@@ -183,7 +117,7 @@ exports[`<Reflection /> renders correctly 1`] = `
           {
             "fontSize": 20,
             "lineHeight": 25,
-            "marginBottom": 10,
+            "marginBottom": 20,
             "textAlign": "center",
           },
           {
@@ -203,7 +137,7 @@ exports[`<Reflection /> renders correctly 1`] = `
           "fontSize": 17,
           "fontWeight": "bold",
           "lineHeight": 23,
-          "marginBottom": 10,
+          "marginBottom": 20,
           "textAlign": "left",
         },
       ]
@@ -217,8 +151,8 @@ exports[`<Reflection /> renders correctly 1`] = `
         },
         {
           "fontSize": 15,
-          "lineHeight": 23,
-          "marginBottom": 10,
+          "lineHeight": 25,
+          "marginBottom": 20,
           "textAlign": "left",
         },
       ]

@@ -67,7 +67,15 @@ const Traditions: React.FC = (): JSX.Element => {
               : { backgroundColor: Colours[colorScheme].btn }
           ]}
           onPress={() => setTraditionType(ETraditionTypes.short)}>
-          <Text style={styles.textCenter}>SHORT</Text>
+          <Text
+            style={[
+              styles.text,
+              isSelected(ETraditionTypes.short)
+                ? { color: Colours[colorScheme].currentBtnText }
+                : null
+            ]}>
+            SHORT
+          </Text>
         </Pressable>
         <Pressable
           style={[
@@ -77,7 +85,15 @@ const Traditions: React.FC = (): JSX.Element => {
               : { backgroundColor: Colours[colorScheme].btn }
           ]}
           onPress={() => setTraditionType(ETraditionTypes.long)}>
-          <Text style={styles.textCenter}>LONG</Text>
+          <Text
+            style={[
+              styles.text,
+              isSelected(ETraditionTypes.long)
+                ? { color: Colours[colorScheme].currentBtnText }
+                : null
+            ]}>
+            LONG
+          </Text>
         </Pressable>
       </View>
       {/* Traditions */}
@@ -93,9 +109,6 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  textCenter: {
-    textAlign: 'center'
-  },
   container: {
     padding: 15
   },

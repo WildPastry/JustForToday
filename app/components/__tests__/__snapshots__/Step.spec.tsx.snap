@@ -8,14 +8,25 @@ exports[`<Step /> renders correctly 1`] = `
         "color": "#000",
       },
       {
-        "lineHeight": 20,
-        "marginBottom": 10,
+        "lineHeight": 25,
+        "marginBottom": 20,
         "textAlign": "left",
       },
     ]
   }
 >
-  #
-  : 
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "fontWeight": "bold",
+        },
+      ]
+    }
+  />
+   
 </Text>
 `;

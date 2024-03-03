@@ -2,7 +2,7 @@ export default {
   light: {
     background: '#fff',
     btn: '#e5edf9',
-    currentBtn: '#0074c1',
+    currentBtn: '#2b5b7b',
     currentBtnText: '#fff',
     icon: '#000',
     link: '#0074c1',
@@ -19,7 +19,7 @@ export default {
     currentBtn: '#0074c1',
     currentBtnText: '#fff',
     icon: '#fff',
-    link: '#0074c1',
+    link: '#3ba1e5',
     navBackground: '#131324',
     navBorder: '#e3e3e3',
     seperator: '#4c4c75',
