@@ -40,6 +40,15 @@ const Reflection: React.FC = (): JSX.Element => {
     selectReflection(dates.selectedDay, reflections);
   }, [reflections]);
 
+  const getCurrentDay = (): string => {
+    // Calculate current day
+    const currentDay = format(new Date(), EDateFormat.ddMM);
+    // Update store
+    dispatch(setSelectedDate(Date.now()));
+    dispatch(setSelectedDay(currentDay));
+    return currentDay;
+  };
+
   const getPrevDay = (): string => {
     // Calculate previous day
     const currentDate = new Date(dates.selectedDate);
@@ -99,12 +108,16 @@ const Reflection: React.FC = (): JSX.Element => {
     return verifiedData;
   };
 
+  // selectReflection(getCurrentDay(), reflections)}
+
   return (
     <View>
       {/* Controls */}
       <View style={styles.controls}>
         {/* Left chevron */}
-        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
+        <Pressable
+          style={styles.icon}
+          onPress={() => selectReflection(getPrevDay(), reflections)}>
           <FontAwesome
             name='chevron-circle-left'
             size={25}
@@ -112,10 +125,15 @@ const Reflection: React.FC = (): JSX.Element => {
           />
         </Pressable>
         {/* Date */}
-        <Text style={styles.date}>{reflection.date}</Text>
+        <View style={styles.dateContainer}>
+          <Text style={styles.date}>{reflection.date}</Text>
+        </View>
         {/* Right chevron */}
-        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
+        <Pressable
+          style={styles.icon}
+          onPress={() => selectReflection(getNextDay(), reflections)}>
           <FontAwesome
+            style={styles.textRight}
             name='chevron-circle-right'
             size={25}
             color={Colours[colorScheme].icon}
@@ -134,19 +152,30 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20
+    marginTop: 10,
+    marginBottom: 20
+  },
+  icon: {
+    justifyContent: 'center',
+    paddingVertical: 10,
+    width: '25%'
+  },
+  dateContainer: {
+    justifyContent: 'center',
+    paddingVertical: 10
   },
   date: {
     fontSize: 20,
-    lineHeight: 25,
-    marginBottom: 10,
-    textAlign: 'center'
+    textAlignVertical: 'center'
   },
   text: {
     fontSize: 15,
     lineHeight: 21,
     marginBottom: 20,
     textAlign: 'left'
+  },
+  textRight: {
+    textAlign: 'right'
   },
   title: {
     fontSize: 20,

@@ -72,13 +72,15 @@ const Home: React.FC = (): JSX.Element => {
         contentContainerStyle={styles.container}
         ref={scrollViewRef}>
         {/* Calendar icon */}
-        <FontAwesome5
-          style={styles.calendarIcon}
-          name='calendar-alt'
-          size={25}
-          onPress={() => toggleCalendar()}
-          color={Colours[colorScheme].icon}
-        />
+        <View style={styles.calendarIconContainer}>
+          <FontAwesome5
+            style={styles.calendarIcon}
+            name='calendar-alt'
+            size={25}
+            onPress={() => toggleCalendar()}
+            color={Colours[colorScheme].icon}
+          />
+        </View>
         <View style={styles.logoContainer}>
           {/* Logo */}
           <FontAwesome5
@@ -120,8 +122,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10
+    justifyContent: 'center'
   },
   title: {
     fontSize: 20,
@@ -130,8 +131,12 @@ const styles = StyleSheet.create({
   icon: {
     textAlign: 'center'
   },
+  calendarIconContainer: {
+    alignItems: 'flex-end'
+  },
   calendarIcon: {
-    textAlign: 'right'
+    paddingLeft: 30,
+    paddingVertical: 10
   },
   divider: {
     alignSelf: 'center',
