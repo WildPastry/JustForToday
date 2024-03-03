@@ -1,12 +1,12 @@
-import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
+import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View } from '../styles/Themed';
-import { AppState } from '../../redux/store';
+import { ScrollView, View } from './styles/Themed';
+import { AppState } from '../redux/store';
 import DayItem from './DayItem';
-import { FontDisplay } from '../styles/StyledText';
+import { FontDisplay } from './styles/StyledText';
 import MonthItem from './MonthItem';
 import { StyleSheet } from 'react-native';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../redux/hooks';
 
 const Calendar: React.FC<ICalendar> = ({
   handleCalendarChange,

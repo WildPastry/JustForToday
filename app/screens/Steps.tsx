@@ -6,7 +6,7 @@ import Colours from '../constants/Colours';
 import { FontDisplay } from '../components/styles/StyledText';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Step from '../components/layout/Step';
+import Step from '../components/Step';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';

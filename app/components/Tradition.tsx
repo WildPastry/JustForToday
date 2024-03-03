@@ -1,6 +1,6 @@
-import { ITradition } from '../../types/data.types';
+import { ITradition } from '../types/data.types';
 import { StyleSheet } from 'react-native';
-import { Text } from '../styles/Themed';
+import { Text } from './styles/Themed';
 
 const TraditionItem: React.FC<ITradition> = (
   props: ITradition

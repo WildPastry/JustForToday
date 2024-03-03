@@ -6,7 +6,7 @@ import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
-import Tradition from '../components/layout/Tradition';
+import Tradition from '../components/Tradition';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';

@@ -1,10 +1,10 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
-import { IDate, IMonthItem } from '../../types/date.types';
-import { AppState } from '../../redux/store';
-import Colours from '../../constants/Colours';
-import { Text } from '../styles/Themed';
-import { useAppSelector } from '../../redux/hooks';
-import useColorScheme from '../../hooks/useColorScheme';
+import { IDate, IMonthItem } from '../types/date.types';
+import { AppState } from '../redux/store';
+import Colours from '../constants/Colours';
+import { Text } from './styles/Themed';
+import { useAppSelector } from '../redux/hooks';
+import useColorScheme from '../hooks/useColorScheme';
 
 const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
   // Component settings

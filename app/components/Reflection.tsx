@@ -1,15 +1,15 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
-import { EDateFormat, IDate } from '../../types/date.types';
-import { Text, View } from '../styles/Themed';
+import { EDateFormat, IDate } from '../types/date.types';
+import { Text, View } from './styles/Themed';
 import { add, format } from 'date-fns';
-import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setSelectedDate, setSelectedDay } from '../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
-import { AppState } from '../../redux/store';
-import Colours from '../../constants/Colours';
+import { AppState } from '../redux/store';
+import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
-import { IReflection } from '../../types/data.types';
-import useColorScheme from '../../hooks/useColorScheme';
+import { IReflection } from '../types/data.types';
+import useColorScheme from '../hooks/useColorScheme';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings

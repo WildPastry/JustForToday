@@ -8,12 +8,12 @@ import {
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
-import Calendar from '../components/layout/Calendar';
+import Calendar from '../components/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
-import Reflection from '../components/layout/Reflection';
+import Reflection from '../components/Reflection';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
