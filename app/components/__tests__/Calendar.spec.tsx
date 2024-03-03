@@ -7,6 +7,7 @@ describe('<Calendar />', () => {
   it('renders correctly', () => {
     const store = makeStore();
 
+    // Mock functions
     const mockCalendarChange = (): void => {
       true;
     };

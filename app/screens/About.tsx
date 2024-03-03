@@ -1,17 +1,10 @@
 /* eslint-disable max-len */
-import {
-  ColorSchemeName,
-  Linking,
-  Platform,
-  Pressable,
-  StyleSheet
-} from 'react-native';
+import { ColorSchemeName, Linking, Pressable, StyleSheet } from 'react-native';
 import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
-import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -71,13 +64,13 @@ const About: React.FC = (): JSX.Element => {
       </Text>
       <Text style={styles.text}>
         Created to give people in the fellowship fast access to well known AA
-        literature at the touch of a Btn.
+        literature at the touch of a button.
       </Text>
       {/* Suggestions */}
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
-        you can send them directly to the developer.
+        you can send them using the button.
       </Text>
       {/* Suggestions Btn */}
       <Pressable
@@ -104,8 +97,6 @@ const About: React.FC = (): JSX.Element => {
           Alcoholics Anonymous World Services, Inc.
         </Text>
       </Text>
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </ForwardedScrollView>
   );
 };
