@@ -1,11 +1,11 @@
 import { ICalendar, IDayItem, IMonthItem } from '../../types/date.types';
-import { Pressable, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from '../styles/Themed';
+import { ScrollView, View } from '../styles/Themed';
 import { AppState } from '../../redux/store';
 import DayItem from './DayItem';
 import { FontDisplay } from '../styles/StyledText';
 import MonthItem from './MonthItem';
+import { StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/hooks';
 
 const Calendar: React.FC<ICalendar> = ({
@@ -27,11 +27,6 @@ const Calendar: React.FC<ICalendar> = ({
     setMonths(monthItems);
   }, [monthItems]);
 
-  const getAllMonths = (): void => {
-    setMonths(monthItems);
-    setDays([]);
-  };
-
   const handleMonth = (month: IMonthItem): void => {
     setMonths([month]);
     setDays(month.days);
@@ -46,10 +41,6 @@ const Calendar: React.FC<ICalendar> = ({
   return (
     <View>
       <FontDisplay style={styles.title}>Calendar</FontDisplay>
-      {/* Reset to all months */}
-      <Pressable onPress={() => getAllMonths()}>
-        <Text style={[styles.text, styles.bold]}>ALL MONTHS</Text>
-      </Pressable>
       <ScrollView>
         {/* Months */}
         {months.map((month, index) => (
@@ -79,6 +70,8 @@ const Calendar: React.FC<ICalendar> = ({
 
 const styles = StyleSheet.create({
   text: {
+    fontSize: 15,
+    lineHeight: 21,
     marginBottom: 10,
     textAlign: 'center'
   },
@@ -87,7 +80,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 20,
+    marginTop: 10,
     textAlign: 'center'
   },
   dayView: {

@@ -5,20 +5,28 @@ import { Text } from '../styles/Themed';
 const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
   return (
     // Step
-    <Text style={styles.text}>
-      <Text style={styles.textBold}>{props.id}</Text> {props.step}
+    <Text style={styles.step}>
+      <Text style={styles.number}>{props.id}&nbsp;&nbsp;</Text>
+      <Text style={styles.text}>{props.step}</Text>
     </Text>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: 'left',
-    lineHeight: 25,
+  step: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginBottom: 20
   },
-  textBold: {
-    fontWeight: 'bold'
+  text: {
+    fontSize: 15,
+    textAlign: 'left',
+    lineHeight: 21
+  },
+  number: {
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: '200'
   }
 });
 

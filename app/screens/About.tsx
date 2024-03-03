@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   container: {
-    padding: 15
+    padding: 20
   },
   title: {
     fontSize: 20,
@@ -128,11 +128,13 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   text: {
+    fontSize: 15,
     textAlign: 'left',
-    lineHeight: 25,
+    lineHeight: 21,
     marginBottom: 20
   },
   versionText: {
+    fontSize: 15,
     textAlign: 'center',
     lineHeight: 20
   },

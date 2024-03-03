@@ -7,20 +7,28 @@ const TraditionItem: React.FC<ITradition> = (
 ): JSX.Element => {
   return (
     // Tradition
-    <Text style={styles.text}>
-      <Text style={styles.textBold}>{props.id}</Text> {props.tradition}
+    <Text style={styles.tradtion}>
+      <Text style={styles.number}>{props.id}&nbsp;&nbsp;</Text>
+      <Text style={styles.text}>{props.tradition}</Text>
     </Text>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: 'left',
-    lineHeight: 25,
+  tradtion: {
+    flexDirection: 'row',
     marginBottom: 20
   },
-  textBold: {
-    fontWeight: 'bold'
+  text: {
+    fontSize: 15,
+    textAlign: 'left',
+    lineHeight: 21
+  },
+  number: {
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: '200',
+    marginRight: 10
   }
 });
 

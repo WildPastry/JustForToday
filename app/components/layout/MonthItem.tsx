@@ -43,6 +43,8 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
 
 const styles = StyleSheet.create({
   text: {
+    fontSize: 15,
+    lineHeight: 21,
     textAlign: 'center'
   },
   monthItem: {

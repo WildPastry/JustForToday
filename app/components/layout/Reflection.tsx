@@ -123,7 +123,7 @@ const Reflection: React.FC = (): JSX.Element => {
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
+      <Text style={styles.title}>{reflection.title}</Text>
       <Text style={styles.quote}>{reflection.quote}</Text>
       <Text style={styles.text}>{reflection.reflection}</Text>
     </View>
@@ -144,25 +144,24 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    lineHeight: 25,
+    lineHeight: 21,
     marginBottom: 20,
     textAlign: 'left'
   },
   title: {
     fontSize: 20,
+    fontWeight: 'bold',
     lineHeight: 25,
+    letterSpacing: 0.5,
     marginBottom: 20,
     textAlign: 'center'
   },
   quote: {
-    fontWeight: 'bold',
+    fontWeight: '200',
     fontSize: 17,
     lineHeight: 23,
     marginBottom: 20,
     textAlign: 'left'
-  },
-  bold: {
-    fontWeight: 'bold'
   }
 });
 

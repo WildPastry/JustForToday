@@ -115,7 +115,7 @@ const Home: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    padding: 15
+    padding: 20
   },
   logoContainer: {
     alignItems: 'center',

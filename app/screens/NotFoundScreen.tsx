@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    padding: 15
+    padding: 20
   },
   title: {
     fontSize: 20
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15
   },
   linkText: {
-    fontSize: 14
+    fontSize: 15
   }
 });

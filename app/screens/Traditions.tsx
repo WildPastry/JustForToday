@@ -42,12 +42,7 @@ const Traditions: React.FC = (): JSX.Element => {
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
-        <FontAwesome
-          style={styles.text}
-          name='book'
-          size={25}
-          color={Colours[colorScheme].text}
-        />
+        <FontAwesome name='book' size={25} color={Colours[colorScheme].icon} />
         {/* Title */}
         <FontDisplay style={styles.title}>Traditions</FontDisplay>
       </View>
@@ -74,7 +69,7 @@ const Traditions: React.FC = (): JSX.Element => {
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
             ]}>
-            SHORT
+            Short
           </Text>
         </Pressable>
         <Pressable
@@ -92,7 +87,7 @@ const Traditions: React.FC = (): JSX.Element => {
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
             ]}>
-            LONG
+            Long
           </Text>
         </Pressable>
       </View>
@@ -110,7 +105,7 @@ const Traditions: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    padding: 20
   },
   logoContainer: {
     alignItems: 'center',
@@ -129,6 +124,8 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   text: {
+    fontSize: 15,
+    lineHeight: 21,
     textAlign: 'center'
   },
   divider: {

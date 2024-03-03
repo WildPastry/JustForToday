@@ -60,7 +60,7 @@ const Steps: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    padding: 20
   },
   logoContainer: {
     alignItems: 'center',
