@@ -1,5 +1,5 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/styles/Themed';
+import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
@@ -32,11 +32,15 @@ const Home: React.FC = (): JSX.Element => {
   useFocusEffect(
     React.useCallback(() => {
       // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+      scrollToTop();
       // Hide calendar when unfocused
       return () => setShowCalendar(false);
     }, [])
   );
+
+  const scrollToTop = (): void => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  };
 
   // Error screen
   const errorScreen = (): JSX.Element => {
@@ -94,7 +98,10 @@ const Home: React.FC = (): JSX.Element => {
         />
         {/* Components */}
         {showCalendar ? (
-          <Calendar handleCalendarChange={updateReflection} />
+          <Calendar
+            handleCalendarChange={updateReflection}
+            handleScrollPosition={scrollToTop}
+          />
         ) : (
           <Reflection />
         )}

@@ -6,7 +6,7 @@ import {
   Pressable,
   StyleSheet
 } from 'react-native';
-import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
+import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';

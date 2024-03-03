@@ -1,5 +1,5 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/styles/Themed';
+import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';

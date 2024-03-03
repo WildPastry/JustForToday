@@ -1,6 +1,6 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ETraditionTypes, ITraditions } from '../types/data.types';
-import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
+import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
