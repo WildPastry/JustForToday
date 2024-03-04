@@ -116,11 +116,11 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     gap: 20,
-    marginBottom: 20,
+    marginBottom: 30,
     marginTop: 10
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     marginLeft: 10
   },
   text: {

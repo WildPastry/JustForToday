@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     marginLeft: 10
   },
   icon: {
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
+    marginBottom: 30,
+    marginTop: 20,
     height: 1,
     width: '70%'
   }
