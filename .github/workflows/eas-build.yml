@@ -41,4 +41,4 @@ jobs:
           npm install
 
       - name: Create production build
-        run: eas build -e staging -p android --non-interactive
+        run: eas build -e production -p android --non-interactive
