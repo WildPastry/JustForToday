@@ -50,15 +50,15 @@ const Calendar: React.FC<ICalendar> = ({
     handleScrollPosition();
   };
 
-  const getAllMonths = (): void => {
-    setMonths(monthItems);
-    setDays([]);
-  };
-
   const handleReset = (currentDay: string): void => {
     dispatch(resetCalendar());
     handleCalendarChange(false, currentDay);
     handleScrollPosition();
+  };
+
+  const getAllMonths = (): void => {
+    setMonths(monthItems);
+    setDays([]);
   };
 
   const renderBackArrow = (): JSX.Element | null => {
@@ -95,9 +95,9 @@ const Calendar: React.FC<ICalendar> = ({
       </View>
       <ScrollView>
         {/* Months */}
-        {months.map((month, index) => (
+        {months.map((month) => (
           <MonthItem
-            key={index}
+            key={month.id}
             id={month.id}
             name={month.name}
             days={month.days}
@@ -105,9 +105,9 @@ const Calendar: React.FC<ICalendar> = ({
           />
         ))}
         {/* Days */}
-        {days.map((day, index) => (
+        {days.map((day) => (
           <DayItem
-            key={index}
+            key={day.id}
             id={day.id}
             name={day.name}
             onPress={() => handleDay(day)}
