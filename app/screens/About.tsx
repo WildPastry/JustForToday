@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-import { ColorSchemeName, Platform, Pressable, StyleSheet } from 'react-native';
-import ForwardedScrollView, { Text, View } from '../components/styles/Themed';
+/* eslint-disable max-len */
+import { ColorSchemeName, Linking, Pressable, StyleSheet } from 'react-native';
+import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
-import ExternalLink from '../components/features/ExternalLink';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
-import { StatusBar } from 'expo-status-bar';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -16,12 +14,14 @@ const About: React.FC = (): JSX.Element => {
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
 
-  const handleUpgrade = (): void => {
-    console.log('UPGRADE');
+  const handleSuggestions = (): void => {
+    Linking.openURL(
+      'mailto:justfortoday@mikeparker.co.nz?subject=SendMail&body=App Suggestion'
+    );
   };
 
-  const handleSuggestions = (): void => {
-    console.log('SUGGESTIONS');
+  const handleLink = (): void => {
+    Linking.openURL('https://www.aa.org/');
   };
 
   const getAppVersion = (): string => {
@@ -55,9 +55,10 @@ const About: React.FC = (): JSX.Element => {
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
+      {/* Information */}
       <Text style={styles.text}>
         Daily reflections, steps, and tradtions with zero advertisments.
       </Text>
@@ -65,69 +66,69 @@ const About: React.FC = (): JSX.Element => {
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
-      <Text style={styles.subTitle}>Love the app?</Text>
-      <Text style={styles.text}>
-        Help the developer create other benificial projects by upgrading. The
-        PRO version contains cosmetic changes only and includes custom colour
-        themes.
-      </Text>
-      <Pressable style={styles.btn} onPress={() => handleUpgrade()}>
-        <Text>UPGRADE</Text>
-      </Pressable>
+      {/* Suggestions */}
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
-        you can send them directly to the developer.
+        you can send them using the button below.
       </Text>
-      <Pressable onPress={() => handleSuggestions()}>
-        <Text>SUGGESTIONS</Text>
+      {/* Suggestions Btn */}
+      <Pressable
+        style={[
+          styles.helpLinkBtn,
+          { backgroundColor: Colours[colorScheme].btn }
+        ]}
+        onPress={() => handleSuggestions()}>
+        <Text style={styles.textCenter}>Send email</Text>
       </Pressable>
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
-      <Text style={styles.text}>
-        All literature is taken with permission from Alcoholics Anonymous World
-        Services, Inc.
-      </Text>
-      <ExternalLink style={styles.helpLink} href='https://www.aa.org/'>
-        <Text style={styles.helpLinkText} lightColor={Colours.light.text}>
-          AA link
+      {/* AA disclaimer and link*/}
+      <Text style={[styles.text, styles.textCenter]}>
+        All literature is taken with permission from{' '}
+        <Text
+          onPress={() => handleLink()}
+          lightColor={Colours.light.link}
+          darkColor={Colours.dark.link}>
+          Alcoholics Anonymous World Services, Inc.
         </Text>
-      </ExternalLink>
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+      </Text>
     </ForwardedScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  textCenter: {
+    textAlign: 'center'
+  },
   container: {
-    padding: 15
+    padding: 20
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     textAlign: 'center',
-    marginBottom: 10
+    marginBottom: 20
   },
   subTitle: {
     fontSize: 18,
+    fontWeight: '500',
     textAlign: 'left',
-    marginBottom: 10
+    marginBottom: 20
   },
   text: {
-    textAlign: 'left',
-    lineHeight: 20,
-    marginBottom: 10
+    fontSize: 15,
+    lineHeight: 21,
+    marginBottom: 20
   },
   versionText: {
+    fontSize: 15,
+    fontWeight: '200',
     textAlign: 'center',
     lineHeight: 20
-  },
-  btn: {
-    marginBottom: 10
   },
   icon: {
     marginBottom: 10,
@@ -139,11 +140,10 @@ const styles = StyleSheet.create({
     height: 1,
     width: '70%'
   },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkText: {
-    textAlign: 'center'
+  helpLinkBtn: {
+    borderRadius: 12,
+    marginVertical: 15,
+    paddingVertical: 12
   }
 });
 

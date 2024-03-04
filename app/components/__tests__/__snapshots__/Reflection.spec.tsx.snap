@@ -20,7 +20,8 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginBottom": 10,
+          "marginBottom": 20,
+          "marginTop": 10,
         },
       ]
     }
@@ -55,6 +56,28 @@ exports[`<Reflection /> renders correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "justifyContent": "center",
+          "paddingVertical": 10,
+          "width": "25%",
+        }
+      }
+    >
+      <Text />
+    </View>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+          },
+          {
+            "justifyContent": "center",
+            "paddingVertical": 10,
+          },
+        ]
+      }
     >
       <Text
         style={
@@ -62,12 +85,13 @@ exports[`<Reflection /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            undefined,
+            {
+              "fontSize": 20,
+              "textAlignVertical": "center",
+            },
           ]
         }
-      >
-        PREV
-      </Text>
+      />
     </View>
     <View
       accessibilityState={
@@ -99,63 +123,15 @@ exports[`<Reflection /> renders correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-    >
-      <Text
-        style={
-          [
-            {
-              "color": "#000",
-            },
-            undefined,
-          ]
-        }
-      >
-        TODAY
-      </Text>
-    </View>
-    <View
-      accessibilityState={
+      style={
         {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
+          "justifyContent": "center",
+          "paddingVertical": 10,
+          "width": "25%",
         }
       }
-      accessibilityValue={
-        {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
-      accessible={true}
-      collapsable={false}
-      focusable={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
     >
-      <Text
-        style={
-          [
-            {
-              "color": "#000",
-            },
-            undefined,
-          ]
-        }
-      >
-        NEXT
-      </Text>
+      <Text />
     </View>
   </View>
   <Text
@@ -166,8 +142,10 @@ exports[`<Reflection /> renders correctly 1`] = `
         },
         {
           "fontSize": 20,
+          "fontWeight": "bold",
+          "letterSpacing": 0.5,
           "lineHeight": 25,
-          "marginBottom": 10,
+          "marginBottom": 20,
           "textAlign": "center",
         },
       ]
@@ -179,31 +157,11 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        [
-          {
-            "fontSize": 20,
-            "lineHeight": 25,
-            "marginBottom": 10,
-            "textAlign": "center",
-          },
-          {
-            "fontWeight": "bold",
-          },
-        ],
-      ]
-    }
-  />
-  <Text
-    style={
-      [
-        {
-          "color": "#000",
-        },
         {
           "fontSize": 17,
-          "fontWeight": "bold",
+          "fontWeight": "200",
           "lineHeight": 23,
-          "marginBottom": 10,
+          "marginBottom": 20,
           "textAlign": "left",
         },
       ]
@@ -217,8 +175,8 @@ exports[`<Reflection /> renders correctly 1`] = `
         },
         {
           "fontSize": 15,
-          "lineHeight": 23,
-          "marginBottom": 10,
+          "lineHeight": 21,
+          "marginBottom": 20,
           "textAlign": "left",
         },
       ]

@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import Reflection from '../layout/Reflection';
+import Reflection from '../Reflection';
 import { makeStore } from '../../redux/store';
 import renderer from 'react-test-renderer';
 

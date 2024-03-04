@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import Step from '../layout/Step';
+import Step from '../Step';
 import { makeStore } from '../../redux/store';
 import renderer from 'react-test-renderer';
 

@@ -1,12 +1,12 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/styles/Themed';
+import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontDisplay } from '../components/styles/StyledText';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Step from '../components/layout/Step';
+import Step from '../components/Step';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -47,8 +47,8 @@ const Steps: React.FC = (): JSX.Element => {
       {/* Divider */}
       <View
         style={styles.divider}
-        lightColor={Colours[colorScheme].seperator}
-        darkColor={Colours[colorScheme].seperator}
+        lightColor={Colours.light.seperator}
+        darkColor={Colours.dark.seperator}
       />
       {/* Steps */}
       {steps.map((step, index) => (
@@ -60,7 +60,7 @@ const Steps: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    padding: 20
   },
   logoContainer: {
     alignItems: 'center',
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     marginLeft: 10
   },
   icon: {
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
+    marginBottom: 30,
+    marginTop: 20,
     height: 1,
     width: '70%'
   }

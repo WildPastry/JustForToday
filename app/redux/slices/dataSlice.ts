@@ -1,9 +1,6 @@
 import {
-  Action,
   ActionReducerMapBuilder,
-  CombinedState,
   PayloadAction,
-  ThunkDispatch,
   createAsyncThunk,
   createSlice
 } from '@reduxjs/toolkit';
@@ -113,7 +110,7 @@ const dataSlice = createSlice({
 
 // Fetch reflections
 export const fetchReflectionsFromAPI = createAsyncThunk(
-  'mySlice/fetchReflectionsFromAPI',
+  'dataSlice/fetchReflectionsFromAPI',
   async () => {
     const response = await getReflections();
     return response;
@@ -122,7 +119,7 @@ export const fetchReflectionsFromAPI = createAsyncThunk(
 
 // Fetch steps
 export const fetchStepsFromAPI = createAsyncThunk(
-  'mySlice/fetchStepsFromAPI',
+  'dataSlice/fetchStepsFromAPI',
   async () => {
     const response = await getSteps();
     return response;
@@ -131,7 +128,7 @@ export const fetchStepsFromAPI = createAsyncThunk(
 
 // Fetch traditions
 export const fetchTraditionsFromAPI = createAsyncThunk(
-  'mySlice/fetchTraditionsFromAPI',
+  'dataSlice/fetchTraditionsFromAPI',
   async () => {
     const response = await getTraditions();
     return response;
@@ -140,7 +137,7 @@ export const fetchTraditionsFromAPI = createAsyncThunk(
 
 // Fetch month items
 export const fetchMonthItemsFromAPI = createAsyncThunk(
-  'mySlice/fetchMonthItemsFromAPI',
+  'dataSlice/fetchMonthItemsFromAPI',
   async () => {
     const response = await getMonthItems();
     return response;
@@ -148,24 +145,20 @@ export const fetchMonthItemsFromAPI = createAsyncThunk(
 );
 
 // Fetch all data
-export const setData =
-  () =>
-  async (
-    dispatch: ThunkDispatch<CombinedState<{}>, unknown, Action<string>>
-  ) => {
-    try {
-      // Dispatch both thunks in parallel
-      await Promise.all([
-        dispatch(fetchReflectionsFromAPI()),
-        dispatch(fetchStepsFromAPI()),
-        dispatch(fetchTraditionsFromAPI()),
-        dispatch(fetchMonthItemsFromAPI())
-      ]);
-    } catch (error) {
-      // Set error screen if failed
-      dispatch(setError(true));
-    }
-  };
+export const setData = () => async (dispatch: any) => {
+  try {
+    // Dispatch both thunks in parallel
+    await Promise.all([
+      dispatch(fetchReflectionsFromAPI()),
+      dispatch(fetchStepsFromAPI()),
+      dispatch(fetchTraditionsFromAPI()),
+      dispatch(fetchMonthItemsFromAPI())
+    ]);
+  } catch (error) {
+    // Set error screen if failed
+    dispatch(setError(true));
+  }
+};
 
 // Export error and loading actions
 export const { setLoading, setError } = dataSlice.actions;

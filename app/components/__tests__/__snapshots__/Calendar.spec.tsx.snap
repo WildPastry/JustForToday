@@ -11,78 +11,107 @@ exports[`<Calendar /> renders correctly 1`] = `
     ]
   }
 >
-  <Text
+  <View
     style={
       [
         {
-          "color": "#000",
+          "backgroundColor": "#fff",
         },
-        [
-          {
-            "fontSize": 20,
-            "marginBottom": 10,
-            "textAlign": "center",
-          },
-          {
-            "fontFamily": "font-display",
-          },
-        ],
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 20,
+          "marginTop": 10,
+        },
       ]
     }
   >
-    Calendar
-  </Text>
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
       }
-    }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
       }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-  >
-    <Text
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "justifyContent": "center",
+          "paddingVertical": 10,
+          "width": "25%",
+        }
+      }
+    />
+    <View
       style={
         [
           {
-            "color": "#000",
+            "backgroundColor": "#fff",
           },
-          [
-            {
-              "marginBottom": 10,
-              "textAlign": "center",
-            },
-            {
-              "fontWeight": "bold",
-            },
-          ],
+          {
+            "justifyContent": "center",
+            "paddingVertical": 10,
+          },
         ]
       }
     >
-      ALL MONTHS
-    </Text>
+      <Text
+        style={
+          [
+            {
+              "color": "#000",
+            },
+            [
+              {
+                "fontSize": 20,
+                "textAlign": "center",
+              },
+              {
+                "fontFamily": "font-display",
+              },
+            ],
+          ]
+        }
+      >
+        Calendar
+      </Text>
+    </View>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+          },
+          {
+            "justifyContent": "center",
+            "paddingVertical": 10,
+            "width": "25%",
+          },
+        ]
+      }
+    />
   </View>
   <RCTScrollView
     style={
@@ -94,20 +123,7 @@ exports[`<Calendar /> renders correctly 1`] = `
       ]
     }
   >
-    <View>
-      <View
-        style={
-          [
-            {
-              "backgroundColor": "#fff",
-            },
-            {
-              "flex": 3,
-            },
-          ]
-        }
-      />
-    </View>
+    <View />
   </RCTScrollView>
 </View>
 `;
