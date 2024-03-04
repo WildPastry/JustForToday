@@ -37,25 +37,6 @@ export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
 // Exporting components with the correct colour theme added
-const ForwardedScrollView = forwardRef<DefaultScrollView, IScrollViewProps>(
-  (props, ref) => {
-    const { style, lightColor, darkColor, ...otherProps } = props;
-    const backgroundColor = useThemeColor(
-      { light: lightColor, dark: darkColor },
-      'background'
-    );
-    return (
-      <DefaultScrollView
-        style={[{ backgroundColor }, style]}
-        {...otherProps}
-        ref={ref}
-      />
-    );
-  }
-);
-
-export default ForwardedScrollView;
-
 export function ScrollView(props: ScrollViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
@@ -67,6 +48,24 @@ export function ScrollView(props: ScrollViewProps) {
     <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />
   );
 }
+
+export const ForwardedScrollView = forwardRef<
+  DefaultScrollView,
+  IScrollViewProps
+>((props: IScrollViewProps, ref: React.ForwardedRef<DefaultScrollView>) => {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
+  return (
+    <DefaultScrollView
+      style={[{ backgroundColor }, style]}
+      {...otherProps}
+      ref={ref}
+    />
+  );
+});
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;

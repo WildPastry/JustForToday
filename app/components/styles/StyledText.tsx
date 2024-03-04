@@ -9,36 +9,11 @@ export function FontDisplay(styledText: TextProps) {
   );
 }
 
-export function FontThin(styledText: TextProps) {
+export function FontDisplayBold(styledText: TextProps) {
   return (
     <Text
       {...styledText}
-      style={[styledText.style, { fontFamily: 'font-thin' }]}
-    />
-  );
-}
-
-export function FontLight(styledText: TextProps) {
-  return (
-    <Text
-      {...styledText}
-      style={[styledText.style, { fontFamily: 'font-light' }]}
-    />
-  );
-}
-export function FontRegular(styledText: TextProps) {
-  return (
-    <Text
-      {...styledText}
-      style={[styledText.style, { fontFamily: 'font-regular' }]}
-    />
-  );
-}
-export function FontBold(styledText: TextProps) {
-  return (
-    <Text
-      {...styledText}
-      style={[styledText.style, { fontFamily: 'font-bold' }]}
+      style={[styledText.style, { fontFamily: 'font-display-bold' }]}
     />
   );
 }

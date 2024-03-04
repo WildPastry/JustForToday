@@ -1,5 +1,6 @@
 import { ColorSchemeName, StyleSheet } from 'react-native';
-import ForwardedScrollView, { View } from '../components/styles/Themed';
+import { FontDisplay, FontDisplayBold } from '../components/styles/StyledText';
+import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import {
   constructDateFromId,
@@ -8,12 +9,11 @@ import {
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
-import Calendar from '../components/layout/Calendar';
+import Calendar from '../components/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { FontDisplay } from '../components/styles/StyledText';
-import Reflection from '../components/layout/Reflection';
+import Reflection from '../components/Reflection';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -32,11 +32,15 @@ const Home: React.FC = (): JSX.Element => {
   useFocusEffect(
     React.useCallback(() => {
       // Scroll to top on focus
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+      scrollToTop();
       // Hide calendar when unfocused
       return () => setShowCalendar(false);
     }, [])
   );
+
+  const scrollToTop = (): void => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+  };
 
   // Error screen
   const errorScreen = (): JSX.Element => {
@@ -68,13 +72,15 @@ const Home: React.FC = (): JSX.Element => {
         contentContainerStyle={styles.container}
         ref={scrollViewRef}>
         {/* Calendar icon */}
-        <FontAwesome5
-          style={styles.calendarIcon}
-          name='calendar-alt'
-          size={25}
-          onPress={() => toggleCalendar()}
-          color={Colours[colorScheme].icon}
-        />
+        <View style={styles.calendarIconContainer}>
+          <FontAwesome5
+            style={styles.calendarIcon}
+            name='calendar-alt'
+            size={25}
+            onPress={() => toggleCalendar()}
+            color={Colours[colorScheme].icon}
+          />
+        </View>
         <View style={styles.logoContainer}>
           {/* Logo */}
           <FontAwesome5
@@ -84,17 +90,26 @@ const Home: React.FC = (): JSX.Element => {
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
-          <FontDisplay style={styles.title}>Just for today</FontDisplay>
+          <View style={styles.titleContainer}>
+            <FontDisplay style={styles.title}>Just for </FontDisplay>
+            <FontDisplayBold
+              style={[styles.title, { color: Colours[colorScheme].link }]}>
+              today
+            </FontDisplayBold>
+          </View>
         </View>
         {/* Divider */}
         <View
           style={styles.divider}
-          lightColor={Colours[colorScheme].seperator}
-          darkColor={Colours[colorScheme].seperator}
+          lightColor={Colours.light.seperator}
+          darkColor={Colours.dark.seperator}
         />
         {/* Components */}
         {showCalendar ? (
-          <Calendar handleCalendarChange={updateReflection} />
+          <Calendar
+            handleCalendarChange={updateReflection}
+            handleScrollPosition={scrollToTop}
+          />
         ) : (
           <Reflection />
         )}
@@ -108,28 +123,35 @@ const Home: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    padding: 15
+    padding: 20
   },
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10
+    justifyContent: 'center'
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    marginLeft: 10
   },
   title: {
-    fontSize: 20,
-    marginLeft: 10
+    fontSize: 22
   },
   icon: {
     textAlign: 'center'
   },
+  calendarIconContainer: {
+    alignItems: 'flex-end'
+  },
   calendarIcon: {
-    textAlign: 'right'
+    paddingLeft: 30,
+    paddingVertical: 10
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
     height: 1,
+    marginBottom: 10,
+    marginTop: 20,
     width: '70%'
   }
 });

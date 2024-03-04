@@ -1,16 +1,20 @@
-import { EDateFormat, IDate } from '../../types/date.types';
-import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../styles/Themed';
+import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
+import { EDateFormat, IDate } from '../types/date.types';
+import { Text, View } from './styles/Themed';
 import { add, format } from 'date-fns';
-import { setSelectedDate, setSelectedDay } from '../../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setSelectedDate, setSelectedDay } from '../redux/slices/dateSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
-import { AppState } from '../../redux/store';
-import { IReflection } from '../../types/data.types';
+import { AppState } from '../redux/store';
+import Colours from '../constants/Colours';
+import { FontAwesome } from '@expo/vector-icons';
+import { IReflection } from '../types/data.types';
+import useColorScheme from '../hooks/useColorScheme';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',
@@ -35,15 +39,6 @@ const Reflection: React.FC = (): JSX.Element => {
   useEffect(() => {
     selectReflection(dates.selectedDay, reflections);
   }, [reflections]);
-
-  const getCurrentDay = (): string => {
-    // Calculate current day
-    const currentDay = format(new Date(), EDateFormat.ddMM);
-    // Update store
-    dispatch(setSelectedDate(Date.now()));
-    dispatch(setSelectedDay(currentDay));
-    return currentDay;
-  };
 
   const getPrevDay = (): string => {
     // Calculate previous day
@@ -108,20 +103,34 @@ const Reflection: React.FC = (): JSX.Element => {
     <View>
       {/* Controls */}
       <View style={styles.controls}>
-        <Pressable onPress={() => selectReflection(getPrevDay(), reflections)}>
-          <Text>PREV</Text>
-        </Pressable>
+        {/* Left chevron */}
         <Pressable
-          onPress={() => selectReflection(getCurrentDay(), reflections)}>
-          <Text>TODAY</Text>
+          style={styles.icon}
+          onPress={() => selectReflection(getPrevDay(), reflections)}>
+          <FontAwesome
+            name='chevron-circle-left'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
-        <Pressable onPress={() => selectReflection(getNextDay(), reflections)}>
-          <Text>NEXT</Text>
+        {/* Date */}
+        <View style={styles.dateContainer}>
+          <Text style={styles.date}>{reflection.date}</Text>
+        </View>
+        {/* Right chevron */}
+        <Pressable
+          style={styles.icon}
+          onPress={() => selectReflection(getNextDay(), reflections)}>
+          <FontAwesome
+            style={styles.textRight}
+            name='chevron-circle-right'
+            size={25}
+            color={Colours[colorScheme].icon}
+          />
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={styles.title}>{reflection.date}</Text>
-      <Text style={[styles.title, styles.bold]}>{reflection.title}</Text>
+      <Text style={styles.title}>{reflection.title}</Text>
       <Text style={styles.quote}>{reflection.quote}</Text>
       <Text style={styles.text}>{reflection.reflection}</Text>
     </View>
@@ -132,29 +141,45 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 20,
+    marginTop: 10
+  },
+  icon: {
+    justifyContent: 'center',
+    paddingVertical: 10,
+    width: '25%'
+  },
+  dateContainer: {
+    justifyContent: 'center',
+    paddingVertical: 10
+  },
+  date: {
+    fontSize: 20,
+    textAlignVertical: 'center'
   },
   text: {
     fontSize: 15,
-    lineHeight: 23,
-    marginBottom: 10,
+    lineHeight: 21,
+    marginBottom: 20,
     textAlign: 'left'
+  },
+  textRight: {
+    textAlign: 'right'
   },
   title: {
     fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
     lineHeight: 25,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: 'center'
   },
   quote: {
-    fontWeight: 'bold',
     fontSize: 17,
+    fontWeight: '200',
     lineHeight: 23,
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: 'left'
-  },
-  bold: {
-    fontWeight: 'bold'
   }
 });
 

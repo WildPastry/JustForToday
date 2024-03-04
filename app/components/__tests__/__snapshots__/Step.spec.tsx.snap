@@ -8,14 +8,42 @@ exports[`<Step /> renders correctly 1`] = `
         "color": "#000",
       },
       {
-        "lineHeight": 20,
-        "marginBottom": 10,
-        "textAlign": "left",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "marginBottom": 20,
       },
     ]
   }
 >
-  #
-  : 
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "fontSize": 15,
+          "fontWeight": "200",
+          "lineHeight": 21,
+        },
+      ]
+    }
+  >
+      
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "fontSize": 15,
+          "lineHeight": 21,
+          "textAlign": "left",
+        },
+      ]
+    }
+  />
 </Text>
 `;

@@ -26,4 +26,5 @@ export interface IDayItem {
 
 export interface ICalendar {
   handleCalendarChange: (showCalendar: boolean, id: string) => void;
+  handleScrollPosition: () => void;
 }

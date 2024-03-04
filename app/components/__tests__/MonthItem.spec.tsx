@@ -1,4 +1,4 @@
-import MonthItem from '../layout/MonthItem';
+import MonthItem from '../MonthItem';
 import { Provider } from 'react-redux';
 import { makeStore } from '../../redux/store';
 import renderer from 'react-test-renderer';

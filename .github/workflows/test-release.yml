@@ -1,11 +1,11 @@
 name: Test release
-run-name: Test release | ${{ github.run_id }} | branch - ${{ github.head_ref }}
+run-name: Test release | ${{ github.run_id }} | branch - ${{ github.ref_name }}
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - main
+      - "release/*"
 
 jobs:
   test-release:
@@ -22,6 +22,11 @@ jobs:
         with:
           node-version: 20
           cache: npm
+
+      - name: Git config
+        run: |
+          git config --global user.email "${{ secrets.GH_ADMIN_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ADMIN_USERNAME }}"
 
       - name: Install dependencies
         run: |
