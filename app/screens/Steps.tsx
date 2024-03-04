@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
+    height: 1,
     marginBottom: 30,
     marginTop: 20,
-    height: 1,
     width: '70%'
   }
 });

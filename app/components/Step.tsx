@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    textAlign: 'left',
-    lineHeight: 21
+    lineHeight: 21,
+    textAlign: 'left'
   },
   number: {
     fontSize: 15,
-    lineHeight: 21,
-    fontWeight: '200'
+    fontWeight: '200',
+    lineHeight: 21
   }
 });
 

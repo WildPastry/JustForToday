@@ -149,9 +149,9 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
+    height: 1,
     marginBottom: 10,
     marginTop: 20,
-    height: 1,
     width: '70%'
   }
 });

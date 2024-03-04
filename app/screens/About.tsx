@@ -110,14 +110,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    textAlign: 'center'
   },
   subTitle: {
     fontSize: 18,
     fontWeight: '500',
-    textAlign: 'left',
-    marginBottom: 20
+    marginBottom: 20,
+    textAlign: 'left'
   },
   text: {
     fontSize: 15,
@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
   versionText: {
     fontSize: 15,
     fontWeight: '200',
-    textAlign: 'center',
-    lineHeight: 20
+    lineHeight: 20,
+    textAlign: 'center'
   },
   icon: {
     marginBottom: 10,
@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
     height: 1,
+    marginVertical: 20,
     width: '70%'
   },
   helpLinkBtn: {

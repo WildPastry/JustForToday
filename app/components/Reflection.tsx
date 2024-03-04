@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    marginTop: 10
   },
   icon: {
     justifyContent: 'center',
@@ -169,14 +169,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    lineHeight: 25,
     letterSpacing: 0.5,
+    lineHeight: 25,
     marginBottom: 20,
     textAlign: 'center'
   },
   quote: {
-    fontWeight: '200',
     fontSize: 17,
+    fontWeight: '200',
     lineHeight: 23,
     marginBottom: 20,
     textAlign: 'left'

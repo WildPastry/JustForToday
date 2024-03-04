@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
   },
   divider: {
     alignSelf: 'center',
-    marginVertical: 20,
     height: 1,
+    marginVertical: 20,
     width: '70%'
   },
   traditionBtn: {
-    flex: 1,
     borderRadius: 12,
+    flex: 1,
     paddingVertical: 12
   }
 });
