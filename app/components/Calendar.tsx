@@ -1,14 +1,15 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View } from './styles/Themed';
+import { ScrollView, Text, View } from './styles/Themed';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AntDesign } from '@expo/vector-icons';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import DayItem from './DayItem';
 import { FontDisplay } from './styles/StyledText';
 import MonthItem from './MonthItem';
-import { useAppSelector } from '../redux/hooks';
+import { resetCalendar } from '../redux/slices/dateSlice';
 import useColorScheme from '../hooks/useColorScheme';
 
 const Calendar: React.FC<ICalendar> = ({
@@ -19,6 +20,7 @@ const Calendar: React.FC<ICalendar> = ({
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const dispatch = useAppDispatch();
 
   // Data from store
   const monthItems: IMonthItem[] = useAppSelector(
@@ -27,10 +29,15 @@ const Calendar: React.FC<ICalendar> = ({
     }
   );
 
+  const currentDay: string = useAppSelector((state: AppState): string => {
+    return state.date.currentDay;
+  });
+
   useEffect(() => {
     setMonths(monthItems);
   }, [monthItems]);
 
+  // Calendar functions
   const handleMonth = (month: IMonthItem): void => {
     setMonths([month]);
     setDays(month.days);
@@ -46,6 +53,12 @@ const Calendar: React.FC<ICalendar> = ({
   const getAllMonths = (): void => {
     setMonths(monthItems);
     setDays([]);
+  };
+
+  const handleReset = (currentDay: string): void => {
+    dispatch(resetCalendar());
+    handleCalendarChange(false, currentDay);
+    handleScrollPosition();
   };
 
   const renderBackArrow = (): JSX.Element | null => {
@@ -67,9 +80,17 @@ const Calendar: React.FC<ICalendar> = ({
     <View>
       <View style={styles.controls}>
         <Pressable style={styles.icon}>{renderBackArrow()}</Pressable>
-        <View style={styles.titleContainer}>
+        <Pressable
+          onPress={() => handleReset(currentDay)}
+          style={styles.titleContainer}>
           <FontDisplay style={styles.title}>Calendar</FontDisplay>
-        </View>
+          <Text
+            style={styles.link}
+            lightColor={Colours.light.link}
+            darkColor={Colours.dark.link}>
+            Return to current day
+          </Text>
+        </Pressable>
         <View style={styles.icon} />
       </View>
       <ScrollView>
@@ -101,8 +122,7 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
-    marginTop: 10
+    marginBottom: 10
   },
   icon: {
     justifyContent: 'center',
@@ -111,7 +131,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     justifyContent: 'center',
-    paddingVertical: 10
+    padding: 20
   },
   title: {
     fontSize: 20,
@@ -122,6 +142,11 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  link: {
+    fontSize: 15,
+    lineHeight: 21,
+    marginTop: 10
   }
 });
 

@@ -20,6 +20,10 @@ const dateSlice = createSlice({
     },
     setSelectedDay(state, action: PayloadAction<string>) {
       state.selectedDay = action.payload;
+    },
+    resetCalendar(state) {
+      // Reset state to initial state
+      Object.assign(state, initialState);
     }
   }
 });
@@ -41,7 +45,8 @@ export const constructDateFromId = (id: string): number => {
 };
 
 // Export date actions
-export const { setSelectedDate, setSelectedDay } = dateSlice.actions;
+export const { setSelectedDate, setSelectedDay, resetCalendar } =
+  dateSlice.actions;
 
 // Export reducer
 export default dateSlice.reducer;

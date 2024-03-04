@@ -90,13 +90,13 @@ const Home: React.FC = (): JSX.Element => {
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
-          <FontDisplay style={styles.title}>
-            Just for{' '}
+          <View style={styles.titleContainer}>
+            <FontDisplay style={styles.title}>Just for </FontDisplay>
             <FontDisplayBold
               style={[styles.title, { color: Colours[colorScheme].link }]}>
               today
             </FontDisplayBold>
-          </FontDisplay>
+          </View>
         </View>
         {/* Divider */}
         <View
@@ -130,9 +130,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  title: {
-    fontSize: 20,
+  titleContainer: {
+    flexDirection: 'row',
     marginLeft: 10
+  },
+  title: {
+    fontSize: 22
   },
   icon: {
     textAlign: 'center'

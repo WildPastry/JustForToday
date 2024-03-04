@@ -40,15 +40,6 @@ const Reflection: React.FC = (): JSX.Element => {
     selectReflection(dates.selectedDay, reflections);
   }, [reflections]);
 
-  const getCurrentDay = (): string => {
-    // Calculate current day
-    const currentDay = format(new Date(), EDateFormat.ddMM);
-    // Update store
-    dispatch(setSelectedDate(Date.now()));
-    dispatch(setSelectedDay(currentDay));
-    return currentDay;
-  };
-
   const getPrevDay = (): string => {
     // Calculate previous day
     const currentDate = new Date(dates.selectedDate);
@@ -107,8 +98,6 @@ const Reflection: React.FC = (): JSX.Element => {
     const verifiedData = data.replace(newLineSymbol, '\n\n');
     return verifiedData;
   };
-
-  // selectReflection(getCurrentDay(), reflections)}
 
   return (
     <View>

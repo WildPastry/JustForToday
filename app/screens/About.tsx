@@ -70,7 +70,7 @@ const About: React.FC = (): JSX.Element => {
       <Text style={styles.subTitle}>Suggestions?</Text>
       <Text style={styles.text}>
         If you have any suggestions or requests for features to improve the app
-        you can send them using the button.
+        you can send them using the button below.
       </Text>
       {/* Suggestions Btn */}
       <Pressable
@@ -88,7 +88,7 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colours.dark.seperator}
       />
       {/* AA disclaimer and link*/}
-      <Text style={styles.text}>
+      <Text style={[styles.text, styles.textCenter]}>
         All literature is taken with permission from{' '}
         <Text
           onPress={() => handleLink()}
@@ -115,17 +115,18 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 18,
+    fontWeight: '500',
     textAlign: 'left',
     marginBottom: 20
   },
   text: {
     fontSize: 15,
-    textAlign: 'left',
     lineHeight: 21,
     marginBottom: 20
   },
   versionText: {
     fontSize: 15,
+    fontWeight: '200',
     textAlign: 'center',
     lineHeight: 20
   },
