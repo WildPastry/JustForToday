@@ -60,7 +60,7 @@ const About: React.FC = (): JSX.Element => {
       />
       {/* Information */}
       <Text style={styles.text}>
-        Daily reflections, steps, and tradtions with zero advertisments.
+        Daily reflections, steps, and traditions with zero advertisements.
       </Text>
       <Text style={styles.text}>
         Created to give people in the fellowship fast access to well known AA
