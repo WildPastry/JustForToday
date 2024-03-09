@@ -24,7 +24,7 @@ const initialState: IData = {
 /*
  * Create dataSlice with combined actions and reducers
  * Including App data states:
- *  Reflections
+ * Reflections
  * Month Items
  */
 const dataSlice = createSlice({

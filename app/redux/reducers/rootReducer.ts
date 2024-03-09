@@ -1,20 +1,19 @@
-import {
-  AnyAction,
-  CombinedState,
-  Reducer,
-  combineReducers
-} from '@reduxjs/toolkit';
+import { Reducer, UnknownAction, combineReducers } from '@reduxjs/toolkit';
 import { IData } from '../../types/data.types';
 import { IDate } from '../../types/date.types';
 import data from '../slices/dataSlice';
 import date from '../slices/dateSlice';
 
 const rootReducer: Reducer<
-  CombinedState<{
+  {
     data: IData;
     date: IDate;
-  }>,
-  AnyAction
+  },
+  UnknownAction,
+  Partial<{
+    data: IData | undefined;
+    date: IDate | undefined;
+  }>
 > = combineReducers({
   data,
   date
