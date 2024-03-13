@@ -5,6 +5,9 @@ import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
+import Fonts from '../constants/Fonts';
+import { IDeviceSize } from '../types/generic.types';
+import getDeviceSize from '../constants/Layout';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -13,6 +16,7 @@ const About: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   const handleSuggestions = (): void => {
     Linking.openURL(
@@ -38,7 +42,7 @@ const About: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={Fonts[deviceSize].container}
       ref={scrollViewRef}>
       {/* Logo */}
       <FontAwesome
@@ -104,9 +108,6 @@ const About: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   textCenter: {
     textAlign: 'center'
-  },
-  container: {
-    padding: 20
   },
   title: {
     fontSize: 22,

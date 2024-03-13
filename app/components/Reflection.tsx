@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center'
   },
   text: {
-    marginBottom: 20,
     textAlign: 'left'
   },
   textRight: {

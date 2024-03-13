@@ -81,8 +81,11 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: Colours[colorScheme].tabIconActive,
         tabBarInactiveTintColor: Colours[colorScheme].tabIconDefault,
-        tabBarLabelStyle: { marginBottom: 7 },
-        tabBarIconStyle: { marginTop: 7 },
+        tabBarLabelStyle: {
+          fontSize: Fonts[deviceSize].tabLabel,
+          marginBottom: Fonts[deviceSize].tabMarginBottom
+        },
+        tabBarIconStyle: { marginTop: Fonts[deviceSize].tabMarginTop },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
           height: Fonts[deviceSize].tab,
@@ -90,6 +93,7 @@ function BottomTabNavigator() {
           borderTopWidth: 0.6,
           elevation: 0
         },
+        headerTitleStyle: { fontSize: Fonts[deviceSize].tabHeading },
         headerStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
@@ -103,7 +107,11 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <TabBarAwesome5Icon name='chair' color={color} />
+            <TabBarAwesome5Icon
+              name='chair'
+              color={color}
+              size={Fonts[deviceSize].icon}
+            />
           ),
           headerRight: () => (
             <Pressable
@@ -113,7 +121,7 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={25}
+                size={Fonts[deviceSize].icon}
                 color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
@@ -127,7 +135,11 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
           tabBarIcon: ({ color }) => (
-            <TabBarMaterialIcon name='stairs' color={color} />
+            <TabBarMaterialIcon
+              name='stairs'
+              color={color}
+              size={Fonts[deviceSize].icon}
+            />
           ),
           headerRight: () => (
             <Pressable
@@ -137,7 +149,7 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={25}
+                size={Fonts[deviceSize].icon}
                 color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
@@ -151,7 +163,11 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
           tabBarIcon: ({ color }) => (
-            <TabBarAwesomeIcon name='book' color={color} />
+            <TabBarAwesomeIcon
+              name='book'
+              color={color}
+              size={Fonts[deviceSize].icon}
+            />
           ),
           headerRight: () => (
             <Pressable
@@ -161,7 +177,7 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={25}
+                size={Fonts[deviceSize].icon}
                 color={Colours[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
@@ -177,20 +193,23 @@ function BottomTabNavigator() {
 function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
+  size: number;
 }) {
-  return <FontAwesome size={25} {...props} />;
+  return <FontAwesome {...props} />;
 }
 
 function TabBarAwesome5Icon(props: {
   name: React.ComponentProps<typeof FontAwesome5>['name'];
   color: string;
+  size: number;
 }) {
-  return <FontAwesome5 size={25} {...props} />;
+  return <FontAwesome5 {...props} />;
 }
 
 function TabBarMaterialIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
+  size: number;
 }) {
-  return <MaterialCommunityIcons size={25} {...props} />;
+  return <MaterialCommunityIcons {...props} />;
 }

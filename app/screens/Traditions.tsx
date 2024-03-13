@@ -6,7 +6,10 @@ import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
+import Fonts from '../constants/Fonts';
+import { IDeviceSize } from '../types/generic.types';
 import Tradition from '../components/Tradition';
+import getDeviceSize from '../constants/Layout';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -16,6 +19,7 @@ const Traditions: React.FC = (): JSX.Element => {
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -38,7 +42,7 @@ const Traditions: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={Fonts[deviceSize].container}
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
@@ -104,9 +108,6 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20
-  },
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',

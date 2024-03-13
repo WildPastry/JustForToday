@@ -73,7 +73,7 @@ const Home: React.FC = (): JSX.Element => {
   const renderApp = () => {
     return (
       <ForwardedScrollView
-        contentContainerStyle={styles.container}
+        contentContainerStyle={[styles.container, Fonts[deviceSize].container]}
         ref={scrollViewRef}>
         {/* Calendar icon */}
         <View style={styles.calendarIconContainer}>
@@ -129,8 +129,7 @@ const Home: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: 'stretch',
-    padding: 20
+    alignSelf: 'stretch'
   },
   logoContainer: {
     alignItems: 'center',
