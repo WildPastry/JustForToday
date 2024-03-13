@@ -13,7 +13,10 @@ import Calendar from '../components/Calendar';
 import Colours from '../constants/Colours';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
+import Fonts from '../constants/Fonts';
+import { IDeviceSize } from '../types/generic.types';
 import Reflection from '../components/Reflection';
+import getDeviceSize from '../constants/Layout';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -21,6 +24,7 @@ const Home: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
   const [showCalendar, setShowCalendar] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -76,7 +80,7 @@ const Home: React.FC = (): JSX.Element => {
           <FontAwesome5
             style={styles.calendarIcon}
             name='calendar-alt'
-            size={25}
+            size={Fonts[deviceSize].icon}
             onPress={() => toggleCalendar()}
             color={Colours[colorScheme].icon}
           />
@@ -86,14 +90,17 @@ const Home: React.FC = (): JSX.Element => {
           <FontAwesome5
             style={styles.icon}
             name='chair'
-            size={25}
+            size={Fonts[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
           <View style={styles.titleContainer}>
-            <FontDisplay style={styles.title}>Just for </FontDisplay>
+            <FontDisplay style={Fonts[deviceSize].title}>Just for </FontDisplay>
             <FontDisplayBold
-              style={[styles.title, { color: Colours[colorScheme].link }]}>
+              style={[
+                Fonts[deviceSize].title,
+                { color: Colours[colorScheme].link }
+              ]}>
               today
             </FontDisplayBold>
           </View>
@@ -133,9 +140,6 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     marginLeft: 10
-  },
-  title: {
-    fontSize: 22
   },
   icon: {
     textAlign: 'center'

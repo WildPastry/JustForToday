@@ -17,13 +17,16 @@ import {
 } from '../types/navigation.types';
 import About from '../screens/About';
 import Colours from '../constants/Colours';
+import Fonts from '../constants/Fonts';
 import Home from '../screens/Home';
+import { IDeviceSize } from '../types/generic.types';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import getDeviceSize from '../constants/Layout';
 import useColorScheme from '../hooks/useColorScheme';
 
 export default function Navigation({
@@ -69,6 +72,8 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  // Font settings
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   return (
     <BottomTab.Navigator
@@ -80,7 +85,7 @@ function BottomTabNavigator() {
         tabBarIconStyle: { marginTop: 7 },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
-          height: 55,
+          height: Fonts[deviceSize].tab,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
@@ -89,7 +94,7 @@ function BottomTabNavigator() {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
-          height: 70
+          height: Fonts[deviceSize].tab
         }
       }}>
       <BottomTab.Screen
