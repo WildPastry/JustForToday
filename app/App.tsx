@@ -7,6 +7,8 @@ import { registerRootComponent } from 'expo';
 import store from './redux/store';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
+import 'expo-dev-client';
+import 'react-native-gesture-handler';
 
 const AppWithProvider: React.FC = (): JSX.Element => {
   return (
@@ -26,10 +28,10 @@ const App: React.FC = (): JSX.Element | null => {
     return null;
   }
   return (
-    <SafeAreaProvider>
+    <>
       <Navigation colorScheme={colorScheme} />
       <StatusBar />
-    </SafeAreaProvider>
+    </>
   );
 };
 

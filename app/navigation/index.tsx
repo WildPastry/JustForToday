@@ -21,6 +21,7 @@ import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
+import { Text, View } from './../components/styles/Themed';
 import Traditions from '../screens/Traditions';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -32,6 +33,15 @@ export default function Navigation({
   colorScheme: ColorSchemeName;
 }) {
   return (
+    // <View
+    //   style={{
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     backgroundColor: 'black',
+    //     flex: 1
+    //   }}>
+    //   <Text style={{ color: 'white' }}>Working?</Text>
+    // </View>
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
