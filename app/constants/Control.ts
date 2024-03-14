@@ -5,15 +5,15 @@ export default {
     iconMargin: 10,
     displayIcon: 60,
     tabHeight: 70,
-    tabLabel: 15,
+    tabLabel: 14,
     tabHeading: 20,
     tabMarginBottom: 7,
     tabMarginTop: 7,
     displayTitle: { fontSize: 20, lineHeight: 25 },
     title: { fontSize: 22 },
     container: { padding: 20 },
-    text: { fontSize: 15, lineHeight: 21 },
-    quote: { fontSize: 17, lineHeight: 23 }
+    text: { fontSize: 17, lineHeight: 24 },
+    quote: { fontSize: 19, lineHeight: 26 }
   },
   medium: {
     subTitle: { fontSize: 27 },

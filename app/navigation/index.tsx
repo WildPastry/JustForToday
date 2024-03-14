@@ -11,6 +11,7 @@ import {
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native';
+import { EDeviceSizes, IDeviceSize } from '../types/generic.types';
 import {
   RootStackParamList,
   RootTabParamList,
@@ -20,7 +21,6 @@ import About from '../screens/About';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import Home from '../screens/Home';
-import { IDeviceSize } from '../types/generic.types';
 import LinkingConfiguration from './LinkingConfiguration';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
@@ -55,16 +55,20 @@ function RootNavigator() {
 
   return (
     <Stack.Navigator>
+      {/* The root screen is the BottomTab */}
+      {/* The initial route of the bottom tab is Home */}
       <Stack.Screen
         name='Root'
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      {/* Not found */}
       <Stack.Screen
         name='NotFound'
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
       />
+      {/* About screen - modal */}
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name='About'
@@ -73,6 +77,7 @@ function RootNavigator() {
             headerTitleStyle: {
               fontSize: Control[deviceSize].tabHeading
             },
+            // Arrow icon for going back
             headerLeft: () => (
               <Pressable
                 onPress={() => navigation.goBack()}
@@ -103,6 +108,16 @@ function BottomTabNavigator() {
   // Font settings
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
+  /*
+   * Helper function for icon width
+   * Larger screens need to display the icon side by side
+   */
+  const getIconWidth = (): number => {
+    return deviceSize === EDeviceSizes.LRG
+      ? Control[deviceSize].icon + 20
+      : Control[deviceSize].icon;
+  };
+
   return (
     <BottomTab.Navigator
       initialRouteName='Home'
@@ -128,6 +143,7 @@ function BottomTabNavigator() {
           height: Control[deviceSize].tabHeight
         }
       }}>
+      {/* Home screen */}
       <BottomTab.Screen
         name='Home'
         component={Home}
@@ -138,10 +154,11 @@ function BottomTabNavigator() {
             <TabBarAwesome5Icon
               name='chair'
               color={color}
-              width={Control[deviceSize].icon + 20}
+              width={getIconWidth()}
               size={Control[deviceSize].icon}
             />
           ),
+          // Link to About screen
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('About')}
@@ -158,6 +175,7 @@ function BottomTabNavigator() {
           )
         })}
       />
+      {/* Steps screen */}
       <BottomTab.Screen
         name='Steps'
         component={Steps}
@@ -168,10 +186,11 @@ function BottomTabNavigator() {
             <TabBarMaterialIcon
               name='stairs'
               color={color}
-              width={Control[deviceSize].icon + 20}
+              width={getIconWidth()}
               size={Control[deviceSize].icon}
             />
           ),
+          // Link to About screen
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('About')}
@@ -188,6 +207,7 @@ function BottomTabNavigator() {
           )
         })}
       />
+      {/* Traditions screen */}
       <BottomTab.Screen
         name='Traditions'
         component={Traditions}
@@ -198,10 +218,11 @@ function BottomTabNavigator() {
             <TabBarAwesomeIcon
               name='book'
               color={color}
-              width={Control[deviceSize].icon + 20}
+              width={getIconWidth()}
               size={Control[deviceSize].icon}
             />
           ),
+          // Link to About screen
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('About')}
