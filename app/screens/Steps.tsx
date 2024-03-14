@@ -3,8 +3,8 @@ import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontDisplay } from '../components/styles/StyledText';
-import Fonts from '../constants/Fonts';
 import { IDeviceSize } from '../types/generic.types';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -35,18 +35,20 @@ const Steps: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={Fonts[deviceSize].container}
+      contentContainerStyle={Control[deviceSize].container}
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
         <MaterialCommunityIcons
           style={styles.icon}
           name='stairs'
-          size={25}
+          size={Control[deviceSize].icon}
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontDisplay style={styles.title}>Steps</FontDisplay>
+        <FontDisplay style={[styles.title, Control[deviceSize].title]}>
+          Steps
+        </FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -70,7 +72,6 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   title: {
-    fontSize: 22,
     marginLeft: 10
   },
   icon: {
@@ -79,8 +80,8 @@ const styles = StyleSheet.create({
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginBottom: 30,
-    marginTop: 20,
+    marginBottom: 20,
+    marginTop: 30,
     width: '70%'
   }
 });

@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontAwesome } from '@expo/vector-icons';
-import Fonts from '../constants/Fonts';
 import { IDeviceSize } from '../types/generic.types';
 import { IReflection } from '../types/data.types';
 import getDeviceSize from '../constants/Layout';
@@ -113,13 +113,13 @@ const Reflection: React.FC = (): JSX.Element => {
           onPress={() => selectReflection(getPrevDay(), reflections)}>
           <FontAwesome
             name='chevron-circle-left'
-            size={Fonts[deviceSize].icon}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
         </Pressable>
         {/* Date */}
         <View style={styles.dateContainer}>
-          <Text style={[styles.date, Fonts[deviceSize].date]}>
+          <Text style={[styles.date, Control[deviceSize].subTitle]}>
             {reflection.date}
           </Text>
         </View>
@@ -130,19 +130,19 @@ const Reflection: React.FC = (): JSX.Element => {
           <FontAwesome
             style={styles.textRight}
             name='chevron-circle-right'
-            size={Fonts[deviceSize].icon}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={[styles.boldTitle, Fonts[deviceSize].boldTitle]}>
+      <Text style={[styles.displayTitle, Control[deviceSize].displayTitle]}>
         {reflection.title}
       </Text>
-      <Text style={[styles.quote, Fonts[deviceSize].quote]}>
+      <Text style={[styles.quote, Control[deviceSize].quote]}>
         {reflection.quote}
       </Text>
-      <Text style={[styles.text, Fonts[deviceSize].text]}>
+      <Text style={[styles.text, Control[deviceSize].text]}>
         {reflection.reflection}
       </Text>
     </View>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   textRight: {
     textAlign: 'right'
   },
-  boldTitle: {
+  displayTitle: {
     fontWeight: 'bold',
     letterSpacing: 0.5,
     marginBottom: 20,

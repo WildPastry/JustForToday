@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from '../components/styles/Themed';
 import Colours from '../constants/Colours';
-import Fonts from '../constants/Fonts';
+import Control from '../constants/Control';
 import { IDeviceSize } from '../types/generic.types';
 import { RootStackScreenProps } from '../types/navigation.types';
 import getDeviceSize from '../constants/Layout';
@@ -13,8 +13,8 @@ export default function NotFoundScreen({
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   return (
-    <View style={[styles.container, Fonts[deviceSize].container]}>
-      <Text style={Fonts[deviceSize].title}>This screen doesn't exist.</Text>
+    <View style={[styles.container, Control[deviceSize].container]}>
+      <Text style={Control[deviceSize].title}>This screen doesn't exist.</Text>
       <TouchableOpacity
         onPress={() => navigation.replace('Root')}
         style={styles.link}>

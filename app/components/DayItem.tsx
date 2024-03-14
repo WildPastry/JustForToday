@@ -2,13 +2,17 @@ import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { IDate, IDayItem } from '../types/date.types';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
+import { IDeviceSize } from '../types/generic.types';
 import { Text } from './styles/Themed';
+import getDeviceSize from '../constants/Layout';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 
 const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
   // Component settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   // Data from store
   const dates: IDate = useAppSelector((state: AppState): IDate => {
@@ -31,6 +35,7 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
       <Text
         style={[
           styles.text,
+          Control[deviceSize].text,
           isCurrentDay() ? { color: Colours[colorScheme].currentBtnText } : null
         ]}>
         {props.name}
@@ -41,8 +46,6 @@ const DayItem: React.FC<IDayItem> = (props: IDayItem): JSX.Element => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 15,
-    lineHeight: 21,
     textAlign: 'center'
   },
   dayItem: {

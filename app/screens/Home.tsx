@@ -11,9 +11,9 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AppState } from '../redux/store';
 import Calendar from '../components/Calendar';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import ErrorScreen from './ErrorScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import Fonts from '../constants/Fonts';
 import { IDeviceSize } from '../types/generic.types';
 import Reflection from '../components/Reflection';
 import getDeviceSize from '../constants/Layout';
@@ -73,14 +73,17 @@ const Home: React.FC = (): JSX.Element => {
   const renderApp = () => {
     return (
       <ForwardedScrollView
-        contentContainerStyle={[styles.container, Fonts[deviceSize].container]}
+        contentContainerStyle={[
+          styles.container,
+          Control[deviceSize].container
+        ]}
         ref={scrollViewRef}>
         {/* Calendar icon */}
         <View style={styles.calendarIconContainer}>
           <FontAwesome5
             style={styles.calendarIcon}
             name='calendar-alt'
-            size={Fonts[deviceSize].icon}
+            size={Control[deviceSize].icon}
             onPress={() => toggleCalendar()}
             color={Colours[colorScheme].icon}
           />
@@ -90,15 +93,17 @@ const Home: React.FC = (): JSX.Element => {
           <FontAwesome5
             style={styles.icon}
             name='chair'
-            size={Fonts[deviceSize].icon}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
           {/* Title */}
           <View style={styles.titleContainer}>
-            <FontDisplay style={Fonts[deviceSize].title}>Just for </FontDisplay>
+            <FontDisplay style={Control[deviceSize].title}>
+              Just for{' '}
+            </FontDisplay>
             <FontDisplayBold
               style={[
-                Fonts[deviceSize].title,
+                Control[deviceSize].title,
                 { color: Colours[colorScheme].link }
               ]}>
               today
@@ -153,8 +158,8 @@ const styles = StyleSheet.create({
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginBottom: 10,
-    marginTop: 20,
+    marginBottom: 20,
+    marginTop: 30,
     width: '70%'
   }
 });

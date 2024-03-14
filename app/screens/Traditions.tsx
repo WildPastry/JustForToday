@@ -4,9 +4,9 @@ import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
-import Fonts from '../constants/Fonts';
 import { IDeviceSize } from '../types/generic.types';
 import Tradition from '../components/Tradition';
 import getDeviceSize from '../constants/Layout';
@@ -42,13 +42,19 @@ const Traditions: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={Fonts[deviceSize].container}
+      contentContainerStyle={Control[deviceSize].container}
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
-        <FontAwesome name='book' size={25} color={Colours[colorScheme].icon} />
+        <FontAwesome
+          name='book'
+          size={Control[deviceSize].icon}
+          color={Colours[colorScheme].icon}
+        />
         {/* Title */}
-        <FontDisplay style={styles.title}>Traditions</FontDisplay>
+        <FontDisplay style={[styles.title, Control[deviceSize].title]}>
+          Traditions
+        </FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -69,6 +75,7 @@ const Traditions: React.FC = (): JSX.Element => {
           <Text
             style={[
               styles.text,
+              Control[deviceSize].text,
               isSelected(ETraditionTypes.short)
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
@@ -87,6 +94,7 @@ const Traditions: React.FC = (): JSX.Element => {
           <Text
             style={[
               styles.text,
+              Control[deviceSize].text,
               isSelected(ETraditionTypes.long)
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
@@ -117,22 +125,19 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     gap: 20,
-    marginBottom: 30,
-    marginTop: 10
+    marginVertical: 20
   },
   title: {
-    fontSize: 22,
     marginLeft: 10
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
     textAlign: 'center'
   },
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginVertical: 20,
+    marginBottom: 20,
+    marginTop: 30,
     width: '70%'
   },
   traditionBtn: {

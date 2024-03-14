@@ -17,7 +17,7 @@ import {
 } from '../types/navigation.types';
 import About from '../screens/About';
 import Colours from '../constants/Colours';
-import Fonts from '../constants/Fonts';
+import Control from '../constants/Control';
 import Home from '../screens/Home';
 import { IDeviceSize } from '../types/generic.types';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -82,23 +82,26 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colours[colorScheme].tabIconActive,
         tabBarInactiveTintColor: Colours[colorScheme].tabIconDefault,
         tabBarLabelStyle: {
-          fontSize: Fonts[deviceSize].tabLabel,
-          marginBottom: Fonts[deviceSize].tabMarginBottom
+          fontSize: Control[deviceSize].tabLabel,
+          marginBottom: Control[deviceSize].tabMarginBottom
         },
-        tabBarIconStyle: { marginTop: Fonts[deviceSize].tabMarginTop },
+        tabBarIconStyle: { marginTop: Control[deviceSize].tabMarginTop },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
-          height: Fonts[deviceSize].tab,
+          height: Control[deviceSize].tab,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
         },
-        headerTitleStyle: { fontSize: Fonts[deviceSize].tabHeading },
+        headerTitleStyle: {
+          fontSize: Control[deviceSize].tabHeading,
+          marginLeft: Control[deviceSize].container.padding - 15
+        },
         headerStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
-          height: Fonts[deviceSize].tab
+          height: Control[deviceSize].tab
         }
       }}>
       <BottomTab.Screen
@@ -110,7 +113,7 @@ function BottomTabNavigator() {
             <TabBarAwesome5Icon
               name='chair'
               color={color}
-              size={Fonts[deviceSize].icon}
+              size={Control[deviceSize].icon}
             />
           ),
           headerRight: () => (
@@ -121,9 +124,9 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={Fonts[deviceSize].icon}
+                size={Control[deviceSize].icon}
                 color={Colours[colorScheme].text}
-                style={{ marginRight: 15 }}
+                style={{ marginRight: Control[deviceSize].container.padding }}
               />
             </Pressable>
           )
@@ -138,7 +141,7 @@ function BottomTabNavigator() {
             <TabBarMaterialIcon
               name='stairs'
               color={color}
-              size={Fonts[deviceSize].icon}
+              size={Control[deviceSize].icon}
             />
           ),
           headerRight: () => (
@@ -149,9 +152,9 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={Fonts[deviceSize].icon}
+                size={Control[deviceSize].icon}
                 color={Colours[colorScheme].text}
-                style={{ marginRight: 15 }}
+                style={{ marginRight: Control[deviceSize].container.padding }}
               />
             </Pressable>
           )
@@ -166,7 +169,7 @@ function BottomTabNavigator() {
             <TabBarAwesomeIcon
               name='book'
               color={color}
-              size={Fonts[deviceSize].icon}
+              size={Control[deviceSize].icon}
             />
           ),
           headerRight: () => (
@@ -177,9 +180,9 @@ function BottomTabNavigator() {
               })}>
               <FontAwesome
                 name='info-circle'
-                size={Fonts[deviceSize].icon}
+                size={Control[deviceSize].icon}
                 color={Colours[colorScheme].text}
-                style={{ marginRight: 15 }}
+                style={{ marginRight: Control[deviceSize].container.padding }}
               />
             </Pressable>
           )

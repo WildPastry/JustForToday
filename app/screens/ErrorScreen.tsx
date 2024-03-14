@@ -1,5 +1,5 @@
 import { FontDisplay } from '../components/styles/StyledText';
-import Fonts from '../constants/Fonts';
+import Control from '../constants/Control';
 import { IDeviceSize } from '../types/generic.types';
 import { StyleSheet } from 'react-native';
 import { View } from '../components/styles/Themed';
@@ -10,8 +10,8 @@ const ErrorScreen: React.FC = (): JSX.Element => {
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   return (
-    <View style={[styles.container, Fonts[deviceSize].container]}>
-      <FontDisplay style={Fonts[deviceSize].title}>ErrorScreen</FontDisplay>
+    <View style={[styles.container, Control[deviceSize].container]}>
+      <FontDisplay style={Control[deviceSize].title}>ErrorScreen</FontDisplay>
     </View>
   );
 };

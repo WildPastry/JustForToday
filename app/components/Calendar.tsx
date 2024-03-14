@@ -6,9 +6,12 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AntDesign } from '@expo/vector-icons';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import DayItem from './DayItem';
 import { FontDisplay } from './styles/StyledText';
+import { IDeviceSize } from '../types/generic.types';
 import MonthItem from './MonthItem';
+import getDeviceSize from '../constants/Layout';
 import { resetCalendar } from '../redux/slices/dateSlice';
 import useColorScheme from '../hooks/useColorScheme';
 
@@ -20,6 +23,7 @@ const Calendar: React.FC<ICalendar> = ({
   const [months, setMonths] = useState<IMonthItem[]>([]);
   const [days, setDays] = useState<IDayItem[]>([]);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
   const dispatch = useAppDispatch();
 
   // Data from store
@@ -67,7 +71,7 @@ const Calendar: React.FC<ICalendar> = ({
         <Pressable onPress={() => getAllMonths()}>
           <AntDesign
             name='arrowleft'
-            size={24}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
         </Pressable>
@@ -83,9 +87,11 @@ const Calendar: React.FC<ICalendar> = ({
         <Pressable
           onPress={() => handleReset(currentDay)}
           style={styles.titleContainer}>
-          <FontDisplay style={styles.title}>Calendar</FontDisplay>
+          <FontDisplay style={[styles.title, Control[deviceSize].subTitle]}>
+            Calendar
+          </FontDisplay>
           <Text
-            style={styles.link}
+            style={[styles.link, Control[deviceSize].text]}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
             Return to current day
@@ -134,18 +140,9 @@ const styles = StyleSheet.create({
     padding: 20
   },
   title: {
-    fontSize: 20,
-    textAlign: 'center'
-  },
-  text: {
-    fontSize: 15,
-    lineHeight: 21,
-    marginBottom: 10,
     textAlign: 'center'
   },
   link: {
-    fontSize: 15,
-    lineHeight: 21,
     marginTop: 10
   }
 });
