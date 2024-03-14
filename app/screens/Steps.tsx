@@ -40,15 +40,13 @@ const Steps: React.FC = (): JSX.Element => {
       <View style={styles.logoContainer}>
         {/* Logo */}
         <MaterialCommunityIcons
-          style={styles.icon}
+          style={[styles.icon, { marginRight: Control[deviceSize].iconMargin }]}
           name='stairs'
           size={Control[deviceSize].icon}
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontDisplay style={[styles.title, Control[deviceSize].title]}>
-          Steps
-        </FontDisplay>
+        <FontDisplay style={Control[deviceSize].title}>Steps</FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -70,9 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10
-  },
-  title: {
-    marginLeft: 10
   },
   icon: {
     textAlign: 'center'

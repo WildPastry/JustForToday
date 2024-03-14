@@ -91,7 +91,7 @@ const Home: React.FC = (): JSX.Element => {
         <View style={styles.logoContainer}>
           {/* Logo */}
           <FontAwesome5
-            style={styles.icon}
+            style={{ marginRight: Control[deviceSize].iconMargin }}
             name='chair'
             size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
@@ -142,11 +142,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   titleContainer: {
-    flexDirection: 'row',
-    marginLeft: 10
-  },
-  icon: {
-    textAlign: 'center'
+    flexDirection: 'row'
   },
   calendarIconContainer: {
     alignItems: 'flex-end'

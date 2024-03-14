@@ -2,6 +2,7 @@ export default {
   small: {
     subTitle: { fontSize: 20 },
     icon: 25,
+    iconMargin: 10,
     displayIcon: 60,
     tab: 70,
     tabLabel: 15,
@@ -17,6 +18,7 @@ export default {
   medium: {
     subTitle: { fontSize: 27 },
     icon: 35,
+    iconMargin: 15,
     displayIcon: 90,
     tab: 90,
     tabLabel: 17,
@@ -32,6 +34,7 @@ export default {
   large: {
     subTitle: { fontSize: 40 },
     icon: 45,
+    iconMargin: 20,
     displayIcon: 130,
     tab: 110,
     tabLabel: 20,

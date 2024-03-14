@@ -50,11 +50,10 @@ const Traditions: React.FC = (): JSX.Element => {
           name='book'
           size={Control[deviceSize].icon}
           color={Colours[colorScheme].icon}
+          style={{ marginRight: Control[deviceSize].iconMargin }}
         />
         {/* Title */}
-        <FontDisplay style={[styles.title, Control[deviceSize].title]}>
-          Traditions
-        </FontDisplay>
+        <FontDisplay style={Control[deviceSize].title}>Traditions</FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -126,9 +125,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 20,
     marginVertical: 20
-  },
-  title: {
-    marginLeft: 10
   },
   text: {
     textAlign: 'center'

@@ -1,15 +1,16 @@
 import * as React from 'react';
+import {
+  AntDesign,
+  FontAwesome,
+  FontAwesome5,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
 import { ColorSchemeName, Pressable } from 'react-native';
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native';
-import {
-  FontAwesome,
-  FontAwesome5,
-  MaterialCommunityIcons
-} from '@expo/vector-icons';
 import {
   RootStackParamList,
   RootTabParamList,
@@ -47,6 +48,11 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  // Colour settings
+  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  // Font settings
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -60,7 +66,29 @@ function RootNavigator() {
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='About' component={About} />
+        <Stack.Screen
+          name='About'
+          component={About}
+          options={({ navigation }) => ({
+            headerTitleStyle: {
+              fontSize: Control[deviceSize].tabHeading
+            },
+            headerLeft: () => (
+              <Pressable
+                onPress={() => navigation.goBack()}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1
+                })}>
+                <AntDesign
+                  name='arrowleft'
+                  size={Control[deviceSize].icon}
+                  color={Colours[colorScheme].icon}
+                  style={{ marginRight: Control[deviceSize].iconMargin }}
+                />
+              </Pressable>
+            )
+          })}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
