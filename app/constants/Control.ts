@@ -4,7 +4,7 @@ export default {
     icon: 25,
     iconMargin: 10,
     displayIcon: 60,
-    tab: 70,
+    tabHeight: 70,
     tabLabel: 15,
     tabHeading: 20,
     tabMarginBottom: 7,
@@ -20,7 +20,7 @@ export default {
     icon: 35,
     iconMargin: 15,
     displayIcon: 90,
-    tab: 90,
+    tabHeight: 90,
     tabLabel: 17,
     tabHeading: 25,
     tabMarginBottom: 7,
@@ -32,19 +32,19 @@ export default {
     quote: { fontSize: 25, lineHeight: 35 }
   },
   large: {
-    subTitle: { fontSize: 40 },
-    icon: 45,
+    subTitle: { fontSize: 30 },
+    icon: 40,
     iconMargin: 20,
     displayIcon: 130,
-    tab: 110,
+    tabHeight: 100,
     tabLabel: 20,
     tabHeading: 30,
-    tabMarginBottom: 11,
-    tabMarginTop: 11,
-    displayTitle: { fontSize: 60, lineHeight: 65 },
+    tabMarginBottom: 0,
+    tabMarginTop: 0,
+    displayTitle: { fontSize: 50, lineHeight: 65 },
     title: { fontSize: 40 },
     container: { padding: 35 },
-    text: { fontSize: 25, lineHeight: 31 },
-    quote: { fontSize: 15, lineHeight: 21 }
+    text: { fontSize: 25, lineHeight: 35 },
+    quote: { fontSize: 30, lineHeight: 40 }
   }
 };

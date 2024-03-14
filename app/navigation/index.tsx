@@ -116,20 +116,16 @@ function BottomTabNavigator() {
         tabBarIconStyle: { marginTop: Control[deviceSize].tabMarginTop },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
-          height: Control[deviceSize].tab,
+          height: Control[deviceSize].tabHeight,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
-        },
-        headerTitleStyle: {
-          fontSize: Control[deviceSize].tabHeading,
-          marginLeft: Control[deviceSize].container.padding - 15
         },
         headerStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
-          height: Control[deviceSize].tab
+          height: Control[deviceSize].tabHeight
         }
       }}>
       <BottomTab.Screen
@@ -137,10 +133,12 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
+          headerTitle: '',
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon
               name='chair'
               color={color}
+              width={Control[deviceSize].icon + 20}
               size={Control[deviceSize].icon}
             />
           ),
@@ -165,10 +163,12 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
+          headerTitle: '',
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon
               name='stairs'
               color={color}
+              width={Control[deviceSize].icon + 20}
               size={Control[deviceSize].icon}
             />
           ),
@@ -193,10 +193,12 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
+          headerTitle: '',
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon
               name='book'
               color={color}
+              width={Control[deviceSize].icon + 20}
               size={Control[deviceSize].icon}
             />
           ),
@@ -225,6 +227,7 @@ function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
   size: number;
+  width: number;
 }) {
   return <FontAwesome {...props} />;
 }
@@ -233,6 +236,7 @@ function TabBarAwesome5Icon(props: {
   name: React.ComponentProps<typeof FontAwesome5>['name'];
   color: string;
   size: number;
+  width: number;
 }) {
   return <FontAwesome5 {...props} />;
 }
@@ -241,6 +245,7 @@ function TabBarMaterialIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
   size: number;
+  width: number;
 }) {
   return <MaterialCommunityIcons {...props} />;
 }
