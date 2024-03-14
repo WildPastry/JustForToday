@@ -52,9 +52,11 @@ exports[`<DayItem /> renders correctly 1`] = `
         },
         [
           {
-            "fontSize": 15,
-            "lineHeight": 21,
             "textAlign": "center",
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
           },
           null,
         ],
