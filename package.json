@@ -16,7 +16,8 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
     "start-tunnel": "expo start --tunnel",
     "start": "expo start --dev-client",
-    "submit": "eas submit -p android",
+    "submit:android": "eas submit -p android",
+    "submit:ios": "eas submit -p ios",
     "test": "jest -u",
     "update": "eas update --branch develop",
     "web": "expo start --web"
