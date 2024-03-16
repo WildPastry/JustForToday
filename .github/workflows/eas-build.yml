@@ -43,4 +43,4 @@ jobs:
           npm install
 
       - name: Create production build
-        run: eas build --profile production --platform android
+        run: eas build --profile production --platform all
