@@ -4,7 +4,7 @@ exports[`<Steps /> renders correctly 1`] = `
 <RCTScrollView
   contentContainerStyle={
     {
-      "padding": 20,
+      "padding": 30,
     }
   }
   style={
@@ -41,8 +41,7 @@ exports[`<Steps /> renders correctly 1`] = `
             },
             [
               {
-                "fontSize": 22,
-                "marginLeft": 10,
+                "fontSize": 30,
               },
               {
                 "fontFamily": "font-display",
@@ -63,8 +62,8 @@ exports[`<Steps /> renders correctly 1`] = `
           {
             "alignSelf": "center",
             "height": 1,
-            "marginBottom": 30,
-            "marginTop": 20,
+            "marginBottom": 20,
+            "marginTop": 30,
             "width": "70%",
           },
         ]
@@ -79,7 +78,7 @@ exports[`<Steps /> renders correctly 1`] = `
           {
             "flexDirection": "row",
             "flexWrap": "wrap",
-            "marginBottom": 20,
+            "marginTop": 20,
           },
         ]
       }
@@ -90,11 +89,15 @@ exports[`<Steps /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "fontWeight": "200",
-              "lineHeight": 21,
-            },
+            [
+              {
+                "fontWeight": "200",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -107,11 +110,15 @@ exports[`<Steps /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "lineHeight": 21,
-              "textAlign": "left",
-            },
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -127,7 +134,7 @@ exports[`<Steps /> renders correctly 1`] = `
           {
             "flexDirection": "row",
             "flexWrap": "wrap",
-            "marginBottom": 20,
+            "marginTop": 20,
           },
         ]
       }
@@ -138,11 +145,15 @@ exports[`<Steps /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "fontWeight": "200",
-              "lineHeight": 21,
-            },
+            [
+              {
+                "fontWeight": "200",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -155,11 +166,15 @@ exports[`<Steps /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "lineHeight": 21,
-              "textAlign": "left",
-            },
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >

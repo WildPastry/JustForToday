@@ -7,13 +7,17 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontAwesome } from '@expo/vector-icons';
+import { IDeviceSize } from '../types/generic.types';
 import { IReflection } from '../types/data.types';
+import getDeviceSize from '../constants/Layout';
 import useColorScheme from '../hooks/useColorScheme';
 
 const Reflection: React.FC = (): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
@@ -109,13 +113,15 @@ const Reflection: React.FC = (): JSX.Element => {
           onPress={() => selectReflection(getPrevDay(), reflections)}>
           <FontAwesome
             name='chevron-circle-left'
-            size={25}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
         </Pressable>
         {/* Date */}
         <View style={styles.dateContainer}>
-          <Text style={styles.date}>{reflection.date}</Text>
+          <Text style={[styles.date, Control[deviceSize].subTitle]}>
+            {reflection.date}
+          </Text>
         </View>
         {/* Right chevron */}
         <Pressable
@@ -124,15 +130,21 @@ const Reflection: React.FC = (): JSX.Element => {
           <FontAwesome
             style={styles.textRight}
             name='chevron-circle-right'
-            size={25}
+            size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
         </Pressable>
       </View>
       {/* Reflection */}
-      <Text style={styles.title}>{reflection.title}</Text>
-      <Text style={styles.quote}>{reflection.quote}</Text>
-      <Text style={styles.text}>{reflection.reflection}</Text>
+      <Text style={[styles.displayTitle, Control[deviceSize].displayTitle]}>
+        {reflection.title}
+      </Text>
+      <Text style={[styles.quote, Control[deviceSize].quote]}>
+        {reflection.quote}
+      </Text>
+      <Text style={[styles.text, Control[deviceSize].text]}>
+        {reflection.reflection}
+      </Text>
     </View>
   );
 };
@@ -154,30 +166,22 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   date: {
-    fontSize: 20,
     textAlignVertical: 'center'
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
-    marginBottom: 20,
     textAlign: 'left'
   },
   textRight: {
     textAlign: 'right'
   },
-  title: {
-    fontSize: 20,
+  displayTitle: {
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    lineHeight: 25,
     marginBottom: 20,
     textAlign: 'center'
   },
   quote: {
-    fontSize: 17,
     fontWeight: '200',
-    lineHeight: 23,
     marginBottom: 20,
     textAlign: 'left'
   }

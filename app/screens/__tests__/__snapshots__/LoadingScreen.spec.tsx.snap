@@ -9,7 +9,8 @@ exports[`<LoadingScreen /> renders correctly 1`] = `
       },
       [
         {
-          "fontSize": 20,
+          "fontSize": 22,
+          "lineHeight": 33,
         },
         {
           "fontFamily": "font-display",

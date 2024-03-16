@@ -85,10 +85,14 @@ exports[`<Reflection /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 20,
-              "textAlignVertical": "center",
-            },
+            [
+              {
+                "textAlignVertical": "center",
+              },
+              {
+                "fontSize": 27,
+              },
+            ],
           ]
         }
       />
@@ -140,14 +144,18 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 20,
-          "fontWeight": "bold",
-          "letterSpacing": 0.5,
-          "lineHeight": 25,
-          "marginBottom": 20,
-          "textAlign": "center",
-        },
+        [
+          {
+            "fontWeight": "bold",
+            "letterSpacing": 0.5,
+            "marginBottom": 20,
+            "textAlign": "center",
+          },
+          {
+            "fontSize": 33,
+            "lineHeight": 40,
+          },
+        ],
       ]
     }
   />
@@ -157,13 +165,17 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 17,
-          "fontWeight": "200",
-          "lineHeight": 23,
-          "marginBottom": 20,
-          "textAlign": "left",
-        },
+        [
+          {
+            "fontWeight": "200",
+            "marginBottom": 20,
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 25,
+            "lineHeight": 35,
+          },
+        ],
       ]
     }
   />
@@ -173,12 +185,15 @@ exports[`<Reflection /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 15,
-          "lineHeight": 21,
-          "marginBottom": 20,
-          "textAlign": "left",
-        },
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
+          },
+        ],
       ]
     }
   />

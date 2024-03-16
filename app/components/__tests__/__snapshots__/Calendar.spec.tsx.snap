@@ -107,10 +107,14 @@ exports[`<Calendar /> renders correctly 1`] = `
               "color": "#000",
             },
             [
-              {
-                "fontSize": 20,
-                "textAlign": "center",
-              },
+              [
+                {
+                  "textAlign": "center",
+                },
+                {
+                  "fontSize": 27,
+                },
+              ],
               {
                 "fontFamily": "font-display",
               },
@@ -126,11 +130,15 @@ exports[`<Calendar /> renders correctly 1`] = `
             {
               "color": "#0074c1",
             },
-            {
-              "fontSize": 15,
-              "lineHeight": 21,
-              "marginTop": 10,
-            },
+            [
+              {
+                "marginTop": 10,
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >

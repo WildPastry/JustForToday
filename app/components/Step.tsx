@@ -1,13 +1,21 @@
+import Control from '../constants/Control';
+import { IDeviceSize } from '../types/generic.types';
 import { IStep } from '../types/data.types';
 import { StyleSheet } from 'react-native';
 import { Text } from './styles/Themed';
+import getDeviceSize from '../constants/Layout';
 
 const StepItem: React.FC<IStep> = (props: IStep): JSX.Element => {
+  // Component settings
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
+
   return (
     // Step
     <Text style={styles.step}>
-      <Text style={styles.number}>{props.id}&nbsp;&nbsp;</Text>
-      <Text style={styles.text}>{props.step}</Text>
+      <Text style={[styles.number, Control[deviceSize].text]}>
+        {props.id}&nbsp;&nbsp;
+      </Text>
+      <Text style={[styles.text, Control[deviceSize].text]}>{props.step}</Text>
     </Text>
   );
 };
@@ -16,17 +24,13 @@ const styles = StyleSheet.create({
   step: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginBottom: 20
+    marginTop: 20
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
     textAlign: 'left'
   },
   number: {
-    fontSize: 15,
-    fontWeight: '200',
-    lineHeight: 21
+    fontWeight: '200'
   }
 });
 

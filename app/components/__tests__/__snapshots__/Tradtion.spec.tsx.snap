@@ -9,7 +9,7 @@ exports[`<Tradition /> renders correctly 1`] = `
       },
       {
         "flexDirection": "row",
-        "marginBottom": 20,
+        "marginTop": 20,
       },
     ]
   }
@@ -20,12 +20,16 @@ exports[`<Tradition /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 15,
-          "fontWeight": "200",
-          "lineHeight": 21,
-          "marginRight": 10,
-        },
+        [
+          {
+            "fontWeight": "200",
+            "marginRight": 10,
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
+          },
+        ],
       ]
     }
   >
@@ -37,11 +41,15 @@ exports[`<Tradition /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 15,
-          "lineHeight": 21,
-          "textAlign": "left",
-        },
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
+          },
+        ],
       ]
     }
   />

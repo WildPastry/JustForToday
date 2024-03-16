@@ -4,9 +4,12 @@ import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef, useState } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
+import { IDeviceSize } from '../types/generic.types';
 import Tradition from '../components/Tradition';
+import getDeviceSize from '../constants/Layout';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -16,6 +19,7 @@ const Traditions: React.FC = (): JSX.Element => {
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const [traditionType, setTraditionType] = useState(ETraditionTypes.short);
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   // Data from store
   const traditions: ITraditions = useAppSelector(
@@ -38,13 +42,18 @@ const Traditions: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={Control[deviceSize].container}
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
-        <FontAwesome name='book' size={25} color={Colours[colorScheme].icon} />
+        <FontAwesome
+          name='book'
+          size={Control[deviceSize].icon}
+          color={Colours[colorScheme].icon}
+          style={{ marginRight: Control[deviceSize].iconMargin }}
+        />
         {/* Title */}
-        <FontDisplay style={styles.title}>Traditions</FontDisplay>
+        <FontDisplay style={Control[deviceSize].title}>Traditions</FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -65,6 +74,7 @@ const Traditions: React.FC = (): JSX.Element => {
           <Text
             style={[
               styles.text,
+              Control[deviceSize].text,
               isSelected(ETraditionTypes.short)
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
@@ -83,6 +93,7 @@ const Traditions: React.FC = (): JSX.Element => {
           <Text
             style={[
               styles.text,
+              Control[deviceSize].text,
               isSelected(ETraditionTypes.long)
                 ? { color: Colours[colorScheme].currentBtnText }
                 : null
@@ -104,9 +115,6 @@ const Traditions: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20
-  },
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -116,22 +124,16 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     gap: 20,
-    marginBottom: 30,
-    marginTop: 10
-  },
-  title: {
-    fontSize: 22,
-    marginLeft: 10
+    marginVertical: 20
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
     textAlign: 'center'
   },
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginVertical: 20,
+    marginBottom: 20,
+    marginTop: 30,
     width: '70%'
   },
   traditionBtn: {
