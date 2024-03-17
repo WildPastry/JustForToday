@@ -1,6 +1,6 @@
 {
   "name": "just-for-today",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "./app/App.tsx",
   "scripts": {
     "android": "expo run:android",
