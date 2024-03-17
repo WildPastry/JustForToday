@@ -3,18 +3,19 @@
     "name": "just-for-today",
     "slug": "justfortoday",
     "privacy": "public",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "scheme":"nz.co.mikeparker.jft",
+    "scheme": "nz.co.mikeparker.jft",
     "splash": {
       "image": "./app/assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#2c2c54"
     },
-
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "nz.co.mikeparker.jft"
