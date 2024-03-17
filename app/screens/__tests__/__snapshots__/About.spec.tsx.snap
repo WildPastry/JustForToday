@@ -4,7 +4,7 @@ exports[`<About /> renders correctly 1`] = `
 <RCTScrollView
   contentContainerStyle={
     {
-      "padding": 20,
+      "padding": 30,
     }
   }
   style={
@@ -25,11 +25,15 @@ exports[`<About /> renders correctly 1`] = `
             "color": "#000",
           },
           [
-            {
-              "fontSize": 20,
-              "marginBottom": 20,
-              "textAlign": "center",
-            },
+            [
+              {
+                "marginBottom": 15,
+                "textAlign": "center",
+              },
+              {
+                "fontSize": 30,
+              },
+            ],
             {
               "fontFamily": "font-display",
             },
@@ -45,15 +49,20 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 15,
-            "lineHeight": 20,
-            "textAlign": "center",
-          },
+          [
+            {
+              "fontWeight": "200",
+              "marginBottom": 20,
+              "textAlign": "center",
+            },
+            {
+              "fontSize": 27,
+            },
+          ],
         ]
       }
     >
-      JustForToday app version 
+      JustForToday version 
       1.0.3
     </Text>
     <View
@@ -77,16 +86,19 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 15,
-            "lineHeight": 21,
-            "marginBottom": 20,
-            "textAlign": "left",
-          },
+          [
+            {
+              "marginTop": 20,
+            },
+            {
+              "fontSize": 22,
+              "lineHeight": 33,
+            },
+          ],
         ]
       }
     >
-      Daily reflections, steps, and tradtions with zero advertisments.
+      Daily reflections, steps, and traditions with zero advertisements.
     </Text>
     <Text
       style={
@@ -94,12 +106,15 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 15,
-            "lineHeight": 21,
-            "marginBottom": 20,
-            "textAlign": "left",
-          },
+          [
+            {
+              "marginTop": 20,
+            },
+            {
+              "fontSize": 22,
+              "lineHeight": 33,
+            },
+          ],
         ]
       }
     >
@@ -111,11 +126,17 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 18,
-            "marginBottom": 20,
-            "textAlign": "left",
-          },
+          [
+            {
+              "fontWeight": "500",
+              "marginBottom": 10,
+              "marginTop": 30,
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 27,
+            },
+          ],
         ]
       }
     >
@@ -127,16 +148,19 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 15,
-            "lineHeight": 21,
-            "marginBottom": 20,
-            "textAlign": "left",
-          },
+          [
+            {
+              "marginTop": 20,
+            },
+            {
+              "fontSize": 22,
+              "lineHeight": 33,
+            },
+          ],
         ]
       }
     >
-      If you have any suggestions or requests for features to improve the app you can send them using the button.
+      If you have any suggestions or requests for features to improve the app you can send them to the team using the button below.
     </Text>
     <View
       accessibilityState={
@@ -172,8 +196,9 @@ exports[`<About /> renders correctly 1`] = `
         [
           {
             "borderRadius": 12,
-            "marginVertical": 15,
-            "paddingVertical": 12,
+            "marginBottom": 20,
+            "marginTop": 40,
+            "paddingVertical": 20,
           },
           {
             "backgroundColor": "#e5edf9",
@@ -187,9 +212,15 @@ exports[`<About /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "textAlign": "center",
-            },
+            [
+              {
+                "textAlign": "center",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -217,12 +248,18 @@ exports[`<About /> renders correctly 1`] = `
           {
             "color": "#000",
           },
-          {
-            "fontSize": 15,
-            "lineHeight": 21,
-            "marginBottom": 20,
-            "textAlign": "left",
-          },
+          [
+            {
+              "marginTop": 20,
+            },
+            {
+              "textAlign": "center",
+            },
+            {
+              "fontSize": 22,
+              "lineHeight": 33,
+            },
+          ],
         ]
       }
     >

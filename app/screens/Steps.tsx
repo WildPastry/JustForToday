@@ -3,10 +3,13 @@ import { ForwardedScrollView, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontDisplay } from '../components/styles/StyledText';
+import { IDeviceSize } from '../types/generic.types';
 import { IStep } from '../types/data.types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Step from '../components/Step';
+import getDeviceSize from '../constants/Layout';
 import { useAppSelector } from '../redux/hooks';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -15,6 +18,7 @@ const Steps: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   // Data from store
   const steps: IStep[] = useAppSelector((state: AppState): IStep[] => {
@@ -31,18 +35,18 @@ const Steps: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={Control[deviceSize].container}
       ref={scrollViewRef}>
       <View style={styles.logoContainer}>
         {/* Logo */}
         <MaterialCommunityIcons
-          style={styles.icon}
+          style={[styles.icon, { marginRight: Control[deviceSize].iconMargin }]}
           name='stairs'
-          size={25}
+          size={Control[deviceSize].icon}
           color={Colours[colorScheme].text}
         />
         {/* Title */}
-        <FontDisplay style={styles.title}>Steps</FontDisplay>
+        <FontDisplay style={Control[deviceSize].title}>Steps</FontDisplay>
       </View>
       {/* Divider */}
       <View
@@ -59,18 +63,11 @@ const Steps: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20
-  },
   logoContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10
-  },
-  title: {
-    fontSize: 22,
-    marginLeft: 10
   },
   icon: {
     textAlign: 'center'
@@ -78,8 +75,8 @@ const styles = StyleSheet.create({
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginBottom: 30,
-    marginTop: 20,
+    marginBottom: 20,
+    marginTop: 30,
     width: '70%'
   }
 });

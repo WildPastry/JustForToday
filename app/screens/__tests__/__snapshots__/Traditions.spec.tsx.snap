@@ -4,7 +4,7 @@ exports[`<Traditions /> renders correctly 1`] = `
 <RCTScrollView
   contentContainerStyle={
     {
-      "padding": 20,
+      "padding": 30,
     }
   }
   style={
@@ -41,8 +41,7 @@ exports[`<Traditions /> renders correctly 1`] = `
             },
             [
               {
-                "fontSize": 20,
-                "marginLeft": 10,
+                "fontSize": 30,
               },
               {
                 "fontFamily": "font-display",
@@ -63,7 +62,8 @@ exports[`<Traditions /> renders correctly 1`] = `
           {
             "alignSelf": "center",
             "height": 1,
-            "marginVertical": 20,
+            "marginBottom": 20,
+            "marginTop": 30,
             "width": "70%",
           },
         ]
@@ -78,8 +78,7 @@ exports[`<Traditions /> renders correctly 1`] = `
           {
             "flexDirection": "row",
             "gap": 20,
-            "marginBottom": 20,
-            "marginTop": 10,
+            "marginVertical": 20,
           },
         ]
       }
@@ -135,9 +134,11 @@ exports[`<Traditions /> renders correctly 1`] = `
               },
               [
                 {
-                  "fontSize": 15,
-                  "lineHeight": 21,
                   "textAlign": "center",
+                },
+                {
+                  "fontSize": 22,
+                  "lineHeight": 33,
                 },
                 {
                   "color": "#fff",
@@ -200,9 +201,11 @@ exports[`<Traditions /> renders correctly 1`] = `
               },
               [
                 {
-                  "fontSize": 15,
-                  "lineHeight": 21,
                   "textAlign": "center",
+                },
+                {
+                  "fontSize": 22,
+                  "lineHeight": 33,
                 },
                 null,
               ],
@@ -221,7 +224,7 @@ exports[`<Traditions /> renders correctly 1`] = `
           },
           {
             "flexDirection": "row",
-            "marginBottom": 20,
+            "marginTop": 20,
           },
         ]
       }
@@ -232,12 +235,16 @@ exports[`<Traditions /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "fontWeight": "200",
-              "lineHeight": 21,
-              "marginRight": 10,
-            },
+            [
+              {
+                "fontWeight": "200",
+                "marginRight": 10,
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -250,11 +257,15 @@ exports[`<Traditions /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "lineHeight": 21,
-              "textAlign": "left",
-            },
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -269,7 +280,7 @@ exports[`<Traditions /> renders correctly 1`] = `
           },
           {
             "flexDirection": "row",
-            "marginBottom": 20,
+            "marginTop": 20,
           },
         ]
       }
@@ -280,12 +291,16 @@ exports[`<Traditions /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "fontWeight": "200",
-              "lineHeight": 21,
-              "marginRight": 10,
-            },
+            [
+              {
+                "fontWeight": "200",
+                "marginRight": 10,
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >
@@ -298,11 +313,15 @@ exports[`<Traditions /> renders correctly 1`] = `
             {
               "color": "#000",
             },
-            {
-              "fontSize": 15,
-              "lineHeight": 21,
-              "textAlign": "left",
-            },
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
           ]
         }
       >

@@ -10,7 +10,7 @@ exports[`<Step /> renders correctly 1`] = `
       {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 20,
+        "marginTop": 20,
       },
     ]
   }
@@ -21,11 +21,15 @@ exports[`<Step /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 15,
-          "fontWeight": "200",
-          "lineHeight": 21,
-        },
+        [
+          {
+            "fontWeight": "200",
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
+          },
+        ],
       ]
     }
   >
@@ -37,11 +41,15 @@ exports[`<Step /> renders correctly 1`] = `
         {
           "color": "#000",
         },
-        {
-          "fontSize": 15,
-          "lineHeight": 21,
-          "textAlign": "left",
-        },
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 22,
+            "lineHeight": 33,
+          },
+        ],
       ]
     }
   />

@@ -3,8 +3,11 @@ import { ColorSchemeName, Linking, Pressable, StyleSheet } from 'react-native';
 import { ForwardedScrollView, Text, View } from '../components/styles/Themed';
 import React, { useRef } from 'react';
 import Colours from '../constants/Colours';
+import Control from '../constants/Control';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontDisplay } from '../components/styles/StyledText';
+import { IDeviceSize } from '../types/generic.types';
+import getDeviceSize from '../constants/Layout';
 import packageJson from '../../package.json';
 import useColorScheme from '../hooks/useColorScheme';
 import { useFocusEffect } from '@react-navigation/native';
@@ -13,6 +16,7 @@ const About: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   const handleSuggestions = (): void => {
     Linking.openURL(
@@ -38,19 +42,22 @@ const About: React.FC = (): JSX.Element => {
 
   return (
     <ForwardedScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={Control[deviceSize].container}
       ref={scrollViewRef}>
       {/* Logo */}
       <FontAwesome
         style={styles.icon}
         name='info-circle'
-        size={50}
+        size={Control[deviceSize].displayIcon}
         color={Colours[colorScheme].text}
       />
       {/* Title */}
-      <FontDisplay style={styles.title}>About the app</FontDisplay>
-      <Text style={styles.versionText}>
-        JustForToday app version {getAppVersion()}
+      <FontDisplay style={[styles.title, Control[deviceSize].title]}>
+        About the app
+      </FontDisplay>
+      {/* Version */}
+      <Text style={[styles.versionText, Control[deviceSize].subTitle]}>
+        JustForToday version {getAppVersion()}
       </Text>
       {/* Divider */}
       <View
@@ -59,27 +66,31 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colours.dark.seperator}
       />
       {/* Information */}
-      <Text style={styles.text}>
-        Daily reflections, steps, and tradtions with zero advertisments.
+      <Text style={[styles.text, Control[deviceSize].text]}>
+        Daily reflections, steps, and traditions with zero advertisements.
       </Text>
-      <Text style={styles.text}>
+      <Text style={[styles.text, Control[deviceSize].text]}>
         Created to give people in the fellowship fast access to well known AA
         literature at the touch of a button.
       </Text>
       {/* Suggestions */}
-      <Text style={styles.subTitle}>Suggestions?</Text>
-      <Text style={styles.text}>
-        If you have any suggestions or requests for features to improve the app
-        you can send them using the button below.
+      <Text style={[styles.subTitle, Control[deviceSize].subTitle]}>
+        Suggestions?
       </Text>
-      {/* Suggestions Btn */}
+      <Text style={[styles.text, Control[deviceSize].text]}>
+        If you have any suggestions or requests for features to improve the app
+        you can send them to the team using the button below.
+      </Text>
+      {/* Suggestions button */}
       <Pressable
         style={[
           styles.helpLinkBtn,
           { backgroundColor: Colours[colorScheme].btn }
         ]}
         onPress={() => handleSuggestions()}>
-        <Text style={styles.textCenter}>Send email</Text>
+        <Text style={[styles.textCenter, Control[deviceSize].text]}>
+          Send email
+        </Text>
       </Pressable>
       {/* Divider */}
       <View
@@ -88,7 +99,7 @@ const About: React.FC = (): JSX.Element => {
         darkColor={Colours.dark.seperator}
       />
       {/* AA disclaimer and link*/}
-      <Text style={[styles.text, styles.textCenter]}>
+      <Text style={[styles.text, styles.textCenter, Control[deviceSize].text]}>
         All literature is taken with permission from{' '}
         <Text
           onPress={() => handleLink()}
@@ -105,29 +116,22 @@ const styles = StyleSheet.create({
   textCenter: {
     textAlign: 'center'
   },
-  container: {
-    padding: 20
-  },
   title: {
-    fontSize: 22,
-    marginBottom: 20,
+    marginBottom: 15,
     textAlign: 'center'
   },
   subTitle: {
-    fontSize: 18,
     fontWeight: '500',
-    marginBottom: 20,
+    marginBottom: 10,
+    marginTop: 30,
     textAlign: 'left'
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
-    marginBottom: 20
+    marginTop: 20
   },
   versionText: {
-    fontSize: 15,
     fontWeight: '200',
-    lineHeight: 20,
+    marginBottom: 20,
     textAlign: 'center'
   },
   icon: {
@@ -142,8 +146,9 @@ const styles = StyleSheet.create({
   },
   helpLinkBtn: {
     borderRadius: 12,
-    marginVertical: 15,
-    paddingVertical: 12
+    marginBottom: 20,
+    marginTop: 40,
+    paddingVertical: 20
   }
 });
 

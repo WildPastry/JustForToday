@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+import 'expo-dev-client';
 import { ColorSchemeName } from 'react-native';
 import Navigation from './navigation';
 import { Provider } from 'react-redux';

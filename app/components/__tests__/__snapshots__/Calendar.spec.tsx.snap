@@ -20,8 +20,7 @@ exports[`<Calendar /> renders correctly 1`] = `
         {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginBottom": 20,
-          "marginTop": 10,
+          "marginBottom": 10,
         },
       ]
     }
@@ -65,16 +64,40 @@ exports[`<Calendar /> renders correctly 1`] = `
       }
     />
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        [
-          {
-            "backgroundColor": "#fff",
-          },
-          {
-            "justifyContent": "center",
-            "paddingVertical": 10,
-          },
-        ]
+        {
+          "justifyContent": "center",
+          "padding": 20,
+        }
       }
     >
       <Text
@@ -84,10 +107,14 @@ exports[`<Calendar /> renders correctly 1`] = `
               "color": "#000",
             },
             [
-              {
-                "fontSize": 20,
-                "textAlign": "center",
-              },
+              [
+                {
+                  "textAlign": "center",
+                },
+                {
+                  "fontSize": 27,
+                },
+              ],
               {
                 "fontFamily": "font-display",
               },
@@ -96,6 +123,26 @@ exports[`<Calendar /> renders correctly 1`] = `
         }
       >
         Calendar
+      </Text>
+      <Text
+        style={
+          [
+            {
+              "color": "#0074c1",
+            },
+            [
+              {
+                "marginTop": 10,
+              },
+              {
+                "fontSize": 22,
+                "lineHeight": 33,
+              },
+            ],
+          ]
+        }
+      >
+        Return to current day
       </Text>
     </View>
     <View

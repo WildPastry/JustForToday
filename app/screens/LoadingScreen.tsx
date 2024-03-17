@@ -1,19 +1,22 @@
+import Control from '../constants/Control';
 import { FontDisplay } from '../components/styles/StyledText';
-import { StyleSheet } from 'react-native';
+import { IDeviceSize } from '../types/generic.types';
+import getDeviceSize from '../constants/Layout';
 
 const LoadingScreen: React.FC = (): JSX.Element => {
+  // Component settings
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
+
   // Loading quote
   const selectLoadingQuote = (): string => {
     return 'Loading';
   };
 
-  return <FontDisplay style={styles.title}>{selectLoadingQuote()}</FontDisplay>;
+  return (
+    <FontDisplay style={Control[deviceSize].text}>
+      {selectLoadingQuote()}
+    </FontDisplay>
+  );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20
-  }
-});
 
 export default LoadingScreen;

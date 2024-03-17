@@ -1,15 +1,25 @@
+import Control from '../constants/Control';
+import { IDeviceSize } from '../types/generic.types';
 import { ITradition } from '../types/data.types';
 import { StyleSheet } from 'react-native';
 import { Text } from './styles/Themed';
+import getDeviceSize from '../constants/Layout';
 
 const TraditionItem: React.FC<ITradition> = (
   props: ITradition
 ): JSX.Element => {
+  // Component settings
+  const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
+
   return (
     // Tradition
     <Text style={styles.tradtion}>
-      <Text style={styles.number}>{props.id}&nbsp;&nbsp;</Text>
-      <Text style={styles.text}>{props.tradition}</Text>
+      <Text style={[styles.number, Control[deviceSize].text]}>
+        {props.id}&nbsp;&nbsp;
+      </Text>
+      <Text style={[styles.text, Control[deviceSize].text]}>
+        {props.tradition}
+      </Text>
     </Text>
   );
 };
@@ -17,17 +27,13 @@ const TraditionItem: React.FC<ITradition> = (
 const styles = StyleSheet.create({
   tradtion: {
     flexDirection: 'row',
-    marginBottom: 20
+    marginTop: 20
   },
   text: {
-    fontSize: 15,
-    lineHeight: 21,
     textAlign: 'left'
   },
   number: {
-    fontSize: 15,
     fontWeight: '200',
-    lineHeight: 21,
     marginRight: 10
   }
 });
