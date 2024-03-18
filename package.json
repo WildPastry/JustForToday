@@ -55,7 +55,7 @@
     "@types/react-native": "^0.73.0",
     "@types/react-redux": "^7.1.33",
     "@types/react-test-renderer": "^18.0.7",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@wildpastry/eslint-config": "^1.6.4",
     "eslint": "^8.57.0",
     "eslint-plugin-prettier": "^5.1.3",
