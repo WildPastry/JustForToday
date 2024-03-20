@@ -1,0 +1,63 @@
+name: EAS build Android
+run-name: EAS build Android | ${{ github.run_id }} | ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        default: "develop"
+        description: "EAS: [ develop | staging | production ]"
+        type: string
+        required: true
+
+jobs:
+  eas-build-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret"
+            exit 1
+          fi
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          npm install -g expo-cli
+          npm install
+
+      - name: Build Android app
+        run: eas build --platform android --local --output ${{ github.workspace }}/app-release.aab
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: ${{ github.workspace }}/app-release.aab

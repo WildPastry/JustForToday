@@ -6,7 +6,7 @@ on:
     inputs:
       branch:
         default: "develop"
-        description: "Branch: [ develop | staging | production ]"
+        description: "EAS: [ develop | staging | production ]"
         type: string
         required: true
 
