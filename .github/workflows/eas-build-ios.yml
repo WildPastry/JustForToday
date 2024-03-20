@@ -1,16 +1,18 @@
-name: EAS build
-run-name: EAS build | ${{ github.run_id }} | ${{ github.ref_name }}
+name: EAS build iOS
+run-name: EAS build iOS | ${{ github.run_id }} | ${{ github.ref_name }}
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        default: "develop"
+        description: "EAS: [ develop | staging | production ]"
+        type: string
+        required: true
 
 jobs:
-  eas-build:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/major') || startsWith(github.head_ref, 'release/minor') || startsWith(github.head_ref, 'release/patch'))
+  eas-build-ios:
+    runs-on: macos-latest
 
     steps:
       - name: Check for EXPO_TOKEN
@@ -42,5 +44,11 @@ jobs:
           npm install -g expo-cli
           npm install
 
-      - name: Create production build
-        run: eas build --profile production --platform all
+      - name: Build iOS app
+        run: eas build --platform ios --local --non-interactive --output ${{ github.workspace }}/app-release.ipa
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: ${{ github.workspace }}/app-release.ipa
