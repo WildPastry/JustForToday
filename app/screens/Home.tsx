@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-
 import { AppState } from '../redux/store';
 import Control from '../constants/Control';
 import ErrorScreen from './ErrorScreen';
