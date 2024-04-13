@@ -1,32 +1,20 @@
-import { ColorSchemeName, StyleSheet } from 'react-native';
-import { FontDisplay, FontDisplayBold } from '../components/styles/StyledText';
-import { ForwardedScrollView, View } from '../components/styles/Themed';
-import React, { useRef, useState } from 'react';
-import {
-  constructDateFromId,
-  setSelectedDate,
-  setSelectedDay
-} from '../redux/slices/dateSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import React, { useRef } from 'react';
+
 import { AppState } from '../redux/store';
-import Calendar from '../components/Calendar';
-import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import ErrorScreen from './ErrorScreen';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { ForwardedScrollView } from '../components/styles/Themed';
 import { IDeviceSize } from '../types/generic.types';
 import Reflection from '../components/Reflection';
+import { StyleSheet } from 'react-native';
 import getDeviceSize from '../constants/Layout';
-import useColorScheme from '../hooks/useColorScheme';
+import { useAppSelector } from '../redux/hooks';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Home: React.FC = (): JSX.Element => {
   // Screen settings
   const scrollViewRef: React.MutableRefObject<any> = useRef<any>(null);
-  const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
-  const [showCalendar, setShowCalendar] = useState(false);
-  const dispatch = useAppDispatch();
 
   // Data from store
   const appError: boolean = useAppSelector((state: AppState): boolean => {
@@ -37,8 +25,6 @@ const Home: React.FC = (): JSX.Element => {
     React.useCallback(() => {
       // Scroll to top on focus
       scrollToTop();
-      // Hide calendar when unfocused
-      return () => setShowCalendar(false);
     }, [])
   );
 
@@ -51,24 +37,6 @@ const Home: React.FC = (): JSX.Element => {
     return <ErrorScreen />;
   };
 
-  // Hide or show calendar
-  const toggleCalendar = (): void => {
-    setShowCalendar(!showCalendar);
-  };
-
-  // Update the current reflection
-  const updateReflection = (
-    showCalendar: boolean,
-    currentDay: string
-  ): void => {
-    const currentDate: number = constructDateFromId(currentDay);
-    // Set calendar status
-    setShowCalendar(showCalendar);
-    // Update store
-    dispatch(setSelectedDate(currentDate));
-    dispatch(setSelectedDay(currentDay));
-  };
-
   // Render app
   const renderApp = () => {
     return (
@@ -78,53 +46,7 @@ const Home: React.FC = (): JSX.Element => {
           Control[deviceSize].container
         ]}
         ref={scrollViewRef}>
-        {/* Calendar icon */}
-        <View style={styles.calendarIconContainer}>
-          <FontAwesome5
-            style={styles.calendarIcon}
-            name='calendar-alt'
-            size={Control[deviceSize].icon}
-            onPress={() => toggleCalendar()}
-            color={Colours[colorScheme].icon}
-          />
-        </View>
-        <View style={styles.logoContainer}>
-          {/* Logo */}
-          <FontAwesome5
-            style={{ marginRight: Control[deviceSize].iconMargin }}
-            name='chair'
-            size={Control[deviceSize].icon}
-            color={Colours[colorScheme].icon}
-          />
-          {/* Title */}
-          <View style={styles.titleContainer}>
-            <FontDisplay style={Control[deviceSize].title}>
-              Just for{' '}
-            </FontDisplay>
-            <FontDisplayBold
-              style={[
-                Control[deviceSize].title,
-                { color: Colours[colorScheme].link }
-              ]}>
-              today
-            </FontDisplayBold>
-          </View>
-        </View>
-        {/* Divider */}
-        <View
-          style={styles.divider}
-          lightColor={Colours.light.seperator}
-          darkColor={Colours.dark.seperator}
-        />
-        {/* Components */}
-        {showCalendar ? (
-          <Calendar
-            handleCalendarChange={updateReflection}
-            handleScrollPosition={scrollToTop}
-          />
-        ) : (
-          <Reflection />
-        )}
+        <Reflection handleScrollPosition={scrollToTop} />
       </ForwardedScrollView>
     );
   };
@@ -135,28 +57,6 @@ const Home: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch'
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  titleContainer: {
-    flexDirection: 'row'
-  },
-  calendarIconContainer: {
-    alignItems: 'flex-end'
-  },
-  calendarIcon: {
-    paddingLeft: 30,
-    paddingVertical: 10
-  },
-  divider: {
-    alignSelf: 'center',
-    height: 1,
-    marginBottom: 20,
-    marginTop: 30,
-    width: '70%'
   }
 });
 

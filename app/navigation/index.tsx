@@ -13,6 +13,7 @@ import {
 } from '@react-navigation/native';
 import { EDeviceSizes, IDeviceSize } from '../types/generic.types';
 import {
+  INavigation,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
@@ -22,6 +23,7 @@ import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import Home from '../screens/Home';
 import LinkingConfiguration from './LinkingConfiguration';
+import Logo from '../components/Logo';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
@@ -118,6 +120,24 @@ function BottomTabNavigator() {
       : Control[deviceSize].icon;
   };
 
+  // Info icon with navigation to the info page
+  const InfoIcon: React.FC<INavigation> = ({ navigation }): JSX.Element => {
+    return (
+      <Pressable
+        onPress={() => navigation.navigate('About')}
+        style={({ pressed }) => ({
+          opacity: pressed ? 0.5 : 1
+        })}>
+        <FontAwesome
+          name='info-circle'
+          size={Control[deviceSize].icon}
+          color={Colours[colorScheme].text}
+          style={{ marginRight: Control[deviceSize].container.padding }}
+        />
+      </Pressable>
+    );
+  };
+
   return (
     <BottomTab.Navigator
       initialRouteName='Home'
@@ -131,7 +151,7 @@ function BottomTabNavigator() {
         tabBarIconStyle: { marginTop: Control[deviceSize].tabMarginTop },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
-          height: Control[deviceSize].tabHeight,
+          height: Control[deviceSize].bottomTabHeight,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
@@ -140,8 +160,9 @@ function BottomTabNavigator() {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
-          height: Control[deviceSize].tabHeight
-        }
+          height: Control[deviceSize].topTabHeight
+        },
+        headerTitleAlign: 'center'
       }}>
       {/* Home screen */}
       <BottomTab.Screen
@@ -149,7 +170,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          headerTitle: '',
+          headerTitle: () => <Logo />,
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon
               name='chair'
@@ -159,20 +180,7 @@ function BottomTabNavigator() {
             />
           ),
           // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => <InfoIcon navigation={navigation} />
         })}
       />
       {/* Steps screen */}
@@ -181,7 +189,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
-          headerTitle: '',
+          headerTitle: () => <Logo />,
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon
               name='stairs'
@@ -191,20 +199,7 @@ function BottomTabNavigator() {
             />
           ),
           // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => <InfoIcon navigation={navigation} />
         })}
       />
       {/* Traditions screen */}
@@ -213,7 +208,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
-          headerTitle: '',
+          headerTitle: () => <Logo />,
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon
               name='book'
@@ -223,20 +218,7 @@ function BottomTabNavigator() {
             />
           ),
           // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => <InfoIcon navigation={navigation} />
         })}
       />
     </BottomTab.Navigator>

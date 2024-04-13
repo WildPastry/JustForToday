@@ -8,7 +8,6 @@ import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import DayItem from './DayItem';
-import { FontDisplay } from './styles/StyledText';
 import { IDeviceSize } from '../types/generic.types';
 import MonthItem from './MonthItem';
 import getDeviceSize from '../constants/Layout';
@@ -82,16 +81,13 @@ const Calendar: React.FC<ICalendar> = ({
 
   return (
     <View>
-      <View style={styles.controls}>
+      <View style={[styles.controls, Control[deviceSize].controls]}>
         <Pressable style={styles.icon}>{renderBackArrow()}</Pressable>
         <Pressable
           onPress={() => handleReset(currentDay)}
-          style={styles.titleContainer}>
-          <FontDisplay style={[styles.title, Control[deviceSize].subTitle]}>
-            Calendar
-          </FontDisplay>
+          style={styles.linkContainer}>
           <Text
-            style={[styles.link, Control[deviceSize].text]}
+            style={Control[deviceSize].text}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
             Return to current day
@@ -126,24 +122,17 @@ const Calendar: React.FC<ICalendar> = ({
 
 const styles = StyleSheet.create({
   controls: {
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 30
   },
   icon: {
     justifyContent: 'center',
-    paddingVertical: 10,
     width: '25%'
   },
-  titleContainer: {
-    justifyContent: 'center',
-    padding: 20
-  },
-  title: {
-    textAlign: 'center'
-  },
-  link: {
-    marginTop: 10
+  linkContainer: {
+    justifyContent: 'center'
   }
 });
 

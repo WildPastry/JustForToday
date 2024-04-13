@@ -1,24 +1,32 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../types/date.types';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { IDeviceSize, IReflectionComponent } from '../types/generic.types';
 import { Text, View } from './styles/Themed';
 import { add, format } from 'date-fns';
-import { setSelectedDate, setSelectedDay } from '../redux/slices/dateSlice';
+import {
+  constructDateFromId,
+  setSelectedDate,
+  setSelectedDay
+} from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
+import Calendar from './Calendar';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
-import { FontAwesome } from '@expo/vector-icons';
-import { IDeviceSize } from '../types/generic.types';
 import { IReflection } from '../types/data.types';
 import getDeviceSize from '../constants/Layout';
 import useColorScheme from '../hooks/useColorScheme';
 
-const Reflection: React.FC = (): JSX.Element => {
+const Reflection: React.FC<IReflectionComponent> = ({
+  handleScrollPosition
+}: IReflectionComponent): JSX.Element => {
   // Component settings
   const dispatch = useAppDispatch();
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
+  const [showCalendar, setShowCalendar] = useState(false);
   const [reflection, setReflection] = useState<IReflection>({
     id: '',
     date: '',
@@ -103,6 +111,28 @@ const Reflection: React.FC = (): JSX.Element => {
     return verifiedData;
   };
 
+  // Update the current reflection
+  const updateReflection = (
+    showCalendar: boolean,
+    currentDay: string
+  ): void => {
+    const currentDate: number = constructDateFromId(currentDay);
+    // Set calendar status
+    setShowCalendar(showCalendar);
+
+    // Update store
+    dispatch(setSelectedDate(currentDate));
+    dispatch(setSelectedDay(currentDay));
+
+    // Select reflection
+    selectReflection(currentDay, reflections);
+  };
+
+  // Hide or show calendar
+  const toggleCalendar = (): void => {
+    setShowCalendar(!showCalendar);
+  };
+
   return (
     <View>
       {/* Controls */}
@@ -118,11 +148,20 @@ const Reflection: React.FC = (): JSX.Element => {
           />
         </Pressable>
         {/* Date */}
-        <View style={styles.dateContainer}>
+        <Pressable
+          style={styles.dateContainer}
+          onPress={() => toggleCalendar()}>
           <Text style={[styles.date, Control[deviceSize].subTitle]}>
             {reflection.date}
           </Text>
-        </View>
+          {/* Calendar icon */}
+          <FontAwesome5
+            style={styles.calendarIcon}
+            name='calendar-alt'
+            size={Control[deviceSize].icon}
+            color={Colours[colorScheme].icon}
+          />
+        </Pressable>
         {/* Right chevron */}
         <Pressable
           style={styles.icon}
@@ -135,16 +174,26 @@ const Reflection: React.FC = (): JSX.Element => {
           />
         </Pressable>
       </View>
-      {/* Reflection */}
-      <Text style={[styles.displayTitle, Control[deviceSize].displayTitle]}>
-        {reflection.title}
-      </Text>
-      <Text style={[styles.quote, Control[deviceSize].quote]}>
-        {reflection.quote}
-      </Text>
-      <Text style={[styles.text, Control[deviceSize].text]}>
-        {reflection.reflection}
-      </Text>
+      {/* Components */}
+      {showCalendar ? (
+        <Calendar
+          handleCalendarChange={updateReflection}
+          handleScrollPosition={handleScrollPosition}
+        />
+      ) : (
+        <View>
+          {/* Reflection */}
+          <Text style={[styles.displayTitle, Control[deviceSize].displayTitle]}>
+            {reflection.title}
+          </Text>
+          <Text style={[styles.quote, Control[deviceSize].quote]}>
+            {reflection.quote}
+          </Text>
+          <Text style={[styles.text, Control[deviceSize].text]}>
+            {reflection.reflection}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -153,16 +202,18 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
-    marginTop: 10
+    marginBottom: 20
   },
   icon: {
     justifyContent: 'center',
     paddingVertical: 10,
     width: '25%'
   },
+  calendarIcon: {
+    paddingLeft: 10
+  },
   dateContainer: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     paddingVertical: 10
   },
   date: {
