@@ -94,8 +94,8 @@ exports[`<Steps /> renders correctly 1`] = `
                 "fontWeight": "200",
               },
               {
-                "fontSize": 22,
-                "lineHeight": 33,
+                "fontSize": 24,
+                "lineHeight": 34,
               },
             ],
           ]
@@ -115,8 +115,8 @@ exports[`<Steps /> renders correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 22,
-                "lineHeight": 33,
+                "fontSize": 24,
+                "lineHeight": 34,
               },
             ],
           ]
@@ -150,8 +150,8 @@ exports[`<Steps /> renders correctly 1`] = `
                 "fontWeight": "200",
               },
               {
-                "fontSize": 22,
-                "lineHeight": 33,
+                "fontSize": 24,
+                "lineHeight": 34,
               },
             ],
           ]
@@ -171,8 +171,8 @@ exports[`<Steps /> renders correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 22,
-                "lineHeight": 33,
+                "fontSize": 24,
+                "lineHeight": 34,
               },
             ],
           ]

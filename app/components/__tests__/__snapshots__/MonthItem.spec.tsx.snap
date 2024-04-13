@@ -55,8 +55,8 @@ exports[`<MonthItem /> renders correctly 1`] = `
             "textAlign": "center",
           },
           {
-            "fontSize": 22,
-            "lineHeight": 33,
+            "fontSize": 24,
+            "lineHeight": 34,
           },
           null,
         ],

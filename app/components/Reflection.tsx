@@ -151,9 +151,6 @@ const Reflection: React.FC<IReflectionComponent> = ({
         <Pressable
           style={styles.dateContainer}
           onPress={() => toggleCalendar()}>
-          <Text style={[styles.date, Control[deviceSize].subTitle]}>
-            {reflection.date}
-          </Text>
           {/* Calendar icon */}
           <FontAwesome5
             style={styles.calendarIcon}
@@ -161,6 +158,9 @@ const Reflection: React.FC<IReflectionComponent> = ({
             size={Control[deviceSize].icon}
             color={Colours[colorScheme].icon}
           />
+          <Text style={[styles.date, Control[deviceSize].subTitle]}>
+            {reflection.date}
+          </Text>
         </Pressable>
         {/* Right chevron */}
         <Pressable
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     width: '25%'
   },
   calendarIcon: {
-    paddingLeft: 10
+    paddingRight: 10
   },
   dateContainer: {
     flexDirection: 'row',
