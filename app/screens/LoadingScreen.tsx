@@ -1,10 +1,11 @@
+import { Text, View } from '../components/styles/Themed';
 import Control from '../constants/Control';
-import { FontDisplay } from '../components/styles/StyledText';
 import { IDeviceSize } from '../types/generic.types';
+import { StyleSheet } from 'react-native';
 import getDeviceSize from '../constants/Layout';
 
 const LoadingScreen: React.FC = (): JSX.Element => {
-  // Component settings
+  // Screen settings
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   // Loading quote
@@ -13,10 +14,18 @@ const LoadingScreen: React.FC = (): JSX.Element => {
   };
 
   return (
-    <FontDisplay style={Control[deviceSize].text}>
-      {selectLoadingQuote()}
-    </FontDisplay>
+    <View style={[styles.container, Control[deviceSize].container]}>
+      <Text style={Control[deviceSize].text}>{selectLoadingQuote()}</Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
+  }
+});
 
 export default LoadingScreen;
