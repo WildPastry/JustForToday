@@ -99,7 +99,7 @@ const Calendar: React.FC<ICalendar> = ({
         </Pressable>
         <View style={styles.icon} />
       </View>
-      <View style={styles.month}>
+      <View style={[styles.month, Control[deviceSize].month]}>
         {/* Months */}
         {months.map((month) => (
           <MonthItem
@@ -133,14 +133,12 @@ const styles = StyleSheet.create({
   controls: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20
+    justifyContent: 'space-between'
   },
   month: {
     justifyContent: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 20
+    flexWrap: 'wrap'
   },
   daysWrapper: {
     marginBottom: 20,
