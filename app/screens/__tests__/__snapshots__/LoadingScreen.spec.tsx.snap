@@ -1,24 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LoadingScreen /> renders correctly 1`] = `
-<Text
+<View
   style={
     [
       {
-        "color": "#000",
+        "backgroundColor": "#fff",
       },
       [
         {
-          "fontSize": 24,
-          "lineHeight": 34,
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
         },
         {
-          "fontFamily": "font-display",
+          "padding": 30,
         },
       ],
     ]
   }
 >
-  Loading
-</Text>
+  <Text
+    style={
+      [
+        {
+          "color": "#000",
+        },
+        {
+          "fontSize": 27,
+          "lineHeight": 39,
+        },
+      ]
+    }
+  >
+    Loading
+  </Text>
+</View>
 `;

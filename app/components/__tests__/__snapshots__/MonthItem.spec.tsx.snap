@@ -35,8 +35,11 @@ exports[`<MonthItem /> renders correctly 1`] = `
     [
       {
         "borderRadius": 12,
-        "marginBottom": 20,
         "paddingVertical": 20,
+      },
+      {
+        "flexGrow": 1,
+        "width": "25%",
       },
       {
         "backgroundColor": "#e5edf9",
@@ -55,8 +58,8 @@ exports[`<MonthItem /> renders correctly 1`] = `
             "textAlign": "center",
           },
           {
-            "fontSize": 24,
-            "lineHeight": 34,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
           null,
         ],

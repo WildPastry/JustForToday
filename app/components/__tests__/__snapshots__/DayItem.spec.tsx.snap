@@ -34,9 +34,9 @@ exports[`<DayItem /> renders correctly 1`] = `
   style={
     [
       {
-        "borderRadius": 7,
-        "marginBottom": 15,
-        "paddingVertical": 10,
+        "borderRadius": 8,
+        "paddingVertical": 15,
+        "width": "20%",
       },
       {
         "backgroundColor": "#e5edf9",
@@ -55,8 +55,8 @@ exports[`<DayItem /> renders correctly 1`] = `
             "textAlign": "center",
           },
           {
-            "fontSize": 24,
-            "lineHeight": 34,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
           null,
         ],

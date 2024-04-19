@@ -22,7 +22,7 @@ exports[`<Calendar /> renders correctly 1`] = `
             "alignItems": "center",
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "marginBottom": 30,
+            "marginBottom": 20,
           },
           {
             "height": 35,
@@ -111,13 +111,13 @@ exports[`<Calendar /> renders correctly 1`] = `
               "color": "#0074c1",
             },
             {
-              "fontSize": 24,
-              "lineHeight": 34,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ]
         }
       >
-        Return to current day
+        CURRENT DAY
       </Text>
     </View>
     <View
@@ -134,17 +134,49 @@ exports[`<Calendar /> renders correctly 1`] = `
       }
     />
   </View>
-  <RCTScrollView
+  <View
     style={
       [
         {
           "backgroundColor": "#fff",
         },
-        undefined,
+        {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "gap": 20,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#fff",
+        },
+        {
+          "marginBottom": 20,
+          "marginTop": 30,
+        },
       ]
     }
   >
-    <View />
-  </RCTScrollView>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+          },
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": 20,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    />
+  </View>
 </View>
 `;

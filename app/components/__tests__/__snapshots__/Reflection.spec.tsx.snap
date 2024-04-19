@@ -102,6 +102,7 @@ exports[`<Reflection /> renders correctly 1`] = `
         }
       }
     >
+      <Text />
       <Text
         style={
           [
@@ -113,13 +114,12 @@ exports[`<Reflection /> renders correctly 1`] = `
                 "textAlignVertical": "center",
               },
               {
-                "fontSize": 27,
+                "fontSize": 30,
               },
             ],
           ]
         }
       />
-      <Text />
     </View>
     <View
       accessibilityState={
@@ -207,8 +207,8 @@ exports[`<Reflection /> renders correctly 1`] = `
               "textAlign": "left",
             },
             {
-              "fontSize": 27,
-              "lineHeight": 36,
+              "fontSize": 30,
+              "lineHeight": 40,
               "paddingBottom": 10,
             },
           ],
@@ -226,8 +226,8 @@ exports[`<Reflection /> renders correctly 1`] = `
               "textAlign": "left",
             },
             {
-              "fontSize": 24,
-              "lineHeight": 34,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ],
         ]

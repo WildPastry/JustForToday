@@ -9,7 +9,7 @@ exports[`<Tradition /> renders correctly 1`] = `
       },
       {
         "flexDirection": "row",
-        "marginTop": 20,
+        "marginTop": 30,
       },
     ]
   }
@@ -26,8 +26,8 @@ exports[`<Tradition /> renders correctly 1`] = `
             "marginRight": 10,
           },
           {
-            "fontSize": 24,
-            "lineHeight": 34,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
         ],
       ]
@@ -46,8 +46,8 @@ exports[`<Tradition /> renders correctly 1`] = `
             "textAlign": "left",
           },
           {
-            "fontSize": 24,
-            "lineHeight": 34,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
         ],
       ]
