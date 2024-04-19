@@ -104,6 +104,8 @@ function RootNavigator() {
 // A bottom tab navigator displays tab buttons at the bottom of the screen
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
+const HeaderTitle = () => <Logo />;
+
 function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
@@ -170,7 +172,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          headerTitle: () => <Logo />,
+          headerTitle: HeaderTitle,
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon
               name='chair'
@@ -189,7 +191,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
-          headerTitle: () => <Logo />,
+          headerTitle: HeaderTitle,
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon
               name='stairs'
@@ -208,7 +210,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
-          headerTitle: () => <Logo />,
+          headerTitle: HeaderTitle,
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon
               name='book'
