@@ -27,6 +27,7 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
     <Pressable
       style={[
         styles.monthItem,
+        props.single ? styles.singleMonthItem : styles.allMonthItem,
         isCurrentMonth()
           ? { backgroundColor: Colours[colorScheme].currentBtn }
           : { backgroundColor: Colours[colorScheme].btn }
@@ -52,8 +53,14 @@ const styles = StyleSheet.create({
   },
   monthItem: {
     borderRadius: 12,
-    marginBottom: 20,
     paddingVertical: 20
+  },
+  singleMonthItem: {
+    width: '100%'
+  },
+  allMonthItem: {
+    flexGrow: 1,
+    width: '25%'
   }
 });
 

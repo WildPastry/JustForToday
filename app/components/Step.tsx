@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   step: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 20
+    marginTop: 30
   },
   text: {
     textAlign: 'left'

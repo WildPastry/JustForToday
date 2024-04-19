@@ -1,5 +1,6 @@
 export default {
   small: {
+    button: { paddingVertical: 20 },
     container: { padding: 20 },
     controls: { height: 30 },
     displayIcon: 60,
@@ -7,7 +8,7 @@ export default {
     icon: 25,
     iconMargin: 10,
     logo: { width: 180 },
-    quote: { fontSize: 19, lineHeight: 26 },
+    quote: { fontSize: 20, lineHeight: 26 },
     subTitle: { fontSize: 20 },
     tabHeading: 20,
     bottomTabHeight: 70,
@@ -19,6 +20,7 @@ export default {
     title: { fontSize: 22 }
   },
   medium: {
+    button: { paddingVertical: 20 },
     container: { padding: 30 },
     controls: { height: 35 },
     displayIcon: 90,
@@ -26,18 +28,19 @@ export default {
     icon: 35,
     iconMargin: 15,
     logo: { width: 270 },
-    quote: { fontSize: 27, lineHeight: 36, paddingBottom: 10 },
-    subTitle: { fontSize: 27 },
+    quote: { fontSize: 30, lineHeight: 40, paddingBottom: 10 },
+    subTitle: { fontSize: 30 },
     tabHeading: 25,
     bottomTabHeight: 90,
     topTabHeight: 90,
     tabLabel: 17,
     tabMarginBottom: 7,
     tabMarginTop: 15,
-    text: { fontSize: 24, lineHeight: 34 },
+    text: { fontSize: 27, lineHeight: 39 },
     title: { fontSize: 30 }
   },
   large: {
+    button: { paddingVertical: 20 },
     container: { padding: 35 },
     controls: { height: 40 },
     displayIcon: 130,

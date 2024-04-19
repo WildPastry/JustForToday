@@ -66,6 +66,7 @@ const Traditions: React.FC = (): JSX.Element => {
         <Pressable
           style={[
             styles.traditionBtn,
+            Control[deviceSize].button,
             isSelected(ETraditionTypes.short)
               ? { backgroundColor: Colours[colorScheme].currentBtn }
               : { backgroundColor: Colours[colorScheme].btn }
@@ -85,6 +86,7 @@ const Traditions: React.FC = (): JSX.Element => {
         <Pressable
           style={[
             styles.traditionBtn,
+            Control[deviceSize].button,
             isSelected(ETraditionTypes.long)
               ? { backgroundColor: Colours[colorScheme].currentBtn }
               : { backgroundColor: Colours[colorScheme].btn }
@@ -123,8 +125,8 @@ const styles = StyleSheet.create({
   },
   controls: {
     flexDirection: 'row',
-    gap: 20,
-    marginVertical: 20
+    gap: 40,
+    marginTop: 40
   },
   text: {
     textAlign: 'center'
@@ -132,14 +134,12 @@ const styles = StyleSheet.create({
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginBottom: 20,
     marginTop: 30,
     width: '70%'
   },
   traditionBtn: {
     borderRadius: 12,
-    flex: 1,
-    paddingVertical: 12
+    flex: 1
   }
 });
 

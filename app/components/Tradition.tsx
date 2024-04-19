@@ -27,7 +27,7 @@ const TraditionItem: React.FC<ITradition> = (
 const styles = StyleSheet.create({
   tradtion: {
     flexDirection: 'row',
-    marginTop: 20
+    marginTop: 30
   },
   text: {
     textAlign: 'left'

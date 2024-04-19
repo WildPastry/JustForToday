@@ -15,6 +15,7 @@ export interface IMonthItem {
   id: string;
   name: string;
   days: IDayItem[];
+  single: boolean;
   onPress?: () => void;
 }
 

@@ -5,7 +5,6 @@ import ErrorScreen from './ErrorScreen';
 import { ForwardedScrollView } from '../components/styles/Themed';
 import { IDeviceSize } from '../types/generic.types';
 import Reflection from '../components/Reflection';
-import { StyleSheet } from 'react-native';
 import getDeviceSize from '../constants/Layout';
 import { useAppSelector } from '../redux/hooks';
 import { useFocusEffect } from '@react-navigation/native';
@@ -40,10 +39,7 @@ const Home: React.FC = (): JSX.Element => {
   const renderApp = () => {
     return (
       <ForwardedScrollView
-        contentContainerStyle={[
-          styles.container,
-          Control[deviceSize].container
-        ]}
+        contentContainerStyle={[Control[deviceSize].container]}
         ref={scrollViewRef}>
         <Reflection handleScrollPosition={scrollToTop} />
       </ForwardedScrollView>
@@ -52,11 +48,5 @@ const Home: React.FC = (): JSX.Element => {
   // Check for error state
   return appError ? errorScreen() : renderApp();
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'stretch'
-  }
-});
 
 export default Home;

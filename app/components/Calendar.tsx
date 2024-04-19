@@ -1,7 +1,7 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from './styles/Themed';
+import { Text, View } from './styles/Themed';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AntDesign } from '@expo/vector-icons';
 import { AppState } from '../redux/store';
@@ -64,6 +64,10 @@ const Calendar: React.FC<ICalendar> = ({
     setDays([]);
   };
 
+  const isSingleMonth = (): boolean => {
+    return days.length > 0;
+  };
+
   const renderBackArrow = (): JSX.Element | null => {
     if (days.length) {
       return (
@@ -90,12 +94,12 @@ const Calendar: React.FC<ICalendar> = ({
             style={Control[deviceSize].text}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
-            Return to current day
+            CURRENT DAY
           </Text>
         </Pressable>
         <View style={styles.icon} />
       </View>
-      <ScrollView>
+      <View style={styles.month}>
         {/* Months */}
         {months.map((month) => (
           <MonthItem
@@ -103,19 +107,24 @@ const Calendar: React.FC<ICalendar> = ({
             id={month.id}
             name={month.name}
             days={month.days}
+            single={isSingleMonth()}
             onPress={() => handleMonth(month)}
           />
         ))}
-        {/* Days */}
-        {days.map((day) => (
-          <DayItem
-            key={day.id}
-            id={day.id}
-            name={day.name}
-            onPress={() => handleDay(day)}
-          />
-        ))}
-      </ScrollView>
+      </View>
+      <View style={styles.daysWrapper}>
+        <View style={styles.days}>
+          {/* Days */}
+          {days.map((day) => (
+            <DayItem
+              key={day.id}
+              id={day.id}
+              name={day.name}
+              onPress={() => handleDay(day)}
+            />
+          ))}
+        </View>
+      </View>
     </View>
   );
 };
@@ -125,7 +134,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 30
+    marginBottom: 20
+  },
+  month: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 20
+  },
+  daysWrapper: {
+    marginBottom: 20,
+    marginTop: 30
+  },
+  days: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 20
   },
   icon: {
     justifyContent: 'center',
