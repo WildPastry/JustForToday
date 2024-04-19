@@ -28,7 +28,7 @@ const MonthItem: React.FC<IMonthItem> = (props: IMonthItem): JSX.Element => {
       style={[
         styles.monthItem,
         Control[deviceSize].monthItem,
-        props.single ? styles.singleMonthItem : styles.allMonthItem,
+        props.single ? styles.singleMonthItem : styles.allMonthItems,
         isCurrentMonth()
           ? { backgroundColor: Colours[colorScheme].currentBtn }
           : { backgroundColor: Colours[colorScheme].btn }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   singleMonthItem: {
     width: '100%'
   },
-  allMonthItem: {
+  allMonthItems: {
     flexGrow: 1,
     width: '25%'
   }

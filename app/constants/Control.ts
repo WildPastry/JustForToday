@@ -2,7 +2,6 @@ export default {
   small: {
     bottomTabHeight: 70,
     button: { paddingVertical: 20 },
-    calendarMarginBottom: 20,
     container: { padding: 20 },
     controls: { height: 30, marginBottom: 20 },
     days: { gap: 20 },
@@ -26,7 +25,6 @@ export default {
   medium: {
     bottomTabHeight: 100,
     button: { paddingVertical: 20 },
-    calendarMarginBottom: 40,
     container: { padding: 30 },
     controls: { height: 35, marginBottom: 40 },
     days: { gap: 35 },
@@ -50,10 +48,9 @@ export default {
   large: {
     bottomTabHeight: 100,
     button: { paddingVertical: 20 },
-    calendarMarginBottom: 60,
     container: { padding: 35 },
-    controls: { height: 40, marginBottom: 60 },
-    days: { gap: 35 },
+    controls: { height: 60, marginBottom: 40, marginTop: 10 },
+    days: { gap: 45 },
     displayIcon: 130,
     displayTitle: { fontSize: 50, lineHeight: 65, paddingVertical: 20 },
     icon: 40,
@@ -61,13 +58,13 @@ export default {
     logo: { width: 300 },
     months: { gap: 40 },
     monthItem: { paddingVertical: 40 },
-    quote: { fontSize: 30, lineHeight: 40, paddingBottom: 20 },
+    quote: { fontSize: 33, lineHeight: 43, paddingBottom: 20 },
     subTitle: { fontSize: 30 },
     tabHeading: 30,
     tabLabel: 20,
     tabMarginBottom: 0,
     tabMarginTop: 0,
-    text: { fontSize: 25, lineHeight: 35 },
+    text: { fontSize: 27, lineHeight: 39 },
     title: { fontSize: 40 },
     topTabHeight: 100
   }

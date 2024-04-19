@@ -87,11 +87,9 @@ const Calendar: React.FC<ICalendar> = ({
     <View>
       <View style={[styles.controls, Control[deviceSize].controls]}>
         <Pressable style={styles.icon}>{renderBackArrow()}</Pressable>
-        <Pressable
-          onPress={() => handleReset(currentDay)}
-          style={styles.linkContainer}>
+        <Pressable onPress={() => handleReset(currentDay)}>
           <Text
-            style={Control[deviceSize].text}
+            style={Control[deviceSize].subTitle}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
             CURRENT DAY
@@ -99,7 +97,7 @@ const Calendar: React.FC<ICalendar> = ({
         </Pressable>
         <View style={styles.icon} />
       </View>
-      <View style={[styles.months, Control[deviceSize].months]}>
+      <View style={[styles.calendarItems, Control[deviceSize].months]}>
         {/* Months */}
         {months.map((month) => (
           <MonthItem
@@ -113,7 +111,7 @@ const Calendar: React.FC<ICalendar> = ({
         ))}
       </View>
       <View style={styles.daysWrapper}>
-        <View style={[styles.days, Control[deviceSize].days]}>
+        <View style={[styles.calendarItems, Control[deviceSize].days]}>
           {/* Days */}
           {days.map((day) => (
             <DayItem
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  months: {
+  calendarItems: {
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap'
@@ -144,17 +142,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 30
   },
-  days: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
   icon: {
     justifyContent: 'center',
     width: '25%'
-  },
-  linkContainer: {
-    justifyContent: 'center'
   }
 });
 
