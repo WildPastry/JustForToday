@@ -1,7 +1,7 @@
 export default {
   light: {
     background: '#fff',
-    btn: '#e5edf9',
+    btn: '#e1ebff',
     currentBtn: '#2b5b7b',
     currentBtnText: '#fff',
     icon: '#000',

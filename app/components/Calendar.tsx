@@ -92,7 +92,7 @@ const Calendar: React.FC<ICalendar> = ({
             style={Control[deviceSize].subTitle}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
-            CURRENT DAY
+            TODAY
           </Text>
         </Pressable>
         <View style={styles.icon} />
