@@ -2,6 +2,7 @@ import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { EDateFormat, IDate } from '../types/date.types';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { IDeviceSize, IReflectionComponent } from '../types/generic.types';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from './styles/Themed';
 import { add, format } from 'date-fns';
 import {
@@ -10,7 +11,6 @@ import {
   setSelectedDay
 } from '../redux/slices/dateSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useEffect, useState } from 'react';
 import { AppState } from '../redux/store';
 import Calendar from './Calendar';
 import Colours from '../constants/Colours';
@@ -18,6 +18,7 @@ import Control from '../constants/Control';
 import { IReflection } from '../types/data.types';
 import getDeviceSize from '../constants/Layout';
 import useColorScheme from '../hooks/useColorScheme';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Reflection: React.FC<IReflectionComponent> = ({
   handleScrollPosition
@@ -46,6 +47,13 @@ const Reflection: React.FC<IReflectionComponent> = ({
   const dates: IDate = useAppSelector((state: AppState): IDate => {
     return state.date;
   });
+
+  // Effect for hiding the calendar when unfocused
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => setShowCalendar(false);
+    }, [])
+  );
 
   // Effect for setting the current reflection based on date
   useEffect(() => {
@@ -92,12 +100,12 @@ const Reflection: React.FC<IReflectionComponent> = ({
       // Set a blank reflection otherwise
     } else {
       setReflection({
-        id: '',
-        date: '',
+        id: '-',
+        date: '-',
         title: 'No data available',
-        quote: '',
-        source: '',
-        reflection: ''
+        quote: '-',
+        source: '-',
+        reflection: '-'
       });
     }
   };
