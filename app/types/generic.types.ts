@@ -20,3 +20,7 @@ export enum EDeviceSizes {
   MED = 'medium',
   LRG = 'large'
 }
+
+export interface IReflectionComponent {
+  handleScrollPosition: () => void;
+}

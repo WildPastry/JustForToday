@@ -21,7 +21,9 @@ import About from '../screens/About';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import Home from '../screens/Home';
+import InfoIcon from '../components/InfoIcon';
 import LinkingConfiguration from './LinkingConfiguration';
+import Logo from '../components/Logo';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Steps from '../screens/Steps';
 import Traditions from '../screens/Traditions';
@@ -35,6 +37,10 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  /*
+   * Highest level navigation container
+   * with the root navigator inside
+   */
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -50,7 +56,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  // Font settings
+  // Device control settings
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   return (
@@ -99,13 +105,22 @@ function RootNavigator() {
   );
 }
 
-// A bottom tab navigator displays tab buttons at the bottom of the screen
+/*
+ * A bottom tab navigator displays tab buttons at the bottom of the screen
+ * This includes the header for each tab, and the icons.
+ */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
+
+// Logo and info icon components for the header
+const renderLogo = (): JSX.Element => <Logo />;
+const renderInfoIcon = (navigation: any): JSX.Element => {
+  return <InfoIcon navigation={navigation} />;
+};
 
 function BottomTabNavigator() {
   // Colour settings
   const colorScheme: NonNullable<ColorSchemeName> = useColorScheme();
-  // Font settings
+  // Device control settings
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   /*
@@ -119,6 +134,7 @@ function BottomTabNavigator() {
   };
 
   return (
+    // Screen options for the top and bottom sections
     <BottomTab.Navigator
       initialRouteName='Home'
       screenOptions={{
@@ -131,7 +147,7 @@ function BottomTabNavigator() {
         tabBarIconStyle: { marginTop: Control[deviceSize].tabMarginTop },
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
-          height: Control[deviceSize].tabHeight,
+          height: Control[deviceSize].bottomTabHeight,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
@@ -140,8 +156,9 @@ function BottomTabNavigator() {
           backgroundColor: Colours[colorScheme].navBackground,
           borderBottomColor: Colours[colorScheme].navBorder,
           borderBottomWidth: 0.6,
-          height: Control[deviceSize].tabHeight
-        }
+          height: Control[deviceSize].topTabHeight
+        },
+        headerTitleAlign: 'center'
       }}>
       {/* Home screen */}
       <BottomTab.Screen
@@ -149,7 +166,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          headerTitle: '',
+          headerTitle: renderLogo,
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon
               name='chair'
@@ -158,21 +175,7 @@ function BottomTabNavigator() {
               size={Control[deviceSize].icon}
             />
           ),
-          // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => renderInfoIcon(navigation)
         })}
       />
       {/* Steps screen */}
@@ -181,7 +184,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
-          headerTitle: '',
+          headerTitle: renderLogo,
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon
               name='stairs'
@@ -190,21 +193,7 @@ function BottomTabNavigator() {
               size={Control[deviceSize].icon}
             />
           ),
-          // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => renderInfoIcon(navigation)
         })}
       />
       {/* Traditions screen */}
@@ -213,7 +202,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
-          headerTitle: '',
+          headerTitle: renderLogo,
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon
               name='book'
@@ -222,28 +211,14 @@ function BottomTabNavigator() {
               size={Control[deviceSize].icon}
             />
           ),
-          // Link to About screen
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('About')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={Control[deviceSize].icon}
-                color={Colours[colorScheme].text}
-                style={{ marginRight: Control[deviceSize].container.padding }}
-              />
-            </Pressable>
-          )
+          headerRight: () => renderInfoIcon(navigation)
         })}
       />
     </BottomTab.Navigator>
   );
 }
 
-// Icons for the tabs
+// Icons for the bottom tabs
 function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;

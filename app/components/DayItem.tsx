@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   dayItem: {
-    borderRadius: 7,
-    marginBottom: 15,
-    paddingVertical: 10
+    borderRadius: 8,
+    paddingVertical: 15,
+    width: '20%'
   }
 });
 

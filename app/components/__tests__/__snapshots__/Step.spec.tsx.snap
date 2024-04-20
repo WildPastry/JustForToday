@@ -10,7 +10,7 @@ exports[`<Step /> renders correctly 1`] = `
       {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginTop": 20,
+        "marginTop": 30,
       },
     ]
   }
@@ -26,8 +26,8 @@ exports[`<Step /> renders correctly 1`] = `
             "fontWeight": "200",
           },
           {
-            "fontSize": 22,
-            "lineHeight": 33,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
         ],
       ]
@@ -46,8 +46,8 @@ exports[`<Step /> renders correctly 1`] = `
             "textAlign": "left",
           },
           {
-            "fontSize": 22,
-            "lineHeight": 33,
+            "fontSize": 27,
+            "lineHeight": 39,
           },
         ],
       ]

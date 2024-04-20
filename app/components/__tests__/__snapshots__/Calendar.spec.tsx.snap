@@ -17,11 +17,17 @@ exports[`<Calendar /> renders correctly 1`] = `
         {
           "backgroundColor": "#fff",
         },
-        {
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginBottom": 10,
-        },
+        [
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 20,
+          },
+          {
+            "height": 35,
+          },
+        ],
       ]
     }
   >
@@ -58,7 +64,6 @@ exports[`<Calendar /> renders correctly 1`] = `
       style={
         {
           "justifyContent": "center",
-          "paddingVertical": 10,
           "width": "25%",
         }
       }
@@ -96,7 +101,6 @@ exports[`<Calendar /> renders correctly 1`] = `
       style={
         {
           "justifyContent": "center",
-          "padding": 20,
         }
       }
     >
@@ -104,45 +108,16 @@ exports[`<Calendar /> renders correctly 1`] = `
         style={
           [
             {
-              "color": "#000",
-            },
-            [
-              [
-                {
-                  "textAlign": "center",
-                },
-                {
-                  "fontSize": 27,
-                },
-              ],
-              {
-                "fontFamily": "font-display",
-              },
-            ],
-          ]
-        }
-      >
-        Calendar
-      </Text>
-      <Text
-        style={
-          [
-            {
               "color": "#0074c1",
             },
-            [
-              {
-                "marginTop": 10,
-              },
-              {
-                "fontSize": 22,
-                "lineHeight": 33,
-              },
-            ],
+            {
+              "fontSize": 27,
+              "lineHeight": 39,
+            },
           ]
         }
       >
-        Return to current day
+        CURRENT DAY
       </Text>
     </View>
     <View
@@ -153,24 +128,55 @@ exports[`<Calendar /> renders correctly 1`] = `
           },
           {
             "justifyContent": "center",
-            "paddingVertical": 10,
             "width": "25%",
           },
         ]
       }
     />
   </View>
-  <RCTScrollView
+  <View
     style={
       [
         {
           "backgroundColor": "#fff",
         },
-        undefined,
+        {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "gap": 20,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#fff",
+        },
+        {
+          "marginBottom": 20,
+          "marginTop": 30,
+        },
       ]
     }
   >
-    <View />
-  </RCTScrollView>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+          },
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": 20,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    />
+  </View>
 </View>
 `;

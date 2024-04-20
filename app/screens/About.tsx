@@ -84,7 +84,8 @@ const About: React.FC = (): JSX.Element => {
       {/* Suggestions button */}
       <Pressable
         style={[
-          styles.helpLinkBtn,
+          styles.suggestionsBtn,
+          Control[deviceSize].button,
           { backgroundColor: Colours[colorScheme].btn }
         ]}
         onPress={() => handleSuggestions()}>
@@ -144,11 +145,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     width: '70%'
   },
-  helpLinkBtn: {
+  suggestionsBtn: {
+    alignSelf: 'center',
     borderRadius: 12,
     marginBottom: 20,
     marginTop: 40,
-    paddingVertical: 20
+    width: '100%'
   }
 });
 

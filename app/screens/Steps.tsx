@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   divider: {
     alignSelf: 'center',
     height: 1,
-    marginBottom: 20,
     marginTop: 30,
     width: '70%'
   }
