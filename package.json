@@ -1,6 +1,6 @@
 {
   "name": "just-for-today",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "./app/App.tsx",
   "scripts": {
     "build-develop:android": "eas build --profile develop --platform android",
