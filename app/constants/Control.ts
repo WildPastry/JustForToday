@@ -18,7 +18,7 @@ export default {
     tabLabel: 12,
     tabMarginBottom: 9,
     tabMarginTop: 9,
-    text: { fontSize: 17, lineHeight: 24 },
+    text: { fontSize: 18, lineHeight: 25 },
     title: { fontSize: 22 },
     topTabHeight: 80
   },
