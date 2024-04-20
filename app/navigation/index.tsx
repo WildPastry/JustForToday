@@ -13,7 +13,6 @@ import {
 } from '@react-navigation/native';
 import { EDeviceSizes, IDeviceSize } from '../types/generic.types';
 import {
-  INavigation,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps
@@ -22,6 +21,7 @@ import About from '../screens/About';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import Home from '../screens/Home';
+import InfoIcon from '../components/InfoIcon';
 import LinkingConfiguration from './LinkingConfiguration';
 import Logo from '../components/Logo';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -104,7 +104,7 @@ function RootNavigator() {
 // A bottom tab navigator displays tab buttons at the bottom of the screen
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
-const HeaderTitle = () => <Logo />;
+const LogoComponent = () => <Logo />;
 
 function BottomTabNavigator() {
   // Colour settings
@@ -122,25 +122,8 @@ function BottomTabNavigator() {
       : Control[deviceSize].icon;
   };
 
-  // Info icon with navigation to the info page
-  const InfoIcon: React.FC<INavigation> = ({ navigation }): JSX.Element => {
-    return (
-      <Pressable
-        onPress={() => navigation.navigate('About')}
-        style={({ pressed }) => ({
-          opacity: pressed ? 0.5 : 1
-        })}>
-        <FontAwesome
-          name='info-circle'
-          size={Control[deviceSize].icon}
-          color={Colours[colorScheme].text}
-          style={{ marginRight: Control[deviceSize].container.padding }}
-        />
-      </Pressable>
-    );
-  };
-
   return (
+    // Screen options for the top and bottom sections
     <BottomTab.Navigator
       initialRouteName='Home'
       screenOptions={{
@@ -172,7 +155,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          headerTitle: HeaderTitle,
+          headerTitle: LogoComponent,
           tabBarIcon: ({ color }) => (
             <TabBarAwesome5Icon
               name='chair'
@@ -191,7 +174,7 @@ function BottomTabNavigator() {
         component={Steps}
         options={({ navigation }: RootTabScreenProps<'Steps'>) => ({
           title: 'Steps',
-          headerTitle: HeaderTitle,
+          headerTitle: LogoComponent,
           tabBarIcon: ({ color }) => (
             <TabBarMaterialIcon
               name='stairs'
@@ -210,7 +193,7 @@ function BottomTabNavigator() {
         component={Traditions}
         options={({ navigation }: RootTabScreenProps<'Traditions'>) => ({
           title: 'Traditions',
-          headerTitle: HeaderTitle,
+          headerTitle: LogoComponent,
           tabBarIcon: ({ color }) => (
             <TabBarAwesomeIcon
               name='book'
@@ -227,7 +210,7 @@ function BottomTabNavigator() {
   );
 }
 
-// Icons for the tabs
+// Icons for the bottom tabs
 function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
