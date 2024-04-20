@@ -3,7 +3,7 @@
     "name": "just-for-today",
     "slug": "justfortoday",
     "privacy": "public",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -17,11 +17,12 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber": "3",
       "supportsTablet": true,
       "bundleIdentifier": "nz.co.mikeparker.jft"
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/icon.png",
         "backgroundColor": "#2c2c54"
