@@ -21,7 +21,7 @@
       "bundleIdentifier": "nz.co.mikeparker.jft"
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/icon.png",
         "backgroundColor": "#2c2c54"
