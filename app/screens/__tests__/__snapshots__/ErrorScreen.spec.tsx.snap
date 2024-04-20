@@ -20,24 +20,34 @@ exports[`<ErrorScreen /> renders correctly 1`] = `
     ]
   }
 >
-  <Text
+  <View
     style={
       [
         {
-          "color": "#000",
+          "backgroundColor": "#fff",
         },
-        [
-          {
-            "fontSize": 30,
-          },
-          {
-            "fontFamily": "font-display",
-          },
-        ],
+        {
+          "flexDirection": "row",
+        },
       ]
     }
   >
-    ErrorScreen
-  </Text>
+    <Text />
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+          },
+          {
+            "fontSize": 27,
+            "lineHeight": 39,
+          },
+        ]
+      }
+    >
+      Error, please try again.
+    </Text>
+  </View>
 </View>
 `;

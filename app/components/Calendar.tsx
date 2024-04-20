@@ -1,14 +1,13 @@
 import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
 import { ICalendar, IDayItem, IMonthItem } from '../types/date.types';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from './styles/Themed';
+import { Text, View } from './styles/Themed';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { AntDesign } from '@expo/vector-icons';
 import { AppState } from '../redux/store';
 import Colours from '../constants/Colours';
 import Control from '../constants/Control';
 import DayItem from './DayItem';
-import { FontDisplay } from './styles/StyledText';
 import { IDeviceSize } from '../types/generic.types';
 import MonthItem from './MonthItem';
 import getDeviceSize from '../constants/Layout';
@@ -65,6 +64,10 @@ const Calendar: React.FC<ICalendar> = ({
     setDays([]);
   };
 
+  const isSingleMonth = (): boolean => {
+    return days.length > 0;
+  };
+
   const renderBackArrow = (): JSX.Element | null => {
     if (days.length) {
       return (
@@ -82,24 +85,19 @@ const Calendar: React.FC<ICalendar> = ({
 
   return (
     <View>
-      <View style={styles.controls}>
+      <View style={[styles.controls, Control[deviceSize].controls]}>
         <Pressable style={styles.icon}>{renderBackArrow()}</Pressable>
-        <Pressable
-          onPress={() => handleReset(currentDay)}
-          style={styles.titleContainer}>
-          <FontDisplay style={[styles.title, Control[deviceSize].subTitle]}>
-            Calendar
-          </FontDisplay>
+        <Pressable onPress={() => handleReset(currentDay)}>
           <Text
-            style={[styles.link, Control[deviceSize].text]}
+            style={Control[deviceSize].subTitle}
             lightColor={Colours.light.link}
             darkColor={Colours.dark.link}>
-            Return to current day
+            TODAY
           </Text>
         </Pressable>
         <View style={styles.icon} />
       </View>
-      <ScrollView>
+      <View style={[styles.calendarItems, Control[deviceSize].months]}>
         {/* Months */}
         {months.map((month) => (
           <MonthItem
@@ -107,43 +105,46 @@ const Calendar: React.FC<ICalendar> = ({
             id={month.id}
             name={month.name}
             days={month.days}
+            single={isSingleMonth()}
             onPress={() => handleMonth(month)}
           />
         ))}
-        {/* Days */}
-        {days.map((day) => (
-          <DayItem
-            key={day.id}
-            id={day.id}
-            name={day.name}
-            onPress={() => handleDay(day)}
-          />
-        ))}
-      </ScrollView>
+      </View>
+      <View style={styles.daysWrapper}>
+        <View style={[styles.calendarItems, Control[deviceSize].days]}>
+          {/* Days */}
+          {days.map((day) => (
+            <DayItem
+              key={day.id}
+              id={day.id}
+              name={day.name}
+              onPress={() => handleDay(day)}
+            />
+          ))}
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   controls: {
+    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10
+    justifyContent: 'space-between'
+  },
+  calendarItems: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  daysWrapper: {
+    marginBottom: 20,
+    marginTop: 30
   },
   icon: {
     justifyContent: 'center',
-    paddingVertical: 10,
     width: '25%'
-  },
-  titleContainer: {
-    justifyContent: 'center',
-    padding: 20
-  },
-  title: {
-    textAlign: 'center'
-  },
-  link: {
-    marginTop: 10
   }
 });
 

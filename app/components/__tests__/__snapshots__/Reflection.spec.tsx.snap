@@ -21,7 +21,6 @@ exports[`<Reflection /> renders correctly 1`] = `
           "flexDirection": "row",
           "justifyContent": "space-between",
           "marginBottom": 20,
-          "marginTop": 10,
         },
       ]
     }
@@ -67,18 +66,43 @@ exports[`<Reflection /> renders correctly 1`] = `
       <Text />
     </View>
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        [
-          {
-            "backgroundColor": "#fff",
-          },
-          {
-            "justifyContent": "center",
-            "paddingVertical": 10,
-          },
-        ]
+        {
+          "flexDirection": "row",
+          "paddingVertical": 10,
+        }
       }
     >
+      <Text />
       <Text
         style={
           [
@@ -90,7 +114,7 @@ exports[`<Reflection /> renders correctly 1`] = `
                 "textAlignVertical": "center",
               },
               {
-                "fontSize": 27,
+                "fontSize": 30,
               },
             ],
           ]
@@ -138,64 +162,77 @@ exports[`<Reflection /> renders correctly 1`] = `
       <Text />
     </View>
   </View>
-  <Text
+  <View
     style={
       [
         {
-          "color": "#000",
+          "backgroundColor": "#fff",
         },
-        [
-          {
-            "fontWeight": "bold",
-            "letterSpacing": 0.5,
-            "marginBottom": 20,
-            "textAlign": "center",
-          },
-          {
-            "fontSize": 33,
-            "lineHeight": 40,
-          },
-        ],
+        undefined,
       ]
     }
-  />
-  <Text
-    style={
-      [
-        {
-          "color": "#000",
-        },
+  >
+    <Text
+      style={
         [
           {
-            "fontWeight": "200",
-            "marginBottom": 20,
-            "textAlign": "left",
+            "color": "#000",
           },
-          {
-            "fontSize": 25,
-            "lineHeight": 35,
-          },
-        ],
-      ]
-    }
-  />
-  <Text
-    style={
-      [
-        {
-          "color": "#000",
-        },
+          [
+            {
+              "fontWeight": "bold",
+              "letterSpacing": 0.5,
+              "marginBottom": 20,
+              "textAlign": "center",
+            },
+            {
+              "fontSize": 33,
+              "lineHeight": 40,
+              "paddingVertical": 10,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      style={
         [
           {
-            "textAlign": "left",
+            "color": "#000",
           },
+          [
+            {
+              "fontWeight": "200",
+              "marginBottom": 20,
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 30,
+              "lineHeight": 40,
+              "paddingBottom": 10,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      style={
+        [
           {
-            "fontSize": 22,
-            "lineHeight": 33,
+            "color": "#000",
           },
-        ],
-      ]
-    }
-  />
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 27,
+              "lineHeight": 39,
+            },
+          ],
+        ]
+      }
+    />
+  </View>
 </View>
 `;

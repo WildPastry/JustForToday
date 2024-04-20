@@ -56,14 +56,14 @@ exports[`<About /> renders correctly 1`] = `
               "textAlign": "center",
             },
             {
-              "fontSize": 27,
+              "fontSize": 30,
             },
           ],
         ]
       }
     >
       JustForToday version 
-      1.0.3
+      1.1.0
     </Text>
     <View
       style={
@@ -91,8 +91,8 @@ exports[`<About /> renders correctly 1`] = `
               "marginTop": 20,
             },
             {
-              "fontSize": 22,
-              "lineHeight": 33,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ],
         ]
@@ -111,8 +111,8 @@ exports[`<About /> renders correctly 1`] = `
               "marginTop": 20,
             },
             {
-              "fontSize": 22,
-              "lineHeight": 33,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ],
         ]
@@ -134,7 +134,7 @@ exports[`<About /> renders correctly 1`] = `
               "textAlign": "left",
             },
             {
-              "fontSize": 27,
+              "fontSize": 30,
             },
           ],
         ]
@@ -153,8 +153,8 @@ exports[`<About /> renders correctly 1`] = `
               "marginTop": 20,
             },
             {
-              "fontSize": 22,
-              "lineHeight": 33,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ],
         ]
@@ -195,9 +195,13 @@ exports[`<About /> renders correctly 1`] = `
       style={
         [
           {
+            "alignSelf": "center",
             "borderRadius": 12,
             "marginBottom": 20,
             "marginTop": 40,
+            "width": "100%",
+          },
+          {
             "paddingVertical": 20,
           },
           {
@@ -217,8 +221,8 @@ exports[`<About /> renders correctly 1`] = `
                 "textAlign": "center",
               },
               {
-                "fontSize": 22,
-                "lineHeight": 33,
+                "fontSize": 27,
+                "lineHeight": 39,
               },
             ],
           ]
@@ -256,8 +260,8 @@ exports[`<About /> renders correctly 1`] = `
               "textAlign": "center",
             },
             {
-              "fontSize": 22,
-              "lineHeight": 33,
+              "fontSize": 27,
+              "lineHeight": 39,
             },
           ],
         ]
