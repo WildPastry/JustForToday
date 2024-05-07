@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import 'expo-dev-client';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ColorSchemeName } from 'react-native';
 import Navigation from './navigation';
 import { Provider } from 'react-redux';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { registerRootComponent } from 'expo';
 import store from './redux/store';
@@ -28,10 +28,12 @@ const App: React.FC = (): JSX.Element | null => {
     return null;
   }
   return (
-    <SafeAreaView>
-      <Navigation colorScheme={colorScheme} />
-      <StatusBar />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
