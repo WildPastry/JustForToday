@@ -124,10 +124,10 @@ function BottomTabNavigator() {
   const deviceSize: IDeviceSize[keyof IDeviceSize] = getDeviceSize();
 
   /*
-   * Helper function for icon width
+   * Helper function for icon size
    * Larger screens need to display the icon side by side
    */
-  const getIconWidth = (): number => {
+  const getIconSize = (): number => {
     return deviceSize === EDeviceSizes.LRG
       ? Control[deviceSize].icon + 20
       : Control[deviceSize].icon;
@@ -148,6 +148,8 @@ function BottomTabNavigator() {
         tabBarStyle: {
           backgroundColor: Colours[colorScheme].navBackground,
           height: Control[deviceSize].bottomTabHeight,
+          maxHeight: Control[deviceSize].bottomTabHeight,
+          minHeight: Control[deviceSize].bottomTabHeight,
           borderTopColor: Colours[colorScheme].navBorder,
           borderTopWidth: 0.6,
           elevation: 0
@@ -171,7 +173,8 @@ function BottomTabNavigator() {
             <TabBarAwesome5Icon
               name='chair'
               color={color}
-              width={getIconWidth()}
+              height={getIconSize()}
+              width={getIconSize()}
               size={Control[deviceSize].icon}
             />
           ),
@@ -189,7 +192,8 @@ function BottomTabNavigator() {
             <TabBarMaterialIcon
               name='stairs'
               color={color}
-              width={getIconWidth()}
+              height={getIconSize()}
+              width={getIconSize()}
               size={Control[deviceSize].icon}
             />
           ),
@@ -207,7 +211,8 @@ function BottomTabNavigator() {
             <TabBarAwesomeIcon
               name='book'
               color={color}
-              width={getIconWidth()}
+              height={getIconSize()}
+              width={getIconSize()}
               size={Control[deviceSize].icon}
             />
           ),
@@ -223,6 +228,7 @@ function TabBarAwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
   size: number;
+  height: number;
   width: number;
 }) {
   return <FontAwesome {...props} />;
@@ -232,6 +238,7 @@ function TabBarAwesome5Icon(props: {
   name: React.ComponentProps<typeof FontAwesome5>['name'];
   color: string;
   size: number;
+  height: number;
   width: number;
 }) {
   return <FontAwesome5 {...props} />;
@@ -241,6 +248,7 @@ function TabBarMaterialIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
   size: number;
+  height: number;
   width: number;
 }) {
   return <MaterialCommunityIcons {...props} />;
