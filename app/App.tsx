@@ -3,7 +3,7 @@ import 'expo-dev-client';
 import { ColorSchemeName } from 'react-native';
 import Navigation from './navigation';
 import { Provider } from 'react-redux';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { registerRootComponent } from 'expo';
 import store from './redux/store';
@@ -28,10 +28,10 @@ const App: React.FC = (): JSX.Element | null => {
     return null;
   }
   return (
-    <SafeAreaProvider>
+    <SafeAreaView>
       <Navigation colorScheme={colorScheme} />
       <StatusBar />
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 };
 
